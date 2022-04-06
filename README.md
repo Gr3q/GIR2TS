@@ -8,19 +8,30 @@ Reads [GObject Introspection][GI site] GIR files to produce [TypeScript][TS] dec
 
 ## Status
 
-Currently generates the bindings hosted on [GJS-TS].
+Currently the project only generates simple types (no generics or any advanced usage coming from the GObject Introspection XML files) and need to be modified/extended manually through the files in `modifiers` and `extensions` folder.
+
+**This project currently contains `.gir` files and their typings for the Cinnamon desktop environment.** With little work (assuming you get the `.gir` files) you can easily generate typings for Gnome or any other Desktop environment using GJS.
+
+## Alternatives
+
+[Evan Welsh / gi.ts · GitLab](https://gitlab.gnome.org/ewlsh/gi.ts) is a more mature version of generators of this type. It has a different approach of generating typings that is most likely better for Gnome, but I never verified it or tried it because my main target was Cinnamon (and to be honest I found it late in development).
+
+## Future work
+
+* Automatically generate generics
+
+* Add `$gtype` members for all constructs
 
 ## Usage
 
-Put the .gir files in a directory. In this case it's ../gir.
+Put the .gir files in a directory. In this case it's `./gir`.
 
 ```
-git clone https://github.com/niagr/GIR2TS.git
+git clone https://github.com/Gr3q/GIR2TS.git
 cd GIR2TS
 npm install
-npm run biild
+npm run build
 npm run generate
-
 ```
 
 To run the generated script directly, observe the `generate` command in `package.json`
@@ -41,7 +52,9 @@ Currently applies the following mappings:
 
 ### Class
 
-Generates an interface corresponding to the instance side of the class and a matching object of the same name as the constructor that contains the constructor and static methods. Properties are not included in the declarations because they cause naming conflicts with the methods and signals. Most properties should be accessed using getters and setters anyway and for the rare times when that's not an option we can always cast to ```any```.
+Generates an interface corresponding to the instance side of the class, then a mixin type to facilitate inheritance without errors (Multi-class extends are not allowed in Typescript, but allowed in C).
+
+Then it generates an interface corresponding extending the mixin and a matching class of the same name as the constructor that contains the constructor and static methods.  Properties that are write-only or conflicting with methods/signals are not included in the declarations. Most properties should be accessed using getters and setters anyway and for the rare times when that's not an option we can always cast to ```any```.
 
 ```typescript
 /** This construct is only for enabling class multi-inheritance,
@@ -59,7 +72,7 @@ interface IWindow {
 type WindowMixin = IWindow & IBin & Atk.IImplementorIface & IBuildable;
 
 interface Window extends WindowMixin {}
-class Window : {
+class Window {
     public static new(_type: WindowType): Widget;
 }
 ```
