@@ -24,6 +24,24 @@
                         ]
                     }
                 }
+            },
+            "Entry": {
+                "function": {
+                    "get_clutter_text": {
+                        "return_type": {
+                            "type": "Clutter.Text"
+                        }
+                    }
+                }
+            },
+            "Label": {
+                "function": {
+                    "get_clutter_text": {
+                        "return_type": {
+                            "type": "Clutter.Text"
+                        }
+                    }
+                }
             }
         }
     }
