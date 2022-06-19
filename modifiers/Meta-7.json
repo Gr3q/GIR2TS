@@ -1,0 +1,16 @@
+{
+    "$schema": "./schema.json",
+    "amend": {
+        "class": {
+            "Window": {
+                "function": {
+                    "get_compositor_private": {
+                        "return_type": {
+                            "type": "WindowActor"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

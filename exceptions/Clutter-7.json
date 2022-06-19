@@ -1,0 +1,68 @@
+{
+    "$schema": "./schema.json",
+    "exclude": {
+        "class": {
+            "ScriptableIface": {
+                "callback": [
+                    "parse_custom_node"
+                ]
+            },
+            "Scriptable": {
+                "method": [
+                    "parse_custom_node"
+                ]
+            },
+            "ButtonEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "CrossingEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "KeyEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "MotionEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "ScrollEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "AnyEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "StageStateEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "TouchpadPinchEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "TouchpadSwipeEvent": {
+                "prop": [
+                    "type"
+                ]
+            },
+            "TouchEvent": {
+                "prop": [
+                    "type"
+                ]
+            }
+        },
+        "function": []
+    }
+}
