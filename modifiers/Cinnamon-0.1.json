@@ -24,6 +24,26 @@
                         }
                     }
                 }
+            },
+            "CalendarServer": {
+                "function": {
+                    "override_properties": {
+                        "param": {
+                            "klass": {
+                                "type": "any"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "function": {
+            "calendar_server_override_properties": {
+                "param": {
+                    "klass": {
+                        "type": "any"
+                    }
+                }
             }
         }
     }
