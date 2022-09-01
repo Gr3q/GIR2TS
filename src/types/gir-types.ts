@@ -30,7 +30,9 @@ export interface Node {
     doc?: Omit<Node, "doc">[];
 }
 export interface TypeNode extends Omit<Node, "$"> {
-    "$": Partial<NodeAttributes>
+    "$": Partial<NodeAttributes>;
+    /** This can only happen if we are in some kind of list type */
+    type?: TypeNode[];
 }
 
 export interface ParameterNode extends Node {

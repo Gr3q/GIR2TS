@@ -62,10 +62,14 @@ export function GetTypeInfo(param_node: ParameterNode, modifier?: ParamModifier)
     let doc: string | null = "";
     let name: string | null = null;
     if (param_node?.type?.[0]) {
-        type = convertToJSType(param_node.type[0].$.name);
+        // This can only happen if we are in some kind of list type, just convert it to array
+        if (param_node.type[0]?.type?.[0] != null)
+            type = convertToJSType(param_node.type[0].type[0].$.name) + "[]";
+        else
+            type = convertToJSType(param_node.type[0].$.name);
         doc = param_node.doc?.[0]?._ ?? null;
         name = param_node?.$?.name ?? null;
-    } else if (param_node.array && param_node.array[0].type) {
+    } else if ((param_node.array) && param_node.array[0].type) {
         type = convertToJSType(param_node.array[0].type[0].$.name) + '[]';
         doc = param_node.doc?.[0]?._ ?? null;
     } else if (param_node.array && param_node.array[0].array) {
