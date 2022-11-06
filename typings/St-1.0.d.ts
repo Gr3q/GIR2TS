@@ -3069,15 +3069,12 @@ declare namespace imports.gi.St {
 	 * @returns the debug name.
 	 */
 	function describe_actor(actor: Clutter.Actor): string;
-
 	function get_slow_down_factor(): number;
-
 	/**
 	 * Set a global factor applied to all animation durations
 	 * @param factor new slow-down factor
 	 */
 	function set_slow_down_factor(factor: number): void;
-
 	const PARAM_READABLE: number;
 
 	const PARAM_READWRITE: number;

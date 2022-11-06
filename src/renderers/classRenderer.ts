@@ -146,16 +146,16 @@ function renderIInterfacePart(
     //#endregion
 
     //#region Methods
-    const method_str_list: string[] = methods.map((m) => {
+    const method_str_list = methods.map((m) => {
         // if method is present in exclude_list
         const excluded = (exclude?.method?.includes(m.$.name) || exclude_all_members);
         const funcModifier = modifier?.function?.[m.$.name];
-        let method_str = renderMethod(m, ns_name, funcModifier, { include_access_modifier: false, indentNum: 1, exclude: excluded });
+        let method_str = renderMethod(m, methods, ns_name, funcModifier, { include_access_modifier: false, indentNum: 1, exclude: excluded });
         return method_str;
     });
 
     if (method_str_list.length > 0) {
-        body += method_str_list.join('\n');
+        body += method_str_list.filter(v => !!v).join('\n');
     }
 
     //#endregion
@@ -253,23 +253,23 @@ function renderInitOptionsInterface(class_name: string, fields: FieldNode[], ifa
 }
 
 function renderClassPart(ctors: FunctionNode[], static_funcs: FunctionNode[], class_name: string, ns_name: string, modifier?: ClassModifier): string {
-    const ctor_str_list: string[] = ctors.map((c) => {
+    const ctor_str_list = ctors.map((c) => {
         const funcModifier = modifier?.function?.[c.$.name];
-        return renderMethod(c, ns_name, funcModifier, { indentNum: 1, staticFunc: true });
+        return renderMethod(c, ctors, ns_name, funcModifier, { indentNum: 1, staticFunc: true });
     });
-    const ctors_body = ctor_str_list.join('\n');
+    const ctors_body = ctor_str_list.filter(n => !!n).join('\n');
 
-    const static_func_str_list: string[] = static_funcs.map((sf) => {
+    const static_func_str_list = static_funcs.map((sf) => {
         const funcModifier = modifier?.function?.[sf.$.name];
-        return renderMethod(sf, ns_name, funcModifier, { indentNum: 1, staticFunc: true });
+        return renderMethod(sf, static_funcs, ns_name, funcModifier, { indentNum: 1, staticFunc: true });
     });
-    const static_func_body = static_func_str_list.join('\n');
+    const static_func_body = static_func_str_list.filter(n => !!n).join('\n');
 
     const constructor_modifier = modifier?.function?.["constructor"];
     const classGenericModifier = modifier?.generic ?? "";
     const static_side = '\n' +
         `class ${class_name}${classGenericModifier} {\n` +
-        `${renderMethod(BuildConstructorNode(class_name), ns_name, constructor_modifier, {
+        `${renderMethod(BuildConstructorNode(class_name), [], ns_name, constructor_modifier, {
             indentNum: 1,
             isConstructor: true
         })}\n` +

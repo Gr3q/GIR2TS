@@ -28,13 +28,13 @@ function renderCallbackField(cb_node: FunctionNode, ns_name: string, indent: num
     let result = `${"\t".repeat(indent)}`;
     if (exclude)
         result += "// ";
-    result += `public ${cb_name}: {${renderMethod(cb_node, ns_name, undefined, { include_name: false, include_access_modifier: false })}};`;
+    result += `public ${cb_name}: {${renderMethod(cb_node, [], ns_name, undefined, { include_name: false, include_access_modifier: false })}};`;
     return result;
 }
 
 /** Some static functions are in constructor nodes, render them as static functions */
-function renderConstructorField(constructor_node: FunctionNode, ns_name: string, indent: number, exclude: boolean, modifier?: FunctionModifier) {
-    return `${renderMethod(constructor_node, ns_name, modifier, { indentNum: indent, exclude: exclude, staticFunc: true })}`
+function renderConstructorField(constructor_node: FunctionNode, nodes: FunctionNode[], ns_name: string, indent: number, exclude: boolean, modifier?: FunctionModifier) {
+    return `${renderMethod(constructor_node, nodes, ns_name, modifier, { indentNum: indent, exclude: exclude, staticFunc: true })}`
 }
 
 export function renderRecordAsClass(rec_node: RecordNode, ns_name: string, exclude?: ExcludeClass, modifier?: ClassModifier): string {
@@ -70,8 +70,13 @@ export function renderRecordAsClass(rec_node: RecordNode, ns_name: string, exclu
             continue;
         const func_name = func.$.name;
         const excluded = (exclude?.static?.includes(func_name) ?? false) || exclude_all_members;
-        const modifierFunc = modifier?.function?.[func_name]
-        body += renderConstructorField(func, ns_name, 1, excluded, modifierFunc) + "\n";
+        const modifierFunc = modifier?.function?.[func_name];
+        const func_text = renderConstructorField(func, staticFuncs, ns_name, 1, excluded, modifierFunc);
+
+        if (!func_text)
+            continue;
+
+        body += func_text + "\n";
     }
 
     for (let f of props) {
@@ -88,8 +93,13 @@ export function renderRecordAsClass(rec_node: RecordNode, ns_name: string, exclu
     for (let m of methods) {
         const func_name = m.$.name;
         const excluded = (exclude?.method?.includes(func_name) ?? false) || exclude_all_members;
-        const modifierFunc = modifier?.function?.[func_name]
-        body += renderMethod(m, ns_name, modifierFunc, { indentNum: 1, exclude: excluded }) + '\n';
+        const modifierFunc = modifier?.function?.[func_name];
+        const func_text = renderMethod(m, methods, ns_name, modifierFunc, { indentNum: 1, exclude: excluded });
+
+        if (!func_text)
+            continue;
+            
+        body += func_text + '\n';
     }
 
     let result = `export interface ${rec_node.$.name}InitOptions {}\n`;
@@ -100,7 +110,7 @@ export function renderRecordAsClass(rec_node: RecordNode, ns_name: string, exclu
     result += `class ${rec_node.$.name}${genericModifier} {\n`;
 
     const constructor_modifier = modifier?.function?.["constructor"];
-    result += `${renderMethod(BuildConstructorNode(rec_node.$.name), ns_name, constructor_modifier, { indentNum: 1, isConstructor: true })}\n`;
+    result += `${renderMethod(BuildConstructorNode(rec_node.$.name), [], ns_name, constructor_modifier, { indentNum: 1, isConstructor: true })}\n`;
     result += `${body}}`;
     return result
 }

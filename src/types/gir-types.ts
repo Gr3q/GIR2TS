@@ -1,5 +1,8 @@
 export interface NodeAttributes {
     name: string;
+    "shadowed-by"?: string;
+    introspectable?: "0";
+    shadows?: string;
 }
 
 

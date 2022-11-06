@@ -5122,7 +5122,6 @@ declare namespace imports.gi.Cogl {
 	type UserDataDestroyCallback = GLib.DestroyNotify;
 
 	function blend_string_error_quark(): number;
-
 	/**
 	 * #return FALSE for an immediately detected error, TRUE otherwise.
 	 * 
@@ -5174,9 +5173,7 @@ declare namespace imports.gi.Cogl {
 	 * @returns 
 	 */
 	function blit_framebuffer(src: Framebuffer, dest: Framebuffer, src_x: number, src_y: number, dst_x: number, dst_y: number, width: number, height: number): boolean;
-
 	function clutter_winsys_has_feature_CLUTTER(feature: WinsysFeature): boolean;
-
 	/**
 	 * Compares two {@link Color}<!-- -->s and checks if they are the same.
 	 * 
@@ -5187,7 +5184,6 @@ declare namespace imports.gi.Cogl {
 	 * @returns %TRUE if the two colors are the same.
 	 */
 	function color_equal(v1: any | null, v2: any | null): boolean;
-
 	/**
 	 * Converts a color expressed in HLS (hue, luminance and saturation)
 	 * values into a {@link Color}.
@@ -5197,14 +5193,12 @@ declare namespace imports.gi.Cogl {
 	 * @returns return location for a {@link Color}
 	 */
 	function color_init_from_hsl(hue: number, saturation: number, luminance: number): Color;
-
 	/**
 	 * Create a new cogl program object that can be used to replace parts of the GL
 	 * rendering pipeline with custom code.
 	 * @returns a new cogl program.
 	 */
 	function create_program(): Handle;
-
 	/**
 	 * Create a new shader handle, use {@link Cogl.shader.source} to set the
 	 * source code to be used on it.
@@ -5212,13 +5206,11 @@ declare namespace imports.gi.Cogl {
 	 * @returns a new shader handle.
 	 */
 	function create_shader(shader_type: ShaderType): Handle;
-
 	/**
 	 * Prints the contents of a {@link Matrix} to stdout.
 	 * @param matrix A {@link Matrix}
 	 */
 	function debug_matrix_print(matrix: Matrix): void;
-
 	/**
 	 * Invokes #func once for each type of object that Cogl uses and
 	 * passes a count of the number of objects for that type. This is
@@ -5227,7 +5219,6 @@ declare namespace imports.gi.Cogl {
 	 * @param func A callback function for each type
 	 */
 	function debug_object_foreach_type(func: DebugObjectForeachTypeCallback): void;
-
 	/**
 	 * Prints a list of all the object types that Cogl uses along with the
 	 * number of objects of that type that are currently in use. This is
@@ -5235,9 +5226,7 @@ declare namespace imports.gi.Cogl {
 	 * issues with objects leaking.
 	 */
 	function debug_object_print_instances(): void;
-
 	function egl_texture_2d_new_from_image(ctx: Context, width: number, height: number, format: PixelFormat, image: any, flags: EglImageFlags): Texture2D;
-
 	/**
 	 * This function should only need to be called in exceptional circumstances.
 	 * 
@@ -5261,7 +5250,6 @@ declare namespace imports.gi.Cogl {
 	 * starts to use ARBfb programs itself for the material API.
 	 */
 	function flush(): void;
-
 	/**
 	 * Iterates through all the context level features currently supported
 	 * for a given #context and for each feature #callback is called.
@@ -5270,16 +5258,13 @@ declare namespace imports.gi.Cogl {
 	 *            supported feature
 	 */
 	function foreach_feature(context: Context, callback: FeatureCallback): void;
-
 	function framebuffer_error_quark(): number;
-
 	/**
 	 * Queries if backface culling has been enabled via
 	 * {@link Cogl.set.backface_culling_enabled}
 	 * @returns %TRUE if backface culling is enabled, and %FALSE otherwise
 	 */
 	function get_backface_culling_enabled(): boolean;
-
 	/**
 	 * Returns the current time value from Cogl's internal clock. This
 	 * clock is used for measuring times such as the presentation time
@@ -5296,13 +5281,11 @@ declare namespace imports.gi.Cogl {
 	 *  active internal clock.
 	 */
 	function get_clock_time(context: Context): number;
-
 	/**
 	 * Queries if depth testing has been enabled via {@link Cogl.set_depth_test_enable}
 	 * @returns %TRUE if depth testing is enabled, and %FALSE otherwise
 	 */
 	function get_depth_test_enabled(): boolean;
-
 	/**
 	 * Returns the graphics reset status as reported by
 	 * GetGraphicsResetStatusARB defined in the ARB_robustness extension.
@@ -5318,7 +5301,6 @@ declare namespace imports.gi.Cogl {
 	 * @returns a {@link GraphicsResetStatus}
 	 */
 	function get_graphics_reset_status(context: Context): GraphicsResetStatus;
-
 	/**
 	 * Retrieves the #GOptionGroup used by Cogl to parse the command
 	 * line options. Clutter uses this to handle the Cogl command line
@@ -5326,7 +5308,6 @@ declare namespace imports.gi.Cogl {
 	 * @returns a #GOptionGroup
 	 */
 	function get_option_group(): GLib.OptionGroup;
-
 	/**
 	 * Gets a pointer to a given GL or GL ES extension function. This acts
 	 * as a wrapper around glXGetProcAddress() or whatever is the
@@ -5340,11 +5321,8 @@ declare namespace imports.gi.Cogl {
 	 *   function is not available.
 	 */
 	function get_proc_address(name: string): GObject.Callback;
-
 	function gtype_matrix_get_type(): GObject.Type;
-
 	function handle_get_type(): GObject.Type;
-
 	/**
 	 * Checks if a given #feature is currently available
 	 * 
@@ -5358,7 +5336,6 @@ declare namespace imports.gi.Cogl {
 	 * not.
 	 */
 	function has_feature(context: Context, feature: FeatureID): boolean;
-
 	/**
 	 * Checks if a list of features are all currently available.
 	 * 
@@ -5370,7 +5347,6 @@ declare namespace imports.gi.Cogl {
 	 * otherwise.
 	 */
 	function has_features(context: Context): boolean;
-
 	/**
 	 * Checks whether #object is a {@link Bitmap}
 	 * @param object a {@link Object} pointer
@@ -5378,7 +5354,6 @@ declare namespace imports.gi.Cogl {
 	 *   and %FALSE otherwise
 	 */
 	function is_bitmap(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given object references an existing context object.
 	 * @param object An object or %NULL
@@ -5386,7 +5361,6 @@ declare namespace imports.gi.Cogl {
 	 *   %FALSE otherwise
 	 */
 	function is_context(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given object references a {@link FrameInfo}.
 	 * @param object A {@link Object} pointer
@@ -5394,7 +5368,6 @@ declare namespace imports.gi.Cogl {
 	 *   and %FALSE otherwise.
 	 */
 	function is_frame_info(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given object references a {@link Framebuffer}.
 	 * @param object A {@link Object} pointer
@@ -5402,7 +5375,6 @@ declare namespace imports.gi.Cogl {
 	 *   and %FALSE otherwise.
 	 */
 	function is_framebuffer(object: any | null): boolean;
-
 	/**
 	 * Determines whether the given {@link Object} references an offscreen
 	 * framebuffer object.
@@ -5411,7 +5383,6 @@ declare namespace imports.gi.Cogl {
 	 *          %FALSE otherwise
 	 */
 	function is_offscreen(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given object references a {@link Onscreen}.
 	 * @param object A {@link Object} pointer
@@ -5419,7 +5390,6 @@ declare namespace imports.gi.Cogl {
 	 *   and %FALSE otherwise.
 	 */
 	function is_onscreen(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given #object references an existing pipeline object.
 	 * @param object A {@link Object}
@@ -5427,7 +5397,6 @@ declare namespace imports.gi.Cogl {
 	 *   %FALSE otherwise
 	 */
 	function is_pipeline(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given handle references an existing program object.
 	 * @param handle A CoglHandle
@@ -5435,7 +5404,6 @@ declare namespace imports.gi.Cogl {
 	 *   %FALSE otherwise
 	 */
 	function is_program(handle: Handle): boolean;
-
 	/**
 	 * Gets whether the given handle references an existing shader object.
 	 * @param handle A CoglHandle
@@ -5443,7 +5411,6 @@ declare namespace imports.gi.Cogl {
 	 *   %FALSE otherwise
 	 */
 	function is_shader(handle: Handle): boolean;
-
 	/**
 	 * Gets whether the given object references a texture object.
 	 * @param object A {@link Object} pointer
@@ -5451,7 +5418,6 @@ declare namespace imports.gi.Cogl {
 	 *   %FALSE otherwise
 	 */
 	function is_texture(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given object references an existing {@link Texture2D}
 	 * object.
@@ -5460,7 +5426,6 @@ declare namespace imports.gi.Cogl {
 	 *   %FALSE otherwise
 	 */
 	function is_texture_2d(object: any | null): boolean;
-
 	/**
 	 * Gets whether the given object references a {@link Texture2DSliced}.
 	 * @param object A {@link Object} pointer
@@ -5468,7 +5433,6 @@ declare namespace imports.gi.Cogl {
 	 *   and %FALSE otherwise.
 	 */
 	function is_texture_2d_sliced(object: any | null): boolean;
-
 	/**
 	 * Compares two matrices to see if they represent the same
 	 * transformation. Although internally the matrices may have different
@@ -5479,7 +5443,6 @@ declare namespace imports.gi.Cogl {
 	 * @returns 
 	 */
 	function matrix_equal(v1: any | null, v2: any | null): boolean;
-
 	/**
 	 * Queries the number of bytes per pixel for a given format in the given plane.
 	 * @param format The pixel format
@@ -5488,21 +5451,18 @@ declare namespace imports.gi.Cogl {
 	 * @returns The number of bytes per pixel in the given format's given plane.
 	 */
 	function pixel_format_get_bytes_per_pixel(format: PixelFormat, plane: number): number;
-
 	/**
 	 * Returns the number of planes the given CoglPixelFormat specifies.
 	 * @param format The format for which to get the number of planes
 	 * @returns The no. of planes of #format (at most %COGL_PIXEL_FORMAT_MAX_PLANES)
 	 */
 	function pixel_format_get_n_planes(format: PixelFormat): number;
-
 	/**
 	 * Returns a string representation of #format, useful for debugging purposes.
 	 * @param format a {@link PixelFormat}
 	 * @returns A string representation of #format.
 	 */
 	function pixel_format_to_string(format: PixelFormat): string;
-
 	/**
 	 * Attaches a shader to a program object. A program can have multiple
 	 * vertex or fragment shaders but only one of them may provide a
@@ -5512,7 +5472,6 @@ declare namespace imports.gi.Cogl {
 	 * @param shader_handle a {@link Handle} for a vertex of fragment shader.
 	 */
 	function program_attach_shader(program_handle: Handle, shader_handle: Handle): void;
-
 	/**
 	 * Retrieve the location (offset) of a uniform variable in a shader program,
 	 * a uniform is a variable that is constant for all vertices/fragments for a
@@ -5522,7 +5481,6 @@ declare namespace imports.gi.Cogl {
 	 * @returns the offset of a uniform in a specified program.
 	 */
 	function program_get_uniform_location(handle: Handle, uniform_name: string): number;
-
 	/**
 	 * Links a program making it ready for use. Note that calling this
 	 * function is optional. If it is not called the program will
@@ -5530,7 +5488,6 @@ declare namespace imports.gi.Cogl {
 	 * @param handle a {@link Handle} for a shader program.
 	 */
 	function program_link(handle: Handle): void;
-
 	/**
 	 * Changes the value of a floating point uniform for the given linked
 	 * #program.
@@ -5540,7 +5497,6 @@ declare namespace imports.gi.Cogl {
 	 * @param value the new value of the uniform.
 	 */
 	function program_set_uniform_1f(program: Handle, uniform_location: number, value: number): void;
-
 	/**
 	 * Changes the value of an integer uniform for the given linked
 	 * #program.
@@ -5550,7 +5506,6 @@ declare namespace imports.gi.Cogl {
 	 * @param value the new value of the uniform.
 	 */
 	function program_set_uniform_1i(program: Handle, uniform_location: number, value: number): void;
-
 	/**
 	 * Changes the value of a float vector uniform, or uniform array for
 	 * the given linked #program.
@@ -5564,7 +5519,6 @@ declare namespace imports.gi.Cogl {
 	 * @param value the new value of the uniform[s].
 	 */
 	function program_set_uniform_float(program: Handle, uniform_location: number, n_components: number, count: number, value: number[]): void;
-
 	/**
 	 * Changes the value of a int vector uniform, or uniform array for
 	 * the given linked #program.
@@ -5578,7 +5532,6 @@ declare namespace imports.gi.Cogl {
 	 * @param value the new value of the uniform[s].
 	 */
 	function program_set_uniform_int(program: Handle, uniform_location: number, n_components: number, count: number, value: number[]): void;
-
 	/**
 	 * Changes the value of a matrix uniform, or uniform array in the
 	 * given linked #program.
@@ -5593,7 +5546,6 @@ declare namespace imports.gi.Cogl {
 	 * @param value the new value of the uniform.
 	 */
 	function program_set_uniform_matrix(program: Handle, uniform_location: number, dimensions: number, count: number, transpose: boolean, value: number[]): void;
-
 	/**
 	 * Sets whether textures positioned so that their backface is showing
 	 * should be hidden. This can be used to efficiently draw two-sided
@@ -5603,7 +5555,6 @@ declare namespace imports.gi.Cogl {
 	 * @param setting %TRUE to enable backface culling or %FALSE to disable.
 	 */
 	function set_backface_culling_enabled(setting: boolean): void;
-
 	/**
 	 * Sets whether depth testing is enabled. If it is disabled then the
 	 * order that actors are layered on the screen depends solely on the
@@ -5613,13 +5564,9 @@ declare namespace imports.gi.Cogl {
 	 * @param setting %TRUE to enable depth testing or %FALSE to disable.
 	 */
 	function set_depth_test_enabled(setting: boolean): void;
-
 	function set_tracing_disabled_on_thread(data: any | null): void;
-
 	function set_tracing_enabled_on_thread(data: any | null, group: string, filename: string): void;
-
 	function set_tracing_enabled_on_thread_with_fd(data: any | null, group: string, fd: number): void;
-
 	/**
 	 * Retrieves the type of a shader {@link Handle}
 	 * @param handle {@link Handle} for a shader.
@@ -5627,7 +5574,6 @@ declare namespace imports.gi.Cogl {
 	 *          or %COGL_SHADER_TYPE_FRAGMENT if the shader is a frament processor
 	 */
 	function shader_get_type(handle: Handle): ShaderType;
-
 	/**
 	 * Replaces the current source associated with a shader with a new
 	 * one.
@@ -5639,9 +5585,7 @@ declare namespace imports.gi.Cogl {
 	 * @param source Shader source.
 	 */
 	function shader_source(shader: Handle, source: string): void;
-
 	function texture_error_quark(): number;
-
 	/**
 	 * Creates a {@link Texture} from a #CoglBitmap.
 	 * @param bitmap A {@link Bitmap} pointer
@@ -5652,7 +5596,6 @@ declare namespace imports.gi.Cogl {
 	 *               %NULL on failure
 	 */
 	function texture_new_from_bitmap(bitmap: Bitmap, flags: TextureFlags, internal_format: PixelFormat): Texture;
-
 	/**
 	 * Creates a new {@link Texture} based on data residing in memory.
 	 * @param width width of texture in pixels
@@ -5674,7 +5617,6 @@ declare namespace imports.gi.Cogl {
 	 *               %NULL on failure
 	 */
 	function texture_new_from_data(width: number, height: number, flags: TextureFlags, format: PixelFormat, internal_format: PixelFormat, rowstride: number, data: number[]): Texture;
-
 	/**
 	 * Creates a {@link Texture} from an image file.
 	 * @param filename the file to load
@@ -5691,7 +5633,6 @@ declare namespace imports.gi.Cogl {
 	 *               %NULL on failure
 	 */
 	function texture_new_from_file(filename: string, flags: TextureFlags, internal_format: PixelFormat): Texture;
-
 	/**
 	 * Creates a new {@link Texture} with the specified dimensions and pixel format.
 	 * @param width width of texture in pixels.
@@ -5702,7 +5643,6 @@ declare namespace imports.gi.Cogl {
 	 * @returns A newly created {@link Texture} or %NULL on failure
 	 */
 	function texture_new_with_size(width: number, height: number, flags: TextureFlags, internal_format: PixelFormat): Texture;
-
 	/**
 	 * Assuming you know the given #onscreen framebuffer is based on an x11 window
 	 * this queries the XID of that window. If
@@ -5717,7 +5657,6 @@ declare namespace imports.gi.Cogl {
 	 * @returns 
 	 */
 	function x11_onscreen_get_window_xid(onscreen: Onscreen): number;
-
 	/**
 	 * Adds a callback function that will receive all native events. The
 	 * function can stop further processing of the event by return
@@ -5727,11 +5666,8 @@ declare namespace imports.gi.Cogl {
 	 * @param data user data passed to #func when called
 	 */
 	function xlib_renderer_add_filter(renderer: any, func: XlibFilterFunc, data: any | null): void;
-
 	function xlib_renderer_get_display(renderer: any): any;
-
 	function xlib_renderer_get_foreign_display(renderer: any): any;
-
 	/**
 	 * This function processes a single event; it can be used to hook into
 	 * external event retrieval (for example that done by Clutter or
@@ -5745,7 +5681,6 @@ declare namespace imports.gi.Cogl {
 	 * internal state without taking any exclusive action.
 	 */
 	function xlib_renderer_handle_event(renderer: any, event: any): FilterReturn;
-
 	/**
 	 * Removes a callback that was previously added with
 	 * {@link Cogl.xlib.renderer_add_filter}.
@@ -5754,7 +5689,6 @@ declare namespace imports.gi.Cogl {
 	 * @param data user data given when the callback was installed
 	 */
 	function xlib_renderer_remove_filter(renderer: any, func: XlibFilterFunc, data: any | null): void;
-
 	/**
 	 * Sets whether Cogl should make use of the
 	 * NV_robustness_video_memory_purge extension, if exposed by the
@@ -5792,7 +5726,6 @@ declare namespace imports.gi.Cogl {
 	 * @param enable The new value
 	 */
 	function xlib_renderer_request_reset_on_video_memory_purge(renderer: any, enable: boolean): void;
-
 	/**
 	 * Sets a foreign Xlib display that Cogl will use for and Xlib based winsys
 	 * backend.
@@ -5805,7 +5738,6 @@ declare namespace imports.gi.Cogl {
 	 * @param display
 	 */
 	function xlib_renderer_set_foreign_display(renderer: any, display: any): void;
-
 	const AFIRST_BIT: number;
 
 	const A_BIT: number;

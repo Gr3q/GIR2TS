@@ -19,8 +19,8 @@ export interface Parameter {
     optional: boolean;
 }
 
-export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModifier, constructor: boolean = false): FunctionInfo {
-    let func_name = func_node.$.name;
+export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModifier, constructor: boolean = false, shadowedName: string | null = null): FunctionInfo {
+    let func_name = shadowedName ?? func_node.$.name;
     let return_type: string = "any", returnDoc: string | null = null, returnName: string | null = null;
     if (!constructor) {
         ({ type:return_type, docString:returnDoc, name:returnName  } = GetTypeInfo(func_node['return-value']?.[0]));

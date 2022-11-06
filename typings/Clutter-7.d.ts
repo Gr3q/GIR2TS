@@ -6531,34 +6531,17 @@ declare namespace imports.gi.Clutter {
 		 */
 		peek_initial_value(): GObject.Value;
 		/**
-		 * Variadic arguments version of {@link Clutter.Interval.set_final_value}.
-		 * 
-		 * This function is meant as a convenience for the C API.
-		 * 
-		 * Language bindings should use clutter_interval_set_final_value() instead.
-		 */
-		set_final(): void;
-		/**
 		 * Sets the final value of #interval to #value. The value is
 		 * copied inside the {@link Interval}.
 		 * @param value a #GValue
 		 */
-		set_final_value(value: GObject.Value): void;
-		/**
-		 * Variadic arguments version of {@link Clutter.Interval.set_initial_value}.
-		 * 
-		 * This function is meant as a convenience for the C API.
-		 * 
-		 * Language bindings should use clutter_interval_set_initial_value()
-		 * instead.
-		 */
-		set_initial(): void;
+		set_final(value: GObject.Value): void;
 		/**
 		 * Sets the initial value of #interval to #value. The value is copied
 		 * inside the {@link Interval}.
 		 * @param value a #GValue
 		 */
-		set_initial_value(value: GObject.Value): void;
+		set_initial(value: GObject.Value): void;
 		/**
 		 * Variable arguments wrapper for {@link Clutter.Interval.set_initial_value}
 		 * and clutter_interval_set_final_value() that avoids using the
@@ -11311,22 +11294,6 @@ declare namespace imports.gi.Clutter {
 		 * {@link Interval} used by #transition, or will update it if
 		 * the #ClutterTransition:interval is already set.
 		 * 
-		 * If #transition already has a #ClutterTransition:interval set,
-		 * then #value must hold the same type, or a transformable type,
-		 * as the interval's #ClutterInterval:value-type property.
-		 * 
-		 * This is a convenience function for the C API; language bindings
-		 * should use {@link Clutter.Transition.set_from_value} instead.
-		 * @param value_type the type of the value to set
-		 */
-		set_from(value_type: GObject.Type): void;
-		/**
-		 * Sets the initial value of the transition.
-		 * 
-		 * This is a convenience function that will either create the
-		 * {@link Interval} used by #transition, or will update it if
-		 * the #ClutterTransition:interval is already set.
-		 * 
 		 * This function will copy the contents of #value, so it is
 		 * safe to call {@link GObject.Value.unset} after it returns.
 		 * 
@@ -11337,7 +11304,7 @@ declare namespace imports.gi.Clutter {
 		 * This function is meant to be used by language bindings.
 		 * @param value a #GValue with the initial value of the transition
 		 */
-		set_from_value(value: GObject.Value): void;
+		set_from(value: GObject.Value): void;
 		/**
 		 * Sets the {@link Transition.interval} property using #interval.
 		 * 
@@ -11360,22 +11327,6 @@ declare namespace imports.gi.Clutter {
 		 * {@link Interval} used by #transition, or will update it if
 		 * the #ClutterTransition:interval is already set.
 		 * 
-		 * If #transition already has a #ClutterTransition:interval set,
-		 * then #value must hold the same type, or a transformable type,
-		 * as the interval's #ClutterInterval:value-type property.
-		 * 
-		 * This is a convenience function for the C API; language bindings
-		 * should use {@link Clutter.Transition.set_to_value} instead.
-		 * @param value_type the type of the value to set
-		 */
-		set_to(value_type: GObject.Type): void;
-		/**
-		 * Sets the final value of the transition.
-		 * 
-		 * This is a convenience function that will either create the
-		 * {@link Interval} used by #transition, or will update it if
-		 * the #ClutterTransition:interval is already set.
-		 * 
 		 * This function will copy the contents of #value, so it is
 		 * safe to call {@link GObject.Value.unset} after it returns.
 		 * 
@@ -11386,7 +11337,7 @@ declare namespace imports.gi.Clutter {
 		 * This function is meant to be used by language bindings.
 		 * @param value a #GValue with the final value of the transition
 		 */
-		set_to_value(value: GObject.Value): void;
+		set_to(value: GObject.Value): void;
 		connect(signal: "notify::animatable", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::interval", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::remove-on-complete", callback: (owner: this, ...args: any) => void): number;
@@ -16471,7 +16422,6 @@ declare namespace imports.gi.Clutter {
 	 *   Use {@link Clutter.ActorBox.free} to free its resources
 	 */
 	function actor_box_alloc(): ActorBox;
-
 	/**
 	 * Adds the debug flags passed to the list of debug flags.
 	 * @param debug_flags
@@ -16479,15 +16429,12 @@ declare namespace imports.gi.Clutter {
 	 * @param pick_flags
 	 */
 	function add_debug_flags(debug_flags: DebugFlag, draw_flags: DrawDebugFlag, pick_flags: PickDebugFlag): void;
-
 	function base_init(): void;
-
 	/**
 	 * Utility function to clear a Cairo context.
 	 * @param cr a Cairo context
 	 */
 	function cairo_clear(cr: cairo.Context): void;
-
 	/**
 	 * Utility function for setting the source color of #cr using
 	 * a {@link Color}. This function is the equivalent of:
@@ -16503,7 +16450,6 @@ declare namespace imports.gi.Clutter {
 	 * @param color a {@link Color}
 	 */
 	function cairo_set_source_color(cr: cairo.Context, color: Color): void;
-
 	/**
 	 * Converts a color expressed in HLS (hue, luminance and saturation)
 	 * values into a {@link Color}.
@@ -16513,7 +16459,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns return location for a {@link Color}
 	 */
 	function color_from_hls(hue: number, luminance: number, saturation: number): Color;
-
 	/**
 	 * Converts #pixel from the packed representation of a four 8 bit channel
 	 * color to a {@link Color}.
@@ -16521,7 +16466,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns return location for a {@link Color}
 	 */
 	function color_from_pixel(pixel: number): Color;
-
 	/**
 	 * Parses a string definition of a color, filling the {@link Color}.red,
 	 * #ClutterColor.green, #ClutterColor.blue and #ClutterColor.alpha fields
@@ -16563,7 +16507,6 @@ declare namespace imports.gi.Clutter {
 	 * return location for a {@link Color}
 	 */
 	function color_from_string(str: string): [ boolean, Color ];
-
 	/**
 	 * Retrieves a static color for the given #color name
 	 * 
@@ -16574,7 +16517,6 @@ declare namespace imports.gi.Clutter {
 	 *   is owned by Clutter and it should never be modified or freed
 	 */
 	function color_get_static(color: StaticColor): Color;
-
 	/**
 	 * Looks up the #GParamSpec for a child property of #klass.
 	 * @param klass a #GObjectClass implementing the {@link Container} interface.
@@ -16583,7 +16525,6 @@ declare namespace imports.gi.Clutter {
 	 *   if no such property exist.
 	 */
 	function container_class_find_child_property(klass: GObject.Object, property_name: string): GObject.ParamSpec;
-
 	/**
 	 * Returns an array of #GParamSpec for all child properties.
 	 * @param klass a #GObjectClass implementing the {@link Container} interface.
@@ -16593,7 +16534,6 @@ declare namespace imports.gi.Clutter {
 	 * return location for length of returned array.
 	 */
 	function container_class_list_child_properties(klass: GObject.Object): [ GObject.ParamSpec[], number ];
-
 	/**
 	 * Disable loading the accessibility support. It has the same effect
 	 * as setting the environment variable
@@ -16601,7 +16541,6 @@ declare namespace imports.gi.Clutter {
 	 * should be called before clutter_init().
 	 */
 	function disable_accessibility(): void;
-
 	/**
 	 * Processes an event.
 	 * 
@@ -16613,7 +16552,6 @@ declare namespace imports.gi.Clutter {
 	 * @param event a {@link Event}.
 	 */
 	function do_event(event: Event): void;
-
 	/**
 	 * Adds a function which will be called for all events that Clutter
 	 * processes. The function will be called before any signals are
@@ -16625,34 +16563,29 @@ declare namespace imports.gi.Clutter {
 	 *   with {@link Clutter.event.remove_filter}.
 	 */
 	function event_add_filter(stage: Stage | null, func: EventFilterFunc, notify: GLib.DestroyNotify): number;
-
 	/**
 	 * Pops an event off the event queue. Applications should not need to call
 	 * this.
 	 * @returns A {@link Event} or NULL if queue empty
 	 */
 	function event_get(): Event;
-
 	/**
 	 * Returns a pointer to the first event from the event queue but
 	 * does not remove it.
 	 * @returns A {@link Event} or NULL if queue empty.
 	 */
 	function event_peek(): Event;
-
 	/**
 	 * Removes an event filter that was previously added with
 	 * {@link Clutter.event.add_filter}.
 	 * @param id The ID of the event filter, as returned from {@link Clutter.event.add_filter}
 	 */
 	function event_remove_filter(id: number): void;
-
 	/**
 	 * Checks if events are pending in the event queue.
 	 * @returns TRUE if there are pending events, FALSE otherwise.
 	 */
 	function events_pending(): boolean;
-
 	/**
 	 * Checks whether #feature is available.  #feature can be a logical
 	 * OR of {@link FeatureFlags}.
@@ -16660,13 +16593,11 @@ declare namespace imports.gi.Clutter {
 	 * @returns %TRUE if a feature is available
 	 */
 	function feature_available(feature: FeatureFlags): boolean;
-
 	/**
 	 * Returns all the supported features.
 	 * @returns a logical OR of all the supported features.
 	 */
 	function feature_get_all(): FeatureFlags;
-
 	/**
 	 * Returns whether Clutter has accessibility support enabled.  As
 	 * least, a value of TRUE means that there are a proper AtkUtil
@@ -16674,7 +16605,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns %TRUE if Clutter has accessibility support enabled
 	 */
 	function get_accessibility_enabled(): boolean;
-
 	/**
 	 * If an event is currently being processed, return that event.
 	 * This function is intended to be used to access event state
@@ -16684,14 +16614,12 @@ declare namespace imports.gi.Clutter {
 	 * @returns The current ClutterEvent, or %NULL if none
 	 */
 	function get_current_event(): Event;
-
 	/**
 	 * Retrieves the timestamp of the last event, if there is an
 	 * event or if the event has a timestamp.
 	 * @returns the event timestamp, or %CLUTTER_CURRENT_TIME
 	 */
 	function get_current_event_time(): number;
-
 	/**
 	 * Retrieves the default {@link Backend} used by Clutter. The
 	 * #ClutterBackend holds backend-specific configuration options.
@@ -16700,13 +16628,11 @@ declare namespace imports.gi.Clutter {
 	 *   need to use this.
 	 */
 	function get_default_backend(): Backend;
-
 	/**
 	 * Retrieves the default frame rate. See {@link Clutter.set_default_frame_rate}.
 	 * @returns the default frame rate
 	 */
 	function get_default_frame_rate(): number;
-
 	/**
 	 * Retrieves the default direction for the text. The text direction is
 	 * determined by the locale and/or by the `CLUTTER_TEXT_DIRECTION`
@@ -16717,7 +16643,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns the default text direction
 	 */
 	function get_default_text_direction(): TextDirection;
-
 	/**
 	 * Retrieves the #PangoFontMap instance used by Clutter.
 	 * You can use the global font map object with the COGL
@@ -16726,7 +16651,6 @@ declare namespace imports.gi.Clutter {
 	 *   value is owned by Clutter and it should never be unreferenced.
 	 */
 	function get_font_map(): Pango.FontMap;
-
 	/**
 	 * Returns a #GOptionGroup for the command line arguments recognized
 	 * by Clutter. You should add this group to your #GOptionContext with
@@ -16754,7 +16678,6 @@ declare namespace imports.gi.Clutter {
 	 *   recognized by Clutter
 	 */
 	function get_option_group(): GLib.OptionGroup;
-
 	/**
 	 * Returns a #GOptionGroup for the command line arguments recognized
 	 * by Clutter. You should add this group to your #GOptionContext with
@@ -16770,7 +16693,6 @@ declare namespace imports.gi.Clutter {
 	 *   recognized by Clutter
 	 */
 	function get_option_group_without_init(): GLib.OptionGroup;
-
 	/**
 	 * Retrieves the Clutter script id, if any.
 	 * @param gobject a #GObject
@@ -16779,9 +16701,7 @@ declare namespace imports.gi.Clutter {
 	 *   should never be modified or freed.
 	 */
 	function get_script_id(gobject: GObject.Object): string;
-
 	function image_error_quark(): GLib.Quark;
-
 	/**
 	 * Initialises everything needed to operate with Clutter and parses some
 	 * standard command line options; #argc and #argv are adjusted accordingly
@@ -16803,9 +16723,7 @@ declare namespace imports.gi.Clutter {
 	 * @returns a {@link InitError} value
 	 */
 	function init(): InitError;
-
 	function init_error_quark(): GLib.Quark;
-
 	/**
 	 * This function does the same work as clutter_init(). Additionally,
 	 * it allows you to add your own command line options, and it
@@ -16831,7 +16749,6 @@ declare namespace imports.gi.Clutter {
 	 *   error.
 	 */
 	function init_with_args(parameter_string: string | null, entries: GLib.OptionEntry[] | null, translation_domain: string | null): InitError;
-
 	/**
 	 * Converts #keyval from a Clutter key symbol to the corresponding
 	 * ISO10646 (Unicode) character.
@@ -16840,21 +16757,17 @@ declare namespace imports.gi.Clutter {
 	 *   character.
 	 */
 	function keysym_to_unicode(keyval: number): number;
-
 	/**
 	 * Allocates enough memory to hold a {@link Matrix}.
 	 * @returns the newly allocated {@link Matrix}
 	 */
 	function matrix_alloc(): Matrix;
-
 	/**
 	 * Frees the memory allocated by {@link Clutter.matrix.alloc}.
 	 * @param matrix a {@link Matrix}
 	 */
 	function matrix_free(matrix: Matrix | null): void;
-
 	function matrix_get_type(): GObject.Type;
-
 	/**
 	 * Initializes #matrix with the contents of a C array of floating point
 	 * values.
@@ -16864,7 +16777,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns the initialized {@link Matrix}
 	 */
 	function matrix_init_from_array(matrix: Matrix, values: number[]): Matrix;
-
 	/**
 	 * Initializes the {@link Matrix} #a with the contents of the
 	 * #ClutterMatrix #b.
@@ -16873,7 +16785,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns the initialized {@link Matrix}
 	 */
 	function matrix_init_from_matrix(a: Matrix, b: Matrix): Matrix;
-
 	/**
 	 * Initializes #matrix with the identity matrix, i.e.:
 	 * 
@@ -16887,7 +16798,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns the initialized {@link Matrix}
 	 */
 	function matrix_init_identity(matrix: Matrix): Matrix;
-
 	/**
 	 * Creates a #GParamSpec for properties using {@link Color}.
 	 * @param name name of the property
@@ -16898,7 +16808,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns the newly created #GParamSpec
 	 */
 	function param_spec_color(name: string, nick: string, blurb: string, default_value: Color, flags: GObject.ParamFlags): GObject.ParamSpec;
-
 	/**
 	 * Creates a #GParamSpec for properties using {@link Units}.
 	 * @param name name of the property
@@ -16912,7 +16821,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns the newly created #GParamSpec
 	 */
 	function param_spec_units(name: string, nick: string, blurb: string, default_type: UnitType, minimum: number, maximum: number, default_value: number, flags: GObject.ParamFlags): GObject.ParamSpec;
-
 	/**
 	 * Removes the debug flags passed from the list of debug flags.
 	 * @param debug_flags
@@ -16920,20 +16828,8 @@ declare namespace imports.gi.Clutter {
 	 * @param pick_flags
 	 */
 	function remove_debug_flags(debug_flags: DebugFlag, draw_flags: DrawDebugFlag, pick_flags: PickDebugFlag): void;
-
 	function script_error_quark(): GLib.Quark;
-
 	function set_custom_backend_func(func: any | null): void;
-
-	/**
-	 * Simple wrapper around {@link Clutter.threads.add_idle_full} using the
-	 * default priority.
-	 * @param func function to call
-	 * @param data data to pass to the function
-	 * @returns the ID (greater than 0) of the event source.
-	 */
-	function threads_add_idle(func: GLib.SourceFunc, data: any | null): number;
-
 	/**
 	 * Adds a function to be called whenever there are no higher priority
 	 * events pending. If the function returns %FALSE it is automatically
@@ -17016,8 +16912,7 @@ declare namespace imports.gi.Clutter {
 	 * @param notify functio to call when the idle source is removed
 	 * @returns the ID (greater than 0) of the event source.
 	 */
-	function threads_add_idle_full(priority: number, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
-
+	function threads_add_idle(priority: number, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
 	/**
 	 * Adds a function to be called whenever Clutter is processing a new
 	 * frame.
@@ -17052,7 +16947,6 @@ declare namespace imports.gi.Clutter {
 	 *   calling {@link Clutter.threads.remove_repaint_func}.
 	 */
 	function threads_add_repaint_func(func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
-
 	/**
 	 * Adds a function to be called whenever Clutter is processing a new
 	 * frame.
@@ -17086,16 +16980,6 @@ declare namespace imports.gi.Clutter {
 	 *   calling {@link Clutter.threads.remove_repaint_func}.
 	 */
 	function threads_add_repaint_func_full(flags: RepaintFlags, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
-
-	/**
-	 * Simple wrapper around {@link Clutter.threads.add_timeout_full}.
-	 * @param interval the time between calls to the function, in milliseconds
-	 * @param func function to call
-	 * @param data data to pass to the function
-	 * @returns the ID (greater than 0) of the event source.
-	 */
-	function threads_add_timeout(interval: number, func: GLib.SourceFunc, data: any | null): number;
-
 	/**
 	 * Sets a function to be called at regular intervals holding the Clutter
 	 * threads lock, with the given priority. The function is called repeatedly
@@ -17118,14 +17002,12 @@ declare namespace imports.gi.Clutter {
 	 * @param notify function to call when the timeout source is removed
 	 * @returns the ID (greater than 0) of the event source.
 	 */
-	function threads_add_timeout_full(priority: number, interval: number, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
-
+	function threads_add_timeout(priority: number, interval: number, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
 	/**
 	 * Removes the repaint function with #handle_id as its id
 	 * @param handle_id an unsigned integer greater than zero
 	 */
 	function threads_remove_repaint_func(handle_id: number): void;
-
 	/**
 	 * Convert from a ISO10646 character to a key symbol.
 	 * @param wc a ISO10646 encoded character
@@ -17133,14 +17015,12 @@ declare namespace imports.gi.Clutter {
 	 *   or, if there is no corresponding symbol, wc | 0x01000000
 	 */
 	function unicode_to_keysym(wc: number): number;
-
 	/**
 	 * Stores a value in centimeters inside #units
 	 * @param cm centimeters
 	 * @returns a {@link Units}
 	 */
 	function units_from_cm(cm: number): Units;
-
 	/**
 	 * Stores a value in em inside #units, using the default font
 	 * name as returned by {@link Clutter.Backend.get_font_name}
@@ -17148,7 +17028,6 @@ declare namespace imports.gi.Clutter {
 	 * @returns a {@link Units}
 	 */
 	function units_from_em(em: number): Units;
-
 	/**
 	 * Stores a value in em inside #units using #font_name
 	 * @param font_name the font name and size
@@ -17156,28 +17035,24 @@ declare namespace imports.gi.Clutter {
 	 * @returns a {@link Units}
 	 */
 	function units_from_em_for_font(font_name: string | null, em: number): Units;
-
 	/**
 	 * Stores a value in millimiters inside #units
 	 * @param mm millimeters
 	 * @returns a {@link Units}
 	 */
 	function units_from_mm(mm: number): Units;
-
 	/**
 	 * Stores a value in pixels inside #units
 	 * @param px pixels
 	 * @returns a {@link Units}
 	 */
 	function units_from_pixels(px: number): Units;
-
 	/**
 	 * Stores a value in typographic points inside #units
 	 * @param pt typographic points
 	 * @returns a {@link Units}
 	 */
 	function units_from_pt(pt: number): Units;
-
 	/**
 	 * Parses a value and updates #units with it
 	 * 
@@ -17219,7 +17094,6 @@ declare namespace imports.gi.Clutter {
 	 * a {@link Units}
 	 */
 	function units_from_string(str: string): [ boolean, Units ];
-
 	/**
 	 * Retrieves a pointer to the {@link PaintNode} contained inside
 	 * the passed #GValue, and if not %NULL it will increase the
@@ -17230,14 +17104,12 @@ declare namespace imports.gi.Clutter {
 	 *   or %NULL
 	 */
 	function value_dup_paint_node(value: GObject.Value): PaintNode;
-
 	/**
 	 * Gets the {@link Color} contained in #value.
 	 * @param value a #GValue initialized to #CLUTTER_TYPE_COLOR
 	 * @returns the color inside the passed #GValue
 	 */
 	function value_get_color(value: GObject.Value): Color;
-
 	/**
 	 * Retrieves a pointer to the {@link PaintNode} contained inside
 	 * the passed #GValue.
@@ -17246,7 +17118,6 @@ declare namespace imports.gi.Clutter {
 	 *   a {@link PaintNode}, or %NULL
 	 */
 	function value_get_paint_node(value: GObject.Value): PaintNode;
-
 	/**
 	 * Retrieves the list of floating point values stored inside
 	 * the passed #GValue. #value must have been initialized with
@@ -17260,7 +17131,6 @@ declare namespace imports.gi.Clutter {
 	 *   point values, or %NULL
 	 */
 	function value_get_shader_float(value: GObject.Value): [ number[], number ];
-
 	/**
 	 * Retrieves the list of integer values stored inside the passed
 	 * #GValue. #value must have been initialized with
@@ -17274,7 +17144,6 @@ declare namespace imports.gi.Clutter {
 	 *   values, or %NULL
 	 */
 	function value_get_shader_int(value: GObject.Value): [ number[], number ];
-
 	/**
 	 * Retrieves a matrix of floating point values stored inside
 	 * the passed #GValue. #value must have been initialized with
@@ -17288,21 +17157,18 @@ declare namespace imports.gi.Clutter {
 	 *   point values, or %NULL
 	 */
 	function value_get_shader_matrix(value: GObject.Value): [ number[], number ];
-
 	/**
 	 * Gets the {@link Units} contained in #value.
 	 * @param value a #GValue initialized to %CLUTTER_TYPE_UNITS
 	 * @returns the units inside the passed #GValue
 	 */
 	function value_get_units(value: GObject.Value): Units;
-
 	/**
 	 * Sets #value to #color.
 	 * @param value a #GValue initialized to #CLUTTER_TYPE_COLOR
 	 * @param color the color to set
 	 */
 	function value_set_color(value: GObject.Value, color: Color): void;
-
 	/**
 	 * Sets the contents of a #GValue initialized with %CLUTTER_TYPE_PAINT_NODE.
 	 * 
@@ -17313,7 +17179,6 @@ declare namespace imports.gi.Clutter {
 	 * @param node a {@link PaintNode}, or %NULL
 	 */
 	function value_set_paint_node(value: GObject.Value, node: PaintNode | null): void;
-
 	/**
 	 * Sets #floats as the contents of #value. The passed #GValue
 	 * must have been initialized using %CLUTTER_TYPE_SHADER_FLOAT.
@@ -17322,7 +17187,6 @@ declare namespace imports.gi.Clutter {
 	 * @param floats an array of floating point values
 	 */
 	function value_set_shader_float(value: GObject.Value, size: number, floats: number[]): void;
-
 	/**
 	 * Sets #ints as the contents of #value. The passed #GValue
 	 * must have been initialized using %CLUTTER_TYPE_SHADER_INT.
@@ -17331,7 +17195,6 @@ declare namespace imports.gi.Clutter {
 	 * @param ints an array of integer values
 	 */
 	function value_set_shader_int(value: GObject.Value, size: number, ints: number[]): void;
-
 	/**
 	 * Sets #matrix as the contents of #value. The passed #GValue
 	 * must have been initialized using %CLUTTER_TYPE_SHADER_MATRIX.
@@ -17340,14 +17203,12 @@ declare namespace imports.gi.Clutter {
 	 * @param matrix a matrix of floating point values
 	 */
 	function value_set_shader_matrix(value: GObject.Value, size: number, matrix: number[]): void;
-
 	/**
 	 * Sets #value to #units
 	 * @param value a #GValue initialized to %CLUTTER_TYPE_UNITS
 	 * @param units the units to set
 	 */
 	function value_set_units(value: GObject.Value, units: Units): void;
-
 	/**
 	 * Sets the contents of a #GValue initialized with %CLUTTER_TYPE_PAINT_NODE.
 	 * 
@@ -17358,7 +17219,6 @@ declare namespace imports.gi.Clutter {
 	 * @param node a {@link PaintNode}, or %NULL
 	 */
 	function value_take_paint_node(value: GObject.Value, node: PaintNode | null): void;
-
 	/**
 	 * The middle button of a pointer device.
 	 * @returns The middle button of a pointer device.

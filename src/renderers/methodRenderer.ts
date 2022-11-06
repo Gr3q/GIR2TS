@@ -9,7 +9,8 @@ export interface RenderMethodOptions {
     indentNum?: number;
     staticFunc?: boolean;
     isConstructor?: boolean;
-    exclude?: boolean
+    exclude?: boolean;
+    shadow_name?: string;
 }
 
 /*
@@ -17,6 +18,7 @@ export interface RenderMethodOptions {
 */
 export function renderMethod(
     method_node: FunctionNode,
+    methods: FunctionNode[],
     ns_name: string,
     funcModifier?: FunctionModifier,
     options: RenderMethodOptions = {
@@ -25,7 +27,7 @@ export function renderMethod(
         indentNum: 0,
         exclude: false,
         staticFunc: false,
-        isConstructor: false
+        isConstructor: false,
     },
 ): string {
 
@@ -35,10 +37,21 @@ export function renderMethod(
         indentNum = 0,
         exclude = false,
         staticFunc = false,
-        isConstructor = false
+        isConstructor = false,
+        shadow_name
     } = options;
 
-    const info = getFunctionInfo(method_node, funcModifier, isConstructor);
+    if (method_node.$["shadowed-by"] != null) {
+        const newNode = methods.find((node) => node.$?.name == method_node.$["shadowed-by"]);
+        if (newNode == null)
+            throw Error(`inconsistent .gir file "${ns_name}: function "${method_node.$.name}" is shadowed by "${method_node.$["shadowed-by"]}" but it can't be found!`)
+        return renderMethod(newNode, methods, ns_name, funcModifier, { ...options, shadow_name: method_node.$.name })
+    }
+
+    if (/*c.$.introspectable == "0" ||*/shadow_name == undefined && method_node.$.shadows != null)
+        return "";
+
+    const info = getFunctionInfo(method_node, funcModifier, isConstructor, shadow_name ?? null);
     const ind = "\t".repeat(indentNum);
     let indentAdded = false;
     let str = '';

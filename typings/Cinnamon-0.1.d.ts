@@ -1888,13 +1888,11 @@ declare namespace imports.gi.Cinnamon {
 	 * in conjunction with a debugger such as gdb.
 	 */
 	function breakpoint(): void;
-
 	/**
 	 * Gets a machine-readable description of the <link linkend="gdbus-interface-org-cinnamon-CalendarServer.top_of_page">org.cinnamon.CalendarServer</link> D-Bus interface.
 	 * @returns A #GDBusInterfaceInfo. Do not free.
 	 */
 	function calendar_server_interface_info(): Gio.DBusInterfaceInfo;
-
 	/**
 	 * Overrides all #GObject properties in the {@link CalendarServer} interface for a concrete class.
 	 * The properties are overridden in the order they are defined.
@@ -1903,7 +1901,6 @@ declare namespace imports.gi.Cinnamon {
 	 * @returns The last property id.
 	 */
 	function calendar_server_override_properties(klass: any, property_id_begin: number): number;
-
 	/**
 	 * Gets the current state of the event (the set of modifier keys that
 	 * are pressed down). Thhis is a wrapper around
@@ -1914,7 +1911,6 @@ declare namespace imports.gi.Cinnamon {
 	 * @returns the state from the event
 	 */
 	function get_event_state(event: Clutter.Event): Clutter.ModifierType;
-
 	/**
 	 * Asynchronously load the contents of a file as a NUL terminated
 	 * string, validating it as UTF-8.  Embedded NUL characters count as
@@ -1923,7 +1919,6 @@ declare namespace imports.gi.Cinnamon {
 	 * @param callback The callback to call when finished
 	 */
 	function get_file_contents_utf8(path: string, callback: FileContentsCallback): void;
-
 	/**
 	 * Synchronously load the contents of a file as a NUL terminated
 	 * string, validating it as UTF-8.  Embedded NUL characters count as
@@ -1932,16 +1927,13 @@ declare namespace imports.gi.Cinnamon {
 	 * @returns File contents
 	 */
 	function get_file_contents_utf8_sync(path: string): string;
-
 	/**
 	 * Performs a check to see if on-demand mode for discrete graphics
 	 * is supported.
 	 * @returns %TRUE if supported.
 	 */
 	function get_gpu_offload_supported(): boolean;
-
 	function parse_search_provider(data: string): [ boolean, string, string, string[], string ];
-
 	/**
 	 * Set a double uniform on a ClutterShaderEffect.
 	 * 
@@ -1955,9 +1947,7 @@ declare namespace imports.gi.Cinnamon {
 	 * @param value The value to set it to.
 	 */
 	function shader_effect_set_double_uniform(effect: Clutter.ShaderEffect, name: string, value: number): void;
-
 	function util_composite_capture_images(captures: Clutter.Capture, n_captures: number, x: number, y: number, target_width: number, target_height: number, target_scale: number): cairo.Surface;
-
 	/**
 	 * Formats a date for the current locale. This should be
 	 * used instead of the Spidermonkey Date.toLocaleFormat()
@@ -1974,9 +1964,7 @@ declare namespace imports.gi.Cinnamon {
 	 *  return an empty string.
 	 */
 	function util_format_date(format: string, time_ms: number): string;
-
 	function util_get_content_for_window_actor(window_actor: Meta.WindowActor, window_rect: Meta.Rectangle): Clutter.Content | null;
-
 	/**
 	 * Look up the icon that should be associated with a given URI.  Handles
 	 * various special GNOME-internal cases like x-nautilus-search, etc.
@@ -1984,9 +1972,7 @@ declare namespace imports.gi.Cinnamon {
 	 * @returns A new #GIcon
 	 */
 	function util_get_icon_for_uri(text_uri: string): Gio.Icon;
-
 	function util_get_label_for_uri(text_uri: string): string;
-
 	/**
 	 * This function is similar to a combination of {@link Clutter.Actor.get_transformed_position},
 	 * and clutter_actor_get_transformed_size(), but unlike
@@ -2002,7 +1988,6 @@ declare namespace imports.gi.Cinnamon {
 	 * @returns location to store returned box in stage coordinates
 	 */
 	function util_get_transformed_allocation(actor: Clutter.Actor): Clutter.ActorBox;
-
 	/**
 	 * Gets the first week day for the current locale, expressed as a
 	 * number in the range 0..6, representing week days from Sunday to
@@ -2011,7 +1996,6 @@ declare namespace imports.gi.Cinnamon {
 	 *          locale
 	 */
 	function util_get_week_start(): number;
-
 	/**
 	 * If #hidden is %TRUE, hide #actor from pick even with a mode of
 	 * %CLUTTER_PICK_ALL; if #hidden is %FALSE, unhide #actor.
@@ -2019,7 +2003,6 @@ declare namespace imports.gi.Cinnamon {
 	 * @param hidden Whether #actor should be hidden from pick
 	 */
 	function util_set_hidden_from_pick(actor: Clutter.Actor, hidden: boolean): void;
-
 	/**
 	 * Write a string to a GOutputStream as binary data. This is a
 	 * workaround for the lack of proper binary strings in GJS.
@@ -2027,7 +2010,6 @@ declare namespace imports.gi.Cinnamon {
 	 * @param message a #SoupMessage
 	 */
 	function write_soup_message_to_stream(stream: Gio.OutputStream, message: Soup.Message): void;
-
 	/**
 	 * Write a string to a GOutputStream as UTF-8. This is a workaround
 	 * for not having binary buffers in GJS.
@@ -2036,5 +2018,4 @@ declare namespace imports.gi.Cinnamon {
 	 * @returns %TRUE if write succeeded
 	 */
 	function write_string_to_stream(stream: Gio.OutputStream, str: string): boolean;
-
 }

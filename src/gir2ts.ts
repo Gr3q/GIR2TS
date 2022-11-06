@@ -92,12 +92,18 @@ function renderNamespace(ns_node: NamespaceNode, ns_name: string, exclude?: Excl
     if (ns_node.function)
         for (let func_node of ns_node.function) {
             let exc = exclude && exclude.exclude.function ? exclude.exclude.function : undefined;
-            body += '\n\t' + (renderFreeFunction(
+            const funcText = renderFreeFunction(
                 func_node,
+                ns_node.function,
                 ns_name,
                 exc,
                 modifiers?.amend?.function?.[func_node.$.name]
-            ) + '\n').replace(/\n/gm, "\n\t");
+            );
+
+            if (!funcText)
+                continue;
+
+            body += '\n\t' + (funcText).replace(/\n/gm, "\n\t");
         }
     if (ns_node.constant)
         for (let constant of ns_node.constant) {
