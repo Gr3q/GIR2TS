@@ -49,8 +49,12 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
                 array_length_index.push(param_node.array[0].$.length);
             }
 
-            if (param_node.$.name === '...') 
+            if (param_node.$.name === '...' || 
+                param_node?.type?.[0]?.$?.name == "GLib.DestroyNotify" || 
+                param_node?.type?.[0]?.$?.name?.startsWith("DestroyNotify")) {
                 continue;
+            }
+
             let param_name = param_node.$.name;
 
             // Return param if direction is out an it's not caller allocated
@@ -71,9 +75,6 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
             }
 
             let { type, docString, optional } = GetTypeInfo(param_node);
-
-            if (type.includes("GLib.DestroyNotify"))
-                continue;
 
             const finalType = modifier?.param?.[param_name]?.type ?? ((modifier?.param?.[param_name]?.type_extension?.length ?? 0 > 1) ? `${type} | ${modifier?.param?.[param_name]?.type_extension?.join(" | ")}` : type);
             params.push([{
