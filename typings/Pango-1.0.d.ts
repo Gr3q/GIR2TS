@@ -122,10 +122,8 @@ declare namespace imports.gi.Pango {
 		 * @returns location
 		 *   to store a pointer to an array of `PangoFontFamily`. This array should
 		 *   be freed with {@link G.free}.
-		 * 
-		 * location to store the number of elements in #descs
 		 */
-		list_families(): [ FontFamily[], number ];
+		list_families(): FontFamily[];
 		/**
 		 * Loads the font in one of the fontmaps in the context
 		 * that is the closest match for #desc.
@@ -308,10 +306,8 @@ declare namespace imports.gi.Pango {
 		 * Convert a `PangoCoverage` structure into a flat binary format.
 		 * @returns 
 		 *   location to store result (must be freed with {@link G.free})
-		 * 
-		 * location to store size of result
 		 */
-		to_bytes(): [ number[], number ];
+		to_bytes(): number[];
 		/**
 		 * Decrease the reference count on the `PangoCoverage` by one.
 		 * 
@@ -403,10 +399,8 @@ declare namespace imports.gi.Pango {
 		 * Note that this does not include OpenType features which the
 		 * rendering system enables by default.
 		 * @returns Array to features in
-		 * 
-		 * the length of #features
 		 */
-		get_features(): [ HarfBuzz.feature_t[], number ];
+		get_features(): HarfBuzz.feature_t[];
 		/**
 		 * Gets the font map for which the font was created.
 		 * 
@@ -544,10 +538,8 @@ declare namespace imports.gi.Pango {
 		 * @returns 
 		 *   location to store a pointer to an array of int. This array
 		 *   should be freed with {@link G.free}.
-		 * 
-		 * location to store the number of elements in #sizes
 		 */
-		list_sizes(): [ number[] | null, number ];
+		list_sizes(): number[] | null;
 	}
 
 	type FontFaceInitOptionsMixin = GObject.ObjectInitOptions
@@ -624,10 +616,8 @@ declare namespace imports.gi.Pango {
 		 *   location to store an array of pointers to `PangoFontFace` objects,
 		 *   or %NULL. This array should be freed with {@link G.free} when it is no
 		 *   longer needed.
-		 * 
-		 * location to store number of elements in #faces.
 		 */
-		list_faces(): [ FontFace[] | null, number ];
+		list_faces(): FontFace[] | null;
 	}
 
 	type FontFamilyInitOptionsMixin = GObject.ObjectInitOptions
@@ -706,10 +696,8 @@ declare namespace imports.gi.Pango {
 		 * @returns location to
 		 *   store a pointer to an array of `PangoFontFamily` *.
 		 *   This array should be freed with {@link G.free}.
-		 * 
-		 * location to store the number of elements in #families
 		 */
-		list_families(): [ FontFamily[], number ];
+		list_families(): FontFamily[];
 		/**
 		 * Load the font in the fontmap that is the closest match for #desc.
 		 * @param context the `PangoContext` the font will be used with
@@ -1050,14 +1038,8 @@ declare namespace imports.gi.Pango {
 		 * @returns 
 		 *   location to store a pointer to an array of logical attributes.
 		 *   This value must be freed with {@link G.free}.
-		 * 
-		 * location to store the number of the attributes in the
-		 *   array. (The stored value will be one more than the total number
-		 *   of characters in the layout, since there need to be attributes
-		 *   corresponding to both the position before the first character
-		 *   and the position after the last character.)
 		 */
-		get_log_attrs(): [ LogAttr[], number ];
+		get_log_attrs(): LogAttr[];
 		/**
 		 * Retrieves an array of logical attributes for each character in
 		 * the #layout.
@@ -4042,10 +4024,8 @@ declare namespace imports.gi.Pango {
 		 *   width `(*ranges)[2*n + 1] - (*ranges)[2*n]`. This array must be freed
 		 *   with {@link G.free}. The coordinates are relative to the layout and are in
 		 *   Pango units.
-		 * 
-		 * The number of ranges stored in #ranges
 		 */
-		public get_x_ranges(start_index: number, end_index: number): [ number[], number ];
+		public get_x_ranges(start_index: number, end_index: number): number[];
 		/**
 		 * Converts an index within a line to a X position.
 		 * @param index_ byte offset of a grapheme within the layout

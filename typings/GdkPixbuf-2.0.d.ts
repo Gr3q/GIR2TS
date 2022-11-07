@@ -470,10 +470,8 @@ declare namespace imports.gi.GdkPixbuf {
 		 * 
 		 * location to receive a pointer
 		 *   to the new buffer.
-		 * 
-		 * location to receive the size of the new buffer.
 		 */
-		save_to_buffer(type: string, error?: GLib.Error | null): [ boolean, number[], number ];
+		save_to_buffer(type: string, error?: GLib.Error | null): [ boolean, number[] ];
 		/**
 		 * Vector version of {@link `gdk.pixbuf_save_to_buffer}`.
 		 * 
@@ -488,10 +486,8 @@ declare namespace imports.gi.GdkPixbuf {
 		 * 
 		 * 
 		 *   location to receive a pointer to the new buffer.
-		 * 
-		 * location to receive the size of the new buffer.
 		 */
-		save_to_bufferv(type: string, option_keys?: string[] | null, option_values?: string[] | null): [ boolean, number[], number ];
+		save_to_bufferv(type: string, option_keys?: string[] | null, option_values?: string[] | null): [ boolean, number[] ];
 		/**
 		 * Saves pixbuf in format `type` by feeding the produced data to a
 		 * callback.

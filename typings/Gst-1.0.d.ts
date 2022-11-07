@@ -8132,10 +8132,8 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * 
 		 *     the destination address
-		 * 
-		 * the size to extract
 		 */
-		public extract(offset: number): [ number, number[], number ];
+		public extract(offset: number): [ number, number[] ];
 		/**
 		 * Extracts a copy of at most #size bytes the data at #offset into
 		 * newly-allocated memory. #dest must be freed using {@link G.free} when done.
@@ -8143,10 +8141,8 @@ declare namespace imports.gi.Gst {
 		 * @param size the size to extract
 		 * @returns A pointer where
 		 *  the destination array will be written. Might be %NULL if the size is 0.
-		 * 
-		 * A location where the size of #dest can be written
 		 */
-		public extract_dup(offset: number, size: number): [ number[], number ];
+		public extract_dup(offset: number, size: number): number[];
 		/**
 		 * Copy #size bytes from #src to #buffer at #offset.
 		 * @param offset the offset to fill

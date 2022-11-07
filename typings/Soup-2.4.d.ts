@@ -4939,10 +4939,8 @@ declare namespace imports.gi.Soup {
 		 * of {@link Buffer}.
 		 * @returns the pointer
 		 * to the buffer data is stored here
-		 * 
-		 * the length of the buffer data is stored here
 		 */
-		public get_data(): [ number[], number ];
+		public get_data(): number[];
 		/**
 		 * Gets the "owner" object for a buffer created with
 		 * {@link Soup.Buffer.new_with_owner}.
@@ -6019,10 +6017,8 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * return location for an array
 		 * of {@link Range}
-		 * 
-		 * the length of the returned array
 		 */
-		public get_ranges(total_length: number): [ boolean, Range[], number ];
+		public get_ranges(total_length: number): [ boolean, Range[] ];
 		/**
 		 * Checks whether the list-valued header #name is present in #hdrs,
 		 * and contains a case-insensitive match for #token.

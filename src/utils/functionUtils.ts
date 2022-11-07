@@ -33,7 +33,7 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
     const doc = func_node.doc?.[0]?.["_"] ?? null;
     //var has_params = "parameter" in method_node.parameters[0];
 
-    let return_params: ParameterNode[] = [];
+    let return_params: [param: ParameterNode, index: number][] = [];
 
     let closure_index: number[] = [];
     let array_length_index: number[] = [];
@@ -41,13 +41,21 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
         for (let i = 0; i < func_node.parameters[0].parameter.length; i++) {
             const param_node = func_node.parameters[0].parameter[i];
 
+            if (param_node.$.closure != null) {
+                closure_index.push(param_node.$.closure);
+            }
+
+            if (param_node.array?.[0]?.$?.length != null) {
+                array_length_index.push(param_node.array[0].$.length);
+            }
+
             if (param_node.$.name === '...') 
                 continue;
             let param_name = param_node.$.name;
 
             // Return param if direction is out an it's not caller allocated
             if (param_node.$.direction == "out") {
-                return_params.push(param_node);
+                return_params.push([param_node, i]);
                 continue;
             }
 
@@ -57,14 +65,6 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
 
             if (modifier?.param?.[param_name]?.skip)
                 continue;
-
-            if (param_node.$.closure != null) {
-                closure_index.push(param_node.$.closure);
-            }
-
-            if (param_node.array?.[0]?.$?.length != null) {
-                array_length_index.push(param_node.array[0].$.length);
-            }
 
             if (js_reserved_words.includes(param_name)) { // if clashes with JS reserved word.
                 param_name = '_' + param_name;
@@ -87,6 +87,16 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
 
     // Remove closures and length indicators
     params = params.filter(([v, i]) => {
+        if (array_length_index.find(v => v == i))
+            return false;
+        if (closure_index.find(v => v == i))
+            return false;
+
+        return true;
+    });
+
+    // Remove closures and length indicators
+    return_params = return_params.filter(([v, i]) => {
         if (array_length_index.find(v => v == i))
             return false;
         if (closure_index.find(v => v == i))
@@ -135,7 +145,7 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
         }
         // Get info
         for (const outParam of return_params) {
-            const typeInfo = GetTypeInfo(outParam);
+            const typeInfo = GetTypeInfo(outParam[0]);
             tupleReturnTypes.push(typeInfo);
         }
 

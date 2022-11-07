@@ -120,11 +120,9 @@ declare namespace imports.gi.GIRepository {
 		 * returning a concrete class of #GLocalFile, which is a #GType we
 		 * see at runtime, but not statically.
 		 * @param gtype a #GType whose fundamental type is G_TYPE_OBJECT
-		 * @returns Number of interfaces
-		 * 
-		 * Interfaces for #gtype
+		 * @returns Interfaces for #gtype
 		 */
-		get_object_gtype_interfaces(gtype: GObject.Type): [ number, InterfaceInfo[] ];
+		get_object_gtype_interfaces(gtype: GObject.Type): InterfaceInfo[];
 		/**
 		 * This function returns a comma-separated list of paths to the
 		 * shared C libraries associated with the given namespace #namespace_.

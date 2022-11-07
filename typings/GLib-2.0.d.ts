@@ -4269,9 +4269,6 @@ declare namespace imports.gi.GLib {
 		public read(buf: string, count: number, bytes_read: number): IOError;
 		/**
 		 * Replacement for {@link G.io_channel_read} with the new API.
-		 * @param count the size of the buffer. Note that the buffer may not be
-		 *     completely filled even if there is data in the buffer if the
-		 *     remaining data is not a complete character.
 		 * @returns the status of the operation.
 		 * 
 		 * 
@@ -4282,7 +4279,7 @@ declare namespace imports.gi.GLib {
 		 *     is non-%NULL. This indicates that the next UTF-8 character is
 		 *     too wide for the buffer.
 		 */
-		public read_chars(count: number): [ IOStatus, number[], number | null ];
+		public read_chars(): [ IOStatus, number[], number | null ];
 		/**
 		 * Reads a line, including the terminating character(s),
 		 * from a #GIOChannel into a newly-allocated string.
@@ -4319,10 +4316,8 @@ declare namespace imports.gi.GLib {
 		 *              #GIOChannel. This data should be freed with {@link G.free} when no
 		 *              longer needed. This data is terminated by an extra nul
 		 *              character, but there may be other nuls in the intervening data.
-		 * 
-		 * location to store length of the data
 		 */
-		public read_to_end(): [ IOStatus, number[], number ];
+		public read_to_end(): [ IOStatus, number[] ];
 		/**
 		 * Reads a Unicode character from #channel.
 		 * This function cannot be called on a channel with %NULL encoding.
@@ -5828,7 +5823,6 @@ declare namespace imports.gi.GLib {
 		 * You must have successfully acquired the context with
 		 * g_main_context_acquire() before you may call this function.
 		 * @param max_priority maximum priority source to check
-		 * @param n_fds length of #fds.
 		 * @returns the number of records actually stored in #fds,
 		 *   or, if more than #n_fds records need to be stored, the number
 		 *   of records that need to be stored.
@@ -5838,7 +5832,7 @@ declare namespace imports.gi.GLib {
 		 * location to
 		 *       store #GPollFD records that need to be polled.
 		 */
-		public query(max_priority: number, n_fds: number): [ number, number, PollFD[] ];
+		public query(max_priority: number): [ number, number, PollFD[] ];
 		/**
 		 * Increases the reference count on a #GMainContext object by one.
 		 * @returns the #context that was passed in (since 2.6)
@@ -23167,10 +23161,8 @@ declare namespace imports.gi.GLib {
 	 * 
 	 * location to store an allocated string, use {@link G.free} to free
 	 *     the returned string
-	 * 
-	 * location to store length in bytes of the contents, or %NULL
 	 */
-	function file_get_contents(filename: string): [ boolean, number[], number | null ];
+	function file_get_contents(filename: string): [ boolean, number[] ];
 	/**
 	 * Opens a file for writing in the preferred directory for temporary
 	 * files (as returned by {@link G.get_tmp_dir}).
@@ -26499,12 +26491,10 @@ declare namespace imports.gi.GLib {
 	 * @param command_line command line to parse
 	 * @returns %TRUE on success, %FALSE if error set
 	 * 
-	 * return location for number of args
-	 * 
 	 * 
 	 *   return location for array of args
 	 */
-	function shell_parse_argv(command_line: string): [ boolean, number | null, string[] | null ];
+	function shell_parse_argv(command_line: string): [ boolean, string[] | null ];
 	/**
 	 * Quotes a string so that the shell (/bin/sh) will interpret the
 	 * quoted string to mean #unquoted_string.

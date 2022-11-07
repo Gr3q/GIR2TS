@@ -9026,10 +9026,8 @@ declare namespace imports.gi.Gtk {
 		 * location
 		 *           to store an array of targets. The result stored here must
 		 *           be freed with {@link G.free}.
-		 * 
-		 * location to store number of items in #targets.
 		 */
-		wait_for_targets(): [ boolean, Gdk.Atom[], number ];
+		wait_for_targets(): [ boolean, Gdk.Atom[] ];
 		/**
 		 * Requests the contents of the clipboard as text and converts
 		 * the result to UTF-8 if necessary. This function waits for
@@ -9743,10 +9741,8 @@ declare namespace imports.gi.Gtk {
 		 * 
 		 * return location for
 		 *     allocated array of #GdkColor
-		 * 
-		 * return location for length of array
 		 */
-		public static palette_from_string(str: string): [ boolean, Gdk.Color[], number ];
+		public static palette_from_string(str: string): [ boolean, Gdk.Color[] ];
 		/**
 		 * Encodes a palette as a string, useful for persistent storage.
 		 * @param colors an array of colors
@@ -20041,11 +20037,8 @@ declare namespace imports.gi.Gtk {
 		 * 
 		 * location to store pointer
 		 *     to an array of points, or %NULL free the array of points with {@link G.free}.
-		 * 
-		 * location to store the number of points in #points,
-		 *     or %NULL
 		 */
-		get_attach_points(): [ boolean, Gdk.Point[] | null, number | null ];
+		get_attach_points(): [ boolean, Gdk.Point[] | null ];
 		/**
 		 * Gets the base scale for the icon. The base scale is a scale
 		 * for the icon that was specified by the icon theme creator.
@@ -20447,10 +20440,8 @@ declare namespace imports.gi.Gtk {
 		 * @returns 
 		 *     location to store a list of icon theme path directories or %NULL.
 		 *     The stored value should be freed with {@link G.strfreev}.
-		 * 
-		 * location to store number of elements in #path, or %NULL
 		 */
-		get_search_path(): [ string[] | null, number ];
+		get_search_path(): string[] | null;
 		/**
 		 * Checks whether an icon theme includes an icon
 		 * for a particular name.
@@ -56597,10 +56588,8 @@ declare namespace imports.gi.Gtk {
 		 * array must be freed with {@link G.free}.
 		 * @returns return location
 		 *     for array of sizes ({@link IconSize})
-		 * 
-		 * location to store number of elements in returned array
 		 */
-		public get_sizes(): [ number[], number ];
+		public get_sizes(): number[];
 		/**
 		 * @deprecated
 		 * Use {@link IconTheme} instead.
@@ -57819,10 +57808,8 @@ declare namespace imports.gi.Gtk {
 		 * 
 		 *           location to store an array of targets. The result stored
 		 *           here must be freed with {@link G.free}.
-		 * 
-		 * location to store number of items in #targets.
 		 */
-		public get_targets(): [ boolean, Gdk.Atom[], number ];
+		public get_targets(): [ boolean, Gdk.Atom[] ];
 		/**
 		 * Gets the contents of the selection data as a UTF-8 string.
 		 * @returns if the selection data contained a

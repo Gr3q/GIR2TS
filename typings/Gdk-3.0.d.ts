@@ -463,11 +463,8 @@ declare namespace imports.gi.Gdk {
 		 * 
 		 *   location to store a newly-allocated array of {@link TimeCoord}, or
 		 *   %NULL
-		 * 
-		 * location to store the length of
-		 *   #events, or %NULL
 		 */
-		get_history(window: Window, start: number, stop: number): [ boolean, TimeCoord[] | null, number | null ];
+		get_history(window: Window, start: number, stop: number): [ boolean, TimeCoord[] | null ];
 		/**
 		 * If #index_ has a valid keyval, this function will return %TRUE
 		 * and fill in #keyval and #modifiers with the keyval settings.
@@ -2512,10 +2509,8 @@ declare namespace imports.gi.Gdk {
 		 * 
 		 * return
 		 *     location for array of keyvals, or %NULL
-		 * 
-		 * length of #keys and #keyvals
 		 */
-		get_entries_for_keycode(hardware_keycode: number): [ boolean, KeymapKey[] | null, number[] | null, number ];
+		get_entries_for_keycode(hardware_keycode: number): [ boolean, KeymapKey[] | null, number[] | null ];
 		/**
 		 * Obtains a list of keycode/group/level combinations that will
 		 * generate #keyval. Groups and levels are two kinds of keyboard mode;
@@ -2533,10 +2528,8 @@ declare namespace imports.gi.Gdk {
 		 * 
 		 * return location
 		 *     for an array of {@link KeymapKey}
-		 * 
-		 * return location for number of elements in returned array
 		 */
-		get_entries_for_keyval(keyval: number): [ boolean, KeymapKey[], number ];
+		get_entries_for_keyval(keyval: number): [ boolean, KeymapKey[] ];
 		/**
 		 * Returns the modifier mask the #keymap’s windowing system backend
 		 * uses for a particular purpose.
@@ -11577,18 +11570,11 @@ declare namespace imports.gi.Gdk {
 	 * location to store the actual return format of the
 	 *   data; either 8, 16 or 32 bits.
 	 * 
-	 * location to store the length of the retrieved data, in
-	 *   bytes.  Data returned in the 32 bit format is stored
-	 *   in a long variable, so the actual number of 32 bit
-	 *   elements should be be calculated via
-	 *   #actual_length / sizeof(glong) to ensure portability to
-	 *   64 bit systems.
-	 * 
 	 * location
 	 *   to store a pointer to the data. The retrieved data should be
 	 *   freed with {@link G.free} when you are finished using it.
 	 */
-	function property_get(window: Window, property: Atom, type: Atom, offset: number, length: number, pdelete: number): [ boolean, Atom, number, number, number[] ];
+	function property_get(window: Window, property: Atom, type: Atom, offset: number, length: number, pdelete: number): [ boolean, Atom, number, number[] ];
 	/**
 	 * This function returns the available bit depths for the default
 	 * screen. It’s equivalent to listing the visuals
@@ -11598,10 +11584,8 @@ declare namespace imports.gi.Gdk {
 	 * The array returned by this function should not be freed.
 	 * @returns return
 	 *     location for available depths
-	 * 
-	 * return location for number of available depths
 	 */
-	function query_depths(): [ number[], number ];
+	function query_depths(): number[];
 	/**
 	 * This function returns the available visual types for the default
 	 * screen. It’s equivalent to listing the visuals
@@ -11611,10 +11595,8 @@ declare namespace imports.gi.Gdk {
 	 * The array returned by this function should not be freed.
 	 * @returns return
 	 *     location for the available visual types
-	 * 
-	 * return location for the number of available visual types
 	 */
-	function query_visual_types(): [ VisualType[], number ];
+	function query_visual_types(): VisualType[];
 	/**
 	 * Retrieves the contents of a selection in a given
 	 * form.

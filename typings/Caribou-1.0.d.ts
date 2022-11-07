@@ -12,7 +12,7 @@ declare namespace imports.gi.Caribou {
 		mod_latch(mask: number): void;
 		mod_unlatch(mask: number): void;
 		get_current_group(): [ number, string, string ];
-		get_groups(): [ string[], number, string[], number ];
+		get_groups(): [ string[], string[] ];
 		register_key_func(keyval: number, func?: Caribou.KeyButtonCallback | null): void;
 		register_button_func(button: number, func?: Caribou.KeyButtonCallback | null): void;
 		get_display(): Gdk.Display;
