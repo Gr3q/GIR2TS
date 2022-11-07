@@ -34,18 +34,16 @@ declare namespace imports.gi.ClutterX11 {
 		 * Filter function for X11 native events.
 		 * @param xev Native X11 event structure
 		 * @param cev Clutter event structure
-		 * @param data user data passed to the filter function
 		 * @returns the result of the filtering
 		 */
-		(xev: xlib.XEvent, cev: Clutter.Event, data?: any | null): FilterReturn;
+		(xev: xlib.XEvent, cev: Clutter.Event): FilterReturn;
 	}
 
 	/**
 	 * Adds an event filter function.
 	 * @param func a filter function
-	 * @param data user data to be passed to the filter function, or %NULL
 	 */
-	function add_filter(func: FilterFunc, data: any | null): void;
+	function add_filter(func: FilterFunc): void;
 	/**
 	 * Retrieves the pointer to the default display.
 	 * @returns the default display
@@ -70,9 +68,8 @@ declare namespace imports.gi.ClutterX11 {
 	/**
 	 * Removes the given filter function.
 	 * @param func a filter function
-	 * @param data user data to be passed to the filter function, or %NULL
 	 */
-	function remove_filter(func: FilterFunc, data: any | null): void;
+	function remove_filter(func: FilterFunc): void;
 	/**
 	 * Sets the display connection Clutter should use; must be called
 	 * before clutter_init(), clutter_init_with_args() or other functions

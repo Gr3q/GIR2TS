@@ -822,9 +822,8 @@ declare namespace imports.gi.Gdk {
 		/**
 		 * Frees an array of {@link TimeCoord} that was returned by {@link Gdk.Device.get_history}.
 		 * @param events an array of {@link TimeCoord}.
-		 * @param n_events the length of the array.
 		 */
-		public static free_history(events: TimeCoord[], n_events: number): void;
+		public static free_history(events: TimeCoord[]): void;
 		/**
 		 * @deprecated
 		 * The symbol was never meant to be used outside
@@ -1429,9 +1428,8 @@ declare namespace imports.gi.Gdk {
 		 * @param targets an array of targets
 		 *                    that should be saved, or %NULL
 		 *                    if all available targets should be saved.
-		 * @param n_targets length of the #targets array
 		 */
-		store_clipboard(clipboard_window: Window, time_: number, targets: Atom[] | null, n_targets: number): void;
+		store_clipboard(clipboard_window: Window, time_: number, targets?: Atom[] | null): void;
 		/**
 		 * Returns whether the speicifed display supports clipboard
 		 * persistance; i.e. if it’s possible to store the clipboard data after an
@@ -3418,10 +3416,9 @@ declare namespace imports.gi.Gdk {
 		 * @param prepare_func function to
 		 *                prepare the window to be grabbed, it can be %NULL if #window is
 		 *                visible before this call.
-		 * @param prepare_func_data user data to pass to #prepare_func
 		 * @returns %GDK_GRAB_SUCCESS if the grab was successful.
 		 */
-		grab(window: Window, capabilities: SeatCapabilities, owner_events: boolean, cursor?: Cursor | null, event?: Event | null, prepare_func?: SeatGrabPrepareFunc | null, prepare_func_data?: any | null): GrabStatus;
+		grab(window: Window, capabilities: SeatCapabilities, owner_events: boolean, cursor?: Cursor | null, event?: Event | null, prepare_func?: SeatGrabPrepareFunc | null): GrabStatus;
 		/**
 		 * Releases a grab added through {@link Gdk.Seat.grab}.
 		 */
@@ -3711,9 +3708,8 @@ declare namespace imports.gi.Gdk {
 		 * XGetEventData() has been already called on the event, and
 		 * XFreeEventData() must not be called within #function.
 		 * @param _function filter callback
-		 * @param data data to pass to filter callback
 		 */
-		add_filter(_function: FilterFunc, data?: any | null): void;
+		add_filter(_function: FilterFunc): void;
 		/**
 		 * Emits a short beep associated to #window in the appropriate
 		 * display, if supported. Otherwise, emits a short beep on
@@ -4153,10 +4149,11 @@ declare namespace imports.gi.Gdk {
 		 * 
 		 * The list is returned in (relative) stacking order, i.e. the
 		 * lowest window is first.
+		 * @param user_data user data to look for
 		 * @returns 
 		 *     list of child windows inside #window
 		 */
-		get_children_with_user_data(): Window[];
+		get_children_with_user_data(user_data?: any | null): Window[];
 		/**
 		 * Computes the region of a window that potentially can be written
 		 * to by drawing primitives. This region may not take into account
@@ -4844,9 +4841,8 @@ declare namespace imports.gi.Gdk {
 		/**
 		 * Remove a filter previously added with {@link Gdk.Window.add_filter}.
 		 * @param _function previously-added filter function
-		 * @param data user data for previously-added filter function
 		 */
-		remove_filter(_function: FilterFunc, data?: any | null): void;
+		remove_filter(_function: FilterFunc): void;
 		/**
 		 * Reparents #window into the given #new_parent. The window being
 		 * reparented will be unmapped as a side effect.
@@ -5445,8 +5441,9 @@ declare namespace imports.gi.Gdk {
 		 * this function for that. If GTK+ receives an event for a #GdkWindow,
 		 * and the user data for the window is non-%NULL, GTK+ will assume the
 		 * user data is a #GtkWidget, and forward the event to that widget.
+		 * @param user_data user data
 		 */
-		set_user_data(): void;
+		set_user_data(user_data?: GObject.Object | null): void;
 		/**
 		 * Makes pixels in #window outside #shape_region be transparent,
 		 * so that the window may be nonrectangular.
@@ -9914,10 +9911,8 @@ declare namespace imports.gi.Gdk {
 		 * Specifies the type of function passed to {@link Gdk.event.handler_set} to
 		 * handle all GDK events.
 		 * @param event the {@link Event} to process.
-		 * @param data user data set when the event handler was installed with
-		 *   {@link Gdk.event.handler_set}.
 		 */
-		(event: Event, data?: any | null): void;
+		(event: Event): void;
 	}
 
 	/**
@@ -9942,10 +9937,9 @@ declare namespace imports.gi.Gdk {
 		 * continue, it should return %GDK_FILTER_TRANSLATE.
 		 * @param xevent the native event to filter.
 		 * @param event the GDK event to which the X event will be translated.
-		 * @param data user data set when the filter was installed.
 		 * @returns a {@link FilterReturn} value.
 		 */
-		(xevent: XEvent, event: Event, data?: any | null): FilterReturn;
+		(xevent: XEvent, event: Event): FilterReturn;
 	}
 
 	/**
@@ -10542,11 +10536,8 @@ declare namespace imports.gi.Gdk {
 		 * can call this function then call {@link Gtk.main.do_event} to pass
 		 * events to GTK+.)
 		 * @param func the function to call to handle events from GDK.
-		 * @param data user data to pass to the function.
-		 * @param notify the function to call when the handler function is removed, i.e. when
-		 *          {@link Gdk.event.handler_set} is called with another event handler.
 		 */
-		public static handler_set(func: EventFunc, data: any | null, notify: GLib.DestroyNotify): void;
+		public static handler_set(func: EventFunc): void;
 		/**
 		 * If there is an event waiting in the event queue of some open
 		 * display, returns a copy of it. See {@link Gdk.Display.peek_event}.
@@ -11006,11 +10997,8 @@ declare namespace imports.gi.Gdk {
 	 * can call this function then call {@link Gtk.main.do_event} to pass
 	 * events to GTK+.)
 	 * @param func the function to call to handle events from GDK.
-	 * @param data user data to pass to the function.
-	 * @param notify the function to call when the handler function is removed, i.e. when
-	 *          {@link Gdk.event.handler_set} is called with another event handler.
 	 */
-	function event_handler_set(func: EventFunc, data: any | null, notify: GLib.DestroyNotify): void;
+	function event_handler_set(func: EventFunc): void;
 	/**
 	 * If there is an event waiting in the event queue of some open
 	 * display, returns a copy of it. See {@link Gdk.Display.peek_event}.
@@ -11870,14 +11858,13 @@ declare namespace imports.gi.Gdk {
 	 * @param encoding an atom representing the encoding of the text
 	 * @param format the format of the property
 	 * @param text the text to convert
-	 * @param length the length of #text, in bytes
 	 * @returns the number of strings in the resulting list
 	 * 
 	 * location to store the list
 	 *            of strings or %NULL. The list should be freed with
 	 *            {@link G.strfreev}.
 	 */
-	function text_property_to_utf8_list_for_display(display: Display, encoding: Atom, format: number, text: number[], length: number): [ number, string[] ];
+	function text_property_to_utf8_list_for_display(display: Display, encoding: Atom, format: number, text: number[]): [ number, string[] ];
 	/**
 	 * Adds a function to be called whenever there are no higher priority
 	 * events pending.  If the function returns %FALSE it is automatically
@@ -11923,11 +11910,9 @@ declare namespace imports.gi.Gdk {
 	 * @param priority the priority of the idle source. Typically this will be in the
 	 *            range between #G_PRIORITY_DEFAULT_IDLE and #G_PRIORITY_HIGH_IDLE
 	 * @param _function function to call
-	 * @param data data to pass to #function
-	 * @param notify function to call when the idle is removed, or %NULL
 	 * @returns the ID (greater than 0) of the event source.
 	 */
-	function threads_add_idle(priority: number, _function: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify | null): number;
+	function threads_add_idle(priority: number, _function: GLib.SourceFunc): number;
 	/**
 	 * Sets a function to be called at regular intervals holding the GDK lock,
 	 * with the given priority.  The function is called repeatedly until it
@@ -11977,11 +11962,9 @@ declare namespace imports.gi.Gdk {
 	 * @param interval the time between calls to the function, in milliseconds
 	 *             (1/1000ths of a second)
 	 * @param _function function to call
-	 * @param data data to pass to #function
-	 * @param notify function to call when the timeout is removed, or %NULL
 	 * @returns the ID (greater than 0) of the event source.
 	 */
-	function threads_add_timeout(priority: number, interval: number, _function: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify | null): number;
+	function threads_add_timeout(priority: number, interval: number, _function: GLib.SourceFunc): number;
 	/**
 	 * A variant of {@link Gdk.threads.add_timeout_full} with second-granularity.
 	 * See g_timeout_add_seconds_full() for a discussion of why it is
@@ -11990,11 +11973,9 @@ declare namespace imports.gi.Gdk {
 	 *            range between #G_PRIORITY_DEFAULT_IDLE and #G_PRIORITY_HIGH_IDLE.
 	 * @param interval the time between calls to the function, in seconds
 	 * @param _function function to call
-	 * @param data data to pass to #function
-	 * @param notify function to call when the timeout is removed, or %NULL
 	 * @returns the ID (greater than 0) of the event source.
 	 */
-	function threads_add_timeout_seconds(priority: number, interval: number, _function: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify | null): number;
+	function threads_add_timeout_seconds(priority: number, interval: number, _function: GLib.SourceFunc): number;
 	/**
 	 * This function marks the beginning of a critical section in which
 	 * GDK and GTK+ functions can be called safely and without causing race

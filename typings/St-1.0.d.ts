@@ -1424,10 +1424,9 @@ declare namespace imports.gi.St {
 		 * @param key Arbitrary string used to refer to item
 		 * @param policy Caching policy
 		 * @param load Function to create the texture, if not already cached
-		 * @param data User data passed to #load
 		 * @returns A newly-referenced handle to the texture
 		 */
-		load(key: string, policy: TextureCachePolicy, load: TextureCacheLoader, data?: any | null): Cogl.Texture;
+		load(key: string, policy: TextureCachePolicy, load: TextureCacheLoader): Cogl.Texture;
 		/**
 		 * Asynchronously load an image.   Initially, the returned texture will have a natural
 		 * size of zero.  At some later point, either the image will be loaded successfully
@@ -1466,7 +1465,6 @@ declare namespace imports.gi.St {
 		/**
 		 * Creates (or retrieves from cache) an icon based on raw pixel data.
 		 * @param data raw pixel data
-		 * @param len the length of #data
 		 * @param has_alpha whether #data includes an alpha channel
 		 * @param width width in pixels of #data
 		 * @param height width in pixels of #data
@@ -1475,7 +1473,7 @@ declare namespace imports.gi.St {
 		 * @returns a new #ClutterActor displaying a
 		 * pixbuf created from #data and the other parameters.
 		 */
-		load_from_raw(data: number[], len: number, has_alpha: boolean, width: number, height: number, rowstride: number, size: number): Clutter.Actor;
+		load_from_raw(data: number[], has_alpha: boolean, width: number, height: number, rowstride: number, size: number): Clutter.Actor;
 		/**
 		 * This function synchronously loads the given file path
 		 * into a cairo surface.  On error, a warning is emitted

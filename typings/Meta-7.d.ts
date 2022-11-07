@@ -502,11 +502,10 @@ declare namespace imports.gi.Meta {
 		 * @param settings the #GSettings object where #name is stored
 		 * @param flags flags to specify binding details
 		 * @param handler function to run when the keybinding is invoked
-		 * @param free_data function to free #user_data
 		 * @returns the corresponding keybinding action if the keybinding was
 		 *          added successfully, otherwise %META_KEYBINDING_ACTION_NONE
 		 */
-		add_keybinding(name: string, settings: Gio.Settings, flags: KeyBindingFlags, handler: KeyHandlerFunc, free_data: GLib.DestroyNotify): number;
+		add_keybinding(name: string, settings: Gio.Settings, flags: KeyBindingFlags, handler: KeyHandlerFunc): number;
 		begin_grab_op(window: Window, op: GrabOp, pointer_already_grabbed: boolean, frame_action: boolean, button: number, modmask: number, timestamp: number, root_x: number, root_y: number): boolean;
 		/**
 		 * Sets the mouse-mode flag to %FALSE, which means that motion events are
@@ -825,8 +824,8 @@ declare namespace imports.gi.Meta {
 		 * The device to listen to idletime on.
 		 */
 		device: Clutter.InputDevice;
-		add_idle_watch(interval_msec: number, callback: IdleMonitorWatchFunc | null, notify: GLib.DestroyNotify): number;
-		add_user_active_watch(callback: IdleMonitorWatchFunc | null, notify: GLib.DestroyNotify): number;
+		add_idle_watch(interval_msec: number, callback?: IdleMonitorWatchFunc | null): number;
+		add_user_active_watch(callback?: IdleMonitorWatchFunc | null): number;
 		get_idletime(): number;
 		/**
 		 * Removes an idle time watcher, previously added by
@@ -4324,11 +4323,10 @@ declare namespace imports.gi.Meta {
 	 * builtin key binding.
 	 * @param name The name of the keybinding to set
 	 * @param handler The new handler function
-	 * @param free_data Will be called when this handler is overridden.
 	 * @returns %TRUE if the binding known as #name was found,
 	 * %FALSE otherwise.
 	 */
-	function keybindings_set_custom_handler(name: string, handler: KeyHandlerFunc | null, free_data: GLib.DestroyNotify): boolean;
+	function keybindings_set_custom_handler(name: string, handler: KeyHandlerFunc | null): boolean;
 	/**
 	 * Sets up a callback  to be called at some later time. #when determines the
 	 * particular later occasion at which it is called. This is much like {@link G.idle_add},
@@ -4338,12 +4336,10 @@ declare namespace imports.gi.Meta {
 	 * of the stage, not the next one.
 	 * @param when enumeration value determining the phase at which to run the callback
 	 * @param func callback to run later
-	 * @param data data to pass to the callback
-	 * @param notify function to call to destroy #data when it is no longer in use, or %NULL
 	 * @returns an integer ID (guaranteed to be non-zero) that can be used
 	 *  to cancel the callback and prevent it from being run.
 	 */
-	function later_add(when: LaterType, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
+	function later_add(when: LaterType, func: GLib.SourceFunc): number;
 	/**
 	 * Removes a callback added with {@link Meta.later.add}
 	 * @param later_id the integer ID returned from {@link Meta.later.add}

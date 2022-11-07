@@ -384,7 +384,7 @@ declare namespace imports.gi.Cinnamon {
 		 */
 		add_glsl_snippet(hook: SnippetHook, declarations: string, code: string, is_replace: boolean): void;
 		get_uniform_location(name: string): number;
-		set_uniform_float(uniform: number, n_components: number, total_count: number, value: number[]): void;
+		set_uniform_float(uniform: number, n_components: number, value: number[]): void;
 	}
 
 	type GLSLQuadInitOptionsMixin = Clutter.ActorInitOptions & Atk.ImplementorIfaceInitOptions & Clutter.AnimatableInitOptions & Clutter.ContainerInitOptions & Clutter.ScriptableInitOptions
@@ -628,9 +628,8 @@ declare namespace imports.gi.Cinnamon {
 		 * interfere with the ability to use it for performance measurement so
 		 * should be avoided.
 		 * @param func function to call at leisure
-		 * @param notify function to call to free #user_data
 		 */
-		run_at_leisure(func: LeisureFunction, notify: GLib.DestroyNotify): void;
+		run_at_leisure(func: LeisureFunction): void;
 		/**
 		 * Crashes Cinnamon by causing a segfault
 		 */
@@ -778,9 +777,8 @@ declare namespace imports.gi.Cinnamon {
 		 * and call a function such as {@link Cinnamon.PerfLog.update_statistic_i}
 		 * to update the value that will be recorded.
 		 * @param callback function to call before recording statistics
-		 * @param notify function to call when #user_data is no longer needed
 		 */
-		add_statistics_callback(callback: PerfStatisticsCallback, notify: GLib.DestroyNotify): void;
+		add_statistics_callback(callback: PerfStatisticsCallback): void;
 		/**
 		 * Calls all the update functions added with
 		 * {@link Cinnamon.PerfLog.add_statistics_callback} and then records events

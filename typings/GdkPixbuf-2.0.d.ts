@@ -906,10 +906,9 @@ declare namespace imports.gi.GdkPixbuf {
 		 * @param rowstride Distance in bytes between row starts
 		 * @param destroy_fn Function used to free the data when the pixbuf's reference count
 		 * drops to zero, or %NULL if the data should not be freed
-		 * @param destroy_fn_data Closure data to pass to the destroy notification function
 		 * @returns A newly-created pixbuf
 		 */
-		public static new_from_data(data: number[], colorspace: Colorspace, has_alpha: boolean, bits_per_sample: number, width: number, height: number, rowstride: number, destroy_fn?: PixbufDestroyNotify | null, destroy_fn_data?: any | null): Pixbuf;
+		public static new_from_data(data: number[], colorspace: Colorspace, has_alpha: boolean, bits_per_sample: number, width: number, height: number, rowstride: number, destroy_fn?: PixbufDestroyNotify | null): Pixbuf;
 		/**
 		 * Creates a new pixbuf by loading an image from a file.
 		 * 
@@ -1022,15 +1021,13 @@ declare namespace imports.gi.GdkPixbuf {
 		 * For non-const inline data, you could get out of memory. For untrusted
 		 * inline data located at runtime, you could have corrupt inline data in
 		 * addition.
-		 * @param data_length Length in bytes of the `data` argument or -1 to
-		 *   disable length checks
 		 * @param data Byte data containing a
 		 *   serialized `GdkPixdata` structure
 		 * @param copy_pixels Whether to copy the pixel data, or use direct pointers
 		 *   `data` for the resulting pixbuf
 		 * @returns A newly-created pixbuf
 		 */
-		public static new_from_inline(data_length: number, data: number[], copy_pixels: boolean): Pixbuf;
+		public static new_from_inline(data: number[], copy_pixels: boolean): Pixbuf;
 		/**
 		 * Creates a new pixbuf by loading an image from an resource.
 		 * 
@@ -1598,11 +1595,10 @@ declare namespace imports.gi.GdkPixbuf {
 		/**
 		 * Parses the next `count` bytes in the given image buffer.
 		 * @param buf Pointer to image data.
-		 * @param count Length of the #buf buffer in bytes.
 		 * @returns `TRUE` if the write was successful, or
 		 *   `FALSE` if the loader cannot parse the buffer
 		 */
-		write(buf: number[], count: number): boolean;
+		write(buf: number[]): boolean;
 		/**
 		 * Parses the next contents of the given image buffer.
 		 * @param buffer The image data as a `GBytes` buffer.
@@ -2340,9 +2336,8 @@ declare namespace imports.gi.GdkPixbuf {
 		 * the pixel data can be freed when the pixbuf is finalized.
 		 * @param pixels The pixel array of the pixbuf
 		 *   that is being finalized.
-		 * @param data User closure data.
 		 */
-		(pixels: number[], data?: any | null): void;
+		(pixels: number[]): void;
 	}
 
 	/**
@@ -2475,13 +2470,11 @@ declare namespace imports.gi.GdkPixbuf {
 		 * `error` and return `FALSE`, in which case `gdk_pixbuf_save_to_callback()`
 		 * will fail with the same error.
 		 * @param buf bytes to be written.
-		 * @param count number of bytes in #buf.
-		 * @param data user data passed to {@link GdkPixbuf.save_to_callback}.
 		 * @returns `TRUE` if successful, `FALSE` otherwise
 		 * 
 		 * A location to return an error.
 		 */
-		(buf: number[], count: number, data?: any | null): [ boolean, GLib.Error ];
+		(buf: number[]): [ boolean, GLib.Error ];
 	}
 
 	function pixbuf_error_quark(): GLib.Quark;

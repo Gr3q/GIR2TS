@@ -531,11 +531,8 @@ declare namespace imports.gi.Soup {
 		 * and %SOUP_AUTH_DOMAIN_FILTER_DATA properties, which can also be
 		 * used to set the filter at construct time.
 		 * @param filter the auth filter for #domain
-		 * @param filter_data data to pass to #filter
-		 * @param dnotify destroy notifier to free #filter_data when #domain
-		 * is destroyed
 		 */
-		set_filter(filter: AuthDomainFilter, filter_data: any | null, dnotify: GLib.DestroyNotify): void;
+		set_filter(filter: AuthDomainFilter): void;
 		/**
 		 * Sets #auth_callback as an authentication-handling callback for
 		 * #domain. Whenever a request comes in to #domain which cannot be
@@ -544,11 +541,8 @@ declare namespace imports.gi.Soup {
 		 * will be invoked. See #SoupAuthDomainGenericAuthCallback for information
 		 * on what the callback should do.
 		 * @param auth_callback the auth callback
-		 * @param auth_data data to pass to #auth_callback
-		 * @param dnotify destroy notifier to free #auth_data when #domain
-		 * is destroyed
 		 */
-		set_generic_auth_callback(auth_callback: AuthDomainGenericAuthCallback, auth_data: any | null, dnotify: GLib.DestroyNotify): void;
+		set_generic_auth_callback(auth_callback: AuthDomainGenericAuthCallback): void;
 		try_generic_auth_callback(msg: Message, username: string): boolean;
 		connect(signal: "notify::filter", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::filter-data", callback: (owner: this, ...args: any) => void): number;
@@ -604,10 +598,8 @@ declare namespace imports.gi.Soup {
 		 * %SOUP_AUTH_DOMAIN_BASIC_AUTH_DATA properties, which can also be
 		 * used to set the callback at construct time.
 		 * @param callback the callback
-		 * @param dnotify destroy notifier to free #user_data when #domain
-		 * is destroyed
 		 */
-		set_auth_callback(callback: AuthDomainBasicAuthCallback, dnotify: GLib.DestroyNotify): void;
+		set_auth_callback(callback: AuthDomainBasicAuthCallback): void;
 		connect(signal: "notify::auth-callback", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::auth-data", callback: (owner: this, ...args: any) => void): number;
 
@@ -663,10 +655,8 @@ declare namespace imports.gi.Soup {
 		 * %SOUP_AUTH_DOMAIN_DIGEST_AUTH_DATA properties, which can also be
 		 * used to set the callback at construct time.
 		 * @param callback the callback
-		 * @param dnotify destroy notifier to free #user_data when #domain
-		 * is destroyed
 		 */
-		set_auth_callback(callback: AuthDomainDigestAuthCallback, dnotify: GLib.DestroyNotify): void;
+		set_auth_callback(callback: AuthDomainDigestAuthCallback): void;
 		connect(signal: "notify::auth-callback", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::auth-data", callback: (owner: this, ...args: any) => void): number;
 
@@ -1448,10 +1438,8 @@ declare namespace imports.gi.Soup {
 		 * Sets up an alternate log printing routine, if you don't want
 		 * the log to go to <literal>stdout</literal>.
 		 * @param printer the callback for printing logging output
-		 * @param printer_data data to pass to the callback
-		 * @param destroy a #GDestroyNotify to free #printer_data
 		 */
-		set_printer(printer: LoggerPrinter, printer_data: any | null, destroy: GLib.DestroyNotify): void;
+		set_printer(printer: LoggerPrinter): void;
 		/**
 		 * Sets up a filter to determine the log level for a given request.
 		 * For each HTTP request #logger will invoke #request_filter to
@@ -1459,10 +1447,8 @@ declare namespace imports.gi.Soup {
 		 * set a request filter, #logger will just always log requests at the
 		 * level passed to {@link Soup.Logger.new}.)
 		 * @param request_filter the callback for request debugging
-		 * @param filter_data data to pass to the callback
-		 * @param destroy a #GDestroyNotify to free #filter_data
 		 */
-		set_request_filter(request_filter: LoggerFilter, filter_data: any | null, destroy: GLib.DestroyNotify): void;
+		set_request_filter(request_filter: LoggerFilter): void;
 		/**
 		 * Sets up a filter to determine the log level for a given response.
 		 * For each HTTP response #logger will invoke #response_filter to
@@ -1470,10 +1456,8 @@ declare namespace imports.gi.Soup {
 		 * set a response filter, #logger will just always log responses at
 		 * the level passed to {@link Soup.Logger.new}.)
 		 * @param response_filter the callback for response debugging
-		 * @param filter_data data to pass to the callback
-		 * @param destroy a #GDestroyNotify to free #filter_data
 		 */
-		set_response_filter(response_filter: LoggerFilter, filter_data: any | null, destroy: GLib.DestroyNotify): void;
+		set_response_filter(response_filter: LoggerFilter): void;
 		connect(signal: "notify::level", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::max-body-size", callback: (owner: this, ...args: any) => void): number;
 
@@ -1741,10 +1725,8 @@ declare namespace imports.gi.Soup {
 		 * soup_buffer_new_with_owner() case) to ensure that the data remains
 		 * valid.
 		 * @param allocator the chunk allocator callback
-		 * @param destroy_notify destroy notifier to free #user_data when #msg is
-		 * destroyed
 		 */
-		set_chunk_allocator(allocator: ChunkAllocator, destroy_notify: GLib.DestroyNotify): void;
+		set_chunk_allocator(allocator: ChunkAllocator): void;
 		/**
 		 * Sets #first_party as the main document {@link URI} for #msg. For
 		 * details of when and how this is used refer to the documentation for
@@ -1806,9 +1788,8 @@ declare namespace imports.gi.Soup {
 		 * @param req_use a {@link MemoryUse} describing how to handle #req_body
 		 * @param req_body 
 		 *   a data buffer containing the body of the message request.
-		 * @param req_length the byte length of #req_body.
 		 */
-		set_request(content_type: string | null, req_use: MemoryUse, req_body: number[] | null, req_length: number): void;
+		set_request(content_type: string | null, req_use: MemoryUse, req_body?: number[] | null): void;
 		/**
 		 * Convenience function to set the response body of a {@link Message}. If
 		 * #content_type is %NULL, the response body must be empty as well.
@@ -2241,9 +2222,8 @@ declare namespace imports.gi.Soup {
 		 * @param io_priority the I/O priority for the request.
 		 * @param cancellable a #GCancellable.
 		 * @param callback callback to call when request is satisfied.
-		 * @param data data for #callback
 		 */
-		next_part_async(io_priority: number, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null, data?: any | null): void;
+		next_part_async(io_priority: number, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an asynchronous request for the next part.
 		 * @param result a #GAsyncResult.
@@ -2678,9 +2658,8 @@ declare namespace imports.gi.Soup {
 		 * run as well.
 		 * @param path the toplevel path for the handler
 		 * @param callback callback to invoke for requests under #path
-		 * @param destroy destroy notifier to free #user_data
 		 */
-		add_early_handler(path: string | null, callback: ServerCallback, destroy: GLib.DestroyNotify): void;
+		add_early_handler(path: string | null, callback: ServerCallback): void;
 		/**
 		 * Adds a handler to #server for requests under #path. If #path is
 		 * %NULL or "/", then this will be the default handler for all
@@ -2760,9 +2739,8 @@ declare namespace imports.gi.Soup {
 		 * @param protocols the protocols
 		 *   supported by this handler
 		 * @param callback callback to invoke for successful WebSocket requests under #path
-		 * @param destroy destroy notifier to free #user_data
 		 */
-		add_websocket_handler(path: string | null, origin: string | null, protocols: string[] | null, callback: ServerWebsocketCallback, destroy: GLib.DestroyNotify): void;
+		add_websocket_handler(path: string | null, origin: string | null, protocols: string[] | null, callback: ServerWebsocketCallback): void;
 		/**
 		 * Closes and frees #server's listening sockets. If you are using the
 		 * old {@link Server} APIs, this also includes the effect of
@@ -4297,7 +4275,6 @@ declare namespace imports.gi.Soup {
 		 * emitted once. See the documentation for #SoupSocket:non-blocking.)
 		 * @param buffer buffer to read
 		 *   into
-		 * @param len size of #buffer in bytes
 		 * @param cancellable a #GCancellable, or %NULL
 		 * @returns a {@link SocketIOStatus}, as described above (or
 		 * %SOUP_SOCKET_EOF if the socket is no longer connected, or
@@ -4306,7 +4283,7 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * on return, the number of bytes read into #buffer
 		 */
-		read(buffer: number[], len: number, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
+		read(buffer: number[], cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
 		/**
 		 * Like {@link Soup.Socket.read}, but reads no further than the first
 		 * occurrence of #boundary. (If the boundary is found, it will be
@@ -4322,7 +4299,6 @@ declare namespace imports.gi.Soup {
 		 * longer than #boundary_len if you want to make any progress at all.
 		 * @param buffer buffer to read
 		 *   into
-		 * @param len size of #buffer in bytes
 		 * @param boundary boundary to read until
 		 * @param boundary_len length of #boundary in bytes
 		 * @param got_boundary on return, whether or not the data in #buffer
@@ -4332,7 +4308,7 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * on return, the number of bytes read into #buffer
 		 */
-		read_until(buffer: number[], len: number, boundary: any | null, boundary_len: number, got_boundary: boolean, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
+		read_until(buffer: number[], boundary: any | null, boundary_len: number, got_boundary: boolean, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
 		/**
 		 * Starts using SSL on #socket, expecting to find a host named
 		 * #ssl_host.
@@ -4361,7 +4337,6 @@ declare namespace imports.gi.Soup {
 		 * and it is only emitted once. See the documentation for
 		 * #SoupSocket:non-blocking.)
 		 * @param buffer data to write
-		 * @param len size of #buffer, in bytes
 		 * @param cancellable a #GCancellable, or %NULL
 		 * @returns a {@link SocketIOStatus}, as described above (or
 		 * %SOUP_SOCKET_EOF or %SOUP_SOCKET_ERROR. #error will be set if the
@@ -4369,7 +4344,7 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * on return, number of bytes written
 		 */
-		write(buffer: number[], len: number, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
+		write(buffer: number[], cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
 		/**
 		 * Emitted when the socket is disconnected, for whatever
 		 * reason.
@@ -4617,9 +4592,8 @@ declare namespace imports.gi.Soup {
 		 * The message is queued to be sent and will be sent when the main loop
 		 * is run.
 		 * @param data the message contents
-		 * @param length the length of #data
 		 */
-		send_binary(data: number[] | null, length: number): void;
+		send_binary(data?: number[] | null): void;
 		/**
 		 * Send a message of the given #type to the peer. Note that this method,
 		 * allows to send text messages containing %NULL characters.
@@ -4901,10 +4875,9 @@ declare namespace imports.gi.Soup {
 		 * %SOUP_MEMORY_TAKE as first argument; it exists mainly for
 		 * convenience and simplifying language bindings.
 		 * @param data data
-		 * @param length length of #data
 		 * @returns the new {@link Buffer}.
 		 */
-		public static new(data: number[], length: number): Buffer;
+		public static new(data: number[]): Buffer;
 		/**
 		 * Creates a new {@link Buffer} containing #length bytes from #data. When
 		 * the #SoupBuffer is freed, it will call #owner_dnotify, passing
@@ -4924,13 +4897,10 @@ declare namespace imports.gi.Soup {
 		 * they would be different (eg, #owner would be a object, and #data
 		 * would be a pointer to one of the object's fields).
 		 * @param data data
-		 * @param length length of #data
 		 * @param owner pointer to an object that owns #data
-		 * @param owner_dnotify a function to free/unref #owner when
-		 * the buffer is freed
 		 * @returns the new {@link Buffer}.
 		 */
-		public static new_with_owner(data: number[], length: number, owner?: any | null, owner_dnotify?: GLib.DestroyNotify | null): Buffer;
+		public static new_with_owner(data: number[], owner?: any | null): Buffer;
 		/**
 		 * the data
 		 */
@@ -5704,9 +5674,8 @@ declare namespace imports.gi.Soup {
 		 * with %SOUP_MEMORY_TAKE as second argument; it exists mainly for
 		 * convenience and simplifying language bindings.
 		 * @param data data to append
-		 * @param length length of #data
 		 */
-		public append(data: number[], length: number): void;
+		public append(data: number[]): void;
 		/**
 		 * Appends the data from #buffer to #body. ({@link MessageBody} uses
 		 * #SoupBuffers internally, so this is normally a constant-time
@@ -8365,11 +8334,10 @@ declare namespace imports.gi.Soup {
 	 * @param async_context the #GMainContext to dispatch the I/O
 	 * watch in, or %NULL for the default context
 	 * @param _function the callback to invoke
-	 * @param data user data to pass to #function
 	 * @returns a #GSource, which can be removed from #async_context
 	 * with {@link G.source_destroy}.
 	 */
-	function add_completion(async_context: GLib.MainContext | null, _function: GLib.SourceFunc, data: any | null): GLib.Source;
+	function add_completion(async_context: GLib.MainContext | null, _function: GLib.SourceFunc): GLib.Source;
 	/**
 	 * Adds an idle event as with {@link G.idle_add}, but using the given
 	 * #async_context.
@@ -8380,11 +8348,10 @@ declare namespace imports.gi.Soup {
 	 * @param async_context the #GMainContext to dispatch the I/O
 	 * watch in, or %NULL for the default context
 	 * @param _function the callback to invoke at idle time
-	 * @param data user data to pass to #function
 	 * @returns a #GSource, which can be removed from #async_context
 	 * with {@link G.source_destroy}.
 	 */
-	function add_idle(async_context: GLib.MainContext | null, _function: GLib.SourceFunc, data: any | null): GLib.Source;
+	function add_idle(async_context: GLib.MainContext | null, _function: GLib.SourceFunc): GLib.Source;
 	/**
 	 * Adds an I/O watch as with {@link G.io_add_watch}, but using the given
 	 * #async_context.
@@ -8393,11 +8360,10 @@ declare namespace imports.gi.Soup {
 	 * @param chan the #GIOChannel to watch
 	 * @param condition the condition to watch for
 	 * @param _function the callback to invoke when #condition occurs
-	 * @param data user data to pass to #function
 	 * @returns a #GSource, which can be removed from #async_context
 	 * with {@link G.source_destroy}.
 	 */
-	function add_io_watch(async_context: GLib.MainContext | null, chan: GLib.IOChannel, condition: GLib.IOCondition, _function: GLib.IOFunc, data: any | null): GLib.Source;
+	function add_io_watch(async_context: GLib.MainContext | null, chan: GLib.IOChannel, condition: GLib.IOCondition, _function: GLib.IOFunc): GLib.Source;
 	/**
 	 * Adds a timeout as with {@link G.timeout_add}, but using the given
 	 * #async_context.
@@ -8405,11 +8371,10 @@ declare namespace imports.gi.Soup {
 	 * watch in, or %NULL for the default context
 	 * @param interval the timeout interval, in milliseconds
 	 * @param _function the callback to invoke at timeout time
-	 * @param data user data to pass to #function
 	 * @returns a #GSource, which can be removed from #async_context
 	 * with {@link G.source_destroy}.
 	 */
-	function add_timeout(async_context: GLib.MainContext | null, interval: number, _function: GLib.SourceFunc, data: any | null): GLib.Source;
+	function add_timeout(async_context: GLib.MainContext | null, interval: number, _function: GLib.SourceFunc): GLib.Source;
 	/**
 	 * Like SOUP_CHECK_VERSION, but the check for soup_check_version is
 	 * at runtime instead of compile time. This is useful for compiling
@@ -9348,11 +9313,10 @@ declare namespace imports.gi.Soup {
 	 * soup_value_hash_new() and related methods can help with this.
 	 * @param method_name the name of the XML-RPC method
 	 * @param params arguments to #method
-	 * @param n_params length of #params
 	 * @returns the text of the methodCall, or %NULL on
 	 * error
 	 */
-	function xmlrpc_build_method_call(method_name: string, params: GObject.Value[], n_params: number): string | null;
+	function xmlrpc_build_method_call(method_name: string, params: GObject.Value[]): string | null;
 	/**
 	 * This creates a (successful) XML-RPC methodResponse and returns it
 	 * as a string. To create a fault response, use

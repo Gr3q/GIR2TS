@@ -944,10 +944,9 @@ declare namespace imports.gi.Gst {
 		 * MT safe.
 		 * @param priority The priority of the watch.
 		 * @param func A function to call when a message is received.
-		 * @param notify the function to call when the source is removed.
 		 * @returns The event source id or 0 if #bus already got an event source.
 		 */
-		add_watch(priority: number, func: BusFunc, notify: GLib.DestroyNotify): number;
+		add_watch(priority: number, func: BusFunc): number;
 		/**
 		 * A helper {@link BusFunc} that can be used to convert all asynchronous messages
 		 * into signals.
@@ -1137,9 +1136,8 @@ declare namespace imports.gi.Gst {
 		 * Before 1.16.3 it was not possible to replace an existing handler and
 		 * clearing an existing handler with %NULL was not thread-safe.
 		 * @param func The handler function to install
-		 * @param notify called when #user_data becomes unused
 		 */
-		set_sync_handler(func: BusSyncHandler | null, notify: GLib.DestroyNotify): void;
+		set_sync_handler(func?: BusSyncHandler | null): void;
 		/**
 		 * A helper GstBusSyncHandler that can be used to convert all synchronous
 		 * messages into signals.
@@ -1796,12 +1794,11 @@ declare namespace imports.gi.Gst {
 		 * core or from a streaming thread. The application should be prepared for this.
 		 * @param id a {@link ClockID} to wait on
 		 * @param func The callback function
-		 * @param destroy_data #GDestroyNotify for user_data
 		 * @returns the result of the non blocking wait.
 		 * 
 		 * MT safe.
 		 */
-		public static id_wait_async(id: ClockID, func: ClockCallback, destroy_data: GLib.DestroyNotify): ClockReturn;
+		public static id_wait_async(id: ClockID, func: ClockCallback): ClockReturn;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -1827,11 +1824,10 @@ declare namespace imports.gi.Gst {
 		 * curve or apply a control curve sample by sample.
 		 * @param timestamp the time that should be processed
 		 * @param interval the time spacing between subsequent values
-		 * @param n_values the number of values
 		 * @param values array to put control-values in
 		 * @returns %TRUE if the given array could be filled, %FALSE otherwise
 		 */
-		// get_g_value_array(timestamp: ClockTime, interval: ClockTime, n_values: number, values: GObject.Value[]): boolean;
+		// get_g_value_array(timestamp: ClockTime, interval: ClockTime, values: GObject.Value[]): boolean;
 		/**
 		 * Gets the value for the given controlled property at the requested time.
 		 * @param timestamp the time the control-change should be read from
@@ -1852,11 +1848,10 @@ declare namespace imports.gi.Gst {
 		 * more suitable for bindings.
 		 * @param timestamp the time that should be processed
 		 * @param interval the time spacing between subsequent values
-		 * @param n_values the number of values
 		 * @param values array to put control-values in
 		 * @returns %TRUE if the given array could be filled, %FALSE otherwise
 		 */
-		// get_value_array(timestamp: ClockTime, interval: ClockTime, n_values: number, values: any[]): boolean;
+		// get_value_array(timestamp: ClockTime, interval: ClockTime, values: any[]): boolean;
 		/**
 		 * Check if the control binding is disabled.
 		 * @returns %TRUE if the binding is inactive
@@ -1938,11 +1933,10 @@ declare namespace imports.gi.Gst {
 		 * undefined contain NANs.
 		 * @param timestamp the first timestamp
 		 * @param interval the time steps
-		 * @param n_values the number of values to fetch
 		 * @param values array to put control-values in
 		 * @returns %TRUE if the given array could be filled, %FALSE otherwise
 		 */
-		control_source_get_value_array(timestamp: ClockTime, interval: ClockTime, n_values: number, values: number[]): boolean;
+		control_source_get_value_array(timestamp: ClockTime, interval: ClockTime, values: number[]): boolean;
 		connect(signal: "notify::get_value", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::get_value_array", callback: (owner: this, ...args: any) => void): number;
 
@@ -2699,9 +2693,8 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 * @param func Function to call asynchronously from another thread
-		 * @param destroy_notify GDestroyNotify for #user_data
 		 */
-		call_async(func: ElementCallAsyncFunc, destroy_notify: GLib.DestroyNotify): void;
+		call_async(func: ElementCallAsyncFunc): void;
 		/**
 		 * Perform #transition on #element.
 		 * 
@@ -4138,11 +4131,10 @@ declare namespace imports.gi.Gst {
 		 * @param property_name the name of the property to get
 		 * @param timestamp the time that should be processed
 		 * @param interval the time spacing between subsequent values
-		 * @param n_values the number of values
 		 * @param values array to put control-values in
 		 * @returns %TRUE if the given array could be filled, %FALSE otherwise
 		 */
-		get_g_value_array(property_name: string, timestamp: ClockTime, interval: ClockTime, n_values: number, values: GObject.Value[]): boolean;
+		get_g_value_array(property_name: string, timestamp: ClockTime, interval: ClockTime, values: GObject.Value[]): boolean;
 		/**
 		 * Returns a copy of the name of #object.
 		 * Caller should {@link G.free} the return value after usage.
@@ -4539,7 +4531,6 @@ declare namespace imports.gi.Gst {
 		 * @param mask the probe mask
 		 * @param callback {@link PadProbeCallback} that will be called with notifications of
 		 *           the pad state
-		 * @param destroy_data #GDestroyNotify for user_data
 		 * @returns an id or 0 if no probe is pending. The id can be used to remove the
 		 * probe with {@link Gst.Pad.remove_probe}. When using GST_PAD_PROBE_TYPE_IDLE it can
 		 * happen that the probe can be run immediately and if the probe returns
@@ -4547,7 +4538,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		add_probe(mask: PadProbeType, callback: PadProbeCallback, destroy_data: GLib.DestroyNotify): number;
+		add_probe(mask: PadProbeType, callback: PadProbeCallback): number;
 		/**
 		 * Checks if the source pad and the sink pad are compatible so they can be
 		 * linked.
@@ -5278,16 +5269,14 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * Call this function if your sink pad can start a pull-based task.
 		 * @param activate the {@link PadActivateFunction} to set.
-		 * @param notify notify called when #activate will not be used anymore.
 		 */
-		set_activate_function_full(activate: PadActivateFunction, notify: GLib.DestroyNotify): void;
+		set_activate_function_full(activate: PadActivateFunction): void;
 		/**
 		 * Sets the given activate_mode function for the pad. An activate_mode function
 		 * prepares the element for data passing.
 		 * @param activatemode the {@link PadActivateModeFunction} to set.
-		 * @param notify notify called when #activatemode will not be used anymore.
 		 */
-		set_activatemode_function_full(activatemode: PadActivateModeFunction, notify: GLib.DestroyNotify): void;
+		set_activatemode_function_full(activatemode: PadActivateModeFunction): void;
 		/**
 		 * Activates or deactivates the given pad.
 		 * Normally called from within core state change functions.
@@ -5308,17 +5297,15 @@ declare namespace imports.gi.Gst {
 		 * Sets the given chain function for the pad. The chain function is called to
 		 * process a {@link Buffer} input buffer. see #GstPadChainFunction for more details.
 		 * @param chain the {@link PadChainFunction} to set.
-		 * @param notify notify called when #chain will not be used anymore.
 		 */
-		set_chain_function_full(chain: PadChainFunction, notify: GLib.DestroyNotify): void;
+		set_chain_function_full(chain: PadChainFunction): void;
 		/**
 		 * Sets the given chain list function for the pad. The chainlist function is
 		 * called to process a {@link BufferList} input buffer list. See
 		 * #GstPadChainListFunction for more details.
 		 * @param chainlist the {@link PadChainListFunction} to set.
-		 * @param notify notify called when #chainlist will not be used anymore.
 		 */
-		set_chain_list_function_full(chainlist: PadChainListFunction, notify: GLib.DestroyNotify): void;
+		set_chain_list_function_full(chainlist: PadChainListFunction): void;
 		/**
 		 * Set the given private data gpointer on the pad.
 		 * This function can only be used by the element that owns the pad.
@@ -5329,29 +5316,25 @@ declare namespace imports.gi.Gst {
 		/**
 		 * Sets the given event handler for the pad.
 		 * @param event the {@link PadEventFullFunction} to set.
-		 * @param notify notify called when #event will not be used anymore.
 		 */
-		set_event_full_function_full(event: PadEventFullFunction, notify: GLib.DestroyNotify): void;
+		set_event_full_function_full(event: PadEventFullFunction): void;
 		/**
 		 * Sets the given event handler for the pad.
 		 * @param event the {@link PadEventFunction} to set.
-		 * @param notify notify called when #event will not be used anymore.
 		 */
-		set_event_function_full(event: PadEventFunction, notify: GLib.DestroyNotify): void;
+		set_event_function_full(event: PadEventFunction): void;
 		/**
 		 * Sets the given getrange function for the pad. The getrange function is
 		 * called to produce a new {@link Buffer} to start the processing pipeline. see
 		 * #GstPadGetRangeFunction for a description of the getrange function.
 		 * @param get the {@link PadGetRangeFunction} to set.
-		 * @param notify notify called when #get will not be used anymore.
 		 */
-		set_getrange_function_full(get: PadGetRangeFunction, notify: GLib.DestroyNotify): void;
+		set_getrange_function_full(get: PadGetRangeFunction): void;
 		/**
 		 * Sets the given internal link iterator function for the pad.
 		 * @param iterintlink the {@link PadIterIntLinkFunction} to set.
-		 * @param notify notify called when #iterintlink will not be used anymore.
 		 */
-		set_iterate_internal_links_function_full(iterintlink: PadIterIntLinkFunction, notify: GLib.DestroyNotify): void;
+		set_iterate_internal_links_function_full(iterintlink: PadIterIntLinkFunction): void;
 		/**
 		 * Sets the given link function for the pad. It will be called when
 		 * the pad is linked with another pad.
@@ -5365,9 +5348,8 @@ declare namespace imports.gi.Gst {
 		 * If #link is installed on a source pad, it should call the {@link PadLinkFunction}
 		 * of the peer sink pad, if present.
 		 * @param link the {@link PadLinkFunction} to set.
-		 * @param notify notify called when #link will not be used anymore.
 		 */
-		set_link_function_full(link: PadLinkFunction, notify: GLib.DestroyNotify): void;
+		set_link_function_full(link: PadLinkFunction): void;
 		/**
 		 * Set the offset that will be applied to the running time of #pad.
 		 * @param offset the offset
@@ -5376,9 +5358,8 @@ declare namespace imports.gi.Gst {
 		/**
 		 * Set the given query function for the pad.
 		 * @param query the {@link PadQueryFunction} to set.
-		 * @param notify notify called when #query will not be used anymore.
 		 */
-		set_query_function_full(query: PadQueryFunction, notify: GLib.DestroyNotify): void;
+		set_query_function_full(query: PadQueryFunction): void;
 		/**
 		 * Sets the given unlink function for the pad. It will be called
 		 * when the pad is unlinked.
@@ -5387,19 +5368,17 @@ declare namespace imports.gi.Gst {
 		 * function is called, so most pad functions cannot be called
 		 * from within the callback.
 		 * @param unlink the {@link PadUnlinkFunction} to set.
-		 * @param notify notify called when #unlink will not be used anymore.
 		 */
-		set_unlink_function_full(unlink: PadUnlinkFunction, notify: GLib.DestroyNotify): void;
+		set_unlink_function_full(unlink: PadUnlinkFunction): void;
 		/**
 		 * Starts a task that repeatedly calls #func with #user_data. This function
 		 * is mostly used in pad activation functions to start the dataflow.
 		 * The #GST_PAD_STREAM_LOCK of #pad will automatically be acquired
 		 * before #func is called.
 		 * @param func the task function to call
-		 * @param notify called when #user_data is no longer referenced
 		 * @returns a %TRUE if the task could be started.
 		 */
-		start_task(func: TaskFunction, notify: GLib.DestroyNotify): boolean;
+		start_task(func: TaskFunction): boolean;
 		/**
 		 * Iterates all sticky events on #pad and calls #foreach_func for every
 		 * event. If #foreach_func returns %FALSE the iteration is immediately stopped.
@@ -7144,17 +7123,15 @@ declare namespace imports.gi.Gst {
 		 * be passed to #enter_func and #notify will be called when #user_data is no
 		 * longer referenced.
 		 * @param enter_func a {@link TaskThreadFunc}
-		 * @param notify called when #user_data is no longer referenced
 		 */
-		set_enter_callback(enter_func: TaskThreadFunc, notify: GLib.DestroyNotify): void;
+		set_enter_callback(enter_func: TaskThreadFunc): void;
 		/**
 		 * Call #leave_func when the task function of #task is left. #user_data will
 		 * be passed to #leave_func and #notify will be called when #user_data is no
 		 * longer referenced.
 		 * @param leave_func a {@link TaskThreadFunc}
-		 * @param notify called when #user_data is no longer referenced
 		 */
-		set_leave_callback(leave_func: TaskThreadFunc, notify: GLib.DestroyNotify): void;
+		set_leave_callback(leave_func: TaskThreadFunc): void;
 		/**
 		 * Set the mutex used by the task. The mutex will be acquired before
 		 * calling the {@link TaskFunction}.
@@ -7282,12 +7259,11 @@ declare namespace imports.gi.Gst {
 		 * gst_task_set_lock() function. This lock will always be acquired while
 		 * #func is called.
 		 * @param func The {@link TaskFunction} to use
-		 * @param notify the function to call when #user_data is no longer needed.
 		 * @returns A new {@link Task}.
 		 * 
 		 * MT safe.
 		 */
-		public static new(func: TaskFunction, notify: GLib.DestroyNotify): Task;
+		public static new(func: TaskFunction): Task;
 		/**
 		 * Wait for all tasks to be stopped. This is mainly used internally
 		 * to ensure proper cleanup of internal data structures in test suites.
@@ -7972,10 +7948,9 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 * @param data data to wrap
-		 * @param size allocated size of #data
 		 * @returns a new {@link Buffer}
 		 */
-		public static new_wrapped(data: number[], size: number): Buffer;
+		public static new_wrapped(data: number[]): Buffer;
 		/**
 		 * Creates a new {@link Buffer} that wraps the given #bytes. The data inside
 		 * #bytes cannot be %NULL and the resulting buffer will be marked as read only.
@@ -7998,11 +7973,9 @@ declare namespace imports.gi.Gst {
 		 * @param data data to wrap
 		 * @param maxsize allocated size of #data
 		 * @param offset offset in #data
-		 * @param size size of valid data
-		 * @param notify called with #user_data when the memory is freed
 		 * @returns a new {@link Buffer}
 		 */
-		public static new_wrapped_full(flags: MemoryFlags, data: number[], maxsize: number, offset: number, size: number, notify?: GLib.DestroyNotify | null): Buffer;
+		public static new_wrapped_full(flags: MemoryFlags, data: number[], maxsize: number, offset: number): Buffer;
 		/**
 		 * Get the maximum amount of memory blocks that a buffer can hold. This is a
 		 * compile time constant that can be queried with the function.
@@ -8178,11 +8151,10 @@ declare namespace imports.gi.Gst {
 		 * Copy #size bytes from #src to #buffer at #offset.
 		 * @param offset the offset to fill
 		 * @param src the source address
-		 * @param size the size to fill
 		 * @returns The amount of bytes copied. This value can be lower than #size
 		 *    when #buffer did not contain enough data.
 		 */
-		public fill(offset: number, src: number[], size: number): number;
+		public fill(offset: number, src: number[]): number;
 		/**
 		 * Find the memory blocks that span #size bytes starting from #offset
 		 * in #buffer.
@@ -8415,10 +8387,9 @@ declare namespace imports.gi.Gst {
 		 * Compare #size bytes starting from #offset in #buffer with the memory in #mem.
 		 * @param offset the offset in #buffer
 		 * @param mem the memory to compare
-		 * @param size the size to compare
 		 * @returns 0 if the memory is equal.
 		 */
-		public memcmp(offset: number, mem: number[], size: number): number;
+		public memcmp(offset: number, mem: number[]): number;
 		/**
 		 * Fill #buf with #size bytes with #val starting from #offset.
 		 * @param offset the offset in #buffer
@@ -10793,11 +10764,12 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * When this iterator is freed, #it will also be freed.
 		 * @param func the compare function to select elements
+		 * @param user_data user data passed to the compare function
 		 * @returns a new {@link Iterator}.
 		 * 
 		 * MT safe.
 		 */
-		public filter(func: GLib.CompareFunc): Iterator;
+		public filter(func: GLib.CompareFunc, user_data: GObject.Value): Iterator;
 		/**
 		 * Find the first element in #it that matches the compare function #func.
 		 * #func should return 0 when the element is found. The first parameter
@@ -10995,11 +10967,9 @@ declare namespace imports.gi.Gst {
 		 *   wrap
 		 * @param maxsize allocated size of #data
 		 * @param offset offset in #data
-		 * @param size size of valid data
-		 * @param notify called with #user_data when the memory is freed
 		 * @returns a new {@link Memory}.
 		 */
-		public static new_wrapped(flags: MemoryFlags, data: number[], maxsize: number, offset: number, size: number, notify?: GLib.DestroyNotify | null): Memory | null;
+		public static new_wrapped(flags: MemoryFlags, data: number[], maxsize: number, offset: number): Memory | null;
 		/**
 		 * parent structure
 		 */
@@ -12666,10 +12636,8 @@ declare namespace imports.gi.Gst {
 		 * a call to gst_mini_object_set_qdata() with the same #quark.
 		 * @param quark A #GQuark, naming the user data pointer
 		 * @param data An opaque user data pointer
-		 * @param destroy Function to invoke with #data as argument, when #data
-		 *           needs to be freed
 		 */
-		public set_qdata(quark: GLib.Quark, data: any | null, destroy: GLib.DestroyNotify): void;
+		public set_qdata(quark: GLib.Quark, data?: any | null): void;
 		/**
 		 * This function gets back user data pointers stored via {@link Gst.MiniObject.set_qdata}
 		 * and removes the data from #object without invoking its `destroy()` function (if
@@ -12697,15 +12665,13 @@ declare namespace imports.gi.Gst {
 		 * (gst_mini_object_ref() adds a strong reference, that is, forces the object
 		 * to stay alive).
 		 * @param notify callback to invoke before the mini object is freed
-		 * @param data extra data to pass to notify
 		 */
-		public weak_ref(notify: MiniObjectNotify, data?: any | null): void;
+		public weak_ref(notify: MiniObjectNotify): void;
 		/**
 		 * Removes a weak reference callback from a mini object.
 		 * @param notify callback to search for
-		 * @param data data to search for
 		 */
-		public weak_unref(notify: MiniObjectNotify, data?: any | null): void;
+		public weak_unref(notify: MiniObjectNotify): void;
 	}
 
 	export interface PadProbeInfoInitOptions {}
@@ -13240,10 +13206,9 @@ declare namespace imports.gi.Gst {
 		 * %GST_PROMISE_RESULT_PENDING into any of the other {@link PromiseResult}
 		 * states.
 		 * @param func a {@link PromiseChangeFunc} to call
-		 * @param notify notification function that #user_data is no longer needed
 		 * @returns a new {@link Promise}
 		 */
-		public static new_with_change_func(func: PromiseChangeFunc, notify: GLib.DestroyNotify): Promise;
+		public static new_with_change_func(func: PromiseChangeFunc): Promise;
 		/**
 		 * Expire a #promise.  This will wake up any waiters with
 		 * %GST_PROMISE_RESULT_EXPIRED.  Called by a message loop when the parent
@@ -13953,11 +13918,10 @@ declare namespace imports.gi.Gst {
 		/**
 		 * Set the formats query result fields in #query. The number of formats passed
 		 * in the #formats array must be equal to #n_formats.
-		 * @param n_formats the number of formats to set.
 		 * @param formats an array containing #n_formats
 		 *     {@link Format} values.
 		 */
-		public set_formatsv(n_formats: number, formats: Format[]): void;
+		public set_formatsv(formats: Format[]): void;
 		/**
 		 * Answer a latency query by setting the requested values in the given format.
 		 * @param live if there is a live element upstream
@@ -16220,13 +16184,9 @@ declare namespace imports.gi.Gst {
 		 *     that could belong to this type
 		 * @param possible_caps Optionally the caps that could be returned when typefinding
 		 *                 succeeds
-		 * @param data Optional user data. This user data must be available until the plugin
-		 *        is unloaded.
-		 * @param data_notify a #GDestroyNotify that will be called on #data when the plugin
-		 *        is unloaded.
 		 * @returns %TRUE on success, %FALSE otherwise
 		 */
-		public static register(plugin: Plugin | null, name: string, rank: number, func: TypeFindFunction, extensions: string | null, possible_caps: Caps | null, data: any | null, data_notify: GLib.DestroyNotify): boolean;
+		public static register(plugin: Plugin | null, name: string, rank: number, func: TypeFindFunction, extensions?: string | null, possible_caps?: Caps | null): boolean;
 		/**
 		 * The data used by the caller of the typefinding function.
 		 */
@@ -21797,9 +21757,8 @@ declare namespace imports.gi.Gst {
 	 * Adds the logging function to the list of logging functions.
 	 * Be sure to use #G_GNUC_NO_INSTRUMENT on that function, it is needed.
 	 * @param func the function to use
-	 * @param notify called when #user_data is not used anymore
 	 */
-	function debug_add_log_function(func: LogFunction, notify: GLib.DestroyNotify): void;
+	function debug_add_log_function(func: LogFunction): void;
 	/**
 	 * Adds a memory ringbuffer based debug logger that stores up to
 	 * #max_size_per_thread bytes of logs per thread and times out threads after
@@ -21927,8 +21886,9 @@ declare namespace imports.gi.Gst {
 	 * @param object the object this message relates to,
 	 *     or %NULL if none
 	 * @param message the actual message
+	 * @param user_data the FILE* to log to
 	 */
-	function debug_log_default(category: DebugCategory, level: DebugLevel, file: string, _function: string, line: number, object: GObject.Object | null, message: DebugMessage): void;
+	function debug_log_default(category: DebugCategory, level: DebugLevel, file: string, _function: string, line: number, object: GObject.Object | null, message: DebugMessage, user_data: any | null): void;
 	/**
 	 * Returns the string representation for the specified debug log message
 	 * formatted in the same way as {@link Gst.debug.log_default} (the default handler),
@@ -22886,13 +22846,9 @@ declare namespace imports.gi.Gst {
 	 *     that could belong to this type
 	 * @param possible_caps Optionally the caps that could be returned when typefinding
 	 *                 succeeds
-	 * @param data Optional user data. This user data must be available until the plugin
-	 *        is unloaded.
-	 * @param data_notify a #GDestroyNotify that will be called on #data when the plugin
-	 *        is unloaded.
 	 * @returns %TRUE on success, %FALSE otherwise
 	 */
-	function type_find_register(plugin: Plugin | null, name: string, rank: number, func: TypeFindFunction, extensions: string | null, possible_caps: Caps | null, data: any | null, data_notify: GLib.DestroyNotify): boolean;
+	function type_find_register(plugin: Plugin | null, name: string, rank: number, func: TypeFindFunction, extensions: string | null, possible_caps: Caps | null): boolean;
 	/**
 	 * Checks if #type is plugin API. See {@link Gst.type.mark_as_plugin_api} for
 	 * details.
@@ -23069,9 +23025,8 @@ declare namespace imports.gi.Gst {
 	/**
 	 * Dumps the memory block into a hex representation. Useful for debugging.
 	 * @param mem a pointer to the memory to dump
-	 * @param size the size of the memory block to dump
 	 */
-	function util_dump_mem(mem: number[], size: number): void;
+	function util_dump_mem(mem: number[]): void;
 	/**
 	 * Adds the fractions #a_n/#a_d and #b_n/#b_d and stores
 	 * the result in #res_n and #res_d.

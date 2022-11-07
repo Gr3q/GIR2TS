@@ -236,11 +236,13 @@ declare namespace imports.gi.Cogl {
 		 * the same #key but NULL for the #user_data.
 		 * @param key The address of a {@link UserDataKey} which provides a unique value
 		 *   with which to index the private data.
+		 * @param user_data The data to associate with the given object,
+		 *   or %NULL to remove a previous association.
 		 * @param destroy A {@link UserDataDestroyCallback} to call if the object is
 		 *   destroyed or if the association is removed by later setting
 		 *   %NULL data for the same key.
 		 */
-		set_user_data(key: UserDataKey, destroy: UserDataDestroyCallback): void;
+		set_user_data(key: UserDataKey, user_data: any | null, destroy: UserDataDestroyCallback): void;
 	}
 
 	type ObjectInitOptionsMixin  = {};
@@ -1360,7 +1362,7 @@ declare namespace imports.gi.Cogl {
 	 * use {@link Texture2D} instead.
 	 */
 	interface ITexture2D {
-		egl_image_external_alloc_finish(destroy: GLib.DestroyNotify): void;
+		egl_image_external_alloc_finish(user_data?: any | null): void;
 		egl_image_external_bind(): void;
 	}
 
@@ -1422,7 +1424,7 @@ declare namespace imports.gi.Cogl {
 		 *          it will return %NULL and set #error.
 		 */
 		public static new_from_data(ctx: Context, width: number, height: number, format: PixelFormat, rowstride: number, data: number): Texture2D;
-		public static new_from_egl_image_external(ctx: Context, width: number, height: number, alloc: Texture2DEGLImageExternalAlloc, destroy: GLib.DestroyNotify): Texture2D;
+		public static new_from_egl_image_external(ctx: Context, width: number, height: number, alloc: Texture2DEGLImageExternalAlloc): Texture2D;
 		/**
 		 * Creates a low-level {@link Texture2D} texture from an image file.
 		 * 
@@ -5514,11 +5516,9 @@ declare namespace imports.gi.Cogl {
 	 *    {@link Cogl.program.get_uniform_location}.
 	 * @param n_components The number of components for the uniform. For
 	 * example with glsl you'd use 3 for a vec3 or 4 for a vec4.
-	 * @param count For uniform arrays this is the array length otherwise just
-	 * pass 1
 	 * @param value the new value of the uniform[s].
 	 */
-	function program_set_uniform_float(program: Handle, uniform_location: number, n_components: number, count: number, value: number[]): void;
+	function program_set_uniform_float(program: Handle, uniform_location: number, n_components: number, value: number[]): void;
 	/**
 	 * Changes the value of a int vector uniform, or uniform array for
 	 * the given linked #program.
@@ -5527,11 +5527,9 @@ declare namespace imports.gi.Cogl {
 	 *    {@link Cogl.program.get_uniform_location}.
 	 * @param n_components The number of components for the uniform. For
 	 * example with glsl you'd use 3 for a vec3 or 4 for a vec4.
-	 * @param count For uniform arrays this is the array length otherwise just
-	 * pass 1
 	 * @param value the new value of the uniform[s].
 	 */
-	function program_set_uniform_int(program: Handle, uniform_location: number, n_components: number, count: number, value: number[]): void;
+	function program_set_uniform_int(program: Handle, uniform_location: number, n_components: number, value: number[]): void;
 	/**
 	 * Changes the value of a matrix uniform, or uniform array in the
 	 * given linked #program.
@@ -5540,12 +5538,10 @@ declare namespace imports.gi.Cogl {
 	 *    {@link Cogl.program.get_uniform_location}.
 	 * @param dimensions The dimensions of the matrix. So for for example pass
 	 *    2 for a 2x2 matrix or 3 for 3x3.
-	 * @param count For uniform arrays this is the array length otherwise just
-	 * pass 1
 	 * @param transpose Whether to transpose the matrix when setting the uniform.
 	 * @param value the new value of the uniform.
 	 */
-	function program_set_uniform_matrix(program: Handle, uniform_location: number, dimensions: number, count: number, transpose: boolean, value: number[]): void;
+	function program_set_uniform_matrix(program: Handle, uniform_location: number, dimensions: number, transpose: boolean, value: number[]): void;
 	/**
 	 * Sets whether textures positioned so that their backface is showing
 	 * should be hidden. This can be used to efficiently draw two-sided
@@ -5663,9 +5659,8 @@ declare namespace imports.gi.Cogl {
 	 * %COGL_FILTER_REMOVE.
 	 * @param renderer a {@link Renderer}
 	 * @param func the callback function
-	 * @param data user data passed to #func when called
 	 */
-	function xlib_renderer_add_filter(renderer: any, func: XlibFilterFunc, data: any | null): void;
+	function xlib_renderer_add_filter(renderer: any, func: XlibFilterFunc): void;
 	function xlib_renderer_get_display(renderer: any): any;
 	function xlib_renderer_get_foreign_display(renderer: any): any;
 	/**
@@ -5686,9 +5681,8 @@ declare namespace imports.gi.Cogl {
 	 * {@link Cogl.xlib.renderer_add_filter}.
 	 * @param renderer a {@link Renderer}
 	 * @param func the callback function
-	 * @param data user data given when the callback was installed
 	 */
-	function xlib_renderer_remove_filter(renderer: any, func: XlibFilterFunc, data: any | null): void;
+	function xlib_renderer_remove_filter(renderer: any, func: XlibFilterFunc): void;
 	/**
 	 * Sets whether Cogl should make use of the
 	 * NV_robustness_video_memory_purge extension, if exposed by the

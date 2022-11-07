@@ -10,10 +10,9 @@ declare namespace imports.gi.Cally {
 		 * @param action_description the action description
 		 * @param action_keybinding the action keybinding
 		 * @param callback the callback of the action
-		 * @param notify function to be called when removing the action
 		 * @returns added action id, or -1 if failure
 		 */
-		add_action(action_name: string, action_description: string, action_keybinding: string, callback: ActionCallback, notify: GLib.DestroyNotify): number;
+		add_action(action_name: string, action_description: string, action_keybinding: string, callback: ActionCallback): number;
 		/**
 		 * Removes a action, using the #action_id returned by {@link Cally.Actor.add_action}
 		 * @param action_id the action id

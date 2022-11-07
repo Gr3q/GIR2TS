@@ -13,8 +13,8 @@ declare namespace imports.gi.Caribou {
 		mod_unlatch(mask: number): void;
 		get_current_group(): [ number, string, string ];
 		get_groups(): [ string[], number, string[], number ];
-		register_key_func(keyval: number, func?: Caribou.KeyButtonCallback | null, func_target?: any | null): void;
-		register_button_func(button: number, func?: Caribou.KeyButtonCallback | null, func_target?: any | null): void;
+		register_key_func(keyval: number, func?: Caribou.KeyButtonCallback | null): void;
+		register_button_func(button: number, func?: Caribou.KeyButtonCallback | null): void;
 		get_display(): Gdk.Display;
 		connect(signal: "modifiers-changed", callback: (owner: this, modifiers: number) => void): number;
 		connect(signal: "group-changed", callback: (owner: this, gid: number, group: string, variant: string) => void): number;

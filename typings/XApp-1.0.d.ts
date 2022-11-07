@@ -21,11 +21,10 @@ declare namespace imports.gi.XApp {
 		 * a menu item has been activated, and will include the uri of the respective item.
 		 * @param mimetypes The mimetypes to filter for, or NULL to include all favorites.
 		 * @param callback (closure user_data): The callback to use when a menu item has been selected.
-		 * @param func Destroy function for user_data
 		 * @returns a new #GtkMenu populated with a list of favorites, or NULL
 		 *             if there are no favorites.
 		 */
-		create_menu(mimetypes: string | null, callback: FavoritesItemSelectedCallback, func: GLib.DestroyNotify): Gtk.Widget;
+		create_menu(mimetypes: string | null, callback: FavoritesItemSelectedCallback): Gtk.Widget;
 		/**
 		 * Looks for an XAppFavoriteInfo that corresponds to #display_name.
 		 * @param display_name The display name to lookup info for.
@@ -604,9 +603,10 @@ declare namespace imports.gi.XApp {
 		 * @param manager A #GDBusObjectManagerClient.
 		 * @param object_path The object path of the remote object (unused).
 		 * @param interface_name Interface name of the remote object or %NULL to get the object proxy #GType.
+		 * @param user_data User data (unused).
 		 * @returns A #GDBusProxy derived #GType if #interface_name is not %NULL, otherwise the #GType for {@link ObjectProxy}.
 		 */
-		public static get_proxy_type(manager: Gio.DBusObjectManagerClient, object_path: string, interface_name?: string | null): GObject.Type;
+		public static get_proxy_type(manager: Gio.DBusObjectManagerClient, object_path: string, interface_name?: string | null, user_data?: any | null): GObject.Type;
 		/**
 		 * Asynchronously creates #GDBusObjectManagerClient using {@link Xapp.object_manager_client_get_proxy_type} as the #GDBusProxyTypeFunc. See g_dbus_object_manager_client_new() for more details.
 		 * 

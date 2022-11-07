@@ -454,8 +454,9 @@ declare namespace imports.gi.WebKit2 {
 		 * This function can be used from a Web Process extension to set user data
 		 * that can be retrieved from the UI Process using {@link Webkit.context_menu_get_user_data}.
 		 * If the #user_data #GVariant is floating, it is consumed.
+		 * @param user_data a #GVariant
 		 */
-		set_user_data(): void;
+		set_user_data(user_data: GLib.Variant): void;
 	}
 
 	type ContextMenuInitOptionsMixin = GObject.ObjectInitOptions
@@ -4663,9 +4664,8 @@ declare namespace imports.gi.WebKit2 {
 		 * </programlisting></informalexample>
 		 * @param scheme the network scheme to register
 		 * @param callback a #WebKitURISchemeRequestCallback
-		 * @param user_data_destroy_func destroy notify for #user_data
 		 */
-		register_uri_scheme(scheme: string, callback: URISchemeRequestCallback, user_data_destroy_func: GLib.DestroyNotify): void;
+		register_uri_scheme(scheme: string, callback: URISchemeRequestCallback): void;
 		/**
 		 * Send #message to all #WebKitWebExtension<!-- -->s associated to #context.
 		 * If #message is floating, it's consumed.
@@ -4843,8 +4843,9 @@ declare namespace imports.gi.WebKit2 {
 		 * otherwise it will not have any effect. You can connect to
 		 * #WebKitWebContext::initialize-web-extensions to call this method
 		 * before anything is loaded.
+		 * @param user_data a #GVariant
 		 */
-		set_web_extensions_initialization_user_data(): void;
+		set_web_extensions_initialization_user_data(user_data: GLib.Variant): void;
 		/**
 		 * Sets the maximum number of web processes that can be created at the same time for the #context.
 		 * The default value is 0 and means no limit.

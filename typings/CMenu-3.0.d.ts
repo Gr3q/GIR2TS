@@ -163,14 +163,9 @@ declare namespace imports.gi.CMenu {
 		 * @param uris List of URIs
 		 * @param launch_context a #GAppLaunchContext
 		 * @param spawn_flags #GSpawnFlags, used for each process
-		 * @param user_setup a #GSpawnChildSetupFunc, used once
-		 *     for each process.
-		 * @param user_setup_data User data for #user_setup
-		 * @param pid_callback Callback for child processes
-		 * @param pid_callback_data User data for #callback
 		 * @returns %TRUE on successful launch, %FALSE otherwise.
 		 */
-		launch_uris_as_manager(uris: string[], launch_context: Gio.AppLaunchContext | null, spawn_flags: GLib.SpawnFlags, user_setup?: GLib.SpawnChildSetupFunc | null, user_setup_data?: any | null, pid_callback?: Gio.DesktopAppLaunchCallback | null, pid_callback_data?: any | null): boolean;
+		launch_uris_as_manager(uris: string[], launch_context: Gio.AppLaunchContext | null, spawn_flags: GLib.SpawnFlags): boolean;
 		/**
 		 * Returns the list of "additional application actions" supported on the
 		 * desktop file, as per the desktop file specification.

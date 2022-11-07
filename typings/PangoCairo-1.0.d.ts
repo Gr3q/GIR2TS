@@ -187,9 +187,8 @@ declare namespace imports.gi.PangoCairo {
 		 * path of #cr and no filling/stroking done.  This will be set
 		 * to %TRUE when called from {@link PangoCairo.layout.path} and
 		 * pango_cairo_layout_line_path() rendering functions.
-		 * @param data user data passed to {@link PangoCairo.context.set_shape_renderer}
 		 */
-		(cr: cairo.Context, attr: Pango.AttrShape, do_path: boolean, data?: any | null): void;
+		(cr: cairo.Context, attr: Pango.AttrShape, do_path: boolean): void;
 	}
 
 	/**
@@ -259,11 +258,8 @@ declare namespace imports.gi.PangoCairo {
 	 * @param context a `PangoContext`, from a pangocairo font map
 	 * @param func Callback function for rendering attributes of
 	 *   type %PANGO_ATTR_SHAPE, or %NULL to disable shape rendering.
-	 * @param data User data that will be passed to #func.
-	 * @param dnotify Callback that will be called when the
-	 *   context is freed to release #data
 	 */
-	function context_set_shape_renderer(context: Pango.Context, func: ShapeRendererFunc | null, data: any | null, dnotify: GLib.DestroyNotify | null): void;
+	function context_set_shape_renderer(context: Pango.Context, func: ShapeRendererFunc | null): void;
 	/**
 	 * Creates a context object set up to match the current transformation
 	 * and target surface of the Cairo context.

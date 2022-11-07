@@ -492,11 +492,10 @@ declare namespace imports.gi.Gtk {
 		 * #find_func returns %TRUE and returns its {@link AccelKey}.
 		 * @param find_func a function to filter the entries
 		 *    of #accel_group with
-		 * @param data data to pass to #find_func
 		 * @returns the key of the first entry passing
 		 *    #find_func. The key is owned by GTK+ and must not be freed.
 		 */
-		find(find_func: AccelGroupFindFunc, data?: any | null): AccelKey;
+		find(find_func: AccelGroupFindFunc): AccelKey;
 		/**
 		 * Locks are added and removed using {@link Gtk.AccelGroup.lock} and
 		 * gtk_accel_group_unlock().
@@ -1898,17 +1897,16 @@ declare namespace imports.gi.Gtk {
 		 * The “activate” signals of the actions are connected to the callbacks
 		 * and their accel paths are set to `<Actions>/group-name/action-name`.
 		 * @param entries an array of action descriptions
-		 * @param n_entries the number of entries
+		 * @param user_data data to pass to the action callbacks
 		 */
-		add_actions(entries: ActionEntry[], n_entries: number): void;
+		add_actions(entries: ActionEntry[], user_data?: any | null): void;
 		/**
 		 * This variant of {@link Gtk.ActionGroup.add_actions} adds a #GDestroyNotify
 		 * callback for #user_data.
 		 * @param entries an array of action descriptions
-		 * @param n_entries the number of entries
-		 * @param destroy destroy notification callback for #user_data
+		 * @param user_data data to pass to the action callbacks
 		 */
-		add_actions_full(entries: ActionEntry[], n_entries: number, destroy?: GLib.DestroyNotify | null): void;
+		add_actions_full(entries: ActionEntry[], user_data?: any | null): void;
 		/**
 		 * This is a convenience routine to create a group of radio actions and
 		 * add them to the action group.
@@ -1917,23 +1915,20 @@ declare namespace imports.gi.Gtk {
 		 * #on_change callback and the accel paths of the actions are set to
 		 * `<Actions>/group-name/action-name`.
 		 * @param entries an array of radio action descriptions
-		 * @param n_entries the number of entries
 		 * @param value the value of the action to activate initially, or -1 if
 		 *   no action should be activated
 		 * @param on_change the callback to connect to the changed signal
 		 */
-		add_radio_actions(entries: RadioActionEntry[], n_entries: number, value: number, on_change: GObject.Callback): void;
+		add_radio_actions(entries: RadioActionEntry[], value: number, on_change: GObject.Callback): void;
 		/**
 		 * This variant of {@link Gtk.ActionGroup.add_radio_actions} adds a
 		 * #GDestroyNotify callback for #user_data.
 		 * @param entries an array of radio action descriptions
-		 * @param n_entries the number of entries
 		 * @param value the value of the action to activate initially, or -1 if
 		 *   no action should be activated
 		 * @param on_change the callback to connect to the changed signal
-		 * @param destroy destroy notification callback for #user_data
 		 */
-		add_radio_actions_full(entries: RadioActionEntry[], n_entries: number, value: number, on_change: GObject.Callback, destroy: GLib.DestroyNotify): void;
+		add_radio_actions_full(entries: RadioActionEntry[], value: number, on_change: GObject.Callback): void;
 		/**
 		 * This is a convenience function to create a number of toggle actions and add them
 		 * to the action group.
@@ -1941,17 +1936,16 @@ declare namespace imports.gi.Gtk {
 		 * The “activate” signals of the actions are connected to the callbacks
 		 * and their accel paths are set to `<Actions>/group-name/action-name`.
 		 * @param entries an array of toggle action descriptions
-		 * @param n_entries the number of entries
+		 * @param user_data data to pass to the action callbacks
 		 */
-		add_toggle_actions(entries: ToggleActionEntry[], n_entries: number): void;
+		add_toggle_actions(entries: ToggleActionEntry[], user_data?: any | null): void;
 		/**
 		 * This variant of {@link Gtk.ActionGroup.add_toggle_actions} adds a
 		 * #GDestroyNotify callback for #user_data.
 		 * @param entries an array of toggle action descriptions
-		 * @param n_entries the number of entries
-		 * @param destroy destroy notification callback for #user_data
+		 * @param user_data data to pass to the action callbacks
 		 */
-		add_toggle_actions_full(entries: ToggleActionEntry[], n_entries: number, destroy?: GLib.DestroyNotify | null): void;
+		add_toggle_actions_full(entries: ToggleActionEntry[], user_data?: any | null): void;
 		/**
 		 * Gets the accelerator group.
 		 * @returns the accelerator group associated with this action
@@ -2012,11 +2006,8 @@ declare namespace imports.gi.Gtk {
 		 * If you’re using gettext(), it is enough to set the translation domain
 		 * with gtk_action_group_set_translation_domain().
 		 * @param func a {@link TranslateFunc}
-		 * @param data data to be passed to #func and #notify
-		 * @param notify a #GDestroyNotify function to be called when #action_group is
-		 *   destroyed and when the translation function is changed again
 		 */
-		set_translate_func(func: TranslateFunc, data: any | null, notify: GLib.DestroyNotify): void;
+		set_translate_func(func: TranslateFunc): void;
 		/**
 		 * Sets the translation domain and uses {@link G.dgettext} for translating the
 		 * #label and #tooltip of {@link ActionEntrys} added by
@@ -4108,10 +4099,8 @@ declare namespace imports.gi.Gtk {
 		 * next visible page.
 		 * @param page_func the {@link AssistantPageFunc}, or %NULL
 		 *     to use the default one
-		 * @param data user data for #page_func
-		 * @param destroy destroy notifier for #data
 		 */
-		set_forward_page_func(page_func: AssistantPageFunc | null, data: any | null, destroy: GLib.DestroyNotify): void;
+		set_forward_page_func(page_func?: AssistantPageFunc | null): void;
 		/**
 		 * Sets whether #page contents are complete.
 		 * 
@@ -4733,8 +4722,9 @@ declare namespace imports.gi.Gtk {
 		 * On Linux and Unices, this is not necessary; applications should instead
 		 * be compiled with the -Wl,--export-dynamic CFLAGS, and linked against
 		 * gmodule-export-2.0.
+		 * @param user_data user data to pass back with all signals
 		 */
-		connect_signals(): void;
+		connect_signals(user_data?: any | null): void;
 		/**
 		 * This function can be thought of the interpreted language binding
 		 * version of {@link Gtk.Builder.connect_signals}, except that it does not
@@ -5746,10 +5736,8 @@ declare namespace imports.gi.Gtk {
 		 * #GtkCalendar:detail-width-chars and #GtkCalendar:detail-height-rows
 		 * properties.
 		 * @param func a function providing details for each day.
-		 * @param data data to pass to #func invokations.
-		 * @param destroy a function for releasing #data.
 		 */
-		set_detail_func(func: CalendarDetailFunc, data: any | null, destroy: GLib.DestroyNotify): void;
+		set_detail_func(func: CalendarDetailFunc): void;
 		/**
 		 * Updates the height of detail cells.
 		 * See {@link Calendar.detail_height_rows}.
@@ -6126,9 +6114,8 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Calls #callback for every {@link CellRenderer} in #area.
 		 * @param callback the {@link CellCallback} to call
-		 * @param callback_data user provided data pointer
 		 */
-		foreach(callback: CellCallback, callback_data?: any | null): void;
+		foreach(callback: CellCallback): void;
 		/**
 		 * Calls #callback for every {@link CellRenderer} in #area with the
 		 * allocated rectangle inside #cell_area.
@@ -6137,9 +6124,8 @@ declare namespace imports.gi.Gtk {
 		 * @param cell_area the #widget relative coordinates and size for #area
 		 * @param background_area the #widget relative coordinates of the background area
 		 * @param callback the {@link CellAllocCallback} to call
-		 * @param callback_data user provided data pointer
 		 */
-		foreach_alloc(context: CellAreaContext, widget: Widget, cell_area: Gdk.Rectangle, background_area: Gdk.Rectangle, callback: CellAllocCallback, callback_data?: any | null): void;
+		foreach_alloc(context: CellAreaContext, widget: Widget, cell_area: Gdk.Rectangle, background_area: Gdk.Rectangle, callback: CellAllocCallback): void;
 		/**
 		 * Derives the allocation of #renderer inside #area if #area
 		 * were to be renderered in #cell_area.
@@ -8924,9 +8910,8 @@ declare namespace imports.gi.Gtk {
 		 * @param targets array containing
 		 *           information about which forms should be stored or %NULL
 		 *           to indicate that all forms should be stored.
-		 * @param n_targets number of elements in #targets
 		 */
-		set_can_store(targets: TargetEntry[] | null, n_targets: number): void;
+		set_can_store(targets?: TargetEntry[] | null): void;
 		/**
 		 * Sets the contents of the clipboard to the given #GdkPixbuf.
 		 * GTK+ will take responsibility for responding for requests
@@ -8951,7 +8936,6 @@ declare namespace imports.gi.Gtk {
 		 * to call to get the actual data when it is requested.
 		 * @param targets array containing information
 		 *     about the available forms for the clipboard data
-		 * @param n_targets number of elements in #targets
 		 * @param get_func function to call to get the actual clipboard data
 		 * @param clear_func when the clipboard contents are set again,
 		 *     this function will be called, and #get_func will not be subsequently
@@ -8960,7 +8944,7 @@ declare namespace imports.gi.Gtk {
 		 *    If setting the clipboard data failed the provided callback
 		 *    functions will be ignored.
 		 */
-		set_with_data(targets: TargetEntry[], n_targets: number, get_func: ClipboardGetFunc, clear_func: ClipboardClearFunc): boolean;
+		set_with_data(targets: TargetEntry[], get_func: ClipboardGetFunc, clear_func: ClipboardClearFunc): boolean;
 		/**
 		 * Virtually sets the contents of the specified clipboard by providing
 		 * a list of supported formats for the clipboard data and a function
@@ -8971,7 +8955,6 @@ declare namespace imports.gi.Gtk {
 		 * in.
 		 * @param targets array containing information
 		 *     about the available forms for the clipboard data
-		 * @param n_targets number of elements in #targets
 		 * @param get_func function to call to get the actual clipboard data
 		 * @param clear_func when the clipboard contents are set again,
 		 *     this function will be called, and #get_func will not be subsequently
@@ -8982,7 +8965,7 @@ declare namespace imports.gi.Gtk {
 		 *     If setting the clipboard data failed the provided callback
 		 *     functions will be ignored.
 		 */
-		set_with_owner(targets: TargetEntry[], n_targets: number, get_func: ClipboardGetFunc, clear_func: ClipboardClearFunc, owner: GObject.Object): boolean;
+		set_with_owner(targets: TargetEntry[], get_func: ClipboardGetFunc, clear_func: ClipboardClearFunc, owner: GObject.Object): boolean;
 		/**
 		 * Stores the current clipboard data somewhere so that it will stay
 		 * around after the application has quit.
@@ -9767,10 +9750,9 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Encodes a palette as a string, useful for persistent storage.
 		 * @param colors an array of colors
-		 * @param n_colors length of the array
 		 * @returns allocated string encoding the palette
 		 */
-		public static palette_to_string(colors: Gdk.Color[], n_colors: number): string;
+		public static palette_to_string(colors: Gdk.Color[]): string;
 		/**
 		 * Installs a global function to be called whenever the user
 		 * tries to modify the palette in a color selection.
@@ -10163,10 +10145,8 @@ declare namespace imports.gi.Gtk {
 		 * whether a row should be drawn as a separator. If the row separator
 		 * function is %NULL, no separators are drawn. This is the default value.
 		 * @param func a {@link TreeViewRowSeparatorFunc}
-		 * @param data user data to pass to #func, or %NULL
-		 * @param destroy destroy notifier for #data, or %NULL
 		 */
-		set_row_separator_func(func: TreeViewRowSeparatorFunc, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
+		set_row_separator_func(func: TreeViewRowSeparatorFunc): void;
 		/**
 		 * Sets the column with row span information for #combo_box to be #row_span.
 		 * The row span column contains integers which indicate how many rows
@@ -10725,9 +10705,8 @@ declare namespace imports.gi.Gtk {
 		 * Most applications should use {@link Gtk.Container.foreach}, rather
 		 * than gtk_container_forall().
 		 * @param callback a callback
-		 * @param callback_data callback user data
 		 */
-		forall(callback: Callback, callback_data?: any | null): void;
+		forall(callback: Callback): void;
 		/**
 		 * Invokes #callback on each non-internal child of #container.
 		 * See {@link Gtk.Container.forall} for details on what constitutes
@@ -10741,9 +10720,8 @@ declare namespace imports.gi.Gtk {
 		 * Most applications should use gtk_container_foreach(),
 		 * rather than gtk_container_forall().
 		 * @param callback a callback
-		 * @param callback_data callback user data
 		 */
-		foreach(callback: Callback, callback_data?: any | null): void;
+		foreach(callback: Callback): void;
 		/**
 		 * Retrieves the border width of the container. See
 		 * {@link Gtk.Container.set_border_width}.
@@ -11246,15 +11224,12 @@ declare namespace imports.gi.Gtk {
 		 * Loads #data into #css_provider, and by doing so clears any previously loaded
 		 * information.
 		 * @param data CSS data loaded in memory
-		 * @param length the length of #data in bytes, or -1 for NUL terminated strings. If
-		 *   #length is not -1, the code will assume it is not NUL terminated and will
-		 *   potentially do a copy.
 		 * @returns %TRUE. The return value is deprecated and %FALSE will only be
 		 *     returned for backwards compatibility reasons if an #error is not
 		 *     %NULL and a loading error occurred. To track errors while loading
 		 *     CSS, connect to the {@link CssProvider.parsing_error} signal.
 		 */
-		load_from_data(data: number[], length: number): boolean;
+		load_from_data(data: number[]): boolean;
 		/**
 		 * Loads the data contained in #file into #css_provider, making it
 		 * clear any previously loaded information.
@@ -11574,11 +11549,10 @@ declare namespace imports.gi.Gtk {
 		 * See {@link Gtk.Dialog.set_alternative_button_order} for more information.
 		 * 
 		 * This function is for use by language bindings.
-		 * @param n_params the number of response ids in #new_order
 		 * @param new_order an array of response ids of
 		 *     #dialog’s buttons
 		 */
-		set_alternative_button_order_from_array(n_params: number, new_order: number[]): void;
+		set_alternative_button_order_from_array(new_order: number[]): void;
 		/**
 		 * Sets the last widget in the dialog’s action area with the given #response_id
 		 * as the default widget for the dialog. Pressing “Enter” normally activates
@@ -13635,10 +13609,8 @@ declare namespace imports.gi.Gtk {
 		 * is used to determine if a row should or should not be in the completion
 		 * list.
 		 * @param func the {@link EntryCompletionMatchFunc} to use
-		 * @param func_data user data for #func
-		 * @param func_notify destroy notify for #func_data.
 		 */
-		set_match_func(func: EntryCompletionMatchFunc, func_data: any | null, func_notify: GLib.DestroyNotify): void;
+		set_match_func(func: EntryCompletionMatchFunc): void;
 		/**
 		 * Requires the length of the search key for #completion to be at least
 		 * #length. This is useful for long lists, where completing using a small
@@ -15475,10 +15447,8 @@ declare namespace imports.gi.Gtk {
 		 *          filter function needs.
 		 * @param func callback function; if the function returns %TRUE, then
 		 *   the file will be displayed.
-		 * @param data data to pass to #func
-		 * @param notify function to call to free #data when it is no longer needed.
 		 */
-		add_custom(needed: FileFilterFlags, func: FileFilterFunc, data: any | null, notify: GLib.DestroyNotify): void;
+		add_custom(needed: FileFilterFlags, func: FileFilterFunc): void;
 		/**
 		 * Adds a rule allowing a given mime type to #filter.
 		 * @param mime_type name of a MIME type
@@ -15760,9 +15730,8 @@ declare namespace imports.gi.Gtk {
 		 * should be implemented by the model.
 		 * @param model the #GListModel to be bound to #box
 		 * @param create_widget_func a function that creates widgets for items
-		 * @param user_data_free_func function for freeing #user_data
 		 */
-		bind_model(model: Gio.ListModel | null, create_widget_func: FlowBoxCreateWidgetFunc, user_data_free_func: GLib.DestroyNotify): void;
+		bind_model(model: Gio.ListModel | null, create_widget_func: FlowBoxCreateWidgetFunc): void;
 		/**
 		 * Returns whether children activate on single clicks.
 		 * @returns %TRUE if children are activated on single click,
@@ -15871,9 +15840,8 @@ declare namespace imports.gi.Gtk {
 		 * Note that the selection cannot be modified from within
 		 * this function.
 		 * @param func the function to call for each selected child
-		 * @param data user data to pass to the function
 		 */
-		selected_foreach(func: FlowBoxForeachFunc, data?: any | null): void;
+		selected_foreach(func: FlowBoxForeachFunc): void;
 		/**
 		 * If #single is %TRUE, children will be activated when you click
 		 * on them, otherwise you need to double-click.
@@ -15900,9 +15868,8 @@ declare namespace imports.gi.Gtk {
 		 * (see gtk_flow_box_bind_model()).
 		 * @param filter_func callback that
 		 *     lets you filter which children to show
-		 * @param destroy destroy notifier for #user_data
 		 */
-		set_filter_func(filter_func: FlowBoxFilterFunc | null, destroy: GLib.DestroyNotify): void;
+		set_filter_func(filter_func?: FlowBoxFilterFunc | null): void;
 		/**
 		 * Hooks up an adjustment to focus handling in #box.
 		 * The adjustment is also used for autoscrolling during
@@ -15967,9 +15934,8 @@ declare namespace imports.gi.Gtk {
 		 * Note that using a sort function is incompatible with using a model
 		 * (see gtk_flow_box_bind_model()).
 		 * @param sort_func the sort function
-		 * @param destroy destroy notifier for #user_data
 		 */
-		set_sort_func(sort_func: FlowBoxSortFunc | null, destroy: GLib.DestroyNotify): void;
+		set_sort_func(sort_func?: FlowBoxSortFunc | null): void;
 		/**
 		 * Hooks up an adjustment to focus handling in #box.
 		 * The adjustment is also used for autoscrolling during
@@ -20705,9 +20671,8 @@ declare namespace imports.gi.Gtk {
 		 * rather than directly on the icon path.)
 		 * @param path array of
 		 *     directories that are searched for icon themes
-		 * @param n_elements number of elements in #path.
 		 */
-		set_search_path(path: string[], n_elements: number): void;
+		set_search_path(path: string[]): void;
 		/**
 		 * Emitted when the current icon theme is switched or GTK+ detects
 		 * that a change has occurred in the contents of the current
@@ -20979,22 +20944,20 @@ declare namespace imports.gi.Gtk {
 		 * method sets {@link IconView.reorderable} to %FALSE.
 		 * @param targets the table of targets that the drag will
 		 *           support
-		 * @param n_targets the number of items in #targets
 		 * @param actions the bitmask of possible actions for a drag to this
 		 *    widget
 		 */
-		enable_model_drag_dest(targets: TargetEntry[], n_targets: number, actions: Gdk.DragAction): void;
+		enable_model_drag_dest(targets: TargetEntry[], actions: Gdk.DragAction): void;
 		/**
 		 * Turns #icon_view into a drag source for automatic DND. Calling this
 		 * method sets {@link IconView.reorderable} to %FALSE.
 		 * @param start_button_mask Mask of allowed buttons to start drag
 		 * @param targets the table of targets that the drag will
 		 *           support
-		 * @param n_targets the number of items in #targets
 		 * @param actions the bitmask of possible actions for a drag from this
 		 *    widget
 		 */
-		enable_model_drag_source(start_button_mask: Gdk.ModifierType, targets: TargetEntry[], n_targets: number, actions: Gdk.DragAction): void;
+		enable_model_drag_source(start_button_mask: Gdk.ModifierType, targets: TargetEntry[], actions: Gdk.DragAction): void;
 		/**
 		 * Gets the setting set by {@link Gtk.IconView.set_activate_on_single_click}.
 		 * @returns %TRUE if item-activated will be emitted on a single click
@@ -21267,9 +21230,8 @@ declare namespace imports.gi.Gtk {
 		 * Calls a function for each selected icon. Note that the model or
 		 * selection cannot be modified from within this function.
 		 * @param func The function to call for each selected icon.
-		 * @param data User data to pass to the function.
 		 */
-		selected_foreach(func: IconViewForeachFunc, data?: any | null): void;
+		selected_foreach(func: IconViewForeachFunc): void;
 		/**
 		 * Causes the {@link IconView.item_activated} signal to be emitted on
 		 * a single click instead of a double click.
@@ -24211,9 +24173,8 @@ declare namespace imports.gi.Gtk {
 		 * @param model the #GListModel to be bound to #box
 		 * @param create_widget_func a function that creates widgets for items
 		 *   or %NULL in case you also passed %NULL as #model
-		 * @param user_data_free_func function for freeing #user_data
 		 */
-		bind_model(model: Gio.ListModel | null, create_widget_func: ListBoxCreateWidgetFunc | null, user_data_free_func: GLib.DestroyNotify): void;
+		bind_model(model?: Gio.ListModel | null, create_widget_func?: ListBoxCreateWidgetFunc | null): void;
 		/**
 		 * This is a helper function for implementing DnD onto a {@link ListBox}.
 		 * The passed in #row will be highlighted via {@link Gtk.drag_highlight},
@@ -24328,9 +24289,8 @@ declare namespace imports.gi.Gtk {
 		 * 
 		 * Note that the selection cannot be modified from within this function.
 		 * @param func the function to call for each selected child
-		 * @param data user data to pass to the function
 		 */
-		selected_foreach(func: ListBoxForeachFunc, data?: any | null): void;
+		selected_foreach(func: ListBoxForeachFunc): void;
 		/**
 		 * If #single is %TRUE, rows will be activated when you click on them,
 		 * otherwise you need to double-click.
@@ -24361,9 +24321,8 @@ declare namespace imports.gi.Gtk {
 		 * Note that using a filter function is incompatible with using a model
 		 * (see gtk_list_box_bind_model()).
 		 * @param filter_func callback that lets you filter which rows to show
-		 * @param destroy destroy notifier for #user_data
 		 */
-		set_filter_func(filter_func: ListBoxFilterFunc | null, destroy: GLib.DestroyNotify): void;
+		set_filter_func(filter_func?: ListBoxFilterFunc | null): void;
 		/**
 		 * By setting a header function on the #box one can dynamically add headers
 		 * in front of rows, depending on the contents of the row and its position in the list.
@@ -24384,9 +24343,8 @@ declare namespace imports.gi.Gtk {
 		 * the previous row becomes a different row). It is also called for all rows when
 		 * gtk_list_box_invalidate_headers() is called.
 		 * @param update_header callback that lets you add row headers
-		 * @param destroy destroy notifier for #user_data
 		 */
-		set_header_func(update_header: ListBoxUpdateHeaderFunc | null, destroy: GLib.DestroyNotify): void;
+		set_header_func(update_header?: ListBoxUpdateHeaderFunc | null): void;
 		/**
 		 * Sets the placeholder widget that is shown in the list when
 		 * it doesn't display any visible children.
@@ -24410,9 +24368,8 @@ declare namespace imports.gi.Gtk {
 		 * Note that using a sort function is incompatible with using a model
 		 * (see gtk_list_box_bind_model()).
 		 * @param sort_func the sort function
-		 * @param destroy destroy notifier for #user_data
 		 */
-		set_sort_func(sort_func: ListBoxSortFunc | null, destroy: GLib.DestroyNotify): void;
+		set_sort_func(sort_func?: ListBoxSortFunc | null): void;
 		/**
 		 * Unselect all children of #box, if the selection mode allows it.
 		 */
@@ -24801,10 +24758,9 @@ declare namespace imports.gi.Gtk {
 		 * @param position position to insert the new row, or -1 for last
 		 * @param columns an array of column numbers
 		 * @param values an array of GValues
-		 * @param n_values the length of the #columns and #values arrays
 		 * @returns An unset {@link TreeIter} to set to the new row, or %NULL.
 		 */
-		insert_with_valuesv(position: number, columns: number[], values: GObject.Value[], n_values: number): TreeIter | null;
+		insert_with_valuesv(position: number, columns: number[], values: GObject.Value[]): TreeIter | null;
 		/**
 		 * > This function is slow. Only use it for debugging and/or testing
 		 * > purposes.
@@ -24863,18 +24819,16 @@ declare namespace imports.gi.Gtk {
 		 * @param iter A valid {@link TreeIter} for the row being modified
 		 * @param columns an array of column numbers
 		 * @param values an array of GValues
-		 * @param n_values the length of the #columns and #values arrays
 		 */
-		set(iter: TreeIter, columns: number[], values: GObject.Value[], n_values: number): void;
+		set(iter: TreeIter, columns: number[], values: GObject.Value[]): void;
 		/**
 		 * This function is meant primarily for #GObjects that inherit from {@link ListStore},
 		 * and should only be used when constructing a new #GtkListStore.  It will not
 		 * function after a row has been added, or a method on the #GtkTreeModel
 		 * interface is called.
-		 * @param n_columns Number of columns for the list store
 		 * @param types An array length n of #GTypes
 		 */
-		set_column_types(n_columns: number, types: GObject.Type[]): void;
+		set_column_types(types: GObject.Type[]): void;
 		/**
 		 * See {@link Gtk.ListStore.set}; this version takes a va_list for use by language
 		 * bindings.
@@ -25053,11 +25007,10 @@ declare namespace imports.gi.Gtk {
 		public constructor(options?: Partial<ListStoreInitOptions>);
 		/**
 		 * Non-vararg creation function.  Used primarily by language bindings.
-		 * @param n_columns number of columns in the list store
 		 * @param types an array of #GType types for the columns, from first to last
 		 * @returns a new {@link ListStore}
 		 */
-		public static new(n_columns: number, types: GObject.Type[]): ListStore;
+		public static new(types: GObject.Type[]): ListStore;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -25387,11 +25340,10 @@ declare namespace imports.gi.Gtk {
 		 *     triggered the popup, or %NULL
 		 * @param func a user supplied function used to position
 		 *     the menu, or %NULL
-		 * @param data user supplied data to be passed to #func.
 		 * @param button the mouse button which was pressed to initiate the event.
 		 * @param activate_time the time at which the activation event occurred.
 		 */
-		popup(parent_menu_shell: Widget | null, parent_menu_item: Widget | null, func: MenuPositionFunc | null, data: any | null, button: number, activate_time: number): void;
+		popup(parent_menu_shell: Widget | null, parent_menu_item: Widget | null, func: MenuPositionFunc | null, button: number, activate_time: number): void;
 		/**
 		 * Displays #menu and makes it available for selection.
 		 * 
@@ -25500,12 +25452,10 @@ declare namespace imports.gi.Gtk {
 		 *     the popup, or %NULL
 		 * @param func a user supplied function used to position the menu,
 		 *     or %NULL
-		 * @param data user supplied data to be passed to #func
-		 * @param destroy destroy notify for #data
 		 * @param button the mouse button which was pressed to initiate the event
 		 * @param activate_time the time at which the activation event occurred
 		 */
-		popup_for_device(device: Gdk.Device | null, parent_menu_shell: Widget | null, parent_menu_item: Widget | null, func: MenuPositionFunc | null, data: any | null, destroy: GLib.DestroyNotify | null, button: number, activate_time: number): void;
+		popup_for_device(device: Gdk.Device | null, parent_menu_shell: Widget | null, parent_menu_item: Widget | null, func: MenuPositionFunc | null, button: number, activate_time: number): void;
 		/**
 		 * Moves #child to a new #position in the list of #menu
 		 * children.
@@ -28748,9 +28698,8 @@ declare namespace imports.gi.Gtk {
 		 * This is a convenience function to add a group of action entries on
 		 * #controller. See {@link PadActionEntry} and {@link Gtk.PadController.set_action}.
 		 * @param entries the action entries to set on #controller
-		 * @param n_entries the number of elements in #entries
 		 */
-		set_action_entries(entries: PadActionEntry[], n_entries: number): void;
+		set_action_entries(entries: PadActionEntry[]): void;
 		connect(signal: "notify::action-group", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::pad", callback: (owner: this, ...args: any) => void): number;
 
@@ -31802,9 +31751,8 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Sets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
 		 * @param page_ranges an array of {@link PageRanges}
-		 * @param num_ranges the length of #page_ranges
 		 */
-		set_page_ranges(page_ranges: PageRange[], num_ranges: number): void;
+		set_page_ranges(page_ranges: PageRange[]): void;
 		/**
 		 * Sets the value of %GTK_PRINT_SETTINGS_PAGE_SET.
 		 * @param page_set a {@link PageSet} value
@@ -33616,10 +33564,8 @@ declare namespace imports.gi.Gtk {
 		 *          filter function needs.
 		 * @param func callback function; if the function returns %TRUE, then
 		 *   the file will be displayed.
-		 * @param data data to pass to #func
-		 * @param data_destroy function to call to free #data when it is no longer needed.
 		 */
-		add_custom(needed: RecentFilterFlags, func: RecentFilterFunc, data: any | null, data_destroy: GLib.DestroyNotify): void;
+		add_custom(needed: RecentFilterFlags, func: RecentFilterFunc): void;
 		/**
 		 * Adds a rule that allows resources based on the name of the group
 		 * to which they belong
@@ -38795,11 +38741,12 @@ declare namespace imports.gi.Gtk {
 		 * Menu positioning function to use with {@link Gtk.Menu.popup}
 		 * to position #menu aligned to the status icon #user_data.
 		 * @param menu the {@link Menu}
+		 * @param user_data the status icon to position the menu on
 		 * @returns whether the first menu item should be offset
 		 *           (pushed in) to be aligned with the menu popup position
 		 *           (only useful for GtkOptionMenu).
 		 */
-		public static position_menu(menu: Menu): boolean;
+		public static position_menu(menu: Menu, user_data: StatusIcon): boolean;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -40823,10 +40770,9 @@ declare namespace imports.gi.Gtk {
 		 * @param format the rich text format to use for deserializing
 		 * @param iter insertion point for the deserialized text
 		 * @param data data to deserialize
-		 * @param length length of #data
 		 * @returns %TRUE on success, %FALSE otherwise.
 		 */
-		deserialize(content_buffer: TextBuffer, format: Gdk.Atom, iter: TextIter, data: number[], length: number): boolean;
+		deserialize(content_buffer: TextBuffer, format: Gdk.Atom, iter: TextIter, data: number[]): boolean;
 		/**
 		 * This functions returns the value set with
 		 * {@link Gtk.TextBuffer.deserialize_set_can_create_tags}
@@ -41268,11 +41214,10 @@ declare namespace imports.gi.Gtk {
 		 * its #mime_type with the passed #buffer.
 		 * @param mime_type the format’s mime-type
 		 * @param _function the deserialize function to register
-		 * @param user_data_destroy a function to call when #user_data is no longer needed
 		 * @returns the #GdkAtom that corresponds to the
 		 *               newly registered format’s mime-type.
 		 */
-		register_deserialize_format(mime_type: string, _function: TextBufferDeserializeFunc, user_data_destroy: GLib.DestroyNotify): Gdk.Atom;
+		register_deserialize_format(mime_type: string, _function: TextBufferDeserializeFunc): Gdk.Atom;
 		/**
 		 * This function registers GTK+’s internal rich text serialization
 		 * format with the passed #buffer. See
@@ -41287,11 +41232,10 @@ declare namespace imports.gi.Gtk {
 		 * its #mime_type with the passed #buffer.
 		 * @param mime_type the format’s mime-type
 		 * @param _function the serialize function to register
-		 * @param user_data_destroy a function to call when #user_data is no longer needed
 		 * @returns the #GdkAtom that corresponds to the
 		 *               newly registered format’s mime-type.
 		 */
-		register_serialize_format(mime_type: string, _function: TextBufferSerializeFunc, user_data_destroy: GLib.DestroyNotify): Gdk.Atom;
+		register_serialize_format(mime_type: string, _function: TextBufferSerializeFunc): Gdk.Atom;
 		/**
 		 * This function registers GTK+’s internal rich text serialization
 		 * format with the passed #buffer. The internal format does not comply
@@ -42282,9 +42226,8 @@ declare namespace imports.gi.Gtk {
 		 * Note that the table may not be modified while iterating
 		 * over it (you can’t add/remove tags).
 		 * @param func a function to call on each tag
-		 * @param data user data
 		 */
-		foreach(func: TextTagTableForeach, data?: any | null): void;
+		foreach(func: TextTagTableForeach): void;
 		/**
 		 * Returns the size of the table (number of tags)
 		 * @returns number of tags in #table
@@ -45535,13 +45478,10 @@ declare namespace imports.gi.Gtk {
 		 * 
 		 * Note that {@link Gtk.TreeModelFilter.set_modify_func}
 		 * can only be called once for a given filter model.
-		 * @param n_columns The number of columns in the filter model.
 		 * @param types The #GTypes of the columns.
 		 * @param func A {@link TreeModelFilterModifyFunc}
-		 * @param data User data to pass to the modify function, or %NULL.
-		 * @param destroy Destroy notifier of #data, or %NULL.
 		 */
-		set_modify_func(n_columns: number, types: GObject.Type[], func: TreeModelFilterModifyFunc, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
+		set_modify_func(types: GObject.Type[], func: TreeModelFilterModifyFunc): void;
 		/**
 		 * Sets #column of the child_model to be the column where #filter should
 		 * look for visibility information. #columns should be a column of type
@@ -45591,10 +45531,8 @@ declare namespace imports.gi.Gtk {
 		 * gtk_tree_model_filter_set_visible_column() can only be called
 		 * once for a given filter model.
 		 * @param func A {@link TreeModelFilterVisibleFunc}, the visible function
-		 * @param data User data to pass to the visible function, or %NULL
-		 * @param destroy Destroy notifier of #data, or %NULL
 		 */
-		set_visible_func(func: TreeModelFilterVisibleFunc, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
+		set_visible_func(func: TreeModelFilterVisibleFunc): void;
 		connect(signal: "notify::child-model", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::virtual-root", callback: (owner: this, ...args: any) => void): number;
 
@@ -45982,9 +45920,8 @@ declare namespace imports.gi.Gtk {
 		 * the tree or selection from within this function. As a result,
 		 * {@link Gtk.TreeSelection.get_selected_rows} might be more useful.
 		 * @param func The function to call for each selected node.
-		 * @param data user data to pass to the function.
 		 */
-		selected_foreach(func: TreeSelectionForeachFunc, data?: any | null): void;
+		selected_foreach(func: TreeSelectionForeachFunc): void;
 		/**
 		 * Sets the selection mode of the #selection.  If the previous type was
 		 * #GTK_SELECTION_MULTIPLE, then the anchor is kept selected, if it was
@@ -46000,10 +45937,8 @@ declare namespace imports.gi.Gtk {
 		 * should return %TRUE if the state of the node may be toggled, and %FALSE
 		 * if the state of the node should be left unchanged.
 		 * @param func The selection function. May be %NULL
-		 * @param data The selection function’s data. May be %NULL
-		 * @param destroy The destroy function for user data.  May be %NULL
 		 */
-		set_select_function(func: TreeSelectionFunc | null, data: any | null, destroy: GLib.DestroyNotify): void;
+		set_select_function(func?: TreeSelectionFunc | null): void;
 		/**
 		 * Unselects all the nodes.
 		 */
@@ -46153,10 +46088,9 @@ declare namespace imports.gi.Gtk {
 		 * @param position position to insert the new row, or -1 for last
 		 * @param columns an array of column numbers
 		 * @param values an array of GValues
-		 * @param n_values the length of the #columns and #values arrays
 		 * @returns An unset {@link TreeIter} to set the new row, or %NULL.
 		 */
-		insert_with_values(parent: TreeIter | null, position: number, columns: number[], values: GObject.Value[], n_values: number): TreeIter | null;
+		insert_with_values(parent: TreeIter | null, position: number, columns: number[], values: GObject.Value[]): TreeIter | null;
 		/**
 		 * Returns %TRUE if #iter is an ancestor of #descendant.  That is, #iter is the
 		 * parent (or grandparent or great-grandparent) of #descendant.
@@ -46235,18 +46169,16 @@ declare namespace imports.gi.Gtk {
 		 * @param iter A valid {@link TreeIter} for the row being modified
 		 * @param columns an array of column numbers
 		 * @param values an array of GValues
-		 * @param n_values the length of the #columns and #values arrays
 		 */
-		set(iter: TreeIter, columns: number[], values: GObject.Value[], n_values: number): void;
+		set(iter: TreeIter, columns: number[], values: GObject.Value[]): void;
 		/**
 		 * This function is meant primarily for #GObjects that inherit from
 		 * {@link TreeStore}, and should only be used when constructing a new
 		 * #GtkTreeStore.  It will not function after a row has been added,
 		 * or a method on the #GtkTreeModel interface is called.
-		 * @param n_columns Number of columns for the tree store
 		 * @param types An array of #GType types, one for each column
 		 */
-		set_column_types(n_columns: number, types: GObject.Type[]): void;
+		set_column_types(types: GObject.Type[]): void;
 		/**
 		 * See {@link Gtk.TreeStore.set}; this version takes a va_list for
 		 * use by language bindings.
@@ -46314,11 +46246,10 @@ declare namespace imports.gi.Gtk {
 		public constructor(options?: Partial<TreeStoreInitOptions>);
 		/**
 		 * Non vararg creation function.  Used primarily by language bindings.
-		 * @param n_columns number of columns in the tree store
 		 * @param types an array of #GType types for the columns, from first to last
 		 * @returns a new {@link TreeStore}
 		 */
-		public static new(n_columns: number, types: GObject.Type[]): TreeStore;
+		public static new(types: GObject.Type[]): TreeStore;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -46479,21 +46410,19 @@ declare namespace imports.gi.Gtk {
 		 * this method sets {@link TreeView.reorderable} to %FALSE.
 		 * @param targets the table of targets that
 		 *           the drag will support
-		 * @param n_targets the number of items in #targets
 		 * @param actions the bitmask of possible actions for a drag from this
 		 *    widget
 		 */
-		enable_model_drag_dest(targets: TargetEntry[], n_targets: number, actions: Gdk.DragAction): void;
+		enable_model_drag_dest(targets: TargetEntry[], actions: Gdk.DragAction): void;
 		/**
 		 * Turns #tree_view into a drag source for automatic DND. Calling this
 		 * method sets {@link TreeView.reorderable} to %FALSE.
 		 * @param start_button_mask Mask of allowed buttons to start drag
 		 * @param targets the table of targets that the drag will support
-		 * @param n_targets the number of items in #targets
 		 * @param actions the bitmask of possible actions for a drag from this
 		 *    widget
 		 */
-		enable_model_drag_source(start_button_mask: Gdk.ModifierType, targets: TargetEntry[], n_targets: number, actions: Gdk.DragAction): void;
+		enable_model_drag_source(start_button_mask: Gdk.ModifierType, targets: TargetEntry[], actions: Gdk.DragAction): void;
 		/**
 		 * Recursively expands all nodes in the #tree_view.
 		 */
@@ -46867,11 +46796,9 @@ declare namespace imports.gi.Gtk {
 		 * @param title column title
 		 * @param cell cell renderer for column
 		 * @param func function to set attributes of cell renderer
-		 * @param data data for #func
-		 * @param dnotify destroy notifier for #data
 		 * @returns number of columns in the tree view post-insert
 		 */
-		insert_column_with_data_func(position: number, title: string, cell: CellRenderer, func: TreeCellDataFunc, data: any | null, dnotify: GLib.DestroyNotify): number;
+		insert_column_with_data_func(position: number, title: string, cell: CellRenderer, func: TreeCellDataFunc): number;
 		/**
 		 * Determine whether the point (#x, #y) in #tree_view is blank, that is no
 		 * cell content nor an expander arrow is drawn at the location. If so, the
@@ -46918,9 +46845,8 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Calls #func on all expanded rows.
 		 * @param func A function to be called
-		 * @param data User data to be passed to the function.
 		 */
-		map_expanded_rows(func: TreeViewMappingFunc, data?: any | null): void;
+		map_expanded_rows(func: TreeViewMappingFunc): void;
 		/**
 		 * Moves #column to be after to #base_column.  If #base_column is %NULL, then
 		 * #column is placed in the first position.
@@ -46999,9 +46925,8 @@ declare namespace imports.gi.Gtk {
 		 * #tree_view reverts to the default behavior of allowing all columns to be
 		 * dropped everywhere.
 		 * @param func A function to determine which columns are reorderable, or %NULL.
-		 * @param destroy Destroy notifier for #user_data, or %NULL
 		 */
-		set_column_drag_function(func?: TreeViewColumnDropFunc | null, destroy?: GLib.DestroyNotify | null): void;
+		set_column_drag_function(func?: TreeViewColumnDropFunc | null): void;
 		/**
 		 * Sets the current keyboard focus to be at #path, and selects it.  This is
 		 * useful when you want to focus the user’s attention on a particular row.  If
@@ -47048,10 +46973,8 @@ declare namespace imports.gi.Gtk {
 		 * ATK for determining the number of visible children that are removed when the
 		 * user collapses a row, or a row is deleted.
 		 * @param func Function to be called when a view row is destroyed, or %NULL
-		 * @param data User data to be passed to #func, or %NULL
-		 * @param destroy Destroy notifier for #data, or %NULL
 		 */
-		set_destroy_count_func(func?: TreeDestroyCountFunc | null, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
+		set_destroy_count_func(func?: TreeDestroyCountFunc | null): void;
 		/**
 		 * Sets the row that is highlighted for feedback.
 		 * If #path is %NULL, an existing highlight is removed.
@@ -47171,10 +47094,8 @@ declare namespace imports.gi.Gtk {
 		 * whether a row should be drawn as a separator. If the row separator
 		 * function is %NULL, no separators are drawn. This is the default value.
 		 * @param func a {@link TreeViewRowSeparatorFunc}
-		 * @param data user data to pass to #func, or %NULL
-		 * @param destroy destroy notifier for #data, or %NULL
 		 */
-		set_row_separator_func(func?: TreeViewRowSeparatorFunc | null, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
+		set_row_separator_func(func?: TreeViewRowSeparatorFunc | null): void;
 		/**
 		 * Enables or disables rubber banding in #tree_view.  If the selection mode
 		 * is #GTK_SELECTION_MULTIPLE, rubber banding will allow the user to select
@@ -47228,18 +47149,14 @@ declare namespace imports.gi.Gtk {
 		 * that somewhat like strcmp() returning 0 for equality
 		 * {@link TreeViewSearchEqualFunc} returns %FALSE on matches.
 		 * @param search_equal_func the compare function to use during the search
-		 * @param search_user_data user data to pass to #search_equal_func, or %NULL
-		 * @param search_destroy Destroy notifier for #search_user_data, or %NULL
 		 */
-		set_search_equal_func(search_equal_func: TreeViewSearchEqualFunc, search_user_data?: any | null, search_destroy?: GLib.DestroyNotify | null): void;
+		set_search_equal_func(search_equal_func: TreeViewSearchEqualFunc): void;
 		/**
 		 * Sets the function to use when positioning the search dialog.
 		 * @param func the function to use to position the search dialog, or %NULL
 		 *    to use the default search position function
-		 * @param data user data to pass to #func, or %NULL
-		 * @param destroy Destroy notifier for #data, or %NULL
 		 */
-		set_search_position_func(func?: TreeViewSearchPositionFunc | null, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
+		set_search_position_func(func?: TreeViewSearchPositionFunc | null): void;
 		/**
 		 * Sets whether to draw and enable expanders and indent child rows in
 		 * #tree_view.  When disabled there will be no expanders visible in trees
@@ -47865,10 +47782,8 @@ declare namespace imports.gi.Gtk {
 		 * older one.
 		 * @param cell_renderer A {@link CellRenderer}
 		 * @param func The {@link TreeCellDataFunc} to use.
-		 * @param func_data The user data for #func.
-		 * @param destroy The destroy notification for #func_data
 		 */
-		set_cell_data_func(cell_renderer: CellRenderer, func: TreeCellDataFunc | null, func_data: any | null, destroy: GLib.DestroyNotify): void;
+		set_cell_data_func(cell_renderer: CellRenderer, func?: TreeCellDataFunc | null): void;
 		/**
 		 * Sets the header to be active if #clickable is %TRUE.  When the header is
 		 * active, then it can take keyboard focus, and can be clicked.
@@ -49300,11 +49215,10 @@ declare namespace imports.gi.Gtk {
 		 * #GdkFrameClock::update signal of #GdkFrameClock, since you don't
 		 * have to worry about when a #GdkFrameClock is assigned to a widget.
 		 * @param callback function to call for updating animations
-		 * @param notify function to call to free #user_data when the callback is removed.
 		 * @returns an id for the connection of this callback. Remove the callback
 		 *     by passing it to {@link Gtk.Widget.remove_tick_callback}
 		 */
-		add_tick_callback(callback: TickCallback, notify: GLib.DestroyNotify): number;
+		add_tick_callback(callback: TickCallback): number;
 		/**
 		 * Determines whether an accelerator that activates the signal
 		 * identified by #signal_id can currently be activated.
@@ -49624,10 +49538,9 @@ declare namespace imports.gi.Gtk {
 		 *     {@link TargetEntrys} indicating the drop types that this #widget will
 		 *     accept, or %NULL. Later you can access the list with
 		 *     {@link Gtk.drag_dest_get_target_list} and gtk_drag_dest_find_target().
-		 * @param n_targets the number of entries in #targets
 		 * @param actions a bitmask of possible actions for a drop onto this #widget.
 		 */
-		drag_dest_set(flags: DestDefaults, targets: TargetEntry[] | null, n_targets: number, actions: Gdk.DragAction): void;
+		drag_dest_set(flags: DestDefaults, targets: TargetEntry[] | null, actions: Gdk.DragAction): void;
 		/**
 		 * Sets this widget as a proxy for drops to another window.
 		 * @param proxy_window the window to which to forward drag events
@@ -49719,10 +49632,9 @@ declare namespace imports.gi.Gtk {
 		 * @param start_button_mask the bitmask of buttons that can start the drag
 		 * @param targets the table of targets
 		 *     that the drag will support, may be %NULL
-		 * @param n_targets the number of items in #targets
 		 * @param actions the bitmask of possible actions for a drag from this widget
 		 */
-		drag_source_set(start_button_mask: Gdk.ModifierType, targets: TargetEntry[] | null, n_targets: number, actions: Gdk.DragAction): void;
+		drag_source_set(start_button_mask: Gdk.ModifierType, targets: TargetEntry[] | null, actions: Gdk.DragAction): void;
 		/**
 		 * Sets the icon that will be used for drags from a particular source
 		 * to #icon. See the docs for {@link IconTheme} for more details.
@@ -56290,7 +56202,7 @@ declare namespace imports.gi.Gtk {
 		public pack_end: {(cell_layout: CellLayout, cell: CellRenderer, expand: boolean): void;};
 		public clear: {(cell_layout: CellLayout): void;};
 		public add_attribute: {(cell_layout: CellLayout, cell: CellRenderer, attribute: string, column: number): void;};
-		public set_cell_data_func: {(cell_layout: CellLayout, cell: CellRenderer, func: CellLayoutDataFunc | null, func_data: any | null, destroy: GLib.DestroyNotify): void;};
+		public set_cell_data_func: {(cell_layout: CellLayout, cell: CellRenderer, func?: CellLayoutDataFunc | null): void;};
 		public clear_attributes: {(cell_layout: CellLayout, cell: CellRenderer): void;};
 		public reorder: {(cell_layout: CellLayout, cell: CellRenderer, position: number): void;};
 		public get_cells: {(cell_layout: CellLayout): CellRenderer[];};
@@ -56311,7 +56223,7 @@ declare namespace imports.gi.Gtk {
 		public readonly padding: any[];
 		public get_rgba: {(chooser: ColorChooser): Gdk.RGBA;};
 		public set_rgba: {(chooser: ColorChooser, color: Gdk.RGBA): void;};
-		public add_palette: {(chooser: ColorChooser, orientation: Orientation, colors_per_line: number, n_colors: number, colors?: Gdk.RGBA[] | null): void;};
+		public add_palette: {(chooser: ColorChooser, orientation: Orientation, colors_per_line: number, colors?: Gdk.RGBA[] | null): void;};
 		public color_activated: {(chooser: ColorChooser, color: Gdk.RGBA): void;};
 	}
 
@@ -56465,7 +56377,7 @@ declare namespace imports.gi.Gtk {
 		public get_font_family: {(fontchooser: FontChooser): Pango.FontFamily | null;};
 		public get_font_face: {(fontchooser: FontChooser): Pango.FontFace | null;};
 		public get_font_size: {(fontchooser: FontChooser): number;};
-		public set_filter_func: {(fontchooser: FontChooser, filter: FontFilterFunc | null, destroy: GLib.DestroyNotify): void;};
+		public set_filter_func: {(fontchooser: FontChooser, filter?: FontFilterFunc | null): void;};
 		public font_activated: {(chooser: FontChooser, fontname: string): void;};
 		public set_font_map: {(fontchooser: FontChooser, fontmap?: Pango.FontMap | null): void;};
 		public get_font_map: {(fontchooser: FontChooser): Pango.FontMap | null;};
@@ -57472,7 +57384,7 @@ declare namespace imports.gi.Gtk {
 		public add_filter: {(chooser: RecentChooser, filter: RecentFilter): void;};
 		public remove_filter: {(chooser: RecentChooser, filter: RecentFilter): void;};
 		public list_filters: {(chooser: RecentChooser): RecentFilter[];};
-		public set_sort_func: {(chooser: RecentChooser, sort_func: RecentSortFunc, sort_data?: any | null, data_destroy?: GLib.DestroyNotify | null): void;};
+		public set_sort_func: {(chooser: RecentChooser, sort_func: RecentSortFunc): void;};
 		public item_activated: {(chooser: RecentChooser): void;};
 		public selection_changed: {(chooser: RecentChooser): void;};
 	}
@@ -57935,9 +57847,8 @@ declare namespace imports.gi.Gtk {
 		 * @param type the type of selection data
 		 * @param format format (number of bits in a unit)
 		 * @param data pointer to the data (will be copied)
-		 * @param length length of the data
 		 */
-		public set(type: Gdk.Atom, format: number, data: number[], length: number): void;
+		public set(type: Gdk.Atom, format: number, data: number[]): void;
 		/**
 		 * Sets the contents of the selection from a #GdkPixbuf
 		 * The pixbuf is converted to the form determined by
@@ -58304,10 +58215,9 @@ declare namespace imports.gi.Gtk {
 		 * Creates a new {@link TargetList} from an array of #GtkTargetEntry.
 		 * @param targets Pointer to an array
 		 *   of {@link TargetEntry}
-		 * @param ntargets number of entries in #targets.
 		 * @returns the new {@link TargetList}.
 		 */
-		public static new(targets: TargetEntry[] | null, ntargets: number): TargetList;
+		public static new(targets?: TargetEntry[] | null): TargetList;
 		/**
 		 * Appends another target to a {@link TargetList}.
 		 * @param target the interned atom representing the target
@@ -58337,9 +58247,8 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Prepends a table of {@link TargetEntry} to a target list.
 		 * @param targets the table of {@link TargetEntry}
-		 * @param ntargets number of targets in the table
 		 */
-		public add_table(targets: TargetEntry[], ntargets: number): void;
+		public add_table(targets: TargetEntry[]): void;
 		/**
 		 * Appends the text targets supported by {@link SelectionData} to
 		 * the target list. All targets are added with the same #info.
@@ -59620,10 +59529,9 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Creates a new path with the given #indices array of #length.
 		 * @param indices array of indices
-		 * @param length length of #indices array
 		 * @returns A newly created {@link TreePath_struct}
 		 */
-		public static new_from_indices(indices: number[], length: number): TreePath;
+		public static new_from_indices(indices: number[]): TreePath;
 		/**
 		 * Creates a new {@link TreePath_struct} initialized to #path.
 		 * 
@@ -59845,8 +59753,8 @@ declare namespace imports.gi.Gtk {
 		public sort_column_changed: {(sortable: TreeSortable): void;};
 		public get_sort_column_id: {(sortable: TreeSortable): [ boolean, number, SortType ];};
 		public set_sort_column_id: {(sortable: TreeSortable, sort_column_id: number, order: SortType): void;};
-		public set_sort_func: {(sortable: TreeSortable, sort_column_id: number, sort_func: TreeIterCompareFunc, destroy?: GLib.DestroyNotify | null): void;};
-		public set_default_sort_func: {(sortable: TreeSortable, sort_func: TreeIterCompareFunc, destroy?: GLib.DestroyNotify | null): void;};
+		public set_sort_func: {(sortable: TreeSortable, sort_column_id: number, sort_func: TreeIterCompareFunc): void;};
+		public set_default_sort_func: {(sortable: TreeSortable, sort_func: TreeIterCompareFunc): void;};
 		public has_default_sort_func: {(sortable: TreeSortable): boolean;};
 	}
 
@@ -61196,10 +61104,8 @@ declare namespace imports.gi.Gtk {
 		 * #func may be %NULL to remove a previously set function.
 		 * @param cell a {@link CellRenderer}
 		 * @param func the {@link CellLayoutDataFunc} to use, or %NULL
-		 * @param func_data user data for #func
-		 * @param destroy destroy notify for #func_data
 		 */
-		set_cell_data_func(cell: CellRenderer, func: CellLayoutDataFunc | null, func_data: any | null, destroy: GLib.DestroyNotify): void;
+		set_cell_data_func(cell: CellRenderer, func?: CellLayoutDataFunc | null): void;
 	}
 
 	type CellLayoutInitOptionsMixin  = {};
@@ -61365,10 +61271,9 @@ declare namespace imports.gi.Gtk {
 		 * @param orientation %GTK_ORIENTATION_HORIZONTAL if the palette should
 		 *     be displayed in rows, %GTK_ORIENTATION_VERTICAL for columns
 		 * @param colors_per_line the number of colors to show in each row/column
-		 * @param n_colors the total number of elements in #colors
 		 * @param colors the colors of the palette, or %NULL
 		 */
-		add_palette(orientation: Orientation, colors_per_line: number, n_colors: number, colors?: Gdk.RGBA[] | null): void;
+		add_palette(orientation: Orientation, colors_per_line: number, colors?: Gdk.RGBA[] | null): void;
 		/**
 		 * Gets the currently-selected color.
 		 * @returns a #GdkRGBA to fill in with the current color
@@ -62791,9 +62696,8 @@ declare namespace imports.gi.Gtk {
 		 * Adds a filter function that decides which fonts to display
 		 * in the font chooser.
 		 * @param filter a {@link FontFilterFunc}, or %NULL
-		 * @param destroy function to call to free #data when it is no longer needed
 		 */
-		set_filter_func(filter: FontFilterFunc | null, destroy: GLib.DestroyNotify): void;
+		set_filter_func(filter?: FontFilterFunc | null): void;
 		/**
 		 * Sets the currently-selected font.
 		 * @param fontname a font name like “Helvetica 12” or “Times Bold 18”
@@ -63266,10 +63170,8 @@ declare namespace imports.gi.Gtk {
 		 * item comes before the second, zero if the two items are equal and
 		 * a negative integer if the first item comes after the second.
 		 * @param sort_func the comparison function
-		 * @param sort_data user data to pass to #sort_func, or %NULL
-		 * @param data_destroy destroy notifier for #sort_data, or %NULL
 		 */
-		set_sort_func(sort_func: RecentSortFunc, sort_data?: any | null, data_destroy?: GLib.DestroyNotify | null): void;
+		set_sort_func(sort_func: RecentSortFunc): void;
 		/**
 		 * Changes the sorting order of the recently used resources list displayed by
 		 * #chooser.
@@ -64001,9 +63903,8 @@ declare namespace imports.gi.Gtk {
 		 *     mapping the current position of each child to its old
 		 *     position before the re-ordering,
 		 *     i.e. #new_order`[newpos] = oldpos`
-		 * @param length length of #new_order array
 		 */
-		rows_reordered(path: TreePath, iter: TreeIter | null, new_order: number[], length: number): void;
+		rows_reordered(path: TreePath, iter: TreeIter | null, new_order: number[]): void;
 		/**
 		 * Lets the tree unref the node.
 		 * 
@@ -64343,9 +64244,8 @@ declare namespace imports.gi.Gtk {
 		 * default state. In this case, when the current sort column id of #sortable
 		 * is %GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID, the model will be unsorted.
 		 * @param sort_func The comparison function
-		 * @param destroy Destroy notifier of #user_data, or %NULL
 		 */
-		set_default_sort_func(sort_func: TreeIterCompareFunc, destroy?: GLib.DestroyNotify | null): void;
+		set_default_sort_func(sort_func: TreeIterCompareFunc): void;
 		/**
 		 * Sets the current sort column to be #sort_column_id. The #sortable will
 		 * resort itself to reflect this change, after emitting a
@@ -64366,9 +64266,8 @@ declare namespace imports.gi.Gtk {
 		 * the model will sort using this function.
 		 * @param sort_column_id the sort column id to set the function for
 		 * @param sort_func The comparison function
-		 * @param destroy Destroy notifier of #user_data, or %NULL
 		 */
-		set_sort_func(sort_column_id: number, sort_func: TreeIterCompareFunc, destroy?: GLib.DestroyNotify | null): void;
+		set_sort_func(sort_column_id: number, sort_func: TreeIterCompareFunc): void;
 		/**
 		 * Emits a {@link TreeSortable.sort_column_changed} signal on #sortable.
 		 */
@@ -68097,7 +67996,7 @@ declare namespace imports.gi.Gtk {
 	}
 
 	interface AccelGroupFindFunc {
-		(key: AccelKey, closure: GObject.Closure, data?: any | null): boolean;
+		(key: AccelKey, closure: GObject.Closure): boolean;
 	}
 
 	interface AccelMapForeach {
@@ -68117,10 +68016,9 @@ declare namespace imports.gi.Gtk {
 		 * next page when the user presses the “forward” button and for handling
 		 * the behavior of the “last” button.
 		 * @param current_page The page number used to calculate the next page.
-		 * @param data user data.
 		 * @returns The next page number.
 		 */
-		(current_page: number, data?: any | null): number;
+		(current_page: number): number;
 	}
 
 	/**
@@ -68178,9 +68076,8 @@ declare namespace imports.gi.Gtk {
 		 * The type of the callback functions used for e.g. iterating over
 		 * the children of a container, see {@link Gtk.Container.foreach}.
 		 * @param widget the widget to operate on
-		 * @param data user-supplied data
 		 */
-		(widget: Widget, data?: any | null): void;
+		(widget: Widget): void;
 	}
 
 	/**
@@ -68198,10 +68095,9 @@ declare namespace imports.gi.Gtk {
 		 *     provided to {@link Gtk.CellArea.foreach_alloc}.
 		 * @param cell_background the background area for #renderer inside the
 		 *     background area provided to {@link Gtk.CellArea.foreach_alloc}.
-		 * @param data user-supplied data
 		 * @returns %TRUE to stop iterating over cells.
 		 */
-		(renderer: CellRenderer, cell_area: Gdk.Rectangle, cell_background: Gdk.Rectangle, data?: any | null): boolean;
+		(renderer: CellRenderer, cell_area: Gdk.Rectangle, cell_background: Gdk.Rectangle): boolean;
 	}
 
 	/**
@@ -68213,10 +68109,9 @@ declare namespace imports.gi.Gtk {
 		 * The type of the callback functions used for iterating over
 		 * the cell renderers of a {@link CellArea}, see {@link Gtk.CellArea.foreach}.
 		 * @param renderer the cell renderer to operate on
-		 * @param data user-supplied data
 		 * @returns %TRUE to stop iterating over cells.
 		 */
-		(renderer: CellRenderer, data?: any | null): boolean;
+		(renderer: CellRenderer): boolean;
 	}
 
 	/**
@@ -68231,9 +68126,8 @@ declare namespace imports.gi.Gtk {
 		 * @param cell the cell renderer whose value is to be set
 		 * @param tree_model the model
 		 * @param iter a {@link TreeIter} indicating the row to set the value for
-		 * @param data user data passed to {@link Gtk.CellLayout.set_cell_data_func}
 		 */
-		(cell_layout: CellLayout, cell: CellRenderer, tree_model: TreeModel, iter: TreeIter, data?: any | null): void;
+		(cell_layout: CellLayout, cell: CellRenderer, tree_model: TreeModel, iter: TreeIter): void;
 	}
 
 	/**
@@ -68296,10 +68190,8 @@ declare namespace imports.gi.Gtk {
 		 * are received, or when the request fails.
 		 * @param clipboard the {@link Clipboard}
 		 * @param pixbuf the received image
-		 * @param data the #user_data supplied to
-		 *   {@link Gtk.Clipboard.request_image}.
 		 */
-		(clipboard: Clipboard, pixbuf: GdkPixbuf.Pixbuf, data?: any | null): void;
+		(clipboard: Clipboard, pixbuf: GdkPixbuf.Pixbuf): void;
 	}
 
 	/**
@@ -68314,10 +68206,8 @@ declare namespace imports.gi.Gtk {
 		 * @param selection_data a {@link SelectionData} containing the data was received.
 		 *   If retrieving the data failed, then then length field
 		 *   of #selection_data will be negative.
-		 * @param data the #user_data supplied to
-		 *   {@link Gtk.Clipboard.request_contents}.
 		 */
-		(clipboard: Clipboard, selection_data: SelectionData, data?: any | null): void;
+		(clipboard: Clipboard, selection_data: SelectionData): void;
 	}
 
 	/**
@@ -68335,10 +68225,8 @@ declare namespace imports.gi.Gtk {
 		 * @param text the rich text received, as
 		 *   a UTF-8 encoded string, or %NULL if retrieving the data failed.
 		 * @param length Length of the text.
-		 * @param data the #user_data supplied to
-		 *   {@link Gtk.Clipboard.request_rich_text}.
 		 */
-		(clipboard: Clipboard, format: Gdk.Atom, text: string | null, length: number, data?: any | null): void;
+		(clipboard: Clipboard, format: Gdk.Atom, text: string | null, length: number): void;
 	}
 
 	/**
@@ -68352,11 +68240,8 @@ declare namespace imports.gi.Gtk {
 		 * @param clipboard the {@link Clipboard}
 		 * @param atoms the supported targets,
 		 *   as array of #GdkAtom, or %NULL if retrieving the data failed.
-		 * @param n_atoms the length of the #atoms array.
-		 * @param data the #user_data supplied to
-		 *   {@link Gtk.Clipboard.request_targets}.
 		 */
-		(clipboard: Clipboard, atoms: Gdk.Atom[] | null, n_atoms: number, data?: any | null): void;
+		(clipboard: Clipboard, atoms?: Gdk.Atom[] | null): void;
 	}
 
 	/**
@@ -68370,10 +68255,8 @@ declare namespace imports.gi.Gtk {
 		 * @param clipboard the {@link Clipboard}
 		 * @param text the text received, as a UTF-8 encoded string, or
 		 *   %NULL if retrieving the data failed.
-		 * @param data the #user_data supplied to
-		 *   {@link Gtk.Clipboard.request_text}.
 		 */
-		(clipboard: Clipboard, text?: string | null, data?: any | null): void;
+		(clipboard: Clipboard, text?: string | null): void;
 	}
 
 	/**
@@ -68388,18 +68271,16 @@ declare namespace imports.gi.Gtk {
 		 * fails.
 		 * @param clipboard the {@link Clipboard}
 		 * @param uris the received URIs
-		 * @param data the #user_data supplied to
-		 *   {@link Gtk.Clipboard.request_uris}.
 		 */
-		(clipboard: Clipboard, uris: string[], data?: any | null): void;
+		(clipboard: Clipboard, uris: string[]): void;
 	}
 
 	interface ColorSelectionChangePaletteFunc {
-		(colors: Gdk.Color[], n_colors: number): void;
+		(colors: Gdk.Color[]): void;
 	}
 
 	interface ColorSelectionChangePaletteWithScreenFunc {
-		(screen: Gdk.Screen, colors: Gdk.Color[], n_colors: number): void;
+		(screen: Gdk.Screen, colors: Gdk.Color[]): void;
 	}
 
 	/**
@@ -68437,10 +68318,9 @@ declare namespace imports.gi.Gtk {
 		 * {@link Gtk.FileFilter.add_custom}.
 		 * @param filter_info a {@link FileFilterInfo} that is filled according
 		 *   to the #needed flags passed to {@link Gtk.FileFilter.add_custom}
-		 * @param data user data passed to {@link Gtk.FileFilter.add_custom}
 		 * @returns %TRUE if the file should be displayed
 		 */
-		(filter_info: FileFilterInfo, data?: any | null): boolean;
+		(filter_info: FileFilterInfo): boolean;
 	}
 
 	/**
@@ -68513,10 +68393,9 @@ declare namespace imports.gi.Gtk {
 		 * shown in a {@link FontChooser}. See {@link Gtk.FontChooser.set_filter_func}.
 		 * @param family a #PangoFontFamily
 		 * @param face a #PangoFontFace belonging to #family
-		 * @param data user data passed to {@link Gtk.FontChooser.set_filter_func}
 		 * @returns %TRUE if the font should be displayed
 		 */
-		(family: Pango.FontFamily, face: Pango.FontFace, data?: any | null): boolean;
+		(family: Pango.FontFamily, face: Pango.FontFace): boolean;
 	}
 
 	/**
@@ -68529,9 +68408,8 @@ declare namespace imports.gi.Gtk {
 		 * selected rows.  It will be called on every selected row in the view.
 		 * @param icon_view a {@link IconView}
 		 * @param path The {@link TreePath} of a selected row
-		 * @param data user data
 		 */
-		(icon_view: IconView, path: TreePath, data?: any | null): void;
+		(icon_view: IconView, path: TreePath): void;
 	}
 
 	/**
@@ -68544,10 +68422,9 @@ declare namespace imports.gi.Gtk {
 		 * They can be used to implement custom key event handling.
 		 * @param grab_widget the widget to which the event will be delivered
 		 * @param event the key event
-		 * @param func_data data supplied to {@link Gtk.key.snooper_install}
 		 * @returns %TRUE to stop further processing of #event, %FALSE to continue.
 		 */
-		(grab_widget: Widget, event: Gdk.EventKey, func_data?: any | null): number;
+		(grab_widget: Widget, event: Gdk.EventKey): number;
 	}
 
 	/**
@@ -68701,10 +68578,9 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Each GTK+ module must have a function {@link Gtk.module_init} with this prototype.
 		 * This function is called after loading the module.
-		 * @param argc GTK+ always passes %NULL for this argument
 		 * @param argv GTK+ always passes %NULL for this argument
 		 */
-		(argc?: number | null, argv?: string[] | null): void;
+		(argv?: string[] | null): void;
 	}
 
 	/**
@@ -68722,10 +68598,8 @@ declare namespace imports.gi.Gtk {
 		 * This function will be called when the page setup dialog
 		 * is dismissed, and also serves as destroy notify for #data.
 		 * @param page_setup the {@link PageSetup} that has been
-		 * @param data user data that has been passed to
-		 *     {@link Gtk.print.run_page_setup_dialog_async}
 		 */
-		(page_setup: PageSetup, data?: any | null): void;
+		(page_setup: PageSetup): void;
 	}
 
 	interface PrintSettingsFunc {
@@ -68771,11 +68645,10 @@ declare namespace imports.gi.Gtk {
 		 * @param content_buffer the {@link TextBuffer} to deserialize into
 		 * @param iter insertion point for the deserialized text
 		 * @param data data to deserialize
-		 * @param length length of #data
 		 * @param create_tags %TRUE if deserializing may create tags
 		 * @returns %TRUE on success, %FALSE otherwise
 		 */
-		(register_buffer: TextBuffer, content_buffer: TextBuffer, iter: TextIter, data: number[], length: number, create_tags: boolean): boolean;
+		(register_buffer: TextBuffer, content_buffer: TextBuffer, iter: TextIter, data: number[], create_tags: boolean): boolean;
 	}
 
 	/**
@@ -68802,7 +68675,7 @@ declare namespace imports.gi.Gtk {
 	}
 
 	interface TextTagTableForeach {
-		(tag: TextTag, data?: any | null): void;
+		(tag: TextTag): void;
 	}
 
 	/**
@@ -68829,11 +68702,9 @@ declare namespace imports.gi.Gtk {
 		 * and #GtkActionGroup.
 		 * @param path The id of the message. In {@link ActionGroup} this will be a label
 		 *   or tooltip from a #GtkActionEntry.
-		 * @param func_data user data passed in when registering the
-		 *   function
 		 * @returns the translated message
 		 */
-		(path: string, func_data?: any | null): string;
+		(path: string): string;
 	}
 
 	/**
@@ -68856,9 +68727,8 @@ declare namespace imports.gi.Gtk {
 		 * @param cell The {@link CellRenderer} that is being rendered by #tree_column
 		 * @param tree_model The {@link TreeModel} being rendered
 		 * @param iter A {@link TreeIter} of the current row rendered
-		 * @param data user data
 		 */
-		(tree_column: TreeViewColumn, cell: CellRenderer, tree_model: TreeModel, iter: TreeIter, data?: any | null): void;
+		(tree_column: TreeViewColumn, cell: CellRenderer, tree_model: TreeModel, iter: TreeIter): void;
 	}
 
 	interface TreeDestroyCountFunc {
@@ -68917,11 +68787,10 @@ declare namespace imports.gi.Gtk {
 		 * @param model the {@link TreeModelFilter}
 		 * @param iter a {@link TreeIter} pointing to the row whose display values are determined
 		 * @param column the column whose display value is determined
-		 * @param data user data given to {@link Gtk.TreeModelFilter.set_modify_func}
 		 * @returns A #GValue which is already initialized for
 		 *  with the correct type for the column #column.
 		 */
-		(model: TreeModel, iter: TreeIter, column: number, data?: any | null): GObject.Value;
+		(model: TreeModel, iter: TreeIter, column: number): GObject.Value;
 	}
 
 	/**
@@ -68933,10 +68802,9 @@ declare namespace imports.gi.Gtk {
 		 * @param model the child model of the {@link TreeModelFilter}
 		 * @param iter a {@link TreeIter} pointing to the row in #model whose visibility
 		 *   is determined
-		 * @param data user data given to {@link Gtk.TreeModelFilter.set_visible_func}
 		 * @returns Whether the row indicated by #iter is visible.
 		 */
-		(model: TreeModel, iter: TreeIter, data?: any | null): boolean;
+		(model: TreeModel, iter: TreeIter): boolean;
 	}
 
 	/**
@@ -68950,10 +68818,9 @@ declare namespace imports.gi.Gtk {
 		 * @param model the {@link TreeModel} being iterated
 		 * @param path the current {@link TreePath}
 		 * @param iter the current {@link TreeIter}
-		 * @param data The user data passed to {@link Gtk.TreeModel.foreach}
 		 * @returns %TRUE to stop iterating, %FALSE to continue
 		 */
-		(model: TreeModel, path: TreePath, iter: TreeIter, data?: any | null): boolean;
+		(model: TreeModel, path: TreePath, iter: TreeIter): boolean;
 	}
 
 	/**
@@ -68967,9 +68834,8 @@ declare namespace imports.gi.Gtk {
 		 * @param model The {@link TreeModel} being viewed
 		 * @param path The {@link TreePath} of a selected row
 		 * @param iter A {@link TreeIter} pointing to a selected row
-		 * @param data user data
 		 */
-		(model: TreeModel, path: TreePath, iter: TreeIter, data?: any | null): void;
+		(model: TreeModel, path: TreePath, iter: TreeIter): void;
 	}
 
 	/**
@@ -68988,10 +68854,9 @@ declare namespace imports.gi.Gtk {
 		 * @param model A {@link TreeModel} being viewed
 		 * @param path The {@link TreePath} of the row in question
 		 * @param path_currently_selected %TRUE, if the path is currently selected
-		 * @param data user data
 		 * @returns %TRUE, if the selection state of the row can be toggled
 		 */
-		(selection: TreeSelection, model: TreeModel, path: TreePath, path_currently_selected: boolean, data?: any | null): boolean;
+		(selection: TreeSelection, model: TreeModel, path: TreePath, path_currently_selected: boolean): boolean;
 	}
 
 	/**
@@ -69018,10 +68883,9 @@ declare namespace imports.gi.Gtk {
 		 * @param column The {@link TreeViewColumn} being dragged
 		 * @param prev_column A {@link TreeViewColumn} on one side of #column
 		 * @param next_column A {@link TreeViewColumn} on the other side of #column
-		 * @param data user data
 		 * @returns %TRUE, if #column can be dropped in this spot
 		 */
-		(tree_view: TreeView, column: TreeViewColumn, prev_column: TreeViewColumn, next_column: TreeViewColumn, data?: any | null): boolean;
+		(tree_view: TreeView, column: TreeViewColumn, prev_column: TreeViewColumn, next_column: TreeViewColumn): boolean;
 	}
 
 	/**
@@ -69050,10 +68914,9 @@ declare namespace imports.gi.Gtk {
 		 * returns.
 		 * @param model the {@link TreeModel}
 		 * @param iter a {@link TreeIter} pointing at a row in #model
-		 * @param data user data
 		 * @returns %TRUE if the row is a separator
 		 */
-		(model: TreeModel, iter: TreeIter, data?: any | null): boolean;
+		(model: TreeModel, iter: TreeIter): boolean;
 	}
 
 	/**
@@ -69073,10 +68936,9 @@ declare namespace imports.gi.Gtk {
 		 * @param key the key string to compare with
 		 * @param iter a {@link TreeIter} pointing the row of #model that should be compared
 		 *  with #key.
-		 * @param search_data user data from {@link Gtk.TreeView.set_search_equal_func}
 		 * @returns %FALSE if the row matches, %TRUE otherwise.
 		 */
-		(model: TreeModel, column: number, key: string, iter: TreeIter, search_data?: any | null): boolean;
+		(model: TreeModel, column: number, key: string, iter: TreeIter): boolean;
 	}
 
 	interface TreeViewSearchPositionFunc {
@@ -69916,11 +69778,10 @@ declare namespace imports.gi.Gtk {
 	 * Installs a key snooper function, which will get called on all
 	 * key events before delivering them normally.
 	 * @param snooper a {@link KeySnoopFunc}
-	 * @param func_data data to pass to #snooper
 	 * @returns a unique id for this key snooper for use with
 	 *    {@link Gtk.key.snooper_remove}.
 	 */
-	function key_snooper_install(snooper: KeySnoopFunc, func_data: any | null): number;
+	function key_snooper_install(snooper: KeySnoopFunc): number;
 	/**
 	 * Removes the key snooper function with the given id.
 	 * @param snooper_handler_id Identifies the key snooper to remove
@@ -70375,9 +70236,8 @@ declare namespace imports.gi.Gtk {
 	 * @param settings a {@link PrintSettings}
 	 * @param done_cb a function to call when the user saves
 	 *           the modified page setup
-	 * @param data user data to pass to #done_cb
 	 */
-	function print_run_page_setup_dialog_async(parent: Window | null, page_setup: PageSetup | null, settings: PrintSettings, done_cb: PageSetupDoneFunc, data: any | null): void;
+	function print_run_page_setup_dialog_async(parent: Window | null, page_setup: PageSetup | null, settings: PrintSettings, done_cb: PageSetupDoneFunc): void;
 	/**
 	 * Sends an event to a widget, propagating the event to parent widgets
 	 * if the event remains unhandled.
@@ -70976,9 +70836,8 @@ declare namespace imports.gi.Gtk {
 	 * @param widget a {@link Widget}
 	 * @param selection the selection
 	 * @param targets a table of targets to add
-	 * @param ntargets number of entries in #targets
 	 */
-	function selection_add_targets(widget: Widget, selection: Gdk.Atom, targets: TargetEntry[], ntargets: number): void;
+	function selection_add_targets(widget: Widget, selection: Gdk.Atom, targets: TargetEntry[]): void;
 	/**
 	 * Remove all targets registered for the given selection for the
 	 * widget.
@@ -71084,16 +70943,14 @@ declare namespace imports.gi.Gtk {
 	 * {@link Gtk.stock.add_static} if #items is persistent and GTK+ need not
 	 * copy the array.
 	 * @param items a {@link StockItem} or array of items
-	 * @param n_items number of {@link StockItem} in #items
 	 */
-	function stock_add(items: StockItem[], n_items: number): void;
+	function stock_add(items: StockItem[]): void;
 	/**
 	 * Same as {@link Gtk.stock.add}, but doesn’t copy #items, so
 	 * #items must persist until application exit.
 	 * @param items a {@link StockItem} or array of #GtkStockItem
-	 * @param n_items number of items
 	 */
-	function stock_add_static(items: StockItem[], n_items: number): void;
+	function stock_add_static(items: StockItem[]): void;
 	/**
 	 * Retrieves a list of all known stock IDs added to a {@link IconFactory}
 	 * or registered with {@link Gtk.stock.add}. The list must be freed with g_slist_free(),
@@ -71147,18 +71004,14 @@ declare namespace imports.gi.Gtk {
 	 * ]|
 	 * @param domain the translation domain for which #func shall be used
 	 * @param func a {@link TranslateFunc}
-	 * @param data data to pass to #func
-	 * @param notify a #GDestroyNotify that is called when #data is
-	 *   no longer needed
 	 */
-	function stock_set_translate_func(domain: string, func: TranslateFunc, data: any | null, notify: GLib.DestroyNotify): void;
+	function stock_set_translate_func(domain: string, func: TranslateFunc): void;
 	/**
 	 * This function frees a target table as returned by
 	 * {@link Gtk.target.table_new_from_list}
 	 * @param targets a {@link TargetEntry} array
-	 * @param n_targets the number of entries in the array
 	 */
-	function target_table_free(targets: TargetEntry[], n_targets: number): void;
+	function target_table_free(targets: TargetEntry[]): void;
 	/**
 	 * This function creates an {@link TargetEntry} array that contains the
 	 * same targets as the passed %list. The returned table is newly
@@ -71174,41 +71027,37 @@ declare namespace imports.gi.Gtk {
 	 * Determines if any of the targets in #targets can be used to
 	 * provide a #GdkPixbuf.
 	 * @param targets an array of #GdkAtoms
-	 * @param n_targets the length of #targets
 	 * @param writable whether to accept only targets for which GTK+ knows
 	 *   how to convert a pixbuf into the format
 	 * @returns %TRUE if #targets include a suitable target for images,
 	 *   otherwise %FALSE.
 	 */
-	function targets_include_image(targets: Gdk.Atom[], n_targets: number, writable: boolean): boolean;
+	function targets_include_image(targets: Gdk.Atom[], writable: boolean): boolean;
 	/**
 	 * Determines if any of the targets in #targets can be used to
 	 * provide rich text.
 	 * @param targets an array of #GdkAtoms
-	 * @param n_targets the length of #targets
 	 * @param buffer a {@link TextBuffer}
 	 * @returns %TRUE if #targets include a suitable target for rich text,
 	 *               otherwise %FALSE.
 	 */
-	function targets_include_rich_text(targets: Gdk.Atom[], n_targets: number, buffer: TextBuffer): boolean;
+	function targets_include_rich_text(targets: Gdk.Atom[], buffer: TextBuffer): boolean;
 	/**
 	 * Determines if any of the targets in #targets can be used to
 	 * provide text.
 	 * @param targets an array of #GdkAtoms
-	 * @param n_targets the length of #targets
 	 * @returns %TRUE if #targets include a suitable target for text,
 	 *   otherwise %FALSE.
 	 */
-	function targets_include_text(targets: Gdk.Atom[], n_targets: number): boolean;
+	function targets_include_text(targets: Gdk.Atom[]): boolean;
 	/**
 	 * Determines if any of the targets in #targets can be used to
 	 * provide an uri list.
 	 * @param targets an array of #GdkAtoms
-	 * @param n_targets the length of #targets
 	 * @returns %TRUE if #targets include a suitable target for uri lists,
 	 *   otherwise %FALSE.
 	 */
-	function targets_include_uri(targets: Gdk.Atom[], n_targets: number): boolean;
+	function targets_include_uri(targets: Gdk.Atom[]): boolean;
 	/**
 	 * Create a simple window with window title #window_title and
 	 * text contents #dialog_text.

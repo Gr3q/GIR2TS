@@ -804,9 +804,8 @@ declare namespace imports.gi.Clutter {
 		 * @param model a #GListModel
 		 * @param create_child_func a function that creates {@link Actor} instances
 		 *   from the contents of the #model
-		 * @param notify function called when unsetting the #model
 		 */
-		bind_model(model: Gio.ListModel | null, create_child_func: ActorCreateChildFunc, notify: GLib.DestroyNotify): void;
+		bind_model(model: Gio.ListModel | null, create_child_func: ActorCreateChildFunc): void;
 		/**
 		 * Binds a #GListModel to a {@link Actor}.
 		 * 
@@ -3972,11 +3971,8 @@ declare namespace imports.gi.Clutter {
 		 * @param modifiers bitmask of modifiers
 		 * @param callback function to be called
 		 *   when the action is activated
-		 * @param data data to be passed to #callback
-		 * @param notify function to be called when the action is removed
-		 *   from the pool
 		 */
-		install_action(action_name: string, key_val: number, modifiers: ModifierType, callback: BindingActionFunc, data: any | null, notify: GLib.DestroyNotify): void;
+		install_action(action_name: string, key_val: number, modifiers: ModifierType, callback: BindingActionFunc): void;
 		/**
 		 * A #GClosure variant of {@link Clutter.BindingPool.install_action}.
 		 * 
@@ -4009,11 +4005,8 @@ declare namespace imports.gi.Clutter {
 		 * @param key_val key symbol
 		 * @param modifiers bitmask of modifiers
 		 * @param callback function to be called when the action is activated
-		 * @param data data to be passed to #callback
-		 * @param notify function to be called when the action is removed
-		 *   from the pool
 		 */
-		override_action(key_val: number, modifiers: ModifierType, callback: GObject.Callback, data: any | null, notify: GLib.DestroyNotify): void;
+		override_action(key_val: number, modifiers: ModifierType, callback: GObject.Callback): void;
 		/**
 		 * A #GClosure variant of {@link Clutter.BindingPool.override_action}.
 		 * 
@@ -5323,7 +5316,7 @@ declare namespace imports.gi.Clutter {
 
 	class FrameClock {
 		public constructor(options?: Partial<FrameClockInitOptions>);
-		public static new(refresh_rate: number, iface: FrameListenerIface): FrameClock;
+		public static new(refresh_rate: number, iface: FrameListenerIface, user_data?: any | null): FrameClock;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -6715,33 +6708,30 @@ declare namespace imports.gi.Clutter {
 		 * If #transition does not hold any key frame, #n_key_frames key frames
 		 * will be created; if #transition already has key frames, #key_frames must
 		 * have at least as many elements as the number of key frames.
-		 * @param n_key_frames the number of values
 		 * @param key_frames an array of keys between 0.0
 		 *   and 1.0, one for each key frame
 		 */
-		set_key_frames(n_key_frames: number, key_frames: number[]): void;
+		set_key_frames(key_frames: number[]): void;
 		/**
 		 * Sets the easing modes for each key frame inside #transition.
 		 * 
 		 * If #transition does not hold any key frame, #n_modes key frames will
 		 * be created; if #transition already has key frames, #modes must have
 		 * at least as many elements as the number of key frames.
-		 * @param n_modes the number of easing modes
 		 * @param modes an array of easing modes, one for
 		 *   each key frame
 		 */
-		set_modes(n_modes: number, modes: AnimationMode[]): void;
+		set_modes(modes: AnimationMode[]): void;
 		/**
 		 * Sets the values for each key frame inside #transition.
 		 * 
 		 * If #transition does not hold any key frame, #n_values key frames will
 		 * be created; if #transition already has key frames, #values must have
 		 * at least as many elements as the number of key frames.
-		 * @param n_values the number of values
 		 * @param values an array of values, one for each
 		 *   key frame
 		 */
-		set_values(n_values: number, values: GObject.Value[]): void;
+		set_values(values: GObject.Value[]): void;
 	}
 
 	type KeyframeTransitionInitOptionsMixin = PropertyTransitionInitOptions & ScriptableInitOptions
@@ -8097,9 +8087,8 @@ declare namespace imports.gi.Clutter {
 		 * or other custom, file-based properties.
 		 * @param paths an array of strings containing
 		 *   different search paths
-		 * @param n_paths the length of the passed array
 		 */
-		add_search_paths(paths: string[], n_paths: number): void;
+		add_search_paths(paths: string[]): void;
 		/**
 		 * Connects all the signals defined into a UI definition file to their
 		 * handlers.
@@ -8110,8 +8099,9 @@ declare namespace imports.gi.Clutter {
 		 * 
 		 * Note that this function will not work if #GModule is not supported by
 		 * the platform Clutter is running on.
+		 * @param user_data data to be passed to the signal handlers, or %NULL
 		 */
-		connect_signals(): void;
+		connect_signals(user_data?: any | null): void;
 		/**
 		 * Connects all the signals defined into a UI definition file to their
 		 * handlers.
@@ -11001,11 +10991,8 @@ declare namespace imports.gi.Clutter {
 		 * If #func is %NULL, any previously set progress function will be unset, and
 		 * the #ClutterTimeline:progress-mode property will be set to %CLUTTER_LINEAR.
 		 * @param func a progress function, or %NULL
-		 * @param data data to pass to #func
-		 * @param notify a function to be called when the progress function is removed
-		 *    or the timeline is disposed
 		 */
-		set_progress_func(func: TimelineProgressFunc | null, data: any | null, notify: GLib.DestroyNotify): void;
+		set_progress_func(func?: TimelineProgressFunc | null): void;
 		/**
 		 * Sets the progress function using a value from the {@link AnimationMode}
 		 * enumeration. The #mode cannot be %CLUTTER_CUSTOM_MODE or bigger than
@@ -15892,9 +15879,8 @@ declare namespace imports.gi.Clutter {
 		/**
 		 * Generic callback
 		 * @param actor a {@link Actor}
-		 * @param data user data
 		 */
-		(actor: Actor, data?: any | null): void;
+		(actor: Actor): void;
 	}
 
 	interface EmitInputDeviceEvent {
@@ -15927,9 +15913,8 @@ declare namespace imports.gi.Clutter {
 		 * This function is passed to {@link Clutter.Path.foreach} and will be
 		 * called for each node contained in the path.
 		 * @param node the node
-		 * @param data optional data passed to the function
 		 */
-		(node: PathNode, data?: any | null): void;
+		(node: PathNode): void;
 	}
 
 	/**
@@ -16383,11 +16368,10 @@ declare namespace imports.gi.Clutter {
 		 * emitted for the event and it will take precedence over any grabs.
 		 * @param stage The {@link Stage} to capture events for
 		 * @param func The callback function which will be passed all events.
-		 * @param notify A #GDestroyNotify
 		 * @returns an identifier for the event filter, to be used
 		 *   with {@link Clutter.event.remove_filter}.
 		 */
-		public static add_filter(stage: Stage | null, func: EventFilterFunc, notify: GLib.DestroyNotify): number;
+		public static add_filter(stage: Stage | null, func: EventFilterFunc): number;
 		/**
 		 * Pops an event off the event queue. Applications should not need to call
 		 * this.
@@ -16558,11 +16542,10 @@ declare namespace imports.gi.Clutter {
 	 * emitted for the event and it will take precedence over any grabs.
 	 * @param stage The {@link Stage} to capture events for
 	 * @param func The callback function which will be passed all events.
-	 * @param notify A #GDestroyNotify
 	 * @returns an identifier for the event filter, to be used
 	 *   with {@link Clutter.event.remove_filter}.
 	 */
-	function event_add_filter(stage: Stage | null, func: EventFilterFunc, notify: GLib.DestroyNotify): number;
+	function event_add_filter(stage: Stage | null, func: EventFilterFunc): number;
 	/**
 	 * Pops an event off the event queue. Applications should not need to call
 	 * this.
@@ -16908,11 +16891,9 @@ declare namespace imports.gi.Clutter {
 	 * @param priority the priority of the timeout source. Typically this will be in the
 	 *    range between #G_PRIORITY_DEFAULT_IDLE and #G_PRIORITY_HIGH_IDLE
 	 * @param func function to call
-	 * @param data data to pass to the function
-	 * @param notify functio to call when the idle source is removed
 	 * @returns the ID (greater than 0) of the event source.
 	 */
-	function threads_add_idle(priority: number, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
+	function threads_add_idle(priority: number, func: GLib.SourceFunc): number;
 	/**
 	 * Adds a function to be called whenever Clutter is processing a new
 	 * frame.
@@ -16939,14 +16920,11 @@ declare namespace imports.gi.Clutter {
 	 * 
 	 * See also: clutter_threads_add_repaint_func_full()
 	 * @param func the function to be called within the paint cycle
-	 * @param data data to be passed to the function, or %NULL
-	 * @param notify function to be called when removing the repaint
-	 *    function, or %NULL
 	 * @returns the ID (greater than 0) of the repaint function. You
 	 *   can use the returned integer to remove the repaint function by
 	 *   calling {@link Clutter.threads.remove_repaint_func}.
 	 */
-	function threads_add_repaint_func(func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
+	function threads_add_repaint_func(func: GLib.SourceFunc): number;
 	/**
 	 * Adds a function to be called whenever Clutter is processing a new
 	 * frame.
@@ -16972,14 +16950,11 @@ declare namespace imports.gi.Clutter {
 	 * #notify function will be called, if any is set.
 	 * @param flags flags for the repaint function
 	 * @param func the function to be called within the paint cycle
-	 * @param data data to be passed to the function, or %NULL
-	 * @param notify function to be called when removing the repaint
-	 *    function, or %NULL
 	 * @returns the ID (greater than 0) of the repaint function. You
 	 *   can use the returned integer to remove the repaint function by
 	 *   calling {@link Clutter.threads.remove_repaint_func}.
 	 */
-	function threads_add_repaint_func_full(flags: RepaintFlags, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
+	function threads_add_repaint_func_full(flags: RepaintFlags, func: GLib.SourceFunc): number;
 	/**
 	 * Sets a function to be called at regular intervals holding the Clutter
 	 * threads lock, with the given priority. The function is called repeatedly
@@ -16998,11 +16973,9 @@ declare namespace imports.gi.Clutter {
 	 *            range between #G_PRIORITY_DEFAULT and #G_PRIORITY_HIGH.
 	 * @param interval the time between calls to the function, in milliseconds
 	 * @param func function to call
-	 * @param data data to pass to the function
-	 * @param notify function to call when the timeout source is removed
 	 * @returns the ID (greater than 0) of the event source.
 	 */
-	function threads_add_timeout(priority: number, interval: number, func: GLib.SourceFunc, data: any | null, notify: GLib.DestroyNotify): number;
+	function threads_add_timeout(priority: number, interval: number, func: GLib.SourceFunc): number;
 	/**
 	 * Removes the repaint function with #handle_id as its id
 	 * @param handle_id an unsigned integer greater than zero
@@ -17183,26 +17156,23 @@ declare namespace imports.gi.Clutter {
 	 * Sets #floats as the contents of #value. The passed #GValue
 	 * must have been initialized using %CLUTTER_TYPE_SHADER_FLOAT.
 	 * @param value a #GValue
-	 * @param size number of floating point values in #floats
 	 * @param floats an array of floating point values
 	 */
-	function value_set_shader_float(value: GObject.Value, size: number, floats: number[]): void;
+	function value_set_shader_float(value: GObject.Value, floats: number[]): void;
 	/**
 	 * Sets #ints as the contents of #value. The passed #GValue
 	 * must have been initialized using %CLUTTER_TYPE_SHADER_INT.
 	 * @param value a #GValue
-	 * @param size number of integer values in #ints
 	 * @param ints an array of integer values
 	 */
-	function value_set_shader_int(value: GObject.Value, size: number, ints: number[]): void;
+	function value_set_shader_int(value: GObject.Value, ints: number[]): void;
 	/**
 	 * Sets #matrix as the contents of #value. The passed #GValue
 	 * must have been initialized using %CLUTTER_TYPE_SHADER_MATRIX.
 	 * @param value a #GValue
-	 * @param size number of floating point values in #floats
 	 * @param matrix a matrix of floating point values
 	 */
-	function value_set_shader_matrix(value: GObject.Value, size: number, matrix: number[]): void;
+	function value_set_shader_matrix(value: GObject.Value, matrix: number[]): void;
 	/**
 	 * Sets #value to #units
 	 * @param value a #GValue initialized to %CLUTTER_TYPE_UNITS

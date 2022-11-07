@@ -179,11 +179,10 @@ declare namespace imports.gi.Graphene {
 		 * 
 		 * If #n_points is 0, the returned box is initialized with
 		 * {@link Graphene.box.empty}.
-		 * @param n_points the number #graphene_point3d_t in the #points array
 		 * @param points an array of #graphene_point3d_t
 		 * @returns the initialized #graphene_box_t
 		 */
-		public init_from_points(n_points: number, points: Point3D[]): Box;
+		public init_from_points(points: Point3D[]): Box;
 		/**
 		 * Initializes the given #graphene_box_t with two vertices
 		 * stored inside #graphene_vec3_t.
@@ -198,11 +197,10 @@ declare namespace imports.gi.Graphene {
 		 * 
 		 * If #n_vectors is 0, the returned box is initialized with
 		 * {@link Graphene.box.empty}.
-		 * @param n_vectors the number #graphene_point3d_t in the #vectors array
 		 * @param vectors an array of #graphene_vec3_t
 		 * @returns the initialized #graphene_box_t
 		 */
-		public init_from_vectors(n_vectors: number, vectors: Vec3[]): Box;
+		public init_from_vectors(vectors: Vec3[]): Box;
 		/**
 		 * Intersects the two given #graphene_box_t.
 		 * 
@@ -2412,24 +2410,22 @@ declare namespace imports.gi.Graphene {
 		 * 
 		 * The center of the sphere can either be specified, or will be center
 		 * of the 3D volume that encompasses all #points.
-		 * @param n_points the number of #graphene_point3d_t in the #points array
 		 * @param points an array of #graphene_point3d_t
 		 * @param center the center of the sphere
 		 * @returns the initialized #graphene_sphere_t
 		 */
-		public init_from_points(n_points: number, points: Point3D[], center?: Point3D | null): Sphere;
+		public init_from_points(points: Point3D[], center?: Point3D | null): Sphere;
 		/**
 		 * Initializes the given #graphene_sphere_t using the given array
 		 * of 3D coordinates so that the sphere includes them.
 		 * 
 		 * The center of the sphere can either be specified, or will be center
 		 * of the 3D volume that encompasses all #vectors.
-		 * @param n_vectors the number of #graphene_vec3_t in the #vectors array
 		 * @param vectors an array of #graphene_vec3_t
 		 * @param center the center of the sphere
 		 * @returns the initialized #graphene_sphere_t
 		 */
-		public init_from_vectors(n_vectors: number, vectors: Vec3[], center?: Point3D | null): Sphere;
+		public init_from_vectors(vectors: Vec3[], center?: Point3D | null): Sphere;
 		/**
 		 * Checks whether the sphere has a zero radius.
 		 * @returns `true` if the sphere is empty

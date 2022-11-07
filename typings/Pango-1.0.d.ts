@@ -357,10 +357,9 @@ declare namespace imports.gi.Pango {
 		 * back to a `PangoCoverage`.
 		 * @param bytes binary data
 		 *   representing a `PangoCoverage`
-		 * @param n_bytes the size of #bytes in bytes
 		 * @returns a newly allocated `PangoCoverage`
 		 */
-		public static from_bytes(bytes: number[], n_bytes: number): Coverage | null;
+		public static from_bytes(bytes: number[]): Coverage | null;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -498,9 +497,8 @@ declare namespace imports.gi.Pango {
 		 * Frees an array of font descriptions.
 		 * @param descs a pointer
 		 *   to an array of `PangoFontDescription`, may be %NULL
-		 * @param n_descs number of font descriptions in #descs
 		 */
-		public static descriptions_free(descs: FontDescription[] | null, n_descs: number): void;
+		public static descriptions_free(descs?: FontDescription[] | null): void;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -763,9 +761,8 @@ declare namespace imports.gi.Pango {
 		 * 
 		 * If #func returns %TRUE, that stops the iteration.
 		 * @param func Callback function
-		 * @param data data to pass to the callback function
 		 */
-		foreach(func: FontsetForeachFunc, data?: any | null): void;
+		foreach(func: FontsetForeachFunc): void;
 		/**
 		 * Returns the font in the fontset that contains the best glyph for a
 		 * Unicode character.
@@ -2215,12 +2212,11 @@ declare namespace imports.gi.Pango {
 		 * inserts them into a new list.
 		 * @param func callback function;
 		 *   returns %TRUE if an attribute should be filtered out
-		 * @param data Data to be passed to #func
 		 * @returns the new
 		 *   `PangoAttrList` or %NULL if no attributes of the
 		 *   given types were found
 		 */
-		public filter(func: AttrFilterFunc, data?: any | null): AttrList | null;
+		public filter(func: AttrFilterFunc): AttrList | null;
 		/**
 		 * Gets a list of all attributes in #list.
 		 * @returns 
@@ -2344,13 +2340,11 @@ declare namespace imports.gi.Pango {
 		 * @param copy_func function to copy #data when the
 		 *   attribute is copied. If %NULL, #data is simply copied
 		 *   as a pointer
-		 * @param destroy_func function to free #data when the
-		 *   attribute is freed
 		 * @returns the newly allocated
 		 *   `PangoAttribute`, which should be freed with
 		 *   [method#Pango.Attribute.destroy]
 		 */
-		public static new_with_data(ink_rect: Rectangle, logical_rect: Rectangle, data?: any | null, copy_func?: AttrDataCopyFunc | null, destroy_func?: GLib.DestroyNotify | null): Attribute;
+		public static new_with_data(ink_rect: Rectangle, logical_rect: Rectangle, data?: any | null, copy_func?: AttrDataCopyFunc | null): Attribute;
 		/**
 		 * the common portion of the attribute
 		 */
@@ -6069,13 +6063,11 @@ declare namespace imports.gi.Pango {
 	 * @param copy_func function to copy #data when the
 	 *   attribute is copied. If %NULL, #data is simply copied
 	 *   as a pointer
-	 * @param destroy_func function to free #data when the
-	 *   attribute is freed
 	 * @returns the newly allocated
 	 *   `PangoAttribute`, which should be freed with
 	 *   [method#Pango.Attribute.destroy]
 	 */
-	function attr_shape_new_with_data(ink_rect: Rectangle, logical_rect: Rectangle, data: any | null, copy_func: AttrDataCopyFunc | null, destroy_func: GLib.DestroyNotify | null): Attribute;
+	function attr_shape_new_with_data(ink_rect: Rectangle, logical_rect: Rectangle, data: any | null, copy_func: AttrDataCopyFunc | null): Attribute;
 	/**
 	 * Create a new attribute that influences how invisible
 	 * characters are rendered.
@@ -6220,9 +6212,8 @@ declare namespace imports.gi.Pango {
 	 * @param length length of #text in bytes (may be -1 if #text is nul-terminated)
 	 * @param analysis `PangoAnalysis` structure for #text
 	 * @param attrs an array to store character information in
-	 * @param attrs_len size of the array passed as #attrs
 	 */
-	// function break(text: string, length: number, analysis: Analysis, attrs: LogAttr[], attrs_len: number): void;
+	// function break(text: string, length: number, analysis: Analysis, attrs: LogAttr[]): void;
 	/**
 	 * This is the default break algorithm.
 	 * 
@@ -6357,9 +6348,8 @@ declare namespace imports.gi.Pango {
 	 * @param language language tag
 	 * @param log_attrs array with one `PangoLogAttr`
 	 *   per character in #text, plus one extra, to be filled in
-	 * @param attrs_len length of #log_attrs array
 	 */
-	function get_log_attrs(text: string, length: number, level: number, language: Language, log_attrs: LogAttr[], attrs_len: number): void;
+	function get_log_attrs(text: string, length: number, level: number, language: Language, log_attrs: LogAttr[]): void;
 	/**
 	 * Returns the mirrored character of a Unicode character.
 	 * 
@@ -6938,9 +6928,8 @@ declare namespace imports.gi.Pango {
 	 *   paragraph, or -1 to ignore attributes from #analysis
 	 * @param log_attrs array with one `PangoLogAttr`
 	 *   per character in #text, plus one extra, to be filled in
-	 * @param log_attrs_len length of #log_attrs array
 	 */
-	function tailor_break(text: string, length: number, analysis: Analysis, offset: number, log_attrs: LogAttr[], log_attrs_len: number): void;
+	function tailor_break(text: string, length: number, analysis: Analysis, offset: number, log_attrs: LogAttr[]): void;
 	/**
 	 * Trims leading and trailing whitespace from a string.
 	 * @param str a string
