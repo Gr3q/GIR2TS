@@ -165,7 +165,7 @@ declare namespace imports.gi.Graphene {
 		 * @param max the coordinates of the maximum vertex
 		 * @returns the initialized #graphene_box_t
 		 */
-		public init(min: Point3D | null, max: Point3D | null): Box;
+		public init(min?: Point3D | null, max?: Point3D | null): Box;
 		/**
 		 * Initializes the given #graphene_box_t with the vertices of
 		 * another #graphene_box_t.
@@ -191,7 +191,7 @@ declare namespace imports.gi.Graphene {
 		 * @param max the coordinates of the maximum vertex
 		 * @returns the initialized #graphene_box_t
 		 */
-		public init_from_vec3(min: Vec3 | null, max: Vec3 | null): Box;
+		public init_from_vec3(min?: Vec3 | null, max?: Vec3 | null): Box;
 		/**
 		 * Initializes the given #graphene_box_t with the given array
 		 * of vertices.
@@ -320,7 +320,7 @@ declare namespace imports.gi.Graphene {
 		 * @param src a #graphene_euler_t
 		 * @returns the initialized #graphene_euler_t
 		 */
-		public init_from_euler(src: Euler | null): Euler;
+		public init_from_euler(src?: Euler | null): Euler;
 		/**
 		 * Initializes a #graphene_euler_t using the given rotation matrix.
 		 * 
@@ -1246,7 +1246,7 @@ declare namespace imports.gi.Graphene {
 		 * @param normal_matrix a #graphene_matrix_t
 		 * @returns the transformed plane
 		 */
-		public transform(matrix: Matrix, normal_matrix: Matrix | null): Plane;
+		public transform(matrix: Matrix, normal_matrix?: Matrix | null): Plane;
 	}
 
 	export interface PointInitOptions {}
@@ -1857,7 +1857,7 @@ declare namespace imports.gi.Graphene {
 		 * @param direction the direction vector
 		 * @returns the initialized ray
 		 */
-		public init(origin: Point3D | null, direction: Vec3 | null): Ray;
+		public init(origin?: Point3D | null, direction?: Vec3 | null): Ray;
 		/**
 		 * Initializes the given #graphene_ray_t using the origin and direction
 		 * values of another #graphene_ray_t.
@@ -1871,7 +1871,7 @@ declare namespace imports.gi.Graphene {
 		 * @param direction a #graphene_vec3_t
 		 * @returns the initialized ray
 		 */
-		public init_from_vec3(origin: Vec3 | null, direction: Vec3 | null): Ray;
+		public init_from_vec3(origin?: Vec3 | null, direction?: Vec3 | null): Ray;
 		/**
 		 * Intersects the given #graphene_ray_t #r with the given
 		 * #graphene_box_t #b.
@@ -2417,7 +2417,7 @@ declare namespace imports.gi.Graphene {
 		 * @param center the center of the sphere
 		 * @returns the initialized #graphene_sphere_t
 		 */
-		public init_from_points(n_points: number, points: Point3D[], center: Point3D | null): Sphere;
+		public init_from_points(n_points: number, points: Point3D[], center?: Point3D | null): Sphere;
 		/**
 		 * Initializes the given #graphene_sphere_t using the given array
 		 * of 3D coordinates so that the sphere includes them.
@@ -2429,7 +2429,7 @@ declare namespace imports.gi.Graphene {
 		 * @param center the center of the sphere
 		 * @returns the initialized #graphene_sphere_t
 		 */
-		public init_from_vectors(n_vectors: number, vectors: Vec3[], center: Point3D | null): Sphere;
+		public init_from_vectors(n_vectors: number, vectors: Vec3[], center?: Point3D | null): Sphere;
 		/**
 		 * Checks whether the sphere has a zero radius.
 		 * @returns `true` if the sphere is empty
@@ -2507,7 +2507,7 @@ declare namespace imports.gi.Graphene {
 		 * return location for the vector
 		 *   with the barycentric coordinates
 		 */
-		public get_barycoords(p: Point3D | null): [ boolean, Vec2 ];
+		public get_barycoords(p?: Point3D | null): [ boolean, Vec2 ];
 		/**
 		 * Computes the bounding box of the given #graphene_triangle_t.
 		 * @returns return location for the box
@@ -2594,7 +2594,7 @@ declare namespace imports.gi.Graphene {
 		 * @param c a #graphene_point3d_t
 		 * @returns the initialized #graphene_triangle_t
 		 */
-		public init_from_point3d(a: Point3D | null, b: Point3D | null, c: Point3D | null): Triangle;
+		public init_from_point3d(a?: Point3D | null, b?: Point3D | null, c?: Point3D | null): Triangle;
 		/**
 		 * Initializes a #graphene_triangle_t using the three given vectors.
 		 * @param a a #graphene_vec3_t
@@ -2602,7 +2602,7 @@ declare namespace imports.gi.Graphene {
 		 * @param c a #graphene_vec3_t
 		 * @returns the initialized #graphene_triangle_t
 		 */
-		public init_from_vec3(a: Vec3 | null, b: Vec3 | null, c: Vec3 | null): Triangle;
+		public init_from_vec3(a?: Vec3 | null, b?: Vec3 | null, c?: Vec3 | null): Triangle;
 	}
 
 	export interface Vec2InitOptions {}

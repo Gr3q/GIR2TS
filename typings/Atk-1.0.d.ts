@@ -453,7 +453,7 @@ declare namespace imports.gi.Atk {
 		 * to create an instance of a subclass of #AtkObject
 		 * @param data a #gpointer which identifies the object for which the AtkObject was created.
 		 */
-		initialize(data: any | null): void;
+		initialize(data?: any | null): void;
 		/**
 		 * Emits a state-change signal for the specified state.
 		 * 

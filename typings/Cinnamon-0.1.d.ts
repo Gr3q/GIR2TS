@@ -60,7 +60,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param for_window Optional - the backing MetaWindow to look up for.
 		 * @returns A floating #ClutterActor
 		 */
-		create_icon_texture_for_window(size: number, for_window: Meta.Window | null): Clutter.Actor;
+		create_icon_texture_for_window(size: number, for_window?: Meta.Window | null): Clutter.Actor;
 		get_app_info(): CMenu.DesktopAppInfo;
 		get_description(): string;
 		get_flatpak_app_id(): string;
@@ -158,7 +158,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param wmclass A WM_CLASS value
 		 * @returns A {@link App} for #wmclass
 		 */
-		lookup_desktop_wmclass(wmclass: string | null): App;
+		lookup_desktop_wmclass(wmclass?: string | null): App;
 		/**
 		 * Find a {@link App} corresponding to a flatpak app id.
 		 * @param app_id
@@ -171,7 +171,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param wmclass A WM_CLASS value
 		 * @returns A {@link App} for #wmclass
 		 */
-		lookup_startup_wmclass(wmclass: string | null): App;
+		lookup_startup_wmclass(wmclass?: string | null): App;
 		connect(signal: "app-state-changed", callback: (owner: this, object: App) => void): number;
 		connect(signal: "installed-changed", callback: (owner: this) => void): number;
 
@@ -239,7 +239,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @returns The constructed proxy object or %NULL if #error is set.
 		 */
-		public static new_for_bus_sync(bus_type: Gio.BusType, flags: Gio.DBusProxyFlags, name: string, object_path: string, cancellable: Gio.Cancellable | null): CalendarServerProxy;
+		public static new_for_bus_sync(bus_type: Gio.BusType, flags: Gio.DBusProxyFlags, name: string, object_path: string, cancellable?: Gio.Cancellable | null): CalendarServerProxy;
 		/**
 		 * Synchronously creates a proxy for the D-Bus interface <link linkend="gdbus-interface-org-cinnamon-CalendarServer.top_of_page">org.cinnamon.CalendarServer</link>. See {@link Glib.dbus_proxy_new_sync} for more details.
 		 * 
@@ -253,7 +253,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @returns The constructed proxy object or %NULL if #error is set.
 		 */
-		public static new_sync(connection: Gio.DBusConnection, flags: Gio.DBusProxyFlags, name: string | null, object_path: string, cancellable: Gio.Cancellable | null): CalendarServerProxy;
+		public static new_sync(connection: Gio.DBusConnection, flags: Gio.DBusProxyFlags, name: string | null, object_path: string, cancellable?: Gio.Cancellable | null): CalendarServerProxy;
 		/**
 		 * Asynchronously creates a proxy for the D-Bus interface <link linkend="gdbus-interface-org-cinnamon-CalendarServer.top_of_page">org.cinnamon.CalendarServer</link>. See {@link Glib.dbus_proxy_new} for more details.
 		 * 
@@ -268,7 +268,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @param callback A #GAsyncReadyCallback to call when the request is satisfied.
 		 */
-		public static new(connection: Gio.DBusConnection, flags: Gio.DBusProxyFlags, name: string | null, object_path: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		public static new(connection: Gio.DBusConnection, flags: Gio.DBusProxyFlags, name: string | null, object_path: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Like {@link Cinnamon.CalendarServerProxy.new} but takes a #GBusType instead of a #GDBusConnection.
 		 * 
@@ -283,7 +283,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @param callback A #GAsyncReadyCallback to call when the request is satisfied.
 		 */
-		public static new_for_bus(bus_type: Gio.BusType, flags: Gio.DBusProxyFlags, name: string, object_path: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		public static new_for_bus(bus_type: Gio.BusType, flags: Gio.DBusProxyFlags, name: string, object_path: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -995,7 +995,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param pipeline the GStreamer pipeline used to encode recordings
 		 *            or %NULL for the default value.
 		 */
-		set_pipeline(pipeline: string | null): void;
+		set_pipeline(pipeline?: string | null): void;
 		connect(signal: "notify::draw-cursor", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::file-template", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::framerate", callback: (owner: this, ...args: any) => void): number;
@@ -1083,7 +1083,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @returns the #MetaWindow pointed by the mouse
 		 *  %NULL when window not found
 		 */
-		get_mouse_window(not_this_one: Meta.Window | null): Meta.Window;
+		get_mouse_window(not_this_one?: Meta.Window | null): Meta.Window;
 		/**
 		 * Gets the number of monitors that are joined together to form #screen.
 		 * @returns the number of monitors
@@ -1536,7 +1536,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @param callback A #GAsyncReadyCallback to call when the request is satisfied or %NULL.
 		 */
-		call_exit(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		call_exit(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an operation started with {@link Cinnamon.CalendarServer.call_exit}.
 		 * @param res The #GAsyncResult obtained from the #GAsyncReadyCallback passed to {@link Cinnamon.CalendarServer.call_exit}.
@@ -1550,7 +1550,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @returns %TRUE if the call succeeded, %FALSE if #error is set.
 		 */
-		call_exit_sync(cancellable: Gio.Cancellable | null): boolean;
+		call_exit_sync(cancellable?: Gio.Cancellable | null): boolean;
 		/**
 		 * Asynchronously invokes the <link linkend="gdbus-method-org-cinnamon-CalendarServer.SetTimeRange">SetTimeRange()</link> D-Bus method on #proxy.
 		 * When the operation is finished, #callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
@@ -1563,7 +1563,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @param callback A #GAsyncReadyCallback to call when the request is satisfied or %NULL.
 		 */
-		call_set_time_range(arg_since: number, arg_until: number, arg_force_reload: boolean, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		call_set_time_range(arg_since: number, arg_until: number, arg_force_reload: boolean, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an operation started with {@link Cinnamon.CalendarServer.call_set_time_range}.
 		 * @param res The #GAsyncResult obtained from the #GAsyncReadyCallback passed to {@link Cinnamon.CalendarServer.call_set_time_range}.
@@ -1580,7 +1580,7 @@ declare namespace imports.gi.Cinnamon {
 		 * @param cancellable A #GCancellable or %NULL.
 		 * @returns %TRUE if the call succeeded, %FALSE if #error is set.
 		 */
-		call_set_time_range_sync(arg_since: number, arg_until: number, arg_force_reload: boolean, cancellable: Gio.Cancellable | null): boolean;
+		call_set_time_range_sync(arg_since: number, arg_until: number, arg_force_reload: boolean, cancellable?: Gio.Cancellable | null): boolean;
 		/**
 		 * Helper function used in service implementations to finish handling invocations of the <link linkend="gdbus-method-org-cinnamon-CalendarServer.Exit">Exit()</link> D-Bus method. If you instead want to finish handling an invocation by returning an error, use g_dbus_method_invocation_return_error() or similar.
 		 * 
@@ -1868,7 +1868,7 @@ declare namespace imports.gi.Cinnamon {
 	}
 
 	interface LeisureFunction {
-		(data: any | null): void;
+		(data?: any | null): void;
 	}
 
 	interface PerfReplayFunction {
@@ -1876,7 +1876,7 @@ declare namespace imports.gi.Cinnamon {
 	}
 
 	interface PerfStatisticsCallback {
-		(perf_log: PerfLog, data: any | null): void;
+		(perf_log: PerfLog, data?: any | null): void;
 	}
 
 	interface ScreenshotCallback {

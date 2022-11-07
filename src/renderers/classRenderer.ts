@@ -189,7 +189,8 @@ function renderIInterfacePart(
                 return_type: {
                     docString: "",
                     type: "void",
-                    name: null
+                    name: null,
+                    optional: false
                 },
                 deprecatedDoc: null
             }, ns_name, exclude_all_members, 1);

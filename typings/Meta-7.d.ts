@@ -617,7 +617,7 @@ declare namespace imports.gi.Meta {
 		 * @param workspace origin workspace
 		 * @returns List of windows
 		 */
-		get_tab_list(type: TabList, workspace: Workspace | null): Window[];
+		get_tab_list(type: TabList, workspace?: Workspace | null): Window[];
 		/**
 		 * Determine the next window that should be displayed for Alt-TAB
 		 * functionality.
@@ -637,7 +637,7 @@ declare namespace imports.gi.Meta {
 		 * @param sequence a #ClutterEventSequence
 		 * @returns #TRUE if the sequence emulates pointer behavior
 		 */
-		is_pointer_emulating_sequence(sequence: Clutter.EventSequence | null): boolean;
+		is_pointer_emulating_sequence(sequence?: Clutter.EventSequence | null): boolean;
 		/**
 		 * Remove keybinding #name; the function will fail if #name is not a known
 		 * keybinding or has not been added with {@link Meta.Display.add_keybinding}.
@@ -1094,7 +1094,7 @@ declare namespace imports.gi.Meta {
 		 * @param cancellable Cancellable
 		 * @param callback User callback
 		 */
-		transfer_async(selection_type: SelectionType, mimetype: string, size: number, output: Gio.OutputStream, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		transfer_async(selection_type: SelectionType, mimetype: string, size: number, output: Gio.OutputStream, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes the transfer of a queried mimetype.
 		 * @param result The async result
@@ -1141,7 +1141,7 @@ declare namespace imports.gi.Meta {
 		 * @returns #TRUE if the source owns a selection.
 		 */
 		is_active(): boolean;
-		read_async(mimetype: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		read_async(mimetype: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes a read from the selection source.
 		 * @param result The async result
@@ -1272,7 +1272,7 @@ declare namespace imports.gi.Meta {
 		 * @returns a new cairo surface to be freed with
 		 * {@link Cairo.Surface.destroy}.
 		 */
-		get_image(clip: cairo.RectangleInt | null): cairo.Surface | null;
+		get_image(clip?: cairo.RectangleInt | null): cairo.Surface | null;
 		get_texture(): Cogl.Texture;
 		set_create_mipmaps(create_mipmaps: boolean): void;
 		set_mask_texture(mask_texture: Cogl.Texture): void;
@@ -1304,14 +1304,14 @@ declare namespace imports.gi.Meta {
 		 * @param description description of the played sound
 		 * @param cancellable cancellable for the request
 		 */
-		play_from_file(file: Gio.File, description: string, cancellable: Gio.Cancellable | null): void;
+		play_from_file(file: Gio.File, description: string, cancellable?: Gio.Cancellable | null): void;
 		/**
 		 * Plays a sound from the sound theme.
 		 * @param name sound theme name of the event
 		 * @param description description of the event
 		 * @param cancellable cancellable for the request
 		 */
-		play_from_theme(name: string, description: string, cancellable: Gio.Cancellable | null): void;
+		play_from_theme(name: string, description: string, cancellable?: Gio.Cancellable | null): void;
 	}
 
 	type SoundPlayerInitOptionsMixin = GObject.ObjectInitOptions
@@ -1866,7 +1866,7 @@ declare namespace imports.gi.Meta {
 		 * interface element displaying the icon, and is relative to the root window.
 		 * @param rect rectangle with the desired geometry or %NULL.
 		 */
-		set_icon_geometry(rect: Rectangle | null): void;
+		set_icon_geometry(rect?: Rectangle | null): void;
 		shade(timestamp: number): void;
 		shove_titlebar_onscreen(): void;
 		showing_on_its_workspace(): boolean;
@@ -1982,7 +1982,7 @@ declare namespace imports.gi.Meta {
 		 * @returns a new cairo surface to be freed with
 		 * {@link Cairo.Surface.destroy}.
 		 */
-		get_image(clip: cairo.RectangleInt | null): cairo.Surface | null;
+		get_image(clip?: cairo.RectangleInt | null): cairo.Surface | null;
 		/**
 		 * Gets the {@link Window} object that the the #MetaWindowActor is displaying
 		 * @returns the displayed {@link Window}

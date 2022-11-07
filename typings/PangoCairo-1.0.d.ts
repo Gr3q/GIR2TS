@@ -189,7 +189,7 @@ declare namespace imports.gi.PangoCairo {
 		 * pango_cairo_layout_line_path() rendering functions.
 		 * @param data user data passed to {@link PangoCairo.context.set_shape_renderer}
 		 */
-		(cr: cairo.Context, attr: Pango.AttrShape, do_path: boolean, data: any | null): void;
+		(cr: cairo.Context, attr: Pango.AttrShape, do_path: boolean, data?: any | null): void;
 	}
 
 	/**

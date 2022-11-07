@@ -293,7 +293,7 @@ declare namespace imports.gi.GObject {
 		 *  the last reference.
 		 * @param data data to pass to #notify
 		 */
-		add_toggle_ref(notify: ToggleNotify, data: any | null): void;
+		add_toggle_ref(notify: ToggleNotify, data?: any | null): void;
 		/**
 		 * Adds a weak reference from weak_pointer to #object to indicate that
 		 * the pointer located at #weak_pointer_location is only valid during
@@ -428,7 +428,7 @@ declare namespace imports.gi.GObject {
 		 *     If #dup_func is %NULL, the value is returned
 		 *     unmodified.
 		 */
-		dup_data(key: string, dup_func: GLib.DuplicateFunc | null): any | null;
+		dup_data(key: string, dup_func?: GLib.DuplicateFunc | null): any | null;
 		/**
 		 * This is a variant of {@link GObject.get_qdata} which returns
 		 * a 'duplicate' of the value. #dup_func defines the
@@ -451,7 +451,7 @@ declare namespace imports.gi.GObject {
 		 *     If #dup_func is %NULL, the value is returned
 		 *     unmodified.
 		 */
-		dup_qdata(quark: GLib.Quark, dup_func: GLib.DuplicateFunc | null): any | null;
+		dup_qdata(quark: GLib.Quark, dup_func?: GLib.DuplicateFunc | null): any | null;
 		/**
 		 * This function is intended for #GObject implementations to re-enforce
 		 * a [floating][floating-ref] object reference. Doing this is seldom
@@ -654,7 +654,7 @@ declare namespace imports.gi.GObject {
 		 * @param data data to pass to #notify, or %NULL to
 		 *  match any toggle refs with the #notify argument.
 		 */
-		remove_toggle_ref(notify: ToggleNotify, data: any | null): void;
+		remove_toggle_ref(notify: ToggleNotify, data?: any | null): void;
 		/**
 		 * Removes a weak reference from #object that was previously added
 		 * using {@link GObject.add_weak_pointer}. The #weak_pointer_location has
@@ -687,7 +687,7 @@ declare namespace imports.gi.GObject {
 		 * 
 		 * destroy notify for the existing value
 		 */
-		replace_data(key: string, oldval: any | null, newval: any | null, destroy: GLib.DestroyNotify | null): [ boolean, GLib.DestroyNotify | null ];
+		replace_data(key: string, oldval?: any | null, newval?: any | null, destroy?: GLib.DestroyNotify | null): [ boolean, GLib.DestroyNotify | null ];
 		/**
 		 * Compares the user data for the key #quark on #object with
 		 * #oldval, and if they are the same, replaces #oldval with
@@ -711,7 +711,7 @@ declare namespace imports.gi.GObject {
 		 * 
 		 * destroy notify for the existing value
 		 */
-		replace_qdata(quark: GLib.Quark, oldval: any | null, newval: any | null, destroy: GLib.DestroyNotify | null): [ boolean, GLib.DestroyNotify | null ];
+		replace_qdata(quark: GLib.Quark, oldval?: any | null, newval?: any | null, destroy?: GLib.DestroyNotify | null): [ boolean, GLib.DestroyNotify | null ];
 		/**
 		 * Releases all references to other objects. This can be used to break
 		 * reference cycles.
@@ -747,7 +747,7 @@ declare namespace imports.gi.GObject {
 		 * @param key name of the key
 		 * @param data data to associate with that key
 		 */
-		set_data(key: string, data: any | null): void;
+		set_data(key: string, data?: any | null): void;
 		/**
 		 * Like {@link GObject.set_data} except it adds notification
 		 * for when the association is destroyed, either by setting it
@@ -758,7 +758,7 @@ declare namespace imports.gi.GObject {
 		 * @param data data to associate with that key
 		 * @param destroy function to call when the association is destroyed
 		 */
-		set_data_full(key: string, data: any | null, destroy: GLib.DestroyNotify | null): void;
+		set_data_full(key: string, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
 		/**
 		 * Sets a property on an object.
 		 * @param property_name the name of the property to set
@@ -777,7 +777,7 @@ declare namespace imports.gi.GObject {
 		 * @param quark A #GQuark, naming the user data pointer
 		 * @param data An opaque user data pointer
 		 */
-		set_qdata(quark: GLib.Quark, data: any | null): void;
+		set_qdata(quark: GLib.Quark, data?: any | null): void;
 		/**
 		 * This function works like {@link GObject.set_qdata}, but in addition,
 		 * a void (*destroy) (gpointer) function may be specified which is
@@ -789,7 +789,7 @@ declare namespace imports.gi.GObject {
 		 * @param destroy Function to invoke with #data as argument, when #data
 		 *           needs to be freed
 		 */
-		set_qdata_full(quark: GLib.Quark, data: any | null, destroy: GLib.DestroyNotify | null): void;
+		set_qdata_full(quark: GLib.Quark, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
 		/**
 		 * Sets properties on an object.
 		 * @param first_property_name name of the first property to set
@@ -943,13 +943,13 @@ declare namespace imports.gi.GObject {
 		 * @param notify callback to invoke before the object is freed
 		 * @param data extra data to pass to notify
 		 */
-		weak_ref(notify: WeakNotify, data: any | null): void;
+		weak_ref(notify: WeakNotify, data?: any | null): void;
 		/**
 		 * Removes a weak reference callback to an object.
 		 * @param notify callback to search for
 		 * @param data data to search for
 		 */
-		weak_unref(notify: WeakNotify, data: any | null): void;
+		weak_unref(notify: WeakNotify, data?: any | null): void;
 		/**
 		 * The notify signal is emitted on an object when one of its properties has
 		 * its value set through {@link GObject.set_property}, g_object_set(), et al.
@@ -1075,7 +1075,7 @@ declare namespace imports.gi.GObject {
 		 * #object_type
 		 */
 		public static newv(object_type: GObject.Type, n_parameters: number, parameters: Parameter[]): Object;
-		public static compat_control(what: number, data: any | null): number;
+		public static compat_control(what: number, data?: any | null): number;
 		/**
 		 * Find the #GParamSpec with the given name for an
 		 * interface. Generally, the interface vtable passed in as #g_iface
@@ -1219,7 +1219,7 @@ declare namespace imports.gi.GObject {
 		 * @param quark a #GQuark, naming the user data pointer
 		 * @param data an opaque user data pointer
 		 */
-		set_qdata(quark: GLib.Quark, data: any | null): void;
+		set_qdata(quark: GLib.Quark, data?: any | null): void;
 		/**
 		 * This function works like {@link G.param_spec_set_qdata}, but in addition,
 		 * a `void (*destroy) (gpointer)` function may be
@@ -1231,7 +1231,7 @@ declare namespace imports.gi.GObject {
 		 * @param destroy function to invoke with #data as argument, when #data needs to
 		 *  be freed
 		 */
-		set_qdata_full(quark: GLib.Quark, data: any | null, destroy: GLib.DestroyNotify | null): void;
+		set_qdata_full(quark: GLib.Quark, data?: any | null, destroy?: GLib.DestroyNotify | null): void;
 		/**
 		 * The initial reference count of a newly created #GParamSpec is 1,
 		 * even though no one has explicitly called {@link G.param_spec_ref} on it
@@ -2345,7 +2345,7 @@ declare namespace imports.gi.GObject {
 		 *   marshaller, see {@link G.closure_set_marshal} and
 		 *   g_closure_set_meta_marshal()
 		 */
-		public static marshal_BOOLEAN__BOXED_BOXED(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_BOOLEAN__BOXED_BOXED(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_BOOLEAN__BOXED_BOXED}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2374,7 +2374,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_BOOLEAN__FLAGS(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_BOOLEAN__FLAGS(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_BOOLEAN__FLAGS}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2402,7 +2402,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_STRING__OBJECT_POINTER(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_STRING__OBJECT_POINTER(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_STRING__OBJECT_POINTER}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2430,7 +2430,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__BOOLEAN(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__BOOLEAN(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__BOOLEAN}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2458,7 +2458,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__BOXED(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__BOXED(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__BOXED}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2486,7 +2486,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__CHAR(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__CHAR(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__CHAR}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2514,7 +2514,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__DOUBLE(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__DOUBLE(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__DOUBLE}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2542,7 +2542,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__ENUM(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__ENUM(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__ENUM}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2570,7 +2570,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__FLAGS(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__FLAGS(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__FLAGS}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2598,7 +2598,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__FLOAT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__FLOAT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__FLOAT}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2626,7 +2626,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__INT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__INT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__INT}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2654,7 +2654,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__LONG(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__LONG(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__LONG}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2682,7 +2682,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__OBJECT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__OBJECT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__OBJECT}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2710,7 +2710,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__PARAM(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__PARAM(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__PARAM}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2738,7 +2738,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__POINTER(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__POINTER(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__POINTER}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2766,7 +2766,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__STRING(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__STRING(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__STRING}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2794,7 +2794,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__UCHAR(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__UCHAR(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__UCHAR}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2822,7 +2822,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__UINT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__UINT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * A marshaller for a #GCClosure with a callback of type
 		 * `void (*callback) (gpointer instance, guint arg1, gpointer arg2, gpointer user_data)`.
@@ -2834,7 +2834,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__UINT_POINTER(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__UINT_POINTER(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__UINT_POINTER}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2878,7 +2878,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__ULONG(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__ULONG(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__ULONG}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2906,7 +2906,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__VARIANT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__VARIANT(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__VARIANT}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2934,7 +2934,7 @@ declare namespace imports.gi.GObject {
 		 *  to {@link G.closure_invoke}
 		 * @param marshal_data additional data specified when registering the marshaller
 		 */
-		public static marshal_VOID__VOID(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_VOID__VOID(closure: Closure, return_value: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * The #GVaClosureMarshal equivalent to {@link G.cclosure_marshal_VOID__VOID}.
 		 * @param closure the #GClosure to which the marshaller belongs
@@ -2969,7 +2969,7 @@ declare namespace imports.gi.GObject {
 		 *   marshaller, see {@link G.closure_set_marshal} and
 		 *   g_closure_set_meta_marshal()
 		 */
-		public static marshal_generic(closure: Closure, return_gvalue: Value, n_param_values: number, param_values: Value, invocation_hint: any | null, marshal_data: any | null): void;
+		public static marshal_generic(closure: Closure, return_gvalue: Value, n_param_values: number, param_values: Value, invocation_hint?: any | null, marshal_data?: any | null): void;
 		/**
 		 * A generic #GVaClosureMarshal function implemented via
 		 * [libffi](http://sourceware.org/libffi/).
@@ -3145,7 +3145,7 @@ declare namespace imports.gi.GObject {
 		 * @param data data to store in the #data field of the newly allocated #GClosure
 		 * @returns a floating reference to a new #GClosure
 		 */
-		public static new_simple(sizeof_closure: number, data: any | null): Closure;
+		public static new_simple(sizeof_closure: number, data?: any | null): Closure;
 		public readonly ref_count: number;
 		public readonly meta_marshal_nouse: number;
 		public readonly n_guards: number;
@@ -3178,7 +3178,7 @@ declare namespace imports.gi.GObject {
 		 * @param notify_data data to pass to #notify_func
 		 * @param notify_func the callback function to register
 		 */
-		public add_finalize_notifier(notify_data: any | null, notify_func: ClosureNotify | null): void;
+		public add_finalize_notifier(notify_data?: any | null, notify_func?: ClosureNotify | null): void;
 		/**
 		 * Registers an invalidation notifier which will be called when the
 		 * #closure is invalidated with {@link G.closure_invalidate}.
@@ -3188,7 +3188,7 @@ declare namespace imports.gi.GObject {
 		 * @param notify_data data to pass to #notify_func
 		 * @param notify_func the callback function to register
 		 */
-		public add_invalidate_notifier(notify_data: any | null, notify_func: ClosureNotify | null): void;
+		public add_invalidate_notifier(notify_data?: any | null, notify_func?: ClosureNotify | null): void;
 		/**
 		 * Adds a pair of notifiers which get invoked before and after the
 		 * closure callback, respectively.
@@ -3203,7 +3203,7 @@ declare namespace imports.gi.GObject {
 		 *  to #post_marshal_notify
 		 * @param post_marshal_notify a function to call after the closure callback
 		 */
-		public add_marshal_guards(pre_marshal_data: any | null, pre_marshal_notify: ClosureNotify | null, post_marshal_data: any | null, post_marshal_notify: ClosureNotify | null): void;
+		public add_marshal_guards(pre_marshal_data?: any | null, pre_marshal_notify?: ClosureNotify | null, post_marshal_data?: any | null, post_marshal_notify?: ClosureNotify | null): void;
 		/**
 		 * Sets a flag on the closure to indicate that its calling
 		 * environment has become invalid, and thus causes any future
@@ -3233,7 +3233,7 @@ declare namespace imports.gi.GObject {
 		 *                value. May be %NULL if the callback of #closure
 		 *                doesn't return a value.
 		 */
-		public invoke(n_param_values: number, param_values: Value[], invocation_hint: any | null): Value | null;
+		public invoke(n_param_values: number, param_values: Value[], invocation_hint?: any | null): Value | null;
 		/**
 		 * Increments the reference count on a closure to force it staying
 		 * alive while the caller holds a pointer to it.
@@ -3294,7 +3294,7 @@ declare namespace imports.gi.GObject {
 		 *  to #meta_marshal
 		 * @param meta_marshal a #GClosureMarshal function
 		 */
-		public set_meta_marshal(marshal_data: any | null, meta_marshal: ClosureMarshal | null): void;
+		public set_meta_marshal(marshal_data?: any | null, meta_marshal?: ClosureMarshal | null): void;
 		/**
 		 * Takes over the initial ownership of a closure.
 		 * 
@@ -4357,7 +4357,7 @@ declare namespace imports.gi.GObject {
 		 * Set the contents of a %G_TYPE_BOXED derived #GValue to #v_boxed.
 		 * @param v_boxed boxed value to be set
 		 */
-		public set_boxed(v_boxed: any | null): void;
+		public set_boxed(v_boxed?: any | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link G.value_take_boxed} instead.
@@ -4365,7 +4365,7 @@ declare namespace imports.gi.GObject {
 		 * This is an internal function introduced mainly for C marshallers.
 		 * @param v_boxed duplicated unowned boxed value to be set
 		 */
-		public set_boxed_take_ownership(v_boxed: any | null): void;
+		public set_boxed_take_ownership(v_boxed?: any | null): void;
 		/**
 		 * @deprecated
 		 * This function's input type is broken, see {@link G.value_set_schar}
@@ -4404,7 +4404,7 @@ declare namespace imports.gi.GObject {
 		 * value_table's {@link Collect.value} function.
 		 * @param instance the instance
 		 */
-		public set_instance(instance: any | null): void;
+		public set_instance(instance?: any | null): void;
 		/**
 		 * Set the contents of a %G_TYPE_INT #GValue to #v_int.
 		 * @param v_int integer value to be set
@@ -4421,7 +4421,7 @@ declare namespace imports.gi.GObject {
 		 * {@link G.intern_string}), and is thus not duplicated when setting the #GValue.
 		 * @param v_string static string to be set
 		 */
-		public set_interned_string(v_string: string | null): void;
+		public set_interned_string(v_string?: string | null): void;
 		/**
 		 * Set the contents of a %G_TYPE_LONG #GValue to #v_long.
 		 * @param v_long long integer value to be set
@@ -4441,7 +4441,7 @@ declare namespace imports.gi.GObject {
 		 * the #GValue still exists).
 		 * @param v_object object value to be set
 		 */
-		public set_object(v_object: Object | null): void;
+		public set_object(v_object?: Object | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link G.value_take_object} instead.
@@ -4449,12 +4449,12 @@ declare namespace imports.gi.GObject {
 		 * This is an internal function introduced mainly for C marshallers.
 		 * @param v_object object value to be set
 		 */
-		public set_object_take_ownership(v_object: any | null): void;
+		public set_object_take_ownership(v_object?: any | null): void;
 		/**
 		 * Set the contents of a %G_TYPE_PARAM #GValue to #param.
 		 * @param param the #GParamSpec to be set
 		 */
-		public set_param(param: ParamSpec | null): void;
+		public set_param(param?: ParamSpec | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link G.value_take_param} instead.
@@ -4462,12 +4462,12 @@ declare namespace imports.gi.GObject {
 		 * This is an internal function introduced mainly for C marshallers.
 		 * @param param the #GParamSpec to be set
 		 */
-		public set_param_take_ownership(param: ParamSpec | null): void;
+		public set_param_take_ownership(param?: ParamSpec | null): void;
 		/**
 		 * Set the contents of a pointer #GValue to #v_pointer.
 		 * @param v_pointer pointer value to be set
 		 */
-		public set_pointer(v_pointer: any | null): void;
+		public set_pointer(v_pointer?: any | null): void;
 		/**
 		 * Set the contents of a %G_TYPE_CHAR #GValue to #v_char.
 		 * @param v_char signed 8 bit integer to be set
@@ -4480,7 +4480,7 @@ declare namespace imports.gi.GObject {
 		 * when setting the #GValue.
 		 * @param v_boxed static boxed value to be set
 		 */
-		public set_static_boxed(v_boxed: any | null): void;
+		public set_static_boxed(v_boxed?: any | null): void;
 		/**
 		 * Set the contents of a %G_TYPE_STRING #GValue to #v_string.
 		 * The string is assumed to be static, and is thus not duplicated
@@ -4490,12 +4490,12 @@ declare namespace imports.gi.GObject {
 		 * is more appropriate.
 		 * @param v_string static string to be set
 		 */
-		public set_static_string(v_string: string | null): void;
+		public set_static_string(v_string?: string | null): void;
 		/**
 		 * Set the contents of a %G_TYPE_STRING #GValue to a copy of #v_string.
 		 * @param v_string caller-owned string to be duplicated for the #GValue
 		 */
-		public set_string(v_string: string | null): void;
+		public set_string(v_string?: string | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link G.value_take_string} instead.
@@ -4503,7 +4503,7 @@ declare namespace imports.gi.GObject {
 		 * This is an internal function introduced mainly for C marshallers.
 		 * @param v_string duplicated unowned string to be set
 		 */
-		public set_string_take_ownership(v_string: string | null): void;
+		public set_string_take_ownership(v_string?: string | null): void;
 		/**
 		 * Set the contents of a %G_TYPE_UCHAR #GValue to #v_uchar.
 		 * @param v_uchar unsigned character value to be set
@@ -4529,14 +4529,14 @@ declare namespace imports.gi.GObject {
 		 * If the variant is floating, it is consumed.
 		 * @param variant a #GVariant, or %NULL
 		 */
-		public set_variant(variant: GLib.Variant | null): void;
+		public set_variant(variant?: GLib.Variant | null): void;
 		/**
 		 * Sets the contents of a %G_TYPE_BOXED derived #GValue to #v_boxed
 		 * and takes over the ownership of the caller’s reference to #v_boxed;
 		 * the caller doesn’t have to unref it any more.
 		 * @param v_boxed duplicated unowned boxed value to be set
 		 */
-		public take_boxed(v_boxed: any | null): void;
+		public take_boxed(v_boxed?: any | null): void;
 		/**
 		 * Sets the contents of a %G_TYPE_OBJECT derived #GValue to #v_object
 		 * and takes over the ownership of the caller’s reference to #v_object;
@@ -4547,19 +4547,19 @@ declare namespace imports.gi.GObject {
 		 * {@link G.value_set_object} instead.
 		 * @param v_object object value to be set
 		 */
-		public take_object(v_object: any | null): void;
+		public take_object(v_object?: any | null): void;
 		/**
 		 * Sets the contents of a %G_TYPE_PARAM #GValue to #param and takes
 		 * over the ownership of the caller’s reference to #param; the caller
 		 * doesn’t have to unref it any more.
 		 * @param param the #GParamSpec to be set
 		 */
-		public take_param(param: ParamSpec | null): void;
+		public take_param(param?: ParamSpec | null): void;
 		/**
 		 * Sets the contents of a %G_TYPE_STRING #GValue to #v_string.
 		 * @param v_string string to take ownership of
 		 */
-		public take_string(v_string: string | null): void;
+		public take_string(v_string?: string | null): void;
 		/**
 		 * Set the contents of a variant #GValue to #variant, and takes over
 		 * the ownership of the caller's reference to #variant;
@@ -4575,7 +4575,7 @@ declare namespace imports.gi.GObject {
 		 * This is an internal function introduced mainly for C marshallers.
 		 * @param variant a #GVariant, or %NULL
 		 */
-		public take_variant(variant: GLib.Variant | null): void;
+		public take_variant(variant?: GLib.Variant | null): void;
 		/**
 		 * Tries to cast the contents of #src_value into a type appropriate
 		 * to store in #dest_value, e.g. to transform a %G_TYPE_INT value
@@ -4634,7 +4634,7 @@ declare namespace imports.gi.GObject {
 		 * @param value #GValue to copy into #GValueArray, or %NULL
 		 * @returns the #GValueArray passed in as #value_array
 		 */
-		public append(value: Value | null): ValueArray;
+		public append(value?: Value | null): ValueArray;
 		/**
 		 * @deprecated
 		 * Use #GArray and {@link G.array_ref} instead.
@@ -4670,7 +4670,7 @@ declare namespace imports.gi.GObject {
 		 * @param value #GValue to copy into #GValueArray, or %NULL
 		 * @returns the #GValueArray passed in as #value_array
 		 */
-		public insert(index_: number, value: Value | null): ValueArray;
+		public insert(index_: number, value?: Value | null): ValueArray;
 		/**
 		 * @deprecated
 		 * Use #GArray and {@link G.array_prepend_val} instead.
@@ -4680,7 +4680,7 @@ declare namespace imports.gi.GObject {
 		 * @param value #GValue to copy into #GValueArray, or %NULL
 		 * @returns the #GValueArray passed in as #value_array
 		 */
-		public prepend(value: Value | null): ValueArray;
+		public prepend(value?: Value | null): ValueArray;
 		/**
 		 * @deprecated
 		 * Use #GArray and {@link G.array_remove_index} instead.
@@ -4767,7 +4767,7 @@ declare namespace imports.gi.GObject {
 		 * properly initialised.  Just use g_weak_ref_set() directly.
 		 * @param object a #GObject or %NULL
 		 */
-		public init(object: Object | null): void;
+		public init(object?: Object | null): void;
 		/**
 		 * Change the object to which #weak_ref points, or set it to
 		 * %NULL.
@@ -4776,7 +4776,7 @@ declare namespace imports.gi.GObject {
 		 * function.
 		 * @param object a #GObject or %NULL
 		 */
-		public set(object: Object | null): void;
+		public set(object?: Object | null): void;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -5331,7 +5331,7 @@ declare namespace imports.gi.GObject {
 		 * @param g_class The #GTypeClass structure to finalize
 		 * @param class_data The #class_data member supplied via the #GTypeInfo structure
 		 */
-		(g_class: TypeClass, class_data: any | null): void;
+		(g_class: TypeClass, class_data?: any | null): void;
 	}
 
 	/**
@@ -5535,7 +5535,7 @@ declare namespace imports.gi.GObject {
 		 * @param g_class The #GTypeClass structure to initialize.
 		 * @param class_data The #class_data member supplied via the #GTypeInfo structure.
 		 */
-		(g_class: TypeClass, class_data: any | null): void;
+		(g_class: TypeClass, class_data?: any | null): void;
 	}
 
 	/**
@@ -5558,7 +5558,7 @@ declare namespace imports.gi.GObject {
 		 *  registering the marshaller, see {@link G.closure_set_marshal} and
 		 *  g_closure_set_meta_marshal()
 		 */
-		(closure: Closure, return_value: Value | null, n_param_values: number, param_values: Value[], invocation_hint: any | null, marshal_data: any | null): void;
+		(closure: Closure, return_value: Value | null, n_param_values: number, param_values: Value[], invocation_hint?: any | null, marshal_data?: any | null): void;
 	}
 
 	/**
@@ -5627,7 +5627,7 @@ declare namespace imports.gi.GObject {
 		 * @param g_iface The interface structure to finalize
 		 * @param iface_data The #interface_data supplied via the #GInterfaceInfo structure
 		 */
-		(g_iface: TypeInterface, iface_data: any | null): void;
+		(g_iface: TypeInterface, iface_data?: any | null): void;
 	}
 
 	/**
@@ -5653,7 +5653,7 @@ declare namespace imports.gi.GObject {
 		 * @param g_iface The interface structure to initialize
 		 * @param iface_data The #interface_data supplied via the #GInterfaceInfo structure
 		 */
-		(g_iface: TypeInterface, iface_data: any | null): void;
+		(g_iface: TypeInterface, iface_data?: any | null): void;
 	}
 
 	/**
@@ -5729,7 +5729,7 @@ declare namespace imports.gi.GObject {
 		 *  emission will occur as normal in the CLEANUP stage and the handler's
 		 *  return value will be accumulated.
 		 */
-		(ihint: SignalInvocationHint, return_accu: Value, handler_return: Value, data: any | null): boolean;
+		(ihint: SignalInvocationHint, return_accu: Value, handler_return: Value, data?: any | null): boolean;
 	}
 
 	/**
@@ -5757,7 +5757,7 @@ declare namespace imports.gi.GObject {
 		 * @returns whether it wants to stay connected. If it returns %FALSE, the signal
 		 *  hook is disconnected (and destroyed).
 		 */
-		(ihint: SignalInvocationHint, n_param_values: number, param_values: Value[], data: any | null): boolean;
+		(ihint: SignalInvocationHint, n_param_values: number, param_values: Value[], data?: any | null): boolean;
 	}
 
 	/**

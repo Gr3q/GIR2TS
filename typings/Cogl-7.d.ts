@@ -135,7 +135,7 @@ declare namespace imports.gi.Cogl {
 		 * @param pipeline a {@link Pipeline} to associate with the #context and
 		 *            #key
 		 */
-		set_named_pipeline(key: PipelineKey, pipeline: Pipeline | null): void;
+		set_named_pipeline(key: PipelineKey, pipeline?: Pipeline | null): void;
 	}
 
 	type ContextInitOptionsMixin = ObjectInitOptions
@@ -156,7 +156,7 @@ declare namespace imports.gi.Cogl {
 		 * @param display A {@link Display} pointer
 		 * @returns A newly allocated {@link Context}
 		 */
-		public static new(display: any | null): Context;
+		public static new(display?: any | null): Context;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -260,13 +260,13 @@ declare namespace imports.gi.Cogl {
 		 * @param object a {@link Object}
 		 * @returns the #object, with its reference count increased
 		 */
-		public static ref(object: any | null): any | null;
+		public static ref(object?: any | null): any | null;
 		/**
 		 * Drecreases the reference count of #object by 1; if the reference
 		 * count reaches 0, the resources allocated by #object will be freed
 		 * @param object a {@link Object}
 		 */
-		public static unref(object: any | null): void;
+		public static unref(object?: any | null): void;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -367,7 +367,7 @@ declare namespace imports.gi.Cogl {
 		 * @returns a {@link OnscreenDirtyClosure} pointer that can be used to
 		 *               remove the callback and associated #user_data later.
 		 */
-		add_dirty_callback(callback: OnscreenDirtyCallback, destroy: UserDataDestroyCallback | null): OnscreenDirtyClosure;
+		add_dirty_callback(callback: OnscreenDirtyCallback, destroy?: UserDataDestroyCallback | null): OnscreenDirtyClosure;
 		/**
 		 * Installs a #callback function that will be called for significant
 		 * events relating to the given #onscreen framebuffer.
@@ -398,7 +398,7 @@ declare namespace imports.gi.Cogl {
 		 * @returns a {@link FrameClosure} pointer that can be used to
 		 *               remove the callback and associated #user_data later.
 		 */
-		add_frame_callback(callback: FrameCallback, destroy: UserDataDestroyCallback | null): FrameClosure;
+		add_frame_callback(callback: FrameCallback, destroy?: UserDataDestroyCallback | null): FrameClosure;
 		/**
 		 * Registers a #callback with #onscreen that will be called whenever
 		 * the #onscreen framebuffer changes size.
@@ -425,7 +425,7 @@ declare namespace imports.gi.Cogl {
 		 * @returns a {@link OnscreenResizeClosure} pointer that can be used to
 		 *               remove the callback and associated #user_data later.
 		 */
-		add_resize_callback(callback: OnscreenResizeCallback, destroy: UserDataDestroyCallback | null): OnscreenResizeClosure;
+		add_resize_callback(callback: OnscreenResizeCallback, destroy?: UserDataDestroyCallback | null): OnscreenResizeClosure;
 		direct_scanout(scanout: Scanout, info: FrameInfo): boolean;
 		/**
 		 * Gets the current age of the buffer contents.
@@ -1669,7 +1669,7 @@ declare namespace imports.gi.Cogl {
 		 * @param v2 a {@link Color}
 		 * @returns %TRUE if the two colors are the same.
 		 */
-		public static equal(v1: any | null, v2: any | null): boolean;
+		public static equal(v1?: any | null, v2?: any | null): boolean;
 		/**
 		 * Converts a color expressed in HLS (hue, luminance and saturation)
 		 * values into a {@link Color}.
@@ -2312,7 +2312,7 @@ declare namespace imports.gi.Cogl {
 		 * @param v2 A 4x4 transformation matrix
 		 * @returns 
 		 */
-		public static equal(v1: any | null, v2: any | null): boolean;
+		public static equal(v1?: any | null, v2?: any | null): boolean;
 		public xx: number;
 		public yx: number;
 		public zx: number;
@@ -3677,7 +3677,7 @@ declare namespace imports.gi.Cogl {
 		 * or %NULL to only query the data size through the return value.
 		 * @returns the size of the texture data in bytes
 		 */
-		get_data(format: PixelFormat, rowstride: number, data: number[] | null): number;
+		get_data(format: PixelFormat, rowstride: number, data?: number[] | null): number;
 		/**
 		 * Queries the GL handles for a GPU side texture through its {@link Texture}.
 		 * 
@@ -5096,7 +5096,7 @@ declare namespace imports.gi.Cogl {
 	}
 
 	interface XlibFilterFunc {
-		(event: any, data: any | null): FilterReturn;
+		(event: any, data?: any | null): FilterReturn;
 	}
 
 	/**

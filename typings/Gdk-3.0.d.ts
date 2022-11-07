@@ -36,7 +36,7 @@ declare namespace imports.gi.Gdk {
 		 * See also {@link Gdk.AppLaunchContext.set_icon_name}.
 		 * @param icon a #GIcon, or %NULL
 		 */
-		set_icon(icon: Gio.Icon | null): void;
+		set_icon(icon?: Gio.Icon | null): void;
 		/**
 		 * Sets the icon for applications that are launched with this context.
 		 * The #icon_name will be interpreted in the same way as the Icon field
@@ -48,7 +48,7 @@ declare namespace imports.gi.Gdk {
 		 * for the launched application itself.
 		 * @param icon_name an icon name, or %NULL
 		 */
-		set_icon_name(icon_name: string | null): void;
+		set_icon_name(icon_name?: string | null): void;
 		/**
 		 * Sets the screen on which applications will be launched when
 		 * using this context. See also {@link Gdk.AppLaunchContext.set_display}.
@@ -562,7 +562,7 @@ declare namespace imports.gi.Gdk {
 		 * the axes of #device in, or %NULL.
 		 * @returns location to store the modifiers, or %NULL.
 		 */
-		get_state(window: Window, axes: number[] | null): ModifierType | null;
+		get_state(window: Window, axes?: number[] | null): ModifierType | null;
 		/**
 		 * Returns the vendor ID of this device, or %NULL if this information couldn't
 		 * be obtained. This ID is retrieved from the device, and is thus constant for
@@ -3210,7 +3210,7 @@ declare namespace imports.gi.Gdk {
 		 * @param options a #cairo_font_options_t, or %NULL to unset any
 		 *   previously set default font options.
 		 */
-		set_font_options(options: cairo.FontOptions | null): void;
+		set_font_options(options?: cairo.FontOptions | null): void;
 		/**
 		 * Sets the resolution for font handling on the screen. This is a
 		 * scale factor between points specified in a #PangoFontDescription
@@ -3421,7 +3421,7 @@ declare namespace imports.gi.Gdk {
 		 * @param prepare_func_data user data to pass to #prepare_func
 		 * @returns %GDK_GRAB_SUCCESS if the grab was successful.
 		 */
-		grab(window: Window, capabilities: SeatCapabilities, owner_events: boolean, cursor: Cursor | null, event: Event | null, prepare_func: SeatGrabPrepareFunc | null, prepare_func_data: any | null): GrabStatus;
+		grab(window: Window, capabilities: SeatCapabilities, owner_events: boolean, cursor?: Cursor | null, event?: Event | null, prepare_func?: SeatGrabPrepareFunc | null, prepare_func_data?: any | null): GrabStatus;
 		/**
 		 * Releases a grab added through {@link Gdk.Seat.grab}.
 		 */
@@ -3713,7 +3713,7 @@ declare namespace imports.gi.Gdk {
 		 * @param _function filter callback
 		 * @param data data to pass to filter callback
 		 */
-		add_filter(_function: FilterFunc, data: any | null): void;
+		add_filter(_function: FilterFunc, data?: any | null): void;
 		/**
 		 * Emits a short beep associated to #window in the appropriate
 		 * display, if supported. Otherwise, emits a short beep on
@@ -4626,7 +4626,7 @@ declare namespace imports.gi.Gdk {
 		 * @param child_func function to use to decide if to
 		 *     recurse to a child, %NULL means never recurse.
 		 */
-		invalidate_maybe_recurse(region: cairo.Region, child_func: WindowChildFunc | null): void;
+		invalidate_maybe_recurse(region: cairo.Region, child_func?: WindowChildFunc | null): void;
 		/**
 		 * A convenience wrapper around {@link Gdk.Window.invalidate_region} which
 		 * invalidates a rectangular region. See
@@ -4846,7 +4846,7 @@ declare namespace imports.gi.Gdk {
 		 * @param _function previously-added filter function
 		 * @param data user data for previously-added filter function
 		 */
-		remove_filter(_function: FilterFunc, data: any | null): void;
+		remove_filter(_function: FilterFunc, data?: any | null): void;
 		/**
 		 * Reparents #window into the given #new_parent. The window being
 		 * reparented will be unmapped as a side effect.
@@ -4935,7 +4935,7 @@ declare namespace imports.gi.Gdk {
 		 * when the window is obscured then exposed.
 		 * @param pattern a pattern to use, or %NULL
 		 */
-		set_background_pattern(pattern: cairo.Pattern | null): void;
+		set_background_pattern(pattern?: cairo.Pattern | null): void;
 		/**
 		 * @deprecated
 		 * Don't use this function
@@ -5002,7 +5002,7 @@ declare namespace imports.gi.Gdk {
 		 * should use this default.
 		 * @param cursor a cursor
 		 */
-		set_cursor(cursor: Cursor | null): void;
+		set_cursor(cursor?: Cursor | null): void;
 		/**
 		 * “Decorations” are the features the window manager adds to a toplevel {@link Window}.
 		 * This function sets the traditional Motif window manager hints that tell the
@@ -5156,7 +5156,7 @@ declare namespace imports.gi.Gdk {
 		 * if your application pretends to be multiple applications.
 		 * @param leader group leader window, or %NULL to restore the default group leader window
 		 */
-		set_group(leader: Window | null): void;
+		set_group(leader?: Window | null): void;
 		/**
 		 * Sets a list of icons for the window. One of these will be used
 		 * to represent the window when it has been iconified. The icon is
@@ -5186,7 +5186,7 @@ declare namespace imports.gi.Gdk {
 		 * Note that some platforms don't support window icons.
 		 * @param name name of window while iconified (minimized)
 		 */
-		set_icon_name(name: string | null): void;
+		set_icon_name(name?: string | null): void;
 		/**
 		 * Registers an invalidate handler for a specific window. This
 		 * will get called whenever a region in the window or its children
@@ -5276,7 +5276,7 @@ declare namespace imports.gi.Gdk {
 		 * property in your #GtkWidget::style-updated handler.
 		 * @param region a region, or %NULL
 		 */
-		set_opaque_region(region: cairo.Region | null): void;
+		set_opaque_region(region?: cairo.Region | null): void;
 		/**
 		 * An override redirect window is not under the control of the window manager.
 		 * This means it won’t have a titlebar, won’t be minimizable, etc. - it will
@@ -9917,7 +9917,7 @@ declare namespace imports.gi.Gdk {
 		 * @param data user data set when the event handler was installed with
 		 *   {@link Gdk.event.handler_set}.
 		 */
-		(event: Event, data: any | null): void;
+		(event: Event, data?: any | null): void;
 	}
 
 	/**
@@ -9945,7 +9945,7 @@ declare namespace imports.gi.Gdk {
 		 * @param data user data set when the filter was installed.
 		 * @returns a {@link FilterReturn} value.
 		 */
-		(xevent: XEvent, event: Event, data: any | null): FilterReturn;
+		(xevent: XEvent, event: Event, data?: any | null): FilterReturn;
 	}
 
 	/**
@@ -10391,7 +10391,7 @@ declare namespace imports.gi.Gdk {
 		 * Sets the device tool for this event, should be rarely used.
 		 * @param tool tool to set on the event, or %NULL
 		 */
-		set_device_tool(tool: DeviceTool | null): void;
+		set_device_tool(tool?: DeviceTool | null): void;
 		/**
 		 * Sets the screen for #event to #screen. The event must
 		 * have been allocated by GTK+, for instance, by

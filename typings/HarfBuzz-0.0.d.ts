@@ -3636,7 +3636,7 @@ declare namespace imports.gi.HarfBuzz {
 		 * 
 		 * The font extents retrieved
 		 */
-		(font: font_t, font_data: any | null): [ bool_t, font_extents_t ];
+		(font: font_t, font_data?: any | null): [ bool_t, font_extents_t ];
 	}
 
 	/**

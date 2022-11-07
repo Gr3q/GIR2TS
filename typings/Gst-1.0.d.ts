@@ -56,7 +56,7 @@ declare namespace imports.gi.Gst {
 		 * @param params optional parameters
 		 * @returns a new {@link Memory}.
 		 */
-		alloc(size: number, params: AllocationParams | null): Memory | null;
+		alloc(size: number, params?: AllocationParams | null): Memory | null;
 		/**
 		 * Free #memory that was previously allocated with {@link Gst.Allocator.alloc}.
 		 * @param memory the memory to free
@@ -111,7 +111,7 @@ declare namespace imports.gi.Gst {
 		 * the allocator with #name was not registered. Use {@link Gst.Object.unref}
 		 * to release the allocator after usage.
 		 */
-		public static find(name: string | null): Allocator | null;
+		public static find(name?: string | null): Allocator | null;
 		/**
 		 * Registers the memory #allocator with #name. This function takes ownership of
 		 * #allocator.
@@ -588,7 +588,7 @@ declare namespace imports.gi.Gst {
 		 * @param name the name of the new bin
 		 * @returns a new {@link Bin}
 		 */
-		public static new(name: string | null): Element;
+		public static new(name?: string | null): Element;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -633,7 +633,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * a location for a #GstBuffer
 		 */
-		acquire_buffer(params: BufferPoolAcquireParams | null): [ FlowReturn, Buffer ];
+		acquire_buffer(params?: BufferPoolAcquireParams | null): [ FlowReturn, Buffer ];
 		/**
 		 * Get a copy of the current configuration of the pool. This configuration
 		 * can either be modified and used for the {@link Gst.BufferPool.set_config} call
@@ -846,7 +846,7 @@ declare namespace imports.gi.Gst {
 		 * @param allocator a {@link Allocator}
 		 * @param params {@link AllocationParams}
 		 */
-		public static config_set_allocator(config: Structure, allocator: Allocator | null, params: AllocationParams | null): void;
+		public static config_set_allocator(config: Structure, allocator?: Allocator | null, params?: AllocationParams | null): void;
 		/**
 		 * Configure #config with the given parameters.
 		 * @param config a {@link BufferPool} configuration
@@ -955,7 +955,7 @@ declare namespace imports.gi.Gst {
 		 * @param data user data
 		 * @returns %TRUE
 		 */
-		async_signal_func(message: Message, data: any | null): boolean;
+		async_signal_func(message: Message, data?: any | null): boolean;
 		/**
 		 * Create watch for this bus. The GSource will be dispatched whenever
 		 * a message is on the bus. After the GSource is dispatched, the
@@ -1147,7 +1147,7 @@ declare namespace imports.gi.Gst {
 		 * @param data user data
 		 * @returns GST_BUS_PASS
 		 */
-		sync_signal_handler(message: Message, data: any | null): BusSyncReply;
+		sync_signal_handler(message: Message, data?: any | null): BusSyncReply;
 		/**
 		 * Get a message from the bus, waiting up to the specified timeout.
 		 * 
@@ -1505,7 +1505,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		set_master(master: Clock | null): boolean;
+		set_master(master?: Clock | null): boolean;
 		/**
 		 * Set the accuracy of the clock. Some clocks have the possibility to operate
 		 * with different accuracy at the expense of more resource usage. There is
@@ -1703,7 +1703,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static id_compare_func(id1: any | null, id2: any | null): number;
+		public static id_compare_func(id1?: any | null, id2?: any | null): number;
 		/**
 		 * This function returns the underlying clock.
 		 * @param id a {@link ClockID}
@@ -1993,7 +1993,7 @@ declare namespace imports.gi.Gst {
 		 * @returns a new {@link Element} configured to use
 		 * this device
 		 */
-		create_element(name: string | null): Element | null;
+		create_element(name?: string | null): Element | null;
 		/**
 		 * Getter for the {@link Caps} that this device supports.
 		 * @returns The {@link Caps} supported by this device. Unref with
@@ -2103,7 +2103,7 @@ declare namespace imports.gi.Gst {
 		 * @returns The id of the new filter or 0 if no provider matched the filter's
 		 *  classes.
 		 */
-		add_filter(classes: string | null, caps: Caps | null): number;
+		add_filter(classes?: string | null, caps?: Caps | null): number;
 		/**
 		 * Gets the {@link Bus} of this #GstDeviceMonitor
 		 * @returns a {@link Bus}
@@ -2439,14 +2439,14 @@ declare namespace imports.gi.Gst {
 		 *     if all classes are matched
 		 * @returns %TRUE if #factory matches or if #classes is %NULL.
 		 */
-		has_classes(classes: string | null): boolean;
+		has_classes(classes?: string | null): boolean;
 		/**
 		 * Check if #factory matches all of the given classes
 		 * @param classes a %NULL terminated array
 		 *   of classes to match, only match if all classes are matched
 		 * @returns %TRUE if #factory matches.
 		 */
-		has_classesv(classes: string[] | null): boolean;
+		has_classesv(classes?: string[] | null): boolean;
 	}
 
 	type DeviceProviderFactoryInitOptionsMixin = PluginFeatureInitOptions
@@ -2817,7 +2817,7 @@ declare namespace imports.gi.Gst {
 		 *   can be made, or %NULL if one cannot be found. {@link Gst.Object.unref}
 		 *   after usage.
 		 */
-		get_compatible_pad(pad: Pad, caps: Caps | null): Pad | null;
+		get_compatible_pad(pad: Pad, caps?: Caps | null): Pad | null;
 		/**
 		 * Retrieves a pad template from #element that is compatible with #compattempl.
 		 * Pads from compatible templates can be linked together.
@@ -3031,7 +3031,7 @@ declare namespace imports.gi.Gst {
 		 *     or %NULL for no filter.
 		 * @returns %TRUE if the pads could be linked, %FALSE otherwise.
 		 */
-		link_filtered(dest: Element, filter: Caps | null): boolean;
+		link_filtered(dest: Element, filter?: Caps | null): boolean;
 		/**
 		 * Chain together a series of elements. Uses {@link Gst.Element.link}.
 		 * Make sure you have added your elements to a bin or pipeline with
@@ -3052,7 +3052,7 @@ declare namespace imports.gi.Gst {
 		 * or %NULL for any pad.
 		 * @returns %TRUE if the pads could be linked, %FALSE otherwise.
 		 */
-		link_pads(srcpadname: string | null, dest: Element, destpadname: string | null): boolean;
+		link_pads(srcpadname: string | null, dest: Element, destpadname?: string | null): boolean;
 		/**
 		 * Links the two named pads of the source and destination elements. Side effect
 		 * is that if one of the pads has no parent, it becomes a child of the parent of
@@ -3067,7 +3067,7 @@ declare namespace imports.gi.Gst {
 		 *     or %NULL for no filter.
 		 * @returns %TRUE if the pads could be linked, %FALSE otherwise.
 		 */
-		link_pads_filtered(srcpadname: string | null, dest: Element, destpadname: string | null, filter: Caps | null): boolean;
+		link_pads_filtered(srcpadname: string | null, dest: Element, destpadname?: string | null, filter?: Caps | null): boolean;
 		/**
 		 * Links the two named pads of the source and destination elements.
 		 * Side effect is that if one of the pads has no parent, it becomes a
@@ -3288,7 +3288,7 @@ declare namespace imports.gi.Gst {
 		 * @returns requested {@link Pad} if found,
 		 *     otherwise %NULL.  Release after usage.
 		 */
-		request_pad(templ: PadTemplate, name: string | null, caps: Caps | null): Pad | null;
+		request_pad(templ: PadTemplate, name?: string | null, caps?: Caps | null): Pad | null;
 		/**
 		 * Sends a seek event to an element. See {@link Gst.Event.new_seek} for the details of
 		 * the parameters. The seek event is sent to the element using
@@ -3360,7 +3360,7 @@ declare namespace imports.gi.Gst {
 		 * MT safe.
 		 * @param bus the {@link Bus} to set.
 		 */
-		set_bus(bus: Bus | null): void;
+		set_bus(bus?: Bus | null): void;
 		/**
 		 * Sets the clock for the element. This function increases the
 		 * refcount on the clock. Any previously set clock on the object
@@ -3372,7 +3372,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		set_clock(clock: Clock | null): boolean;
+		set_clock(clock?: Clock | null): boolean;
 		/**
 		 * Sets the context of the element. Increases the refcount of the context.
 		 * 
@@ -3592,7 +3592,7 @@ declare namespace imports.gi.Gst {
 		 * @returns a new element or %NULL if none
 		 * could be created
 		 */
-		public static make_from_uri(type: URIType, uri: string, elementname: string | null): Element;
+		public static make_from_uri(type: URIType, uri: string, elementname?: string | null): Element;
 		/**
 		 * Create a new elementfactory capable of instantiating objects of the
 		 * #type and add the factory to #plugin.
@@ -3656,7 +3656,7 @@ declare namespace imports.gi.Gst {
 		 * @returns new {@link Element} or %NULL
 		 *     if the element couldn't be created
 		 */
-		create(name: string | null): Element | null;
+		create(name?: string | null): Element | null;
 		/**
 		 * Get the #GType for elements managed by this factory. The type can
 		 * only be retrieved if the element factory is loaded, which can be
@@ -3804,7 +3804,7 @@ declare namespace imports.gi.Gst {
 		 * @returns new {@link Element} or %NULL
 		 * if unable to create element
 		 */
-		public static make(factoryname: string, name: string | null): Element | null;
+		public static make(factoryname: string, name?: string | null): Element | null;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -3923,7 +3923,7 @@ declare namespace imports.gi.Gst {
 		 * @returns %TRUE if the new target could be set. This function
 		 *     can return %FALSE when the internal pads could not be linked.
 		 */
-		set_target(newtarget: Pad | null): boolean;
+		set_target(newtarget?: Pad | null): boolean;
 		connect(signal: "notify::pad", callback: (owner: this, ...args: any) => void): number;
 
 	}
@@ -4105,7 +4105,7 @@ declare namespace imports.gi.Gst {
 		 * @param error the GError.
 		 * @param debug an additional debug information string, or %NULL
 		 */
-		default_error(error: GLib.Error, debug: string | null): void;
+		default_error(error: GLib.Error, debug?: string | null): void;
 		/**
 		 * Gets the corresponding {@link ControlBinding} for the property. This should be
 		 * unreferenced again after use.
@@ -4203,7 +4203,7 @@ declare namespace imports.gi.Gst {
 		 * @param values array to put control-values in
 		 * @returns %TRUE if the given array could be filled, %FALSE otherwise
 		 */
-		get_value_array(property_name: string, timestamp: ClockTime, interval: ClockTime, n_values: number, values: any | null): boolean;
+		get_value_array(property_name: string, timestamp: ClockTime, interval: ClockTime, n_values: number, values?: any | null): boolean;
 		/**
 		 * Check if the #object has active controlled properties.
 		 * @returns %TRUE if the object has active controlled properties
@@ -4297,7 +4297,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.  This function grabs and releases #object's LOCK.
 		 */
-		set_name(name: string | null): boolean;
+		set_name(name?: string | null): boolean;
 		/**
 		 * Sets the parent of #object to #parent. The object's reference count will
 		 * be incremented, and any floating reference will be removed (see {@link Gst.Object.ref_sink}).
@@ -4460,7 +4460,7 @@ declare namespace imports.gi.Gst {
 		 *     a set of user-specified properties to exclude or %NULL to show
 		 *     all changes.
 		 */
-		public static default_deep_notify(object: GObject.Object, orig: Object, pspec: GObject.ParamSpec, excluded_props: string[] | null): void;
+		public static default_deep_notify(object: GObject.Object, orig: Object, pspec: GObject.ParamSpec, excluded_props?: string[] | null): void;
 		/**
 		 * Increase the reference count of #object, and possibly remove the floating
 		 * reference, if #object has a floating reference.
@@ -4476,7 +4476,7 @@ declare namespace imports.gi.Gst {
 		 * @param object a {@link Object} to sink
 		 * @returns 
 		 */
-		public static ref_sink(object: any | null): any | null;
+		public static ref_sink(object?: any | null): any | null;
 		/**
 		 * Atomically modifies a pointer to point to a new object.
 		 * The reference count of #oldobj is decreased and the reference count of
@@ -4486,7 +4486,7 @@ declare namespace imports.gi.Gst {
 		 * @param newobj a new {@link Object}
 		 * @returns %TRUE if #newobj was different from #oldobj
 		 */
-		public static replace(newobj: Object | null): boolean;
+		public static replace(newobj?: Object | null): boolean;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -4628,7 +4628,7 @@ declare namespace imports.gi.Gst {
 		 * @param stream_id The stream-id
 		 * @returns A stream-id for #pad. {@link G.free} after usage.
 		 */
-		create_stream_id(parent: Element, stream_id: string | null): string;
+		create_stream_id(parent: Element, stream_id?: string | null): string;
 		/**
 		 * Creates a stream-id for the source {@link Pad} #pad by combining the
 		 * upstream information with the optional #stream_id of the stream
@@ -4647,7 +4647,7 @@ declare namespace imports.gi.Gst {
 		 * @param stream_id The stream-id
 		 * @returns A stream-id for #pad. {@link G.free} after usage.
 		 */
-		create_stream_id_printf(parent: Element, stream_id: string | null): string;
+		create_stream_id_printf(parent: Element, stream_id?: string | null): string;
 		/**
 		 * Creates a stream-id for the source {@link Pad} #pad by combining the
 		 * upstream information with the optional #stream_id of the stream
@@ -4914,7 +4914,7 @@ declare namespace imports.gi.Gst {
 		 * @returns a {@link Iterator} of #GstPad, or %NULL if #pad
 		 * has no parent. Unref each returned pad with {@link Gst.Object.unref}.
 		 */
-		iterate_internal_links_default(parent: Object | null): Iterator | null;
+		iterate_internal_links_default(parent?: Object | null): Iterator | null;
 		/**
 		 * Links the source pad and the sink pad.
 		 * @param sinkpad the sink {@link Pad} to link.
@@ -5019,7 +5019,7 @@ declare namespace imports.gi.Gst {
 		 * ref-count. When there is no peer pad, this function returns #filter or,
 		 * when #filter is %NULL, ANY caps.
 		 */
-		peer_query_caps(filter: Caps | null): Caps;
+		peer_query_caps(filter?: Caps | null): Caps;
 		/**
 		 * Queries the peer pad of a given sink pad to convert #src_val in #src_format
 		 * to #dest_format.
@@ -5200,7 +5200,7 @@ declare namespace imports.gi.Gst {
 		 * @param filter suggested {@link Caps}, or %NULL
 		 * @returns the caps of the pad with incremented ref-count.
 		 */
-		query_caps(filter: Caps | null): Caps;
+		query_caps(filter?: Caps | null): Caps;
 		/**
 		 * Queries a pad to convert #src_val in #src_format to #dest_format.
 		 * @param src_format a {@link Format} to convert from.
@@ -5325,7 +5325,7 @@ declare namespace imports.gi.Gst {
 		 * No locking is performed in this function.
 		 * @param priv The private data to attach to the pad.
 		 */
-		set_element_private(priv: any | null): void;
+		set_element_private(priv?: any | null): void;
 		/**
 		 * Sets the given event handler for the pad.
 		 * @param event the {@link PadEventFullFunction} to set.
@@ -5588,7 +5588,7 @@ declare namespace imports.gi.Gst {
 		 * @param name the name of the pad
 		 * @returns a new {@link Pad}.
 		 */
-		public static new_from_template(templ: PadTemplate, name: string | null): Pad;
+		public static new_from_template(templ: PadTemplate, name?: string | null): Pad;
 		/**
 		 * Gets a string representing the given pad-link return.
 		 * @param ret a {@link PadLinkReturn} to get the name of.
@@ -5998,7 +5998,7 @@ declare namespace imports.gi.Gst {
 		 * MT safe.
 		 * @param clock the clock to use
 		 */
-		use_clock(clock: Clock | null): void;
+		use_clock(clock?: Clock | null): void;
 		connect(signal: "notify::auto-flush-bus", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::delay", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::latency", callback: (owner: this, ...args: any) => void): number;
@@ -6080,7 +6080,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new(name: string | null): Element;
+		public static new(name?: string | null): Element;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -6438,7 +6438,7 @@ declare namespace imports.gi.Gst {
 		 * and names are equal; positive value if the rank of p1 < the rank of p2 or the
 		 * ranks are equal but the name of p2 comes before the name of p1
 		 */
-		public static rank_compare_func(p1: any | null, p2: any | null): number;
+		public static rank_compare_func(p1?: any | null, p2?: any | null): number;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -6508,7 +6508,7 @@ declare namespace imports.gi.Gst {
 		 * @returns a {@link Iterator} of #GstPad, or %NULL if #pad
 		 * has no parent. Unref each returned pad with {@link Gst.Object.unref}.
 		 */
-		public static iterate_internal_links_default(pad: Pad, parent: Object | null): Iterator | null;
+		public static iterate_internal_links_default(pad: Pad, parent?: Object | null): Iterator | null;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -6850,7 +6850,7 @@ declare namespace imports.gi.Gst {
 		 * Set the caps for the {@link Stream}
 		 * @param caps a {@link Caps}
 		 */
-		set_caps(caps: Caps | null): void;
+		set_caps(caps?: Caps | null): void;
 		/**
 		 * Set the #flags for the #stream.
 		 * @param flags the flags to set on #stream
@@ -6865,7 +6865,7 @@ declare namespace imports.gi.Gst {
 		 * Set the tags for the {@link Stream}
 		 * @param tags a {@link TagList}
 		 */
-		set_tags(tags: TagList | null): void;
+		set_tags(tags?: TagList | null): void;
 		connect(signal: "notify::caps", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::stream-flags", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::stream-id", callback: (owner: this, ...args: any) => void): number;
@@ -6994,7 +6994,7 @@ declare namespace imports.gi.Gst {
 		 * @param upstream_id The stream id of the parent stream
 		 * @returns The new {@link StreamCollection}.
 		 */
-		public static new(upstream_id: string | null): StreamCollection;
+		public static new(upstream_id?: string | null): StreamCollection;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -7055,7 +7055,7 @@ declare namespace imports.gi.Gst {
 		 * MT safe.
 		 * @param new_clock a {@link Clock}
 		 */
-		public static set_default(new_clock: Clock | null): void;
+		public static set_default(new_clock?: Clock | null): void;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -7314,7 +7314,7 @@ declare namespace imports.gi.Gst {
 		 * {@link Gst.TaskPool.push}.
 		 * @param id the id
 		 */
-		join(id: any | null): void;
+		join(id?: any | null): void;
 		/**
 		 * Prepare the taskpool for accepting {@link Gst.TaskPool.push} operations.
 		 * 
@@ -7836,7 +7836,7 @@ declare namespace imports.gi.Gst {
 		 * Append #data to the tail of the queue.
 		 * @param data the data
 		 */
-		public push(data: any | null): void;
+		public push(data?: any | null): void;
 		/**
 		 * Increase the refcount of #queue.
 		 */
@@ -7965,7 +7965,7 @@ declare namespace imports.gi.Gst {
 		 * @returns a new {@link Buffer}, or %NULL if
 		 *     the memory couldn't be allocated.
 		 */
-		public static new_allocate(allocator: Allocator | null, size: number, params: AllocationParams | null): Buffer | null;
+		public static new_allocate(allocator: Allocator | null, size: number, params?: AllocationParams | null): Buffer | null;
 		/**
 		 * Creates a new buffer that wraps the given #data. The memory will be freed
 		 * with g_free and will be marked writable.
@@ -8002,7 +8002,7 @@ declare namespace imports.gi.Gst {
 		 * @param notify called with #user_data when the memory is freed
 		 * @returns a new {@link Buffer}
 		 */
-		public static new_wrapped_full(flags: MemoryFlags, data: number[], maxsize: number, offset: number, size: number, notify: GLib.DestroyNotify | null): Buffer;
+		public static new_wrapped_full(flags: MemoryFlags, data: number[], maxsize: number, offset: number, size: number, notify?: GLib.DestroyNotify | null): Buffer;
 		/**
 		 * Get the maximum amount of memory blocks that a buffer can hold. This is a
 		 * compile time constant that can be queried with the function.
@@ -8056,7 +8056,7 @@ declare namespace imports.gi.Gst {
 		 * @param params params for #info
 		 * @returns the metadata for the api in #info on #buffer.
 		 */
-		public add_meta(info: MetaInfo, params: any | null): Meta | null;
+		public add_meta(info: MetaInfo, params?: any | null): Meta | null;
 		/**
 		 * Add a {@link ParentBufferMeta} to #buffer that holds a reference on
 		 * #ref until the buffer is freed.
@@ -8268,7 +8268,7 @@ declare namespace imports.gi.Gst {
 		 * @returns the {@link ReferenceTimestampMeta} or %NULL when there
 		 * is no such metadata on #buffer.
 		 */
-		public get_reference_timestamp_meta(reference: Caps | null): ReferenceTimestampMeta | null;
+		public get_reference_timestamp_meta(reference?: Caps | null): ReferenceTimestampMeta | null;
 		/**
 		 * Get the total size of the memory blocks in #buffer.
 		 * @returns total size of the memory blocks in #buffer.
@@ -8792,7 +8792,7 @@ declare namespace imports.gi.Gst {
 		 * @param structure the {@link Structure} to append
 		 * @param features the {@link CapsFeatures} to append
 		 */
-		public append_structure_full(structure: Structure, features: CapsFeatures | null): void;
+		public append_structure_full(structure: Structure, features?: CapsFeatures | null): void;
 		/**
 		 * Tries intersecting #caps1 and #caps2 and reports whether the result would not
 		 * be empty
@@ -8980,7 +8980,7 @@ declare namespace imports.gi.Gst {
 		 * @param features a {@link CapsFeatures} for #structure
 		 * @returns %TRUE if #structure is a subset of #caps
 		 */
-		public is_subset_structure_full(structure: Structure, features: CapsFeatures | null): boolean;
+		public is_subset_structure_full(structure: Structure, features?: CapsFeatures | null): boolean;
 		/**
 		 * Calls the provided function once for each structure and caps feature in the
 		 * {@link Caps}. In contrast to {@link Gst.Caps.foreach}, the function may modify but not
@@ -9011,7 +9011,7 @@ declare namespace imports.gi.Gst {
 		 * @param features the {@link CapsFeatures} to merge
 		 * @returns the merged caps.
 		 */
-		public merge_structure_full(structure: Structure, features: CapsFeatures | null): Caps;
+		public merge_structure_full(structure: Structure, features?: CapsFeatures | null): Caps;
 		/**
 		 * Returns a {@link Caps} that represents the same set of formats as
 		 * #caps, but contains no lists.  Each list is expanded into separate
@@ -9034,12 +9034,12 @@ declare namespace imports.gi.Gst {
 		 * @param index the index of the structure
 		 * @param features the {@link CapsFeatures} to set
 		 */
-		public set_features(index: number, features: CapsFeatures | null): void;
+		public set_features(index: number, features?: CapsFeatures | null): void;
 		/**
 		 * Sets the {@link CapsFeatures} #features for all the structures of #caps.
 		 * @param features the {@link CapsFeatures} to set
 		 */
-		public set_features_simple(features: CapsFeatures | null): void;
+		public set_features_simple(features?: CapsFeatures | null): void;
 		/**
 		 * Sets fields in a {@link Caps}.  The arguments must be passed in the same
 		 * manner as {@link Gst.Structure.set}, and be %NULL-terminated.
@@ -10999,7 +10999,7 @@ declare namespace imports.gi.Gst {
 		 * @param notify called with #user_data when the memory is freed
 		 * @returns a new {@link Memory}.
 		 */
-		public static new_wrapped(flags: MemoryFlags, data: number[], maxsize: number, offset: number, size: number, notify: GLib.DestroyNotify | null): Memory | null;
+		public static new_wrapped(flags: MemoryFlags, data: number[], maxsize: number, offset: number, size: number, notify?: GLib.DestroyNotify | null): Memory | null;
 		/**
 		 * parent structure
 		 */
@@ -11185,7 +11185,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new_async_start(src: Object | null): Message;
+		public static new_async_start(src?: Object | null): Message;
 		/**
 		 * Create a new buffering message. This message can be posted by an element that
 		 * needs to buffer data before it can continue processing. #percent should be a
@@ -11245,7 +11245,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new_custom(type: MessageType, src: Object | null, structure: Structure | null): Message | null;
+		public static new_custom(type: MessageType, src?: Object | null, structure?: Structure | null): Message | null;
 		/**
 		 * Creates a new device-added message. The device-added message is produced by
 		 * {@link DeviceProvider} or a #GstDeviceMonitor. They announce the appearance
@@ -11285,7 +11285,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new_duration_changed(src: Object | null): Message;
+		public static new_duration_changed(src?: Object | null): Message;
 		/**
 		 * Create a new element-specific message. This is meant as a generic way of
 		 * allowing one-way communication from an element to an application, for example
@@ -11308,7 +11308,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new_eos(src: Object | null): Message;
+		public static new_eos(src?: Object | null): Message;
 		/**
 		 * Create a new error message. The message will copy #error and
 		 * #debug. This message is posted by element when a fatal event
@@ -11333,7 +11333,7 @@ declare namespace imports.gi.Gst {
 		 * @param details A GstStructure with details
 		 * @returns the new error message.
 		 */
-		public static new_error_with_details(src: Object | null, error: GLib.Error, debug: string, details: Structure | null): Message | null;
+		public static new_error_with_details(src: Object | null, error: GLib.Error, debug: string, details?: Structure | null): Message | null;
 		/**
 		 * This message is posted when an element has a new local {@link Context}.
 		 * @param src The object originating the message.
@@ -11363,7 +11363,7 @@ declare namespace imports.gi.Gst {
 		 * @param details A GstStructure with details
 		 * @returns the new warning message.
 		 */
-		public static new_info_with_details(src: Object | null, error: GLib.Error, debug: string, details: Structure | null): Message | null;
+		public static new_info_with_details(src: Object | null, error: GLib.Error, debug: string, details?: Structure | null): Message | null;
 		/**
 		 * Creates a new instant-rate-request message. Elements handling the
 		 * instant-rate-change event must post this message. The message is
@@ -11384,7 +11384,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new_latency(src: Object | null): Message;
+		public static new_latency(src?: Object | null): Message;
 		/**
 		 * This message is posted when an element needs a specific {@link Context}.
 		 * @param src The object originating the message.
@@ -11417,7 +11417,7 @@ declare namespace imports.gi.Gst {
 		 * @returns The new qos message.
 		 */
 		public static new_progress(src: Object, type: ProgressType, code: string, text: string): Message | null;
-		public static new_property_notify(src: Object, property_name: string, val: GObject.Value | null): Message;
+		public static new_property_notify(src: Object, property_name: string, val?: GObject.Value | null): Message;
 		/**
 		 * A QOS message is posted on the bus whenever an element decides to drop a
 		 * buffer because of QoS reasons or whenever it changes its processing strategy
@@ -11475,7 +11475,7 @@ declare namespace imports.gi.Gst {
 		 * @param entry_struct structure for the new entry
 		 * @returns a newly allocated {@link Message}
 		 */
-		public static new_redirect(src: Object, location: string, tag_list: TagList | null, entry_struct: Structure | null): Message;
+		public static new_redirect(src: Object, location: string, tag_list?: TagList | null, entry_struct?: Structure | null): Message;
 		/**
 		 * This message can be posted by elements when they want to have their state
 		 * changed. A typical use case would be an audio server that wants to pause the
@@ -11544,7 +11544,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new_state_dirty(src: Object | null): Message;
+		public static new_state_dirty(src?: Object | null): Message;
 		/**
 		 * This message is posted by elements when they complete a part, when #intermediate set
 		 * to %TRUE, or a complete step operation.
@@ -11604,7 +11604,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * MT safe.
 		 */
-		public static new_stream_start(src: Object | null): Message;
+		public static new_stream_start(src?: Object | null): Message;
 		/**
 		 * Create a new stream status message. This message is posted when a streaming
 		 * thread is created/destroyed or when the state changed.
@@ -11688,7 +11688,7 @@ declare namespace imports.gi.Gst {
 		 * @param details A GstStructure with details
 		 * @returns the new warning message.
 		 */
-		public static new_warning_with_details(src: Object | null, error: GLib.Error, debug: string, details: Structure | null): Message | null;
+		public static new_warning_with_details(src: Object | null, error: GLib.Error, debug: string, details?: Structure | null): Message | null;
 		/**
 		 * Modifies a pointer to a {@link Message} to point to a different #GstMessage. The
 		 * modification is done atomically (so this is useful for ensuring thread safety
@@ -11700,7 +11700,7 @@ declare namespace imports.gi.Gst {
 		 *     replace the message pointed to by #old_message.
 		 * @returns %TRUE if #new_message was different from #old_message
 		 */
-		public static replace(new_message: Message | null): boolean;
+		public static replace(new_message?: Message | null): boolean;
 		/**
 		 * the parent structure
 		 */
@@ -11732,7 +11732,7 @@ declare namespace imports.gi.Gst {
 		 * @param tag_list tag list for the new entry
 		 * @param entry_struct structure for the new entry
 		 */
-		public add_redirect_entry(location: string, tag_list: TagList | null, entry_struct: Structure | null): void;
+		public add_redirect_entry(location: string, tag_list?: TagList | null, entry_struct?: Structure | null): void;
 		/**
 		 * Creates a copy of the message. Returns a copy of the message.
 		 * @returns a new copy of #msg.
@@ -12517,7 +12517,7 @@ declare namespace imports.gi.Gst {
 		 * @param newdata pointer to new mini-object
 		 * @returns %TRUE if #newdata was different from #olddata
 		 */
-		public static replace(newdata: MiniObject | null): boolean;
+		public static replace(newdata?: MiniObject | null): boolean;
 		/**
 		 * Replace the current {@link MiniObject} pointer to by #olddata with %NULL and
 		 * return the old value.
@@ -12602,7 +12602,7 @@ declare namespace imports.gi.Gst {
 		 * @param dispose_func the dispose function, or %NULL
 		 * @param free_func the free function or %NULL
 		 */
-		public init(flags: number, type: GObject.Type, copy_func: MiniObjectCopyFunction | null, dispose_func: MiniObjectDisposeFunction | null, free_func: MiniObjectFreeFunction | null): void;
+		public init(flags: number, type: GObject.Type, copy_func?: MiniObjectCopyFunction | null, dispose_func?: MiniObjectDisposeFunction | null, free_func?: MiniObjectFreeFunction | null): void;
 		/**
 		 * If #mini_object has the LOCKABLE flag set, check if the current EXCLUSIVE
 		 * lock on #object is the only one, this means that changes to the object will
@@ -12699,13 +12699,13 @@ declare namespace imports.gi.Gst {
 		 * @param notify callback to invoke before the mini object is freed
 		 * @param data extra data to pass to notify
 		 */
-		public weak_ref(notify: MiniObjectNotify, data: any | null): void;
+		public weak_ref(notify: MiniObjectNotify, data?: any | null): void;
 		/**
 		 * Removes a weak reference callback from a mini object.
 		 * @param notify callback to search for
 		 * @param data data to search for
 		 */
-		public weak_unref(notify: MiniObjectNotify, data: any | null): void;
+		public weak_unref(notify: MiniObjectNotify, data?: any | null): void;
 	}
 
 	export interface PadProbeInfoInitOptions {}
@@ -13171,7 +13171,7 @@ declare namespace imports.gi.Gst {
 		public save_preset: {(preset: Preset, name: string): boolean;};
 		public rename_preset: {(preset: Preset, old_name: string, new_name: string): boolean;};
 		public delete_preset: {(preset: Preset, name: string): boolean;};
-		public set_meta: {(preset: Preset, name: string, tag: string, value: string | null): boolean;};
+		public set_meta: {(preset: Preset, name: string, tag: string, value?: string | null): boolean;};
 		public get_meta: {(preset: Preset, name: string, tag: string): [ boolean, string ];};
 	}
 
@@ -13271,7 +13271,7 @@ declare namespace imports.gi.Gst {
 		 * is not visible to the consumer.
 		 * @param s a {@link Structure} with the the reply contents
 		 */
-		public reply(s: Structure | null): void;
+		public reply(s?: Structure | null): void;
 		/**
 		 * Wait for #promise to move out of the %GST_PROMISE_RESULT_PENDING state.
 		 * If #promise is not in %GST_PROMISE_RESULT_PENDING then it will return
@@ -13416,7 +13416,7 @@ declare namespace imports.gi.Gst {
 		 * @param structure a structure for the query
 		 * @returns a new {@link Query}
 		 */
-		public static new_custom(type: QueryType, structure: Structure | null): Query | null;
+		public static new_custom(type: QueryType, structure?: Structure | null): Query | null;
 		/**
 		 * Constructs a new query object for querying the drain state.
 		 * 
@@ -13510,13 +13510,13 @@ declare namespace imports.gi.Gst {
 		 * @param api the metadata API
 		 * @param params API specific parameters
 		 */
-		public add_allocation_meta(api: GObject.Type, params: Structure | null): void;
+		public add_allocation_meta(api: GObject.Type, params?: Structure | null): void;
 		/**
 		 * Add #allocator and its #params as a supported memory allocator.
 		 * @param allocator the memory allocator
 		 * @param params a {@link AllocationParams}
 		 */
-		public add_allocation_param(allocator: Allocator | null, params: AllocationParams | null): void;
+		public add_allocation_param(allocator?: Allocator | null, params?: AllocationParams | null): void;
 		/**
 		 * Set the pool parameters in #query.
 		 * @param pool the {@link BufferPool}
@@ -13972,7 +13972,7 @@ declare namespace imports.gi.Gst {
 		 * @param allocator new allocator to set
 		 * @param params parameters for the allocator
 		 */
-		public set_nth_allocation_param(index: number, allocator: Allocator | null, params: AllocationParams | null): void;
+		public set_nth_allocation_param(index: number, allocator?: Allocator | null, params?: AllocationParams | null): void;
 		/**
 		 * Set the pool parameters in #query.
 		 * @param index index to modify
@@ -14102,7 +14102,7 @@ declare namespace imports.gi.Gst {
 		 * @returns the new {@link Sample}. {@link Gst.Sample.unref}
 		 *     after usage.
 		 */
-		public static new(buffer: Buffer | null, caps: Caps | null, segment: Segment | null, info: Structure | null): Sample;
+		public static new(buffer?: Buffer | null, caps?: Caps | null, segment?: Segment | null, info?: Structure | null): Sample;
 		/**
 		 * Get the buffer associated with #sample
 		 * @returns the buffer of #sample or %NULL
@@ -14868,7 +14868,7 @@ declare namespace imports.gi.Gst {
 		 * @param newstr a new {@link Structure}
 		 * @returns %TRUE if #newstr was different from #oldstr_ptr
 		 */
-		public static take(newstr: Structure | null): boolean;
+		public static take(newstr?: Structure | null): boolean;
 		/**
 		 * the GType of a structure
 		 */
@@ -16087,7 +16087,7 @@ declare namespace imports.gi.Gst {
 		 * Set a {@link TagList} with tags for the complete #toc.
 		 * @param tags A {@link TagList} or %NULL
 		 */
-		public set_tags(tags: TagList | null): void;
+		public set_tags(tags?: TagList | null): void;
 	}
 
 	export interface TocEntryInitOptions {}
@@ -16184,7 +16184,7 @@ declare namespace imports.gi.Gst {
 		 * Set a {@link TagList} with tags for the complete #entry.
 		 * @param tags A {@link TagList} or %NULL
 		 */
-		public set_tags(tags: TagList | null): void;
+		public set_tags(tags?: TagList | null): void;
 	}
 
 	export interface TocSetterInterfaceInitOptions {}
@@ -16280,7 +16280,7 @@ declare namespace imports.gi.Gst {
 		 * @param media_type the media type of the suggested caps
 		 * @param fieldname first field of the suggested caps, or %NULL
 		 */
-		public suggest_simple(probability: number, media_type: string, fieldname: string | null): void;
+		public suggest_simple(probability: number, media_type: string, fieldname?: string | null): void;
 	}
 
 	export interface URIHandlerInterfaceInitOptions {}
@@ -16321,7 +16321,7 @@ declare namespace imports.gi.Gst {
 		 * @param fragment The fragment name for the new URI.
 		 * @returns A new {@link Uri} object.
 		 */
-		public static new(scheme: string | null, userinfo: string | null, host: string | null, port: number, path: string | null, query: string | null, fragment: string | null): Uri;
+		public static new(scheme: string | null, userinfo: string | null, host: string | null, port: number, path?: string | null, query?: string | null, fragment?: string | null): Uri;
 		/**
 		 * @deprecated
 		 * Use GstURI instead.
@@ -16570,7 +16570,7 @@ declare namespace imports.gi.Gst {
 		 * @returns A {@link Uri} which represents the base
 		 *                                      with the reference URI joined on.
 		 */
-		public join(ref_uri: Uri | null): Uri | null;
+		public join(ref_uri?: Uri | null): Uri | null;
 		/**
 		 * Make the {@link Uri} writable.
 		 * 
@@ -16595,7 +16595,7 @@ declare namespace imports.gi.Gst {
 		 * @param fragment The fragment name for the new URI.
 		 * @returns The new URI joined onto #base.
 		 */
-		public new_with_base(scheme: string | null, userinfo: string | null, host: string | null, port: number, path: string | null, query: string | null, fragment: string | null): Uri;
+		public new_with_base(scheme: string | null, userinfo: string | null, host: string | null, port: number, path?: string | null, query?: string | null, fragment?: string | null): Uri;
 		/**
 		 * Normalization will remove extra path segments ("." and "..") from the URI. It
 		 * will also convert the scheme and host name to lower case and any
@@ -16624,7 +16624,7 @@ declare namespace imports.gi.Gst {
 		 * @param fragment The fragment string to set.
 		 * @returns %TRUE if the fragment was set/unset successfully.
 		 */
-		public set_fragment(fragment: string | null): boolean;
+		public set_fragment(fragment?: string | null): boolean;
 		/**
 		 * Set or unset the host for the URI.
 		 * @param host The new host string to set or %NULL to unset.
@@ -16644,7 +16644,7 @@ declare namespace imports.gi.Gst {
 		 *                 path list to set.
 		 * @returns %TRUE if the path segments were set successfully.
 		 */
-		public set_path_segments(path_segments: string[] | null): boolean;
+		public set_path_segments(path_segments?: string[] | null): boolean;
 		/**
 		 * Sets or unsets the path in the URI.
 		 * @param path The new percent encoded path to set with path segments separated by
@@ -16673,7 +16673,7 @@ declare namespace imports.gi.Gst {
 		 *               query table to use.
 		 * @returns %TRUE if the new table was successfully used for the query table.
 		 */
-		public set_query_table(query_table: string[] | null): boolean;
+		public set_query_table(query_table?: string[] | null): boolean;
 		/**
 		 * This inserts or replaces a key in the query table. A #query_value of %NULL
 		 * indicates that the key has no associated value, but will still be present in
@@ -16682,7 +16682,7 @@ declare namespace imports.gi.Gst {
 		 * @param query_value The value for the key.
 		 * @returns %TRUE if the query table was successfully updated.
 		 */
-		public set_query_value(query_key: string, query_value: string | null): boolean;
+		public set_query_value(query_key: string, query_value?: string | null): boolean;
 		/**
 		 * Set or unset the scheme for the URI.
 		 * @param scheme The new scheme to set or %NULL to unset the scheme.
@@ -16952,7 +16952,7 @@ declare namespace imports.gi.Gst {
 		 * @param value new value
 		 * @returns %TRUE for success, %FALSE if e.g. there is no preset with that #name
 		 */
-		set_meta(name: string, tag: string, value: string | null): boolean;
+		set_meta(name: string, tag: string, value?: string | null): boolean;
 	}
 
 	type PresetInitOptionsMixin  = {};
@@ -17166,7 +17166,7 @@ declare namespace imports.gi.Gst {
 		 * unreffed before setting a new one.
 		 * @param toc a {@link Toc} to set.
 		 */
-		set_toc(toc: Toc | null): void;
+		set_toc(toc?: Toc | null): void;
 	}
 
 	type TocSetterInitOptionsMixin  = {};
@@ -21016,7 +21016,7 @@ declare namespace imports.gi.Gst {
 		 * @param data transform specific data.
 		 * @returns %TRUE if the transform could be performed
 		 */
-		(transbuf: Buffer, meta: Meta, buffer: Buffer, type: GLib.Quark, data: any | null): boolean;
+		(transbuf: Buffer, meta: Meta, buffer: Buffer, type: GLib.Quark, data?: any | null): boolean;
 	}
 
 	/**
@@ -21330,7 +21330,7 @@ declare namespace imports.gi.Gst {
 		 * 
 		 * the caller must call {@link Gst.Iterator.free} after usage.
 		 */
-		(pad: Pad, parent: Object | null): Iterator;
+		(pad: Pad, parent?: Object | null): Iterator;
 	}
 
 	/**
@@ -21410,7 +21410,7 @@ declare namespace imports.gi.Gst {
 		 * @param event a sticky {@link Event}.
 		 * @returns %TRUE if the iteration should continue
 		 */
-		(pad: Pad, event: Event | null): boolean;
+		(pad: Pad, event?: Event | null): boolean;
 	}
 
 	/**
@@ -21430,7 +21430,7 @@ declare namespace imports.gi.Gst {
 		 *          flag is set, #parent is guaranteed to be not-%NULL and remain valid
 		 *          during the execution of this function.
 		 */
-		(pad: Pad, parent: Object | null): void;
+		(pad: Pad, parent?: Object | null): void;
 	}
 
 	/**

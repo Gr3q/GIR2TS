@@ -155,7 +155,7 @@ declare namespace imports.gi.Soup {
 		 * @returns %SOUP_STATUS_OK, %SOUP_STATUS_CANT_RESOLVE, or
 		 * %SOUP_STATUS_CANCELLED.
 		 */
-		resolve_sync(cancellable: Gio.Cancellable | null): number;
+		resolve_sync(cancellable?: Gio.Cancellable | null): number;
 		connect(signal: "notify::family", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::name", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::physical", callback: (owner: this, ...args: any) => void): number;
@@ -999,7 +999,7 @@ declare namespace imports.gi.Soup {
 		 * @param uri the URI setting the cookie
 		 * @param first_party the URI for the main document
 		 */
-		add_cookie_full(cookie: Cookie, uri: URI | null, first_party: URI | null): void;
+		add_cookie_full(cookie: Cookie, uri?: URI | null, first_party?: URI | null): void;
 		/**
 		 * Adds #cookie to #jar, emitting the 'changed' signal if we are modifying
 		 * an existing cookie or adding a valid new cookie ('valid' means
@@ -1817,7 +1817,7 @@ declare namespace imports.gi.Soup {
 		 * @param resp_body 
 		 *   a data buffer containing the body of the message response.
 		 */
-		set_response(content_type: string | null, resp_use: MemoryUse, resp_body: string | ByteArray): void;
+		set_response(content_type: string | null, resp_use: MemoryUse, resp_body?: string | ByteArray): void;
 		/**
 		 * Sets #site_for_cookies as the policy URL for same-site cookies for #msg.
 		 * 
@@ -1829,7 +1829,7 @@ declare namespace imports.gi.Soup {
 		 * for more information.
 		 * @param site_for_cookies the {@link URI} for the #msg's site for cookies
 		 */
-		set_site_for_cookies(site_for_cookies: URI | null): void;
+		set_site_for_cookies(site_for_cookies?: URI | null): void;
 		/**
 		 * Sets #msg's status code to #status_code. If #status_code is a
 		 * known value, it will also set #msg's reason_phrase.
@@ -2233,7 +2233,7 @@ declare namespace imports.gi.Soup {
 		 * @returns a new #GInputStream, or
 		 * %NULL if there are no more parts
 		 */
-		next_part(cancellable: Gio.Cancellable | null): Gio.InputStream | null;
+		next_part(cancellable?: Gio.Cancellable | null): Gio.InputStream | null;
 		/**
 		 * Obtains a #GInputStream for the next request. See
 		 * {@link Soup.MultipartInputStream.next_part} for details on the
@@ -2243,7 +2243,7 @@ declare namespace imports.gi.Soup {
 		 * @param callback callback to call when request is satisfied.
 		 * @param data data for #callback
 		 */
-		next_part_async(io_priority: number, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null, data: any | null): void;
+		next_part_async(io_priority: number, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null, data?: any | null): void;
 		/**
 		 * Finishes an asynchronous request for the next part.
 		 * @param result a #GAsyncResult.
@@ -2356,7 +2356,7 @@ declare namespace imports.gi.Soup {
 		 * @returns a #GInputStream that can be used to
 		 *   read from the URI pointed to by #request.
 		 */
-		send(cancellable: Gio.Cancellable | null): Gio.InputStream;
+		send(cancellable?: Gio.Cancellable | null): Gio.InputStream;
 		/**
 		 * Begins an asynchronously request for the URI pointed to by
 		 * #request.
@@ -2366,7 +2366,7 @@ declare namespace imports.gi.Soup {
 		 * @param cancellable a #GCancellable or %NULL
 		 * @param callback a #GAsyncReadyCallback
 		 */
-		send_async(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		send_async(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Gets the result of a {@link Soup.Request.send_async}.
 		 * @param result the #GAsyncResult
@@ -2632,7 +2632,7 @@ declare namespace imports.gi.Soup {
 		 * accepted or any other error occurred (in which case #error will be
 		 * set).
 		 */
-		accept_iostream(stream: Gio.IOStream, local_addr: Gio.SocketAddress | null, remote_addr: Gio.SocketAddress | null): boolean;
+		accept_iostream(stream: Gio.IOStream, local_addr?: Gio.SocketAddress | null, remote_addr?: Gio.SocketAddress | null): boolean;
 		/**
 		 * Adds an authentication domain to #server. Each auth domain will
 		 * have the chance to require authentication for each request that
@@ -3531,7 +3531,7 @@ declare namespace imports.gi.Soup {
 		 * will be called for every network event that occurs during the connection.
 		 * @param callback the callback to invoke when the operation finishes
 		 */
-		connect_async(uri: URI, cancellable: Gio.Cancellable | null, progress_callback: SessionConnectProgressCallback | null, callback: Gio.AsyncReadyCallback | null): void;
+		connect_async(uri: URI, cancellable?: Gio.Cancellable | null, progress_callback?: SessionConnectProgressCallback | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Gets the #GIOStream created for the connection to communicate with the server.
 		 * @param result the #GAsyncResult passed to your callback
@@ -3613,7 +3613,7 @@ declare namespace imports.gi.Soup {
 		 * @param callback callback to call with the
 		 *     result, or %NULL
 		 */
-		prefetch_dns(hostname: string, cancellable: Gio.Cancellable | null, callback: AddressCallback | null): void;
+		prefetch_dns(hostname: string, cancellable?: Gio.Cancellable | null, callback?: AddressCallback | null): void;
 		/**
 		 * @deprecated
 		 * use {@link Soup.Session.prefetch_dns} instead
@@ -3650,7 +3650,7 @@ declare namespace imports.gi.Soup {
 		 * @param callback a {@link SessionCallback} which will
 		 * be called after the message completes or when an unrecoverable error occurs.
 		 */
-		queue_message(msg: Message, callback: SessionCallback | null): void;
+		queue_message(msg: Message, callback?: SessionCallback | null): void;
 		/**
 		 * Updates #msg's URI according to its status code and "Location"
 		 * header, and requeues it on #session. Use this when you have set
@@ -3754,7 +3754,7 @@ declare namespace imports.gi.Soup {
 		 * @returns a #GInputStream for reading the
 		 *   response body, or %NULL on error.
 		 */
-		send(msg: Message, cancellable: Gio.Cancellable | null): Gio.InputStream;
+		send(msg: Message, cancellable?: Gio.Cancellable | null): Gio.InputStream;
 		/**
 		 * Asynchronously sends #msg and waits for the beginning of a
 		 * response. When #callback is called, then either #msg has been sent,
@@ -3776,7 +3776,7 @@ declare namespace imports.gi.Soup {
 		 * @param cancellable a #GCancellable
 		 * @param callback the callback to invoke
 		 */
-		send_async(msg: Message, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		send_async(msg: Message, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Gets the response to a {@link Soup.Session.send_async} call and (if
 		 * successful), returns a #GInputStream that can be used to read the
@@ -3862,7 +3862,7 @@ declare namespace imports.gi.Soup {
 		 * @param cancellable a #GCancellable
 		 * @param callback the callback to invoke
 		 */
-		websocket_connect_async(msg: Message, origin: string | null, protocols: string[] | null, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		websocket_connect_async(msg: Message, origin?: string | null, protocols?: string[] | null, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Gets the {@link WebsocketConnection} response to a
 		 * {@link Soup.Session.websocket_connect_async} call and (if successful),
@@ -4236,7 +4236,7 @@ declare namespace imports.gi.Soup {
 		 * @param cancellable a #GCancellable, or %NULL
 		 * @returns a success or failure code.
 		 */
-		connect_sync(cancellable: Gio.Cancellable | null): number;
+		connect_sync(cancellable?: Gio.Cancellable | null): number;
 		/**
 		 * Disconnects #sock. Any further read or write attempts on it will
 		 * fail.
@@ -4306,7 +4306,7 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * on return, the number of bytes read into #buffer
 		 */
-		read(buffer: number[], len: number, cancellable: Gio.Cancellable | null): [ SocketIOStatus, number ];
+		read(buffer: number[], len: number, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
 		/**
 		 * Like {@link Soup.Socket.read}, but reads no further than the first
 		 * occurrence of #boundary. (If the boundary is found, it will be
@@ -4332,7 +4332,7 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * on return, the number of bytes read into #buffer
 		 */
-		read_until(buffer: number[], len: number, boundary: any | null, boundary_len: number, got_boundary: boolean, cancellable: Gio.Cancellable | null): [ SocketIOStatus, number ];
+		read_until(buffer: number[], len: number, boundary: any | null, boundary_len: number, got_boundary: boolean, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
 		/**
 		 * Starts using SSL on #socket, expecting to find a host named
 		 * #ssl_host.
@@ -4340,13 +4340,13 @@ declare namespace imports.gi.Soup {
 		 * @param cancellable a #GCancellable
 		 * @returns success or failure
 		 */
-		start_proxy_ssl(ssl_host: string, cancellable: Gio.Cancellable | null): boolean;
+		start_proxy_ssl(ssl_host: string, cancellable?: Gio.Cancellable | null): boolean;
 		/**
 		 * Starts using SSL on #socket.
 		 * @param cancellable a #GCancellable
 		 * @returns success or failure
 		 */
-		start_ssl(cancellable: Gio.Cancellable | null): boolean;
+		start_ssl(cancellable?: Gio.Cancellable | null): boolean;
 		/**
 		 * Attempts to write #len bytes from #buffer to #sock. If some data is
 		 * successfully written, the return status will be %SOUP_SOCKET_OK,
@@ -4369,7 +4369,7 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * on return, number of bytes written
 		 */
-		write(buffer: number[], len: number, cancellable: Gio.Cancellable | null): [ SocketIOStatus, number ];
+		write(buffer: number[], len: number, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
 		/**
 		 * Emitted when the socket is disconnected, for whatever
 		 * reason.
@@ -4543,7 +4543,7 @@ declare namespace imports.gi.Soup {
 		 * @param code close code
 		 * @param data close data
 		 */
-		close(code: number, data: string | null): void;
+		close(code: number, data?: string | null): void;
 		/**
 		 * Get the close code received from the WebSocket peer.
 		 * 
@@ -4766,7 +4766,7 @@ declare namespace imports.gi.Soup {
 		 * @param protocol the subprotocol in use
 		 * @returns a new {@link WebsocketConnection}
 		 */
-		public static new(stream: Gio.IOStream, uri: URI, type: WebsocketConnectionType, origin: string | null, protocol: string | null): WebsocketConnection;
+		public static new(stream: Gio.IOStream, uri: URI, type: WebsocketConnectionType, origin?: string | null, protocol?: string | null): WebsocketConnection;
 		/**
 		 * Creates a {@link WebsocketConnection} on #stream with the given active #extensions.
 		 * This should be called after completing the handshake to begin using the WebSocket
@@ -4792,7 +4792,7 @@ declare namespace imports.gi.Soup {
 		 * @param params the parameters, or %NULL
 		 * @returns %TRUE if extension could be configured with the given parameters, or %FALSE otherwise
 		 */
-		configure(connection_type: WebsocketConnectionType, params: any[] | null): boolean;
+		configure(connection_type: WebsocketConnectionType, params?: any[] | null): boolean;
 		/**
 		 * Get the parameters strings to be included in the request header. If the extension
 		 * doesn't include any parameter in the request, this function returns %NULL.
@@ -4930,7 +4930,7 @@ declare namespace imports.gi.Soup {
 		 * the buffer is freed
 		 * @returns the new {@link Buffer}.
 		 */
-		public static new_with_owner(data: number[], length: number, owner: any | null, owner_dnotify: GLib.DestroyNotify | null): Buffer;
+		public static new_with_owner(data: number[], length: number, owner?: any | null, owner_dnotify?: GLib.DestroyNotify | null): Buffer;
 		/**
 		 * the data
 		 */
@@ -6101,7 +6101,7 @@ declare namespace imports.gi.Soup {
 		 * @param params additional
 		 * parameters, or %NULL
 		 */
-		public set_content_disposition(disposition: string, params: string[] | null): void;
+		public set_content_disposition(disposition: string, params?: string[] | null): void;
 		/**
 		 * Sets the message body length that #hdrs will declare, and sets
 		 * #hdrs's encoding to %SOUP_ENCODING_CONTENT_LENGTH.
@@ -6139,7 +6139,7 @@ declare namespace imports.gi.Soup {
 		 * @param params additional
 		 * parameters, or %NULL
 		 */
-		public set_content_type(content_type: string, params: string[] | null): void;
+		public set_content_type(content_type: string, params?: string[] | null): void;
 		/**
 		 * Sets the message body encoding that #hdrs will declare. In particular,
 		 * you should use this if you are going to send a request or response in
@@ -6330,7 +6330,7 @@ declare namespace imports.gi.Soup {
 		public constructor(options?: Partial<PasswordManagerInterfaceInitOptions>);
 		public readonly base: GObject.TypeInterface;
 		public get_passwords_async: {(password_manager: PasswordManager, msg: Message, auth: Auth, retrying: boolean, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: PasswordManagerCallback): void;};
-		public get_passwords_sync: {(password_manager: PasswordManager, msg: Message, auth: Auth, cancellable: Gio.Cancellable | null): void;};
+		public get_passwords_sync: {(password_manager: PasswordManager, msg: Message, auth: Auth, cancellable?: Gio.Cancellable | null): void;};
 	}
 
 	export interface ProxyResolverInterfaceInitOptions {}
@@ -6339,7 +6339,7 @@ declare namespace imports.gi.Soup {
 		public constructor(options?: Partial<ProxyResolverInterfaceInitOptions>);
 		public readonly base: GObject.TypeInterface;
 		public get_proxy_async: {(proxy_resolver: ProxyResolver, msg: Message, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: ProxyResolverCallback): void;};
-		public get_proxy_sync: {(proxy_resolver: ProxyResolver, msg: Message, cancellable: Gio.Cancellable | null): [ number, Address ];};
+		public get_proxy_sync: {(proxy_resolver: ProxyResolver, msg: Message, cancellable?: Gio.Cancellable | null): [ number, Address ];};
 	}
 
 	export interface ProxyURIResolverInterfaceInitOptions {}
@@ -6348,7 +6348,7 @@ declare namespace imports.gi.Soup {
 		public constructor(options?: Partial<ProxyURIResolverInterfaceInitOptions>);
 		public readonly base: GObject.TypeInterface;
 		public get_proxy_uri_async: {(proxy_uri_resolver: ProxyURIResolver, uri: URI, async_context: GLib.MainContext | null, cancellable: Gio.Cancellable | null, callback: ProxyURIResolverCallback): void;};
-		public get_proxy_uri_sync: {(proxy_uri_resolver: ProxyURIResolver, uri: URI, cancellable: Gio.Cancellable | null): [ number, URI ];};
+		public get_proxy_uri_sync: {(proxy_uri_resolver: ProxyURIResolver, uri: URI, cancellable?: Gio.Cancellable | null): [ number, URI ];};
 		public _libsoup_reserved1: {(): void;};
 		public _libsoup_reserved2: {(): void;};
 		public _libsoup_reserved3: {(): void;};
@@ -6460,7 +6460,7 @@ declare namespace imports.gi.Soup {
 		 * @returns a {@link URI}, or %NULL if the given string
 		 *  was found to be invalid.
 		 */
-		public static new(uri_string: string | null): URI | null;
+		public static new(uri_string?: string | null): URI | null;
 		/**
 		 * Parses #uri_string relative to #base.
 		 * @param base a base URI
@@ -6487,7 +6487,7 @@ declare namespace imports.gi.Soup {
 		 * escape (or %NULL)
 		 * @returns the encoded URI part
 		 */
-		public static encode(part: string, escape_extra: string | null): string;
+		public static encode(part: string, escape_extra?: string | null): string;
 		/**
 		 * %<!-- -->-decodes any "unreserved" characters (or characters in
 		 * #unescape_extra) in #part, and %<!-- -->-encodes any non-ASCII
@@ -6510,7 +6510,7 @@ declare namespace imports.gi.Soup {
 		 * @param unescape_extra reserved characters to unescape (or %NULL)
 		 * @returns the normalized URI part
 		 */
-		public static normalize(part: string, unescape_extra: string | null): string;
+		public static normalize(part: string, unescape_extra?: string | null): string;
 		/**
 		 * the URI scheme (eg, "http")
 		 */
@@ -6619,7 +6619,7 @@ declare namespace imports.gi.Soup {
 		 * Sets #uri's fragment to #fragment.
 		 * @param fragment the fragment
 		 */
-		public set_fragment(fragment: string | null): void;
+		public set_fragment(fragment?: string | null): void;
 		/**
 		 * Sets #uri's host to #host.
 		 * 
@@ -6630,12 +6630,12 @@ declare namespace imports.gi.Soup {
 		 * http and https URIs should not have a %NULL #host.
 		 * @param host the hostname or IP address, or %NULL
 		 */
-		public set_host(host: string | null): void;
+		public set_host(host?: string | null): void;
 		/**
 		 * Sets #uri's password to #password.
 		 * @param password the password, or %NULL
 		 */
-		public set_password(password: string | null): void;
+		public set_password(password?: string | null): void;
 		/**
 		 * Sets #uri's path to #path.
 		 * @param path the non-%NULL path
@@ -6651,7 +6651,7 @@ declare namespace imports.gi.Soup {
 		 * Sets #uri's query to #query.
 		 * @param query the query
 		 */
-		public set_query(query: string | null): void;
+		public set_query(query?: string | null): void;
 		/**
 		 * Sets #uri's query to the result of encoding the given form fields
 		 * and values according to the * HTML form rules. See
@@ -6676,7 +6676,7 @@ declare namespace imports.gi.Soup {
 		 * Sets #uri's user to #user.
 		 * @param user the username, or %NULL
 		 */
-		public set_user(user: string | null): void;
+		public set_user(user?: string | null): void;
 		/**
 		 * Returns a string representing #uri.
 		 * 
@@ -6736,7 +6736,7 @@ declare namespace imports.gi.Soup {
 		 * @param signature A valid #GVariant type string, or %NULL
 		 * @returns a new (non-floating) #GVariant, or %NULL
 		 */
-		public parse(signature: string | null): GLib.Variant;
+		public parse(signature?: string | null): GLib.Variant;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -6744,7 +6744,7 @@ declare namespace imports.gi.Soup {
 	 */
 	interface IPasswordManager {
 		get_passwords_async(msg: Message, auth: Auth, retrying: boolean, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: PasswordManagerCallback): void;
-		get_passwords_sync(msg: Message, auth: Auth, cancellable: Gio.Cancellable | null): void;
+		get_passwords_sync(msg: Message, auth: Auth, cancellable?: Gio.Cancellable | null): void;
 	}
 
 	type PasswordManagerInitOptionsMixin  = {};
@@ -6768,7 +6768,7 @@ declare namespace imports.gi.Soup {
 	 */
 	interface IProxyResolver {
 		get_proxy_async(msg: Message, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: ProxyResolverCallback): void;
-		get_proxy_sync(msg: Message, cancellable: Gio.Cancellable | null): [ number, Address ];
+		get_proxy_sync(msg: Message, cancellable?: Gio.Cancellable | null): [ number, Address ];
 	}
 
 	type ProxyResolverInitOptionsMixin  = {};
@@ -6819,7 +6819,7 @@ declare namespace imports.gi.Soup {
 		 * 
 		 * on return, will contain the proxy URI
 		 */
-		get_proxy_uri_sync(uri: URI, cancellable: Gio.Cancellable | null): [ number, URI ];
+		get_proxy_uri_sync(uri: URI, cancellable?: Gio.Cancellable | null): [ number, URI ];
 	}
 
 	type ProxyURIResolverInitOptionsMixin  = {};

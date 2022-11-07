@@ -37,7 +37,7 @@ declare namespace imports.gi.ClutterX11 {
 		 * @param data user data passed to the filter function
 		 * @returns the result of the filtering
 		 */
-		(xev: xlib.XEvent, cev: Clutter.Event, data: any | null): FilterReturn;
+		(xev: xlib.XEvent, cev: Clutter.Event, data?: any | null): FilterReturn;
 	}
 
 	/**

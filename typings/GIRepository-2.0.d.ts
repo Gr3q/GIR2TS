@@ -168,7 +168,7 @@ declare namespace imports.gi.GIRepository {
 		 * @param version Required version, may be %NULL for latest
 		 * @returns %TRUE if namespace-version is loaded, %FALSE otherwise
 		 */
-		is_registered(namespace_: string, version: string | null): boolean;
+		is_registered(namespace_: string, version?: string | null): boolean;
 		/**
 		 * TODO
 		 * @param typelib TODO
@@ -444,7 +444,7 @@ declare namespace imports.gi.GIRepository {
 		public static new_from_memory(memory: number, len: number): Typelib;
 		public free(): void;
 		public get_namespace(): string;
-		public symbol(symbol_name: string, symbol: any | null): boolean;
+		public symbol(symbol_name: string, symbol?: any | null): boolean;
 	}
 
 	export interface UnresolvedInfoInitOptions {}
@@ -891,7 +891,7 @@ declare namespace imports.gi.GIRepository {
 		 * @param object object instance pointer
 		 * @returns the object instance
 		 */
-		(object: any | null): any | null;
+		(object?: any | null): any | null;
 	}
 
 	/**
@@ -903,7 +903,7 @@ declare namespace imports.gi.GIRepository {
 		 * @param value a #GValue
 		 * @param object object instance pointer
 		 */
-		(value: GObject.Value, object: any | null): void;
+		(value: GObject.Value, object?: any | null): void;
 	}
 
 	/**
@@ -914,7 +914,7 @@ declare namespace imports.gi.GIRepository {
 		 * Decreases the reference count of an object instance.
 		 * @param object object instance pointer
 		 */
-		(object: any | null): void;
+		(object?: any | null): void;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,

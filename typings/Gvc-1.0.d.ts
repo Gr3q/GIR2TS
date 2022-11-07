@@ -45,7 +45,7 @@ declare namespace imports.gi.Gvc {
 		 * @param profile the profile to change to or %NULL.
 		 * @returns %TRUE if profile successfully changed or already using this profile.
 		 */
-		change_profile(profile: string | null): boolean;
+		change_profile(profile?: string | null): boolean;
 		get_gicon(): Gio.Icon;
 		get_icon_name(): string;
 		get_id(): number;
@@ -98,7 +98,7 @@ declare namespace imports.gi.Gvc {
 		name: string;
 		change_input(input: MixerUIDevice): void;
 		change_output(output: MixerUIDevice): void;
-		change_profile_on_selected_device(device: MixerUIDevice, profile: string | null): boolean;
+		change_profile_on_selected_device(device: MixerUIDevice, profile?: string | null): boolean;
 		close(): boolean;
 		get_cards(): MixerCard[];
 		get_default_sink(): MixerStream;

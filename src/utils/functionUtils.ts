@@ -56,14 +56,14 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
             if (js_reserved_words.includes(param_name)) { // if clashes with JS reserved word.
                 param_name = '_' + param_name;
             }
-            let { type, docString } = GetTypeInfo(param_node);
+            let { type, docString, optional } = GetTypeInfo(param_node);
 
             const finalType = modifier?.param?.[param_name]?.type ?? ((modifier?.param?.[param_name]?.type_extension?.length ?? 0 > 1) ? `${type} | ${modifier?.param?.[param_name]?.type_extension?.join(" | ")}` : type);
             params.push({
                 name: modifier?.param?.[param_name]?.newName ?? param_name,
                 type: finalType,
                 docString: modifier?.param?.[param_name]?.doc ?? docString,
-                optional: modifier?.param?.[param_name]?.optional ?? false
+                optional: modifier?.param?.[param_name]?.optional ?? optional
             });
         }
     }
@@ -79,6 +79,20 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
         }
     }
 
+    let canBeOptional = true;
+    for (const param of [...params].reverse()) {
+        if (param.optional && !canBeOptional) {
+            param.optional = false;
+            param.type = param.type.includes("null") ? param.type : (param.type + " | null");
+            continue;
+        }
+
+        if (!param.optional && canBeOptional) {
+            canBeOptional = false;
+            continue;
+        }
+    }
+
     // Returns multiple things, it should be a tuple
     if (return_params.length > 0) {
         let tupleReturnTypes: TypeInfo[] = [];
@@ -88,7 +102,8 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
             tupleReturnTypes.push({
                 docString: returnDoc,
                 type: return_type,
-                name: returnName
+                name: returnName,
+                optional: false
             })
         }
         // Get info
@@ -118,7 +133,8 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
         return_type: (constructor) ? undefined : {
             type: modifier?.return_type?.type ?? ((modifier?.return_type?.type_extension?.length ?? 0 > 1) ? `${return_type} | ${(modifier?.return_type?.type_extension?.join(" | "))}` : return_type),
             docString: modifier?.return_type?.doc ?? returnDoc,
-            name: null
+            name: null,
+            optional: false,
         },
         params: params,
         doc: modifier?.doc ?? doc,

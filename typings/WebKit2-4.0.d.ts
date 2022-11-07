@@ -9,7 +9,7 @@ declare namespace imports.gi.WebKit2 {
 		 * supplied. To continue without credentials, pass %NULL as #credential.
 		 * @param credential A #WebKitCredential, or %NULL
 		 */
-		authenticate(credential: Credential | null): void;
+		authenticate(credential?: Credential | null): void;
 		/**
 		 * Determine whether the authentication method associated with this
 		 * #WebKitAuthenticationRequest should allow the storage of credentials.
@@ -534,7 +534,7 @@ declare namespace imports.gi.WebKit2 {
 		 * submenu of #item is removed.
 		 * @param submenu a #WebKitContextMenu
 		 */
-		set_submenu(submenu: ContextMenu | null): void;
+		set_submenu(submenu?: ContextMenu | null): void;
 	}
 
 	type ContextMenuItemInitOptionsMixin = GObject.InitiallyUnownedInitOptions
@@ -566,7 +566,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param target a #GVariant to use as the action target
 		 * @returns the newly created #WebKitContextMenuItem object.
 		 */
-		public static new_from_gaction(action: Gio.Action, label: string, target: GLib.Variant | null): ContextMenuItem;
+		public static new_from_gaction(action: Gio.Action, label: string, target?: GLib.Variant | null): ContextMenuItem;
 		/**
 		 * Creates a new #WebKitContextMenuItem for the given stock action.
 		 * Stock actions are handled automatically by WebKit so that, for example,
@@ -617,7 +617,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		add_cookie(cookie: Soup.Cookie, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		add_cookie(cookie: Soup.Cookie, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.cookie_manager_add_cookie}.
 		 * @param result a #GAsyncResult
@@ -640,7 +640,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		delete_cookie(cookie: Soup.Cookie, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		delete_cookie(cookie: Soup.Cookie, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.cookie_manager_delete_cookie}.
 		 * @param result a #GAsyncResult
@@ -666,7 +666,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		get_accept_policy(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_accept_policy(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.cookie_manager_get_accept_policy}.
 		 * @param result a #GAsyncResult
@@ -683,7 +683,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		get_cookies(uri: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_cookies(uri: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.cookie_manager_get_cookies}.
 		 * The return value is a #GSList of #SoupCookie instances which should be released
@@ -703,7 +703,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		get_domains_with_cookies(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_domains_with_cookies(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link Webkit.website_data_manager_fetch_finish} instead.
@@ -1077,7 +1077,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param callback A #GAsyncReadyCallback to call when the request is
 		 *            satisfied or %NULL if you don't care about the result.
 		 */
-		get_favicon(page_uri: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_favicon(page_uri: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an operation started with {@link Webkit.favicon_database_get_favicon}.
 		 * @param result A #GAsyncResult obtained from the #GAsyncReadyCallback passed to {@link Webkit.favicon_database_get_favicon}
@@ -2434,7 +2434,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param parent transient parent of the print dialog
 		 * @returns the #WebKitPrintOperationResponse of the print dialog
 		 */
-		run_dialog(parent: Gtk.Window | null): PrintOperationResponse;
+		run_dialog(parent?: Gtk.Window | null): PrintOperationResponse;
 		/**
 		 * Set the current page setup of #print_operation. Current page setup is used for the
 		 * initial values of the print dialog when {@link Webkit.print_operation_run_dialog} is called.
@@ -3587,7 +3587,7 @@ declare namespace imports.gi.WebKit2 {
 		 * Set the #WebKitSettings:media-content-types-requiring-hardware-support property.
 		 * @param content_types list of media content types requiring hardware support split by semicolons (:) or %NULL to use the default value.
 		 */
-		set_media_content_types_requiring_hardware_support(content_types: string | null): void;
+		set_media_content_types_requiring_hardware_support(content_types?: string | null): void;
 		/**
 		 * Set the #WebKitSettings:media-playback-allows-inline property.
 		 * @param enabled Value to be set
@@ -3632,7 +3632,7 @@ declare namespace imports.gi.WebKit2 {
 		 * Set the #WebKitSettings:user-agent property.
 		 * @param user_agent The new custom user agent string or %NULL to use the default user agent
 		 */
-		set_user_agent(user_agent: string | null): void;
+		set_user_agent(user_agent?: string | null): void;
 		/**
 		 * Set the #WebKitSettings:user-agent property by appending the application details to the default user
 		 * agent. If no application name or version is given, the default user agent used will be used. If only
@@ -3640,7 +3640,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param application_name The application name used for the user agent or %NULL to use the default user agent.
 		 * @param application_version The application version for the user agent or %NULL to user the default version.
 		 */
-		set_user_agent_with_application_details(application_name: string | null, application_version: string | null): void;
+		set_user_agent_with_application_details(application_name?: string | null, application_version?: string | null): void;
 		/**
 		 * Set the #WebKitSettings:zoom-text-only property.
 		 * @param zoom_text_only Value to be set
@@ -3959,7 +3959,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param stream_length the length of the stream or -1 if not known
 		 * @param content_type the content type of the stream or %NULL if not known
 		 */
-		finish(stream: Gio.InputStream, stream_length: number, content_type: string | null): void;
+		finish(stream: Gio.InputStream, stream_length: number, content_type?: string | null): void;
 		/**
 		 * Finish a #WebKitURISchemeRequest with a #GError.
 		 * @param error a #GError that will be passed to the #WebKitWebView
@@ -4019,7 +4019,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the removal is completed
 		 */
-		fetch_identifiers(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		fetch_identifiers(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an asynchronous fetch of the list of identifiers for the stored filters previously
 		 * started with {@link Webkit.user_content_filter_store_fetch_identifiers}.
@@ -4038,7 +4038,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the load is completed
 		 */
-		load(identifier: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		load(identifier: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an asynchronous filter load previously started with
 		 * {@link Webkit.user_content_filter_store_load}.
@@ -4056,7 +4056,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the removal is completed
 		 */
-		remove(identifier: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		remove(identifier: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an asynchronous filter removal previously started with
 		 * {@link Webkit.user_content_filter_store_remove}.
@@ -4080,7 +4080,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when saving is completed
 		 */
-		save(identifier: string, source: GLib.Bytes, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		save(identifier: string, source: GLib.Bytes, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an asynchronous filter save previously started with
 		 * {@link Webkit.user_content_filter_store_save}.
@@ -4100,7 +4100,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when saving is completed
 		 */
-		save_from_file(identifier: string, file: Gio.File, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		save_from_file(identifier: string, file: Gio.File, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes and asynchronous filter save previously started with
 		 * {@link Webkit.user_content_filter_store_save_from_file}.
@@ -4395,7 +4395,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param parameters the message parameters as a #GVariant, or %NULL
 		 * @returns the newly created #WebKitUserMessage object.
 		 */
-		public static new(name: string, parameters: GLib.Variant | null): UserMessage;
+		public static new(name: string, parameters?: GLib.Variant | null): UserMessage;
 		/**
 		 * Create a new #WebKitUserMessage including also a list of UNIX file descriptors to be sent.
 		 * @param name the message name
@@ -4403,7 +4403,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param fd_list the message file descriptors
 		 * @returns the newly created #WebKitUserMessage object.
 		 */
-		public static new_with_fd_list(name: string, parameters: GLib.Variant | null, fd_list: Gio.UnixFDList | null): UserMessage;
+		public static new_with_fd_list(name: string, parameters?: GLib.Variant | null, fd_list?: Gio.UnixFDList | null): UserMessage;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -4519,7 +4519,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		get_plugins(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_plugins(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with webkit_web_context_get_plugins.
 		 * @param result a #GAsyncResult
@@ -4737,7 +4737,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param path an absolute path to the icon database
 		 * directory or %NULL to use the defaults
 		 */
-		set_favicon_database_directory(path: string | null): void;
+		set_favicon_database_directory(path?: string | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link Webkit.website_data_manager_set_network_proxy_settings} instead.
@@ -4753,7 +4753,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param proxy_mode a #WebKitNetworkProxyMode
 		 * @param proxy_settings a #WebKitNetworkProxySettings, or %NULL
 		 */
-		set_network_proxy_settings(proxy_mode: NetworkProxyMode, proxy_settings: NetworkProxySettings | null): void;
+		set_network_proxy_settings(proxy_mode: NetworkProxyMode, proxy_settings?: NetworkProxySettings | null): void;
 		/**
 		 * Set the list of preferred languages, sorted from most desirable
 		 * to least desirable. The list will be used to build the "Accept-Language"
@@ -4761,7 +4761,7 @@ declare namespace imports.gi.WebKit2 {
 		 * the #WebKitWebContext.
 		 * @param languages a %NULL-terminated list of language identifiers
 		 */
-		set_preferred_languages(languages: string[] | null): void;
+		set_preferred_languages(languages?: string[] | null): void;
 		/**
 		 * Specifies a process model for WebViews, which WebKit will use to
 		 * determine how auxiliary processes are handled.
@@ -5174,7 +5174,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		get_data(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_data(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_resource_get_data}.
 		 * @param result a #GAsyncResult
@@ -5417,7 +5417,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		can_execute_editing_command(command: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		can_execute_editing_command(command: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_view_can_execute_editing_command}.
 		 * @param result a #GAsyncResult
@@ -5590,7 +5590,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable
 		 * @param callback a #GAsyncReadyCallback
 		 */
-		get_snapshot(region: SnapshotRegion, options: SnapshotOptions, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_snapshot(region: SnapshotRegion, options: SnapshotOptions, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finishes an asynchronous operation started with {@link Webkit.web_view_get_snapshot}.
 		 * @param result a #GAsyncResult
@@ -5781,7 +5781,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param content_uri the URI for the alternate page content
 		 * @param base_uri the base URI for relative locations or %NULL
 		 */
-		load_alternate_html(content: string, content_uri: string, base_uri: string | null): void;
+		load_alternate_html(content: string, content_uri: string, base_uri?: string | null): void;
 		/**
 		 * Load the specified #bytes into #web_view using the given #mime_type and #encoding.
 		 * When #mime_type is %NULL, it defaults to "text/html".
@@ -5793,7 +5793,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param encoding the character encoding of #bytes, or %NULL
 		 * @param base_uri the base URI for relative locations or %NULL
 		 */
-		load_bytes(bytes: GLib.Bytes, mime_type: string | null, encoding: string | null, base_uri: string | null): void;
+		load_bytes(bytes: GLib.Bytes, mime_type?: string | null, encoding?: string | null, base_uri?: string | null): void;
 		/**
 		 * Load the given #content string with the specified #base_uri.
 		 * If #base_uri is not %NULL, relative URLs in the #content will be
@@ -5807,7 +5807,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param content The HTML string to load
 		 * @param base_uri The base URI for relative locations or %NULL
 		 */
-		load_html(content: string, base_uri: string | null): void;
+		load_html(content: string, base_uri?: string | null): void;
 		/**
 		 * Load the specified #plain_text string into #web_view. The mime type of
 		 * document will be "text/plain". You can monitor the load
@@ -5854,7 +5854,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the script finished
 		 */
-		run_javascript(script: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		run_javascript(script: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_view_run_javascript}.
 		 * 
@@ -5923,7 +5923,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the script finished
 		 */
-		run_javascript_from_gresource(resource: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		run_javascript_from_gresource(resource: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_view_run_javascript_from_gresource}.
 		 * 
@@ -5944,7 +5944,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the script finished
 		 */
-		run_javascript_in_world(script: string, world_name: string, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		run_javascript_in_world(script: string, world_name: string, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_view_run_javascript_in_world}.
 		 * @param result a #GAsyncResult
@@ -5964,7 +5964,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		save(save_mode: SaveMode, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		save(save_mode: SaveMode, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_view_save}.
 		 * @param result a #GAsyncResult
@@ -5985,7 +5985,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		save_to_file(file: Gio.File, save_mode: SaveMode, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		save_to_file(file: Gio.File, save_mode: SaveMode, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_view_save_to_file}.
 		 * @param result a #GAsyncResult
@@ -6002,7 +6002,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback (nullable): A #GAsyncReadyCallback to call when the request is satisfied or %NULL
 		 */
-		send_message_to_page(message: UserMessage, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		send_message_to_page(message: UserMessage, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.web_view_send_message_to_page}.
 		 * @param result a #GAsyncResult
@@ -6046,7 +6046,7 @@ declare namespace imports.gi.WebKit2 {
 		 * encoding override.
 		 * @param charset a character encoding name or %NULL
 		 */
-		set_custom_charset(charset: string | null): void;
+		set_custom_charset(charset?: string | null): void;
 		/**
 		 * Sets whether the user is allowed to edit the HTML document.
 		 * 
@@ -6066,7 +6066,7 @@ declare namespace imports.gi.WebKit2 {
 		 * Note that the same #WebKitInputMethodContext can't be set on more than one #WebKitWebView at the same time.
 		 * @param context the #WebKitInputMethodContext to set, or %NULL
 		 */
-		set_input_method_context(context: InputMethodContext | null): void;
+		set_input_method_context(context?: InputMethodContext | null): void;
 		/**
 		 * Sets the mute state of #web_view.
 		 * @param muted mute flag
@@ -6973,7 +6973,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		clear(types: WebsiteDataTypes, timespan: GLib.TimeSpan, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		clear(types: WebsiteDataTypes, timespan: GLib.TimeSpan, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.website_data_manager_clear}
 		 * @param result a #GAsyncResult
@@ -6989,7 +6989,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		fetch(types: WebsiteDataTypes, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		fetch(types: WebsiteDataTypes, cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.website_data_manager_fetch}.
 		 * @param result a #GAsyncResult
@@ -7053,7 +7053,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		get_itp_summary(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		get_itp_summary(cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.website_data_manager_get_itp_summary}.
 		 * @param result a #GAsyncResult
@@ -7112,7 +7112,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param cancellable a #GCancellable or %NULL to ignore
 		 * @param callback a #GAsyncReadyCallback to call when the request is satisfied
 		 */
-		remove(types: WebsiteDataTypes, website_data: WebsiteData[], cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback | null): void;
+		remove(types: WebsiteDataTypes, website_data: WebsiteData[], cancellable?: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback | null): void;
 		/**
 		 * Finish an asynchronous operation started with {@link Webkit.website_data_manager_remove}.
 		 * @param result a #GAsyncResult
@@ -7139,7 +7139,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param proxy_mode a #WebKitNetworkProxyMode
 		 * @param proxy_settings a #WebKitNetworkProxySettings, or %NULL
 		 */
-		set_network_proxy_settings(proxy_mode: NetworkProxyMode, proxy_settings: NetworkProxySettings | null): void;
+		set_network_proxy_settings(proxy_mode: NetworkProxyMode, proxy_settings?: NetworkProxySettings | null): void;
 		/**
 		 * Enable or disable persistent credential storage. When enabled, which is the default for
 		 * non-ephemeral sessions, the network process will try to read and write HTTP authentiacation
@@ -7597,7 +7597,7 @@ declare namespace imports.gi.WebKit2 {
 		 * for the underline too.
 		 * @param rgba a #GdkRGBA or %NULL
 		 */
-		public set_color(rgba: Gdk.RGBA | null): void;
+		public set_color(rgba?: Gdk.RGBA | null): void;
 	}
 
 	export interface JavascriptResultInitOptions {}
@@ -7762,7 +7762,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param ignore_hosts an optional list of hosts/IP addresses to not use a proxy for.
 		 * @returns A new #WebKitNetworkProxySettings.
 		 */
-		public static new(default_proxy_uri: string | null, ignore_hosts: string[] | null): NetworkProxySettings;
+		public static new(default_proxy_uri?: string | null, ignore_hosts?: string[] | null): NetworkProxySettings;
 		/**
 		 * Adds a URI-scheme-specific proxy. URIs whose scheme matches #uri_scheme will be proxied via #proxy_uri.
 		 * As with the default proxy URI, if #proxy_uri starts with "socks://", it will be treated as referring to
@@ -8014,7 +8014,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param block_list A block_list of URI patterns or %NULL
 		 * @returns A new #WebKitUserScript
 		 */
-		public static new(source: string, injected_frames: UserContentInjectedFrames, injection_time: UserScriptInjectionTime, allow_list: string[] | null, block_list: string[] | null): UserScript;
+		public static new(source: string, injected_frames: UserContentInjectedFrames, injection_time: UserScriptInjectionTime, allow_list?: string[] | null, block_list?: string[] | null): UserScript;
 		/**
 		 * Creates a new user script for script world with name #world_name.
 		 * See {@link Webkit.user_script_new} for a full description.
@@ -8026,7 +8026,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param block_list A block_list of URI patterns or %NULL
 		 * @returns A new #WebKitUserScript
 		 */
-		public static new_for_world(source: string, injected_frames: UserContentInjectedFrames, injection_time: UserScriptInjectionTime, world_name: string, allow_list: string[] | null, block_list: string[] | null): UserScript;
+		public static new_for_world(source: string, injected_frames: UserContentInjectedFrames, injection_time: UserScriptInjectionTime, world_name: string, allow_list?: string[] | null, block_list?: string[] | null): UserScript;
 		/**
 		 * Atomically increments the reference count of #user_script by one.
 		 * This function is MT-safe and may be called from any thread.
@@ -8061,7 +8061,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param block_list A block_list of URI patterns or %NULL
 		 * @returns A new #WebKitUserStyleSheet
 		 */
-		public static new(source: string, injected_frames: UserContentInjectedFrames, level: UserStyleLevel, allow_list: string[] | null, block_list: string[] | null): UserStyleSheet;
+		public static new(source: string, injected_frames: UserContentInjectedFrames, level: UserStyleLevel, allow_list?: string[] | null, block_list?: string[] | null): UserStyleSheet;
 		/**
 		 * Creates a new user style sheet for script world with name #world_name.
 		 * See {@link Webkit.user_style_sheet_new} for a full description.
@@ -8073,7 +8073,7 @@ declare namespace imports.gi.WebKit2 {
 		 * @param block_list A block_list of URI patterns or %NULL
 		 * @returns A new #WebKitUserStyleSheet
 		 */
-		public static new_for_world(source: string, injected_frames: UserContentInjectedFrames, level: UserStyleLevel, world_name: string, allow_list: string[] | null, block_list: string[] | null): UserStyleSheet;
+		public static new_for_world(source: string, injected_frames: UserContentInjectedFrames, level: UserStyleLevel, world_name: string, allow_list?: string[] | null, block_list?: string[] | null): UserStyleSheet;
 		/**
 		 * Atomically increments the reference count of #user_style_sheet by one.
 		 * This function is MT-safe and may be called from any thread.

@@ -915,7 +915,7 @@ declare namespace imports.gi.Clutter {
 		 * @returns the newly created #PangoLayout.
 		 *   Use {@link GObject.Object.unref} when done
 		 */
-		create_pango_layout(text: string | null): Pango.Layout;
+		create_pango_layout(text?: string | null): Pango.Layout;
 		/**
 		 * Destroys an actor.  When an actor is destroyed, it will break any
 		 * references it holds to other objects.  If the actor is inside a
@@ -1898,7 +1898,7 @@ declare namespace imports.gi.Clutter {
 		 * @param child a {@link Actor}
 		 * @param sibling a child of #self, or %NULL
 		 */
-		insert_child_above(child: Actor, sibling: Actor | null): void;
+		insert_child_above(child: Actor, sibling?: Actor | null): void;
 		/**
 		 * Inserts #child into the list of children of #self, using the
 		 * given #index_. If #index_ is greater than the number of children
@@ -1932,7 +1932,7 @@ declare namespace imports.gi.Clutter {
 		 * @param child a {@link Actor}
 		 * @param sibling a child of #self, or %NULL
 		 */
-		insert_child_below(child: Actor, sibling: Actor | null): void;
+		insert_child_below(child: Actor, sibling?: Actor | null): void;
 		/**
 		 * Invalidate the cached transformation matrix of #self.
 		 * This is needed for implementations overriding the {@link Apply.transform}
@@ -2081,7 +2081,7 @@ declare namespace imports.gi.Clutter {
 		 * @param out_actor a pointer to an {@link Actor}
 		 * @returns a {@link FrameClock}
 		 */
-		pick_frame_clock(out_actor: Actor | null): FrameClock;
+		pick_frame_clock(out_actor?: Actor | null): FrameClock;
 		/**
 		 * Queues up a redraw of an actor and any children. The redraw occurs
 		 * once the main loop becomes idle (after the current batch of events
@@ -2109,7 +2109,7 @@ declare namespace imports.gi.Clutter {
 		 * {@link Clutter.Actor.queue_redraw}.
 		 * @param clip a rectangular clip region, or %NULL
 		 */
-		queue_redraw_with_clip(clip: cairo.RectangleInt | null): void;
+		queue_redraw_with_clip(clip?: cairo.RectangleInt | null): void;
 		/**
 		 * Indicates that the actor's size request or other layout-affecting
 		 * properties may have changed. This function is used inside {@link Actor}
@@ -2272,7 +2272,7 @@ declare namespace imports.gi.Clutter {
 		 * @param color a {@link Color}, or %NULL to unset a previously
 		 *  set color
 		 */
-		set_background_color(color: Color | null): void;
+		set_background_color(color?: Color | null): void;
 		/**
 		 * Sets #child to be above #sibling in the list of children of #self.
 		 * 
@@ -2284,7 +2284,7 @@ declare namespace imports.gi.Clutter {
 		 * @param child a {@link Actor} child of #self
 		 * @param sibling a {@link Actor} child of #self, or %NULL
 		 */
-		set_child_above_sibling(child: Actor, sibling: Actor | null): void;
+		set_child_above_sibling(child: Actor, sibling?: Actor | null): void;
 		/**
 		 * Changes the index of #child in the list of children of #self.
 		 * 
@@ -2306,7 +2306,7 @@ declare namespace imports.gi.Clutter {
 		 * @param child a {@link Actor} child of #self
 		 * @param sibling a {@link Actor} child of #self, or %NULL
 		 */
-		set_child_below_sibling(child: Actor, sibling: Actor | null): void;
+		set_child_below_sibling(child: Actor, sibling?: Actor | null): void;
 		/**
 		 * Sets the transformation matrix to be applied to all the children
 		 * of #self prior to their own transformations. The default child
@@ -2317,7 +2317,7 @@ declare namespace imports.gi.Clutter {
 		 * The {@link Actor.child_transform} property is animatable.
 		 * @param transform a {@link Matrix}, or %NULL
 		 */
-		set_child_transform(transform: Matrix | null): void;
+		set_child_transform(transform?: Matrix | null): void;
 		/**
 		 * Sets clip area for #self. The clip area is always computed from the
 		 * upper left corner of the actor.
@@ -2337,7 +2337,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets the contents of a {@link Actor}.
 		 * @param content a {@link Content}, or %NULL
 		 */
-		set_content(content: Content | null): void;
+		set_content(content?: Content | null): void;
 		/**
 		 * Sets the gravity of the {@link Content} used by #self.
 		 * 
@@ -2417,7 +2417,7 @@ declare namespace imports.gi.Clutter {
 		 * the actor is destroyed.
 		 * @param manager a {@link LayoutManager}, or %NULL to unset it
 		 */
-		set_layout_manager(manager: LayoutManager | null): void;
+		set_layout_manager(manager?: LayoutManager | null): void;
 		/**
 		 * Sets all the components of the margin of a {@link Actor}.
 		 * @param margin a {@link Margin}
@@ -2650,7 +2650,7 @@ declare namespace imports.gi.Clutter {
 		 * @param transform a {@link Matrix}, or %NULL to
 		 *   unset a custom transformation
 		 */
-		set_transform(transform: Matrix | null): void;
+		set_transform(transform?: Matrix | null): void;
 		/**
 		 * Sets an additional translation transformation on a {@link Actor},
 		 * relative to the #ClutterActor:pivot-point.
@@ -3596,7 +3596,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets the source of the alignment constraint
 		 * @param source a {@link Actor}, or %NULL to unset the source
 		 */
-		set_source(source: Actor | null): void;
+		set_source(source?: Actor | null): void;
 		connect(signal: "notify::align-axis", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::factor", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::pivot-point", callback: (owner: this, ...args: any) => void): number;
@@ -3865,7 +3865,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets the source {@link Actor} for the constraint
 		 * @param source a {@link Actor}, or %NULL to unset the source
 		 */
-		set_source(source: Actor | null): void;
+		set_source(source?: Actor | null): void;
 		connect(signal: "notify::coordinate", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::offset", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::source", callback: (owner: this, ...args: any) => void): number;
@@ -4105,7 +4105,7 @@ declare namespace imports.gi.Clutter {
 		 *   The returned {@link BindingPool} is owned by Clutter and should not
 		 *   be freed directly
 		 */
-		public static get_for_class(klass: any | null): BindingPool;
+		public static get_for_class(klass?: any | null): BindingPool;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -4732,7 +4732,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets #source as the source actor to be cloned by #self.
 		 * @param source a {@link Actor}, or %NULL
 		 */
-		set_source(source: Actor | null): void;
+		set_source(source?: Actor | null): void;
 		connect(signal: "notify::source", callback: (owner: this, ...args: any) => void): number;
 
 	}
@@ -4794,7 +4794,7 @@ declare namespace imports.gi.Clutter {
 		 * @returns the newly created {@link PaintNode}. Use
 		 *   {@link Clutter.PaintNode.unref} when done
 		 */
-		public static new(color: Color | null): PaintNode;
+		public static new(color?: Color | null): PaintNode;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -4929,7 +4929,7 @@ declare namespace imports.gi.Clutter {
 		 * handle
 		 * @param material a handle to a Cogl material
 		 */
-		set_back_material(material: Cogl.Handle | null): void;
+		set_back_material(material?: Cogl.Handle | null): void;
 		/**
 		 * Sets the number of horizontal and vertical tiles to be used
 		 * when applying the effect
@@ -5956,7 +5956,7 @@ declare namespace imports.gi.Clutter {
 		 * @param sequence an optional {@link EventSequence}
 		 * @returns a pointer to the {@link Actor} or %NULL
 		 */
-		get_actor(sequence: EventSequence | null): Actor;
+		get_actor(sequence?: EventSequence | null): Actor;
 		/**
 		 * Retrieves a pointer to the {@link InputDevice} that has been
 		 * associated to #device.
@@ -6007,7 +6007,7 @@ declare namespace imports.gi.Clutter {
 		 * return location for the pointer
 		 *   or touch point
 		 */
-		get_coords(sequence: EventSequence | null): [ boolean, Graphene.Point ];
+		get_coords(sequence?: EventSequence | null): [ boolean, Graphene.Point ];
 		/**
 		 * Retrieves the unique identifier of #device
 		 * @returns the identifier of the device
@@ -6616,7 +6616,7 @@ declare namespace imports.gi.Clutter {
 		 * @param _final a #GValue holding the final value of the interval
 		 * @returns the newly created {@link Interval}
 		 */
-		public static new_with_values(gtype: GObject.Type, initial: GObject.Value | null, _final: GObject.Value | null): Interval;
+		public static new_with_values(gtype: GObject.Type, initial?: GObject.Value | null, _final?: GObject.Value | null): Interval;
 		/**
 		 * Sets the progress function for a given #value_type, like:
 		 * 
@@ -6949,7 +6949,7 @@ declare namespace imports.gi.Clutter {
 		 * count of the #container
 		 * @param container a {@link Container} using #manager
 		 */
-		set_container(container: Container | null): void;
+		set_container(container?: Container | null): void;
 		/**
 		 * The ::layout-changed signal is emitted each time a layout manager
 		 * has been changed. Every {@link Actor} using the #manager instance
@@ -7847,7 +7847,7 @@ declare namespace imports.gi.Clutter {
 		 * function.
 		 * @param path a {@link Path}
 		 */
-		set_path(path: Path | null): void;
+		set_path(path?: Path | null): void;
 		/**
 		 * The ::node-reached signal is emitted each time a
 		 * {@link PathConstraint.offset} value results in the actor
@@ -7929,7 +7929,7 @@ declare namespace imports.gi.Clutter {
 		 * @returns the newly created {@link PaintNode}.
 		 *   Use {@link Clutter.PaintNode.unref} when done.
 		 */
-		public static new(pipeline: Cogl.Pipeline | null): PaintNode;
+		public static new(pipeline?: Cogl.Pipeline | null): PaintNode;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -7952,7 +7952,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets the {@link PropertyTransition.property_name} property of #transition.
 		 * @param property_name a property name
 		 */
-		set_property_name(property_name: string | null): void;
+		set_property_name(property_name?: string | null): void;
 		connect(signal: "notify::property-name", callback: (owner: this, ...args: any) => void): number;
 
 	}
@@ -7982,7 +7982,7 @@ declare namespace imports.gi.Clutter {
 		 * @returns the newly created {@link PropertyTransition}.
 		 *   Use {@link GObject.Object.unref} when done
 		 */
-		public static new(property_name: string | null): Transition;
+		public static new(property_name?: string | null): Transition;
 		/**
 		 * Creates a new {@link PropertyTransition}.
 		 * @param actor a {@link Actor}
@@ -7990,7 +7990,7 @@ declare namespace imports.gi.Clutter {
 		 * @returns the newly created {@link PropertyTransition}.
 		 *   Use {@link GObject.Object.unref} when done
 		 */
-		public static new_for_actor(actor: Actor, property_name: string | null): Transition;
+		public static new_for_actor(actor: Actor, property_name?: string | null): Transition;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -8228,7 +8228,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets the translation domain for #script.
 		 * @param domain the translation domain, or %NULL
 		 */
-		set_translation_domain(domain: string | null): void;
+		set_translation_domain(domain?: string | null): void;
 		/**
 		 * Unmerges the objects identified by #merge_id.
 		 * @param merge_id merge id returned when loading a UI definition
@@ -8913,7 +8913,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets the source {@link Actor} for the constraint
 		 * @param source a {@link Actor}, or %NULL to unset the source
 		 */
-		set_source(source: Actor | null): void;
+		set_source(source?: Actor | null): void;
 		connect(signal: "notify::from-edge", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::offset", callback: (owner: this, ...args: any) => void): number;
 		connect(signal: "notify::source", callback: (owner: this, ...args: any) => void): number;
@@ -9094,7 +9094,7 @@ declare namespace imports.gi.Clutter {
 		 * focus.
 		 * @param actor the actor to set key focus to, or %NULL
 		 */
-		set_key_focus(actor: Actor | null): void;
+		set_key_focus(actor?: Actor | null): void;
 		/**
 		 * Sets the minimum size for a stage window, if the default backend
 		 * uses {@link Stage} inside a window
@@ -9967,7 +9967,7 @@ declare namespace imports.gi.Clutter {
 		 * passed to this function.
 		 * @param attrs a #PangoAttrList or %NULL to unset the attributes
 		 */
-		set_attributes(attrs: Pango.AttrList | null): void;
+		set_attributes(attrs?: Pango.AttrList | null): void;
 		/**
 		 * Set the {@link TextBuffer} object which holds the text for
 		 * this widget.
@@ -9991,7 +9991,7 @@ declare namespace imports.gi.Clutter {
 		 * text color.
 		 * @param color the color of the cursor, or %NULL to unset it
 		 */
-		set_cursor_color(color: Color | null): void;
+		set_cursor_color(color?: Color | null): void;
 		/**
 		 * Sets the cursor of a {@link Text} actor at #position.
 		 * 
@@ -10065,7 +10065,7 @@ declare namespace imports.gi.Clutter {
 		 * ]|
 		 * @param font_name a font name, or %NULL to set the default font name
 		 */
-		set_font_name(font_name: string | null): void;
+		set_font_name(font_name?: string | null): void;
 		set_input_hints(hints: InputContentHintFlags): void;
 		set_input_purpose(purpose: InputContentPurpose): void;
 		/**
@@ -10112,7 +10112,7 @@ declare namespace imports.gi.Clutter {
 		 * @param markup a string containing Pango markup.
 		 *   Passing %NULL is the same as passing "" (the empty string)
 		 */
-		set_markup(markup: string | null): void;
+		set_markup(markup?: string | null): void;
 		/**
 		 * Sets the maximum allowed length of the contents of the actor. If the
 		 * current contents are longer than the given length, then they will be
@@ -10160,7 +10160,7 @@ declare namespace imports.gi.Clutter {
 		 * selection color, which then falls back to cursor, and then text color.
 		 * @param color the selected text color, or %NULL to unset it
 		 */
-		set_selected_text_color(color: Color | null): void;
+		set_selected_text_color(color?: Color | null): void;
 		/**
 		 * Selects the region of text between #start_pos and #end_pos.
 		 * 
@@ -10186,7 +10186,7 @@ declare namespace imports.gi.Clutter {
 		 * the same as the text color.
 		 * @param color the color of the selection, or %NULL to unset it
 		 */
-		set_selection_color(color: Color | null): void;
+		set_selection_color(color?: Color | null): void;
 		/**
 		 * Sets whether a {@link Text} actor should be in single line mode
 		 * or not. Only editable #ClutterText<!-- -->s can be in single line
@@ -10214,7 +10214,7 @@ declare namespace imports.gi.Clutter {
 		 * @param text the text to set. Passing %NULL is the same
 		 *   as passing "" (the empty string)
 		 */
-		set_text(text: string | null): void;
+		set_text(text?: string | null): void;
 		/**
 		 * Sets whether the contents of the {@link Text} actor contains markup
 		 * in <link linkend="PangoMarkupFormat">Pango's text markup language</link>.
@@ -10627,7 +10627,7 @@ declare namespace imports.gi.Clutter {
 		 * @returns the newly created {@link PaintNode}.
 		 *   Use {@link Clutter.PaintNode.unref} when done
 		 */
-		public static new(layout: Pango.Layout | null, color: Color | null): PaintNode;
+		public static new(layout?: Pango.Layout | null, color?: Color | null): PaintNode;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -10918,7 +10918,7 @@ declare namespace imports.gi.Clutter {
 		 * Set the actor the timeline is associated with.
 		 * @param actor a {@link Actor}
 		 */
-		set_actor(actor: Actor | null): void;
+		set_actor(actor?: Actor | null): void;
 		/**
 		 * Sets whether #timeline should reverse the direction after the
 		 * emission of the {@link Timeline.completed} signal.
@@ -11286,7 +11286,7 @@ declare namespace imports.gi.Clutter {
 		 * virtual function will be called.
 		 * @param animatable a {@link Animatable}, or %NULL
 		 */
-		set_animatable(animatable: Animatable | null): void;
+		set_animatable(animatable?: Animatable | null): void;
 		/**
 		 * Sets the initial value of the transition.
 		 * 
@@ -11312,7 +11312,7 @@ declare namespace imports.gi.Clutter {
 		 * the floating flag on it if necessary.
 		 * @param interval a {@link Interval}, or %NULL
 		 */
-		set_interval(interval: Interval | null): void;
+		set_interval(interval?: Interval | null): void;
 		/**
 		 * Sets whether #transition should be detached from the {@link Animatable}
 		 * set using {@link Clutter.Transition.set_animatable} when the
@@ -12171,8 +12171,8 @@ declare namespace imports.gi.Clutter {
 		public readonly child_meta_type: GObject.Type;
 		public add: {(container: Container, actor: Actor): void;};
 		public remove: {(container: Container, actor: Actor): void;};
-		public raise: {(container: Container, actor: Actor, sibling: Actor | null): void;};
-		public lower: {(container: Container, actor: Actor, sibling: Actor | null): void;};
+		public raise: {(container: Container, actor: Actor, sibling?: Actor | null): void;};
+		public lower: {(container: Container, actor: Actor, sibling?: Actor | null): void;};
 		public sort_depth_order: {(container: Container): void;};
 		public create_child_meta: {(container: Container, actor: Actor): void;};
 		public destroy_child_meta: {(container: Container, actor: Actor): void;};
@@ -13544,7 +13544,7 @@ declare namespace imports.gi.Clutter {
 		 * @param sibling the sibling to lower to, or %NULL to lower
 		 *   to the bottom
 		 */
-		lower_child(actor: Actor, sibling: Actor | null): void;
+		lower_child(actor: Actor, sibling?: Actor | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link Clutter.Actor.set_child_above_sibling} instead.
@@ -13558,7 +13558,7 @@ declare namespace imports.gi.Clutter {
 		 * @param sibling the sibling to raise to, or %NULL to raise
 		 *   to the top
 		 */
-		raise_child(actor: Actor, sibling: Actor | null): void;
+		raise_child(actor: Actor, sibling?: Actor | null): void;
 		/**
 		 * @deprecated
 		 * Use {@link Clutter.Actor.remove_child} instead.
@@ -15894,7 +15894,7 @@ declare namespace imports.gi.Clutter {
 		 * @param actor a {@link Actor}
 		 * @param data user data
 		 */
-		(actor: Actor, data: any | null): void;
+		(actor: Actor, data?: any | null): void;
 	}
 
 	interface EmitInputDeviceEvent {
@@ -15929,7 +15929,7 @@ declare namespace imports.gi.Clutter {
 		 * @param node the node
 		 * @param data optional data passed to the function
 		 */
-		(node: PathNode, data: any | null): void;
+		(node: PathNode, data?: any | null): void;
 	}
 
 	/**
@@ -16280,12 +16280,12 @@ declare namespace imports.gi.Clutter {
 		 * Sets the device for #event.
 		 * @param device a {@link InputDevice}, or %NULL
 		 */
-		set_device(device: InputDevice | null): void;
+		set_device(device?: InputDevice | null): void;
 		/**
 		 * Sets the tool in use for this event
 		 * @param tool a {@link InputDeviceTool}
 		 */
-		set_device_tool(tool: InputDeviceTool | null): void;
+		set_device_tool(tool?: InputDeviceTool | null): void;
 		/**
 		 * Sets the {@link EventFlags} of #event
 		 * @param flags a binary OR of {@link EventFlags} values
@@ -16310,7 +16310,7 @@ declare namespace imports.gi.Clutter {
 		 * Sets the related actor of a crossing event
 		 * @param actor a {@link Actor} or %NULL
 		 */
-		set_related(actor: Actor | null): void;
+		set_related(actor?: Actor | null): void;
 		/**
 		 * Sets the precise scrolling information of #event.
 		 * @param dx delta on the horizontal axis
@@ -16326,19 +16326,19 @@ declare namespace imports.gi.Clutter {
 		 * Sets the source {@link Actor} of #event.
 		 * @param actor a {@link Actor}, or %NULL
 		 */
-		set_source(actor: Actor | null): void;
+		set_source(actor?: Actor | null): void;
 		/**
 		 * Sets the source {@link InputDevice} for #event.
 		 * 
 		 * The #ClutterEvent must have been created using {@link Clutter.Event.new}.
 		 * @param device a {@link InputDevice}
 		 */
-		set_source_device(device: InputDevice | null): void;
+		set_source_device(device?: InputDevice | null): void;
 		/**
 		 * Sets the source {@link Stage} of the event.
 		 * @param stage a {@link Stage}, or %NULL
 		 */
-		set_stage(stage: Stage | null): void;
+		set_stage(stage?: Stage | null): void;
 		/**
 		 * Sets the modifier state of the event.
 		 * @param state the modifier state to set

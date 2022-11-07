@@ -36,7 +36,8 @@ export function renderSignal(node: FunctionNode, ns_name: string, exclude: boole
         {
             docString: "Callback ID",
             name: "",
-            type: ""
+            type: "",
+            optional: false
         },
         { 
             indent: indent,
