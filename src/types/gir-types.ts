@@ -1,5 +1,9 @@
 export interface NodeAttributes {
     name: string;
+    "shadowed-by"?: string;
+    introspectable?: "0";
+    shadows?: string;
+    length?: number;
 }
 
 
@@ -13,6 +17,7 @@ export interface ParameterAttributes extends NodeAttributes {
     "allow-none"?: number;
     "nullable"?: number;
     deprecated?: number;
+    closure?: number;
 }
 
 export interface MemberAttributes extends NodeAttributes {

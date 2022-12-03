@@ -55,6 +55,7 @@ export interface TypeInfo {
     docString: string | null;
     /** Should only be used when processing tuple return types */
     name: string | null;
+    optional: boolean;
 }
 
 export function GetTypeInfo(param_node: ParameterNode, modifier?: ParamModifier): TypeInfo {
@@ -80,7 +81,8 @@ export function GetTypeInfo(param_node: ParameterNode, modifier?: ParamModifier)
         return {
             type: modifier?.type ?? "any",
             docString: modifier?.doc ?? doc,
-            name: null
+            name: null,
+            optional: false,
         };
     }
 
@@ -92,11 +94,15 @@ export function GetTypeInfo(param_node: ParameterNode, modifier?: ParamModifier)
         finalType = ((modifier?.type_extension?.length ?? 0) > 0) ? `${type} | ${modifier?.type_extension?.join(" | ")}`  : type
     }
 
-    if (param_node?.$?.["allow-none"] == 1 || param_node?.$?.["nullable"] == 1)
+    let optional: boolean = false;
+    if (param_node?.$?.["allow-none"] == 1 || param_node?.$?.["nullable"] == 1) {
         finalType+= " | null";
+        optional = true;
+    }
     return {
         type: finalType,
         docString: modifier?.doc ?? doc,
-        name: name
+        name: name,
+        optional: optional
     };
 }

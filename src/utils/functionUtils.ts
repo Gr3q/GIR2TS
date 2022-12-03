@@ -19,8 +19,8 @@ export interface Parameter {
     optional: boolean;
 }
 
-export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModifier, constructor: boolean = false): FunctionInfo {
-    let func_name = func_node.$.name;
+export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModifier, constructor: boolean = false, shadowedName: string | null = null): FunctionInfo {
+    let func_name = shadowedName ?? func_node.$.name;
     let return_type: string = "any", returnDoc: string | null = null, returnName: string | null = null;
     if (!constructor) {
         ({ type:return_type, docString:returnDoc, name:returnName  } = GetTypeInfo(func_node['return-value']?.[0]));
@@ -29,20 +29,37 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
         return_type = modifier?.return_type?.type ?? return_type;
         returnDoc = modifier?.return_type?.doc ?? returnDoc;
     }
-    let params: Parameter[] = [];
+    let params: ([param: Parameter, index: number])[] = [];
     const doc = func_node.doc?.[0]?.["_"] ?? null;
     //var has_params = "parameter" in method_node.parameters[0];
 
-    let return_params: ParameterNode[] = [];
+    let return_params: [param: ParameterNode, index: number][] = [];
 
+    let closure_index: number[] = [];
+    let array_length_index: number[] = [];
     if (func_node.parameters && func_node.parameters[0].parameter) {
-        for (var param_node of func_node.parameters[0].parameter) {
-            if (param_node.$.name === '...' || param_node.$.name === 'user_data') continue;
+        for (let i = 0; i < func_node.parameters[0].parameter.length; i++) {
+            const param_node = func_node.parameters[0].parameter[i];
+
+            if (param_node.$.closure != null) {
+                closure_index.push(param_node.$.closure);
+            }
+
+            if (param_node.array?.[0]?.$?.length != null) {
+                array_length_index.push(param_node.array[0].$.length);
+            }
+
+            if (param_node.$.name === '...' || 
+                param_node?.type?.[0]?.$?.name == "GLib.DestroyNotify" || 
+                param_node?.type?.[0]?.$?.name?.startsWith("DestroyNotify")) {
+                continue;
+            }
+
             let param_name = param_node.$.name;
 
             // Return param if direction is out an it's not caller allocated
             if (param_node.$.direction == "out") {
-                return_params.push(param_node);
+                return_params.push([param_node, i]);
                 continue;
             }
 
@@ -56,26 +73,61 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
             if (js_reserved_words.includes(param_name)) { // if clashes with JS reserved word.
                 param_name = '_' + param_name;
             }
-            let { type, docString } = GetTypeInfo(param_node);
+
+            let { type, docString, optional } = GetTypeInfo(param_node);
 
             const finalType = modifier?.param?.[param_name]?.type ?? ((modifier?.param?.[param_name]?.type_extension?.length ?? 0 > 1) ? `${type} | ${modifier?.param?.[param_name]?.type_extension?.join(" | ")}` : type);
-            params.push({
+            params.push([{
                 name: modifier?.param?.[param_name]?.newName ?? param_name,
                 type: finalType,
                 docString: modifier?.param?.[param_name]?.doc ?? docString,
-                optional: modifier?.param?.[param_name]?.optional ?? false
-            });
+                optional: modifier?.param?.[param_name]?.optional ?? optional
+            }, i]);
         }
     }
 
+    // Remove closures and length indicators
+    params = params.filter(([v, i]) => {
+        if (array_length_index.find(v => v == i))
+            return false;
+        if (closure_index.find(v => v == i))
+            return false;
+
+        return true;
+    });
+
+    // Remove closures and length indicators
+    return_params = return_params.filter(([v, i]) => {
+        if (array_length_index.find(v => v == i))
+            return false;
+        if (closure_index.find(v => v == i))
+            return false;
+
+        return true;
+    });
+
     if (modifier?.newParam != null) {
         for (const param of modifier.newParam) {
-            params.push({
+            params.push([{
                 docString: param?.doc ?? null,
                 type: param.type,
                 name: param.name,
                 optional: param.optional ?? false
-            })
+            }, -1])
+        }
+    }
+
+    let canBeOptional = true;
+    for (const [param] of [...params].reverse()) {
+        if (param.optional && !canBeOptional) {
+            param.optional = false;
+            param.type = param.type.includes("null") ? param.type : (param.type + " | null");
+            continue;
+        }
+
+        if (!param.optional && canBeOptional) {
+            canBeOptional = false;
+            continue;
         }
     }
 
@@ -88,12 +140,13 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
             tupleReturnTypes.push({
                 docString: returnDoc,
                 type: return_type,
-                name: returnName
+                name: returnName,
+                optional: false
             })
         }
         // Get info
         for (const outParam of return_params) {
-            const typeInfo = GetTypeInfo(outParam);
+            const typeInfo = GetTypeInfo(outParam[0]);
             tupleReturnTypes.push(typeInfo);
         }
 
@@ -118,9 +171,10 @@ export function getFunctionInfo(func_node: FunctionNode, modifier?: FunctionModi
         return_type: (constructor) ? undefined : {
             type: modifier?.return_type?.type ?? ((modifier?.return_type?.type_extension?.length ?? 0 > 1) ? `${return_type} | ${(modifier?.return_type?.type_extension?.join(" | "))}` : return_type),
             docString: modifier?.return_type?.doc ?? returnDoc,
-            name: null
+            name: null,
+            optional: false,
         },
-        params: params,
+        params: params.map(n => n[0]),
         doc: modifier?.doc ?? doc,
         deprecatedDoc: func_node["doc-deprecated"]?.[0]?.["_"] ?? null
     }
