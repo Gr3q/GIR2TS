@@ -229,6 +229,100 @@ declare namespace imports.gi.GObject {
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
+	 * use {@link BindingGroup} instead.
+	 */
+	interface IBindingGroup {
+		/**
+		 * The source object used for binding properties.
+		 */
+		source: Object;
+		/**
+		 * Creates a binding between #source_property on the source object
+		 * and #target_property on #target. Whenever the #source_property
+		 * is changed the #target_property is updated using the same value.
+		 * The binding flag %G_BINDING_SYNC_CREATE is automatically specified.
+		 * 
+		 * See {@link GObject.bind_property} for more information.
+		 * @param source_property the property on the source to bind
+		 * @param target the target #GObject
+		 * @param target_property the property on #target to bind
+		 * @param flags the flags used to create the #GBinding
+		 */
+		bind(source_property: string, target: Object, target_property: string, flags: BindingFlags): void;
+		/**
+		 * Creates a binding between #source_property on the source object and
+		 * #target_property on #target, allowing you to set the transformation
+		 * functions to be used by the binding. The binding flag
+		 * %G_BINDING_SYNC_CREATE is automatically specified.
+		 * 
+		 * This function is the language bindings friendly version of
+		 * {@link G.binding_group_bind_property_full}, using #GClosures
+		 * instead of function pointers.
+		 * 
+		 * See g_object_bind_property_with_closures() for more information.
+		 * @param source_property the property on the source to bind
+		 * @param target the target #GObject
+		 * @param target_property the property on #target to bind
+		 * @param flags the flags used to create the #GBinding
+		 * @param transform_to a #GClosure wrapping the
+		 *     transformation function from the source object to the #target,
+		 *     or %NULL to use the default
+		 * @param transform_from a #GClosure wrapping the
+		 *     transformation function from the #target to the source object,
+		 *     or %NULL to use the default
+		 */
+		bind_full(source_property: string, target: Object, target_property: string, flags: BindingFlags, transform_to?: Closure | null, transform_from?: Closure | null): void;
+		/**
+		 * Gets the source object used for binding properties.
+		 * @returns a #GObject or %NULL.
+		 */
+		dup_source(): Object | null;
+		/**
+		 * Sets #source as the source object used for creating property
+		 * bindings. If there is already a source object all bindings from it
+		 * will be removed.
+		 * 
+		 * Note that all properties that have been bound must exist on #source.
+		 * @param source the source #GObject,
+		 *   or %NULL to clear it
+		 */
+		set_source(source?: Object | null): void;
+		connect(signal: "notify::source", callback: (owner: this, ...args: any) => void): number;
+
+	}
+
+	type BindingGroupInitOptionsMixin = ObjectInitOptions & 
+	Pick<IBindingGroup,
+		"source">;
+
+	export interface BindingGroupInitOptions extends BindingGroupInitOptionsMixin {}
+
+	/** This construct is only for enabling class multi-inheritance,
+	 * use {@link BindingGroup} instead.
+	 */
+	type BindingGroupMixin = IBindingGroup & Object;
+
+	/**
+	 * The #GBindingGroup can be used to bind multiple properties
+	 * from an object collectively.
+	 * 
+	 * Use the various methods to bind properties from a single source
+	 * object to multiple destination objects. Properties can be bound
+	 * bidirectionally and are connected when the source object is set
+	 * with {@link G.binding_group_set_source}.
+	 */
+	interface BindingGroup extends BindingGroupMixin {}
+
+	class BindingGroup {
+		public constructor(options?: Partial<BindingGroupInitOptions>);
+		/**
+		 * Creates a new #GBindingGroup.
+		 * @returns a new #GBindingGroup
+		 */
+		public static new(): BindingGroup;
+	}
+
+	/** This construct is only for enabling class multi-inheritance,
 	 * use {@link InitiallyUnowned} instead.
 	 */
 	interface IInitiallyUnowned {
@@ -372,8 +466,8 @@ declare namespace imports.gi.GObject {
 		 * 
 		 * The signal specs expected by this function have the form
 		 * "modifier::signal_name", where modifier can be one of the following:
-		 * - signal: equivalent to g_signal_connect_data (..., NULL, 0)
-		 * - object-signal, object_signal: equivalent to g_signal_connect_object (..., 0)
+		 * - signal: equivalent to g_signal_connect_data (..., NULL, G_CONNECT_DEFAULT)
+		 * - object-signal, object_signal: equivalent to g_signal_connect_object (..., G_CONNECT_DEFAULT)
 		 * - swapped-signal, swapped_signal: equivalent to g_signal_connect_data (..., NULL, G_CONNECT_SWAPPED)
 		 * - swapped_object_signal, swapped-object-signal: equivalent to g_signal_connect_object (..., G_CONNECT_SWAPPED)
 		 * - signal_after, signal-after: equivalent to g_signal_connect_data (..., NULL, G_CONNECT_AFTER)
@@ -588,12 +682,11 @@ declare namespace imports.gi.GObject {
 		 * g_object_class_install_property() inside a static array, e.g.:
 		 * 
 		 * |[<!-- language="C" -->
-		 *   enum
+		 *   typedef enum
 		 *   {
-		 *     PROP_0,
-		 *     PROP_FOO,
+		 *     PROP_FOO = 1,
 		 *     PROP_LAST
-		 *   };
+		 *   } MyObjectProperty;
 		 * 
 		 *   static GParamSpec *properties[PROP_LAST];
 		 * 
@@ -603,7 +696,7 @@ declare namespace imports.gi.GObject {
 		 *     properties[PROP_FOO] = g_param_spec_int ("foo", "Foo", "The foo",
 		 *                                              0, 100,
 		 *                                              50,
-		 *                                              G_PARAM_READWRITE);
+		 *                                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 		 *     g_object_class_install_property (gobject_class,
 		 *                                      PROP_FOO,
 		 *                                      properties[PROP_FOO]);
@@ -984,6 +1077,14 @@ declare namespace imports.gi.GObject {
 	 * 
 	 * All the fields in the `GObject` structure are private to the implementation
 	 * and should never be accessed directly.
+	 * 
+	 * Since GLib 2.72, all {@link s} are guaranteed to be aligned to at least the
+	 * alignment of the largest basic GLib type (typically this is #guint64 or
+	 * #gdouble). If you need larger alignment for an element in a #GObject, you
+	 * should allocate it on the heap (aligned), or arrange for your #GObject to be
+	 * appropriately padded. This guarantee applies to the #GObject (or derived)
+	 * struct, the #GObjectClass (or derived) struct, and any private data allocated
+	 * by {@link G.ADD_PRIVATE}.
 	 */
 	interface Object extends ObjectMixin {}
 
@@ -992,7 +1093,7 @@ declare namespace imports.gi.GObject {
 		/**
 		 * Creates a new instance of a #GObject subtype and sets its properties.
 		 * 
-		 * Construction parameters (see #G_PARAM_CONSTRUCT, #G_PARAM_CONSTRUCT_ONLY)
+		 * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
 		 * which are not explicitly specified are set to their default values. Any
 		 * private data for the object is guaranteed to be initialized with zeros, as
 		 * per {@link G.type_create_instance}.
@@ -1010,6 +1111,12 @@ declare namespace imports.gi.GObject {
 		 * 
 		 * Similarly, #gfloat is promoted to #gdouble, so you must ensure that the value
 		 * you provide is a #gdouble, even for a property of type #gfloat.
+		 * 
+		 * Since GLib 2.72, all #GObjects are guaranteed to be aligned to at least the
+		 * alignment of the largest basic GLib type (typically this is #guint64 or
+		 * #gdouble). If you need larger alignment for an element in a #GObject, you
+		 * should allocate it on the heap (aligned), or arrange for your #GObject to be
+		 * appropriately padded.
 		 * @param object_type the type id of the #GObject subtype to instantiate
 		 * @param first_property_name the name of the first property
 		 * @returns a new instance of
@@ -1019,7 +1126,7 @@ declare namespace imports.gi.GObject {
 		/**
 		 * Creates a new instance of a #GObject subtype and sets its properties.
 		 * 
-		 * Construction parameters (see #G_PARAM_CONSTRUCT, #G_PARAM_CONSTRUCT_ONLY)
+		 * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
 		 * which are not explicitly specified are set to their default values.
 		 * @param object_type the type id of the #GObject subtype to instantiate
 		 * @param first_property_name the name of the first property
@@ -1049,7 +1156,7 @@ declare namespace imports.gi.GObject {
 		 * 
 		 * Creates a new instance of a #GObject subtype and sets its properties.
 		 * 
-		 * Construction parameters (see #G_PARAM_CONSTRUCT, #G_PARAM_CONSTRUCT_ONLY)
+		 * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
 		 * which are not explicitly specified are set to their default values.
 		 * @param object_type the type id of the #GObject subtype to instantiate
 		 * @param parameters an array of #GParameter
@@ -1276,12 +1383,13 @@ declare namespace imports.gi.GObject {
 		 * the rules for #name. Names which violate these rules lead to undefined
 		 * behaviour.
 		 * 
-		 * Beyond the name, #GParamSpecs have two more descriptive
-		 * strings associated with them, the #nick, which should be suitable
-		 * for use as a label for the property in a property editor, and the
-		 * #blurb, which should be a somewhat longer description, suitable for
-		 * e.g. a tooltip. The #nick and #blurb should ideally be localized.
-		 * @param param_type the #GType for the property; must be derived from #G_TYPE_PARAM
+		 * Beyond the name, #GParamSpecs have two more descriptive strings, the
+		 * #nick and #blurb, which may be used as a localized label and description.
+		 * For GTK and related libraries these are considered deprecated and may be
+		 * omitted, while for other libraries such as GStreamer and its plugins they
+		 * are essential. When in doubt, follow the conventions used in the
+		 * surrounding code and supporting libraries.
+		 * @param param_type the #GType for the property; must be derived from %G_TYPE_PARAM
 		 * @param name the canonical name of the property
 		 * @param nick the nickname of the property
 		 * @param blurb a short description of the property
@@ -1289,7 +1397,7 @@ declare namespace imports.gi.GObject {
 		 * @returns (transfer floating): a newly allocated
 		 *     #GParamSpec instance, which is initially floating
 		 */
-		public static internal(param_type: GObject.Type, name: string, nick: string, blurb: string, flags: ParamFlags): ParamSpec;
+		public static internal(param_type: GObject.Type, name: string, nick: string | null, blurb: string | null, flags: ParamFlags): ParamSpec;
 		/**
 		 * Validate a property name for a #GParamSpec. This can be useful for
 		 * dynamically-generated properties which need to be validated at run-time
@@ -2138,6 +2246,192 @@ declare namespace imports.gi.GObject {
 
 	class ParamSpecVariant {
 		public constructor(options?: Partial<ParamSpecVariantInitOptions>);
+	}
+
+	/** This construct is only for enabling class multi-inheritance,
+	 * use {@link SignalGroup} instead.
+	 */
+	interface ISignalGroup {
+		/**
+		 * The target instance used when connecting signals.
+		 */
+		target: Object;
+		/**
+		 * The #GType of the target property.
+		 */
+		target_type: GObject.Type;
+		/**
+		 * Blocks all signal handlers managed by #self so they will not
+		 * be called during any signal emissions. Must be unblocked exactly
+		 * the same number of times it has been blocked to become active again.
+		 * 
+		 * This blocked state will be kept across changes of the target instance.
+		 */
+		block(): void;
+		/**
+		 * Connects #c_handler to the signal #detailed_signal
+		 * on the target instance of #self.
+		 * 
+		 * You cannot connect a signal handler after #GSignalGroup:target has been set.
+		 * @param detailed_signal a string of the form "signal-name::detail"
+		 * @param c_handler the #GCallback to connect
+		 */
+		connect(detailed_signal: string, c_handler: Callback): void;
+		/**
+		 * Connects #c_handler to the signal #detailed_signal
+		 * on the target instance of #self.
+		 * 
+		 * The #c_handler will be called after the default handler of the signal.
+		 * 
+		 * You cannot connect a signal handler after #GSignalGroup:target has been set.
+		 * @param detailed_signal a string of the form "signal-name::detail"
+		 * @param c_handler the #GCallback to connect
+		 */
+		connect_after(detailed_signal: string, c_handler: Callback): void;
+		/**
+		 * Connects #closure to the signal #detailed_signal on #GSignalGroup:target.
+		 * 
+		 * You cannot connect a signal handler after #GSignalGroup:target has been set.
+		 * @param detailed_signal a string of the form `signal-name` with optional `::signal-detail`
+		 * @param closure the closure to connect.
+		 * @param after whether the handler should be called before or after the
+		 *  default handler of the signal.
+		 */
+		connect_closure(detailed_signal: string, closure: Closure, after: boolean): void;
+		/**
+		 * Connects #c_handler to the signal #detailed_signal
+		 * on the target instance of #self.
+		 * 
+		 * You cannot connect a signal handler after #GSignalGroup:target has been set.
+		 * @param detailed_signal a string of the form "signal-name::detail"
+		 * @param c_handler the #GCallback to connect
+		 * @param notify function to be called when disposing of #self
+		 * @param flags the flags used to create the signal connection
+		 */
+		connect_data(detailed_signal: string, c_handler: Callback, notify: ClosureNotify, flags: ConnectFlags): void;
+		/**
+		 * Connects #c_handler to the signal #detailed_signal on #GSignalGroup:target.
+		 * 
+		 * Ensures that the #object stays alive during the call to #c_handler
+		 * by temporarily adding a reference count. When the #object is destroyed
+		 * the signal handler will automatically be removed.
+		 * 
+		 * You cannot connect a signal handler after #GSignalGroup:target has been set.
+		 * @param detailed_signal a string of the form `signal-name` with optional `::signal-detail`
+		 * @param c_handler the #GCallback to connect
+		 * @param object the #GObject to pass as data to #c_handler calls
+		 * @param flags #GConnectFlags for the signal connection
+		 */
+		connect_object(detailed_signal: string, c_handler: Callback, object: any, flags: ConnectFlags): void;
+		/**
+		 * Connects #c_handler to the signal #detailed_signal
+		 * on the target instance of #self.
+		 * 
+		 * The instance on which the signal is emitted and #data
+		 * will be swapped when calling #c_handler.
+		 * 
+		 * You cannot connect a signal handler after #GSignalGroup:target has been set.
+		 * @param detailed_signal a string of the form "signal-name::detail"
+		 * @param c_handler the #GCallback to connect
+		 */
+		connect_swapped(detailed_signal: string, c_handler: Callback): void;
+		/**
+		 * Gets the target instance used when connecting signals.
+		 * @returns The target instance
+		 */
+		dup_target(): Object | null;
+		/**
+		 * Sets the target instance used when connecting signals. Any signal
+		 * that has been registered with {@link G.signal_group_connect_object} or
+		 * similar functions will be connected to this object.
+		 * 
+		 * If the target instance was previously set, signals will be
+		 * disconnected from that object prior to connecting to #target.
+		 * @param target The target instance used
+		 *     when connecting signals.
+		 */
+		set_target(target?: Object | null): void;
+		/**
+		 * Unblocks all signal handlers managed by #self so they will be
+		 * called again during any signal emissions unless it is blocked
+		 * again. Must be unblocked exactly the same number of times it
+		 * has been blocked to become active again.
+		 */
+		unblock(): void;
+		/**
+		 * This signal is emitted when #GSignalGroup:target is set to a new value
+		 * other than %NULL. It is similar to {@link .notify} on `target` except it
+		 * will not emit when #GSignalGroup:target is %NULL and also allows for
+		 * receiving the #GObject without a data-race.
+		 * @param signal 
+		 * @param callback Callback function
+		 *  - owner: owner of the emitted event 
+		 *  - instance: a #GObject containing the new value for #GSignalGroup:target 
+		 * 
+		 * @returns Callback ID
+		 */
+		connect(signal: "bind", callback: (owner: this, instance: Object) => void): number;
+		/**
+		 * This signal is emitted when the target instance of #self is set to a
+		 * new #GObject.
+		 * 
+		 * This signal will only be emitted if the previous target of #self is
+		 * non-%NULL.
+		 * @param signal 
+		 * @param callback Callback function
+		 *  - owner: owner of the emitted event 
+		 * 
+		 * @returns Callback ID
+		 */
+		connect(signal: "unbind", callback: (owner: this) => void): number;
+
+		connect(signal: "notify::target", callback: (owner: this, ...args: any) => void): number;
+		connect(signal: "notify::target-type", callback: (owner: this, ...args: any) => void): number;
+
+	}
+
+	type SignalGroupInitOptionsMixin = ObjectInitOptions & 
+	Pick<ISignalGroup,
+		"target" |
+		"target_type">;
+
+	export interface SignalGroupInitOptions extends SignalGroupInitOptionsMixin {}
+
+	/** This construct is only for enabling class multi-inheritance,
+	 * use {@link SignalGroup} instead.
+	 */
+	type SignalGroupMixin = ISignalGroup & Object;
+
+	/**
+	 * #GSignalGroup manages to simplify the process of connecting
+	 * many signals to a #GObject as a group. As such there is no API
+	 * to disconnect a signal from the group.
+	 * 
+	 * In particular, this allows you to:
+	 * 
+	 *  - Change the target instance, which automatically causes disconnection
+	 *    of the signals from the old instance and connecting to the new instance.
+	 *  - Block and unblock signals as a group
+	 *  - Ensuring that blocked state transfers across target instances.
+	 * 
+	 * One place you might want to use such a structure is with #GtkTextView and
+	 * #GtkTextBuffer. Often times, you'll need to connect to many signals on
+	 * #GtkTextBuffer from a #GtkTextView subclass. This allows you to create a
+	 * signal group during instance construction, simply bind the
+	 * #GtkTextView:buffer property to #GSignalGroup:target and connect
+	 * all the signals you need. When the #GtkTextView:buffer property changes
+	 * all of the signals will be transitioned correctly.
+	 */
+	interface SignalGroup extends SignalGroupMixin {}
+
+	class SignalGroup {
+		public constructor(options?: Partial<SignalGroupInitOptions>);
+		/**
+		 * Creates a new #GSignalGroup for target instances of #target_type.
+		 * @param target_type the #GType of the target instance.
+		 * @returns a new #GSignalGroup
+		 */
+		public static new(target_type: GObject.Type): SignalGroup;
 	}
 
 	/** This construct is only for enabling class multi-inheritance,
@@ -4671,11 +4965,14 @@ declare namespace imports.gi.GObject {
 	 * objects.
 	 * 
 	 * If the object's #GObjectClass.dispose method results in additional
-	 * references to the object being held, any #GWeakRefs taken
-	 * before it was disposed will continue to point to %NULL.  If
-	 * #GWeakRefs are taken after the object is disposed and
-	 * re-referenced, they will continue to point to it until its refcount
+	 * references to the object being held (‘re-referencing’), any #GWeakRefs taken
+	 * before it was disposed will continue to point to %NULL.  Any #GWeakRefs taken
+	 * during disposal and after re-referencing, or after disposal has returned due
+	 * to the re-referencing, will continue to point to the object until its refcount
 	 * goes back to zero, at which point they too will be invalidated.
+	 * 
+	 * It is invalid to take a #GWeakRef on an object during #GObjectClass.dispose
+	 * without first having or creating a strong reference to the object.
 	 */
 	interface WeakRef {}
 	class WeakRef {
@@ -4869,12 +5166,17 @@ declare namespace imports.gi.GObject {
 	 */
 	enum ConnectFlags {
 		/**
-		 * whether the handler should be called before or after the
-		 *  default handler of the signal.
+		 * Default behaviour (no special flags). Since: 2.74
+		 */
+		DEFAULT = 0,
+		/**
+		 * If set, the handler should be called after the
+		 *  default handler of the signal. Normally, the handler is called before
+		 *  the default handler.
 		 */
 		AFTER = 1,
 		/**
-		 * whether the instance and data should be swapped when
+		 * If set, the instance and data should be swapped when
 		 *  calling the handler; see {@link G.signal_connect_swapped} for an example.
 		 */
 		SWAPPED = 2
@@ -5078,6 +5380,10 @@ declare namespace imports.gi.GObject {
 	 * Bit masks used to check or determine characteristics of a type.
 	 */
 	enum TypeFlags {
+		/**
+		 * No special flags. Since: 2.74
+		 */
+		NONE = 0,
 		/**
 		 * Indicates an abstract type. No instances can be
 		 *  created for an abstract type
@@ -5500,11 +5806,8 @@ declare namespace imports.gi.GObject {
 		 *  callback of #closure
 		 * @param invocation_hint the invocation hint given as the
 		 *  last argument to {@link G.closure_invoke}
-		 * @param marshal_data additional data specified when
-		 *  registering the marshaller, see {@link G.closure_set_marshal} and
-		 *  g_closure_set_meta_marshal()
 		 */
-		(closure: Closure, return_value: Value | null, param_values: Value[], invocation_hint?: any | null, marshal_data?: any | null): void;
+		(closure: Closure, return_value: Value | null, param_values: Value[], invocation_hint?: any | null): void;
 	}
 
 	/**
@@ -5667,7 +5970,6 @@ declare namespace imports.gi.GObject {
 		 * @param return_accu Accumulator to collect callback return values in, this
 		 *  is the return value of the current signal emission.
 		 * @param handler_return A #GValue holding the return value of the signal handler.
-		 * @param data Callback data that was specified when creating the signal.
 		 * @returns The accumulator function returns whether the signal emission
 		 *  should be aborted. Returning %TRUE will continue with
 		 *  the signal emission. Returning %FALSE will abort the current emission.
@@ -5675,7 +5977,7 @@ declare namespace imports.gi.GObject {
 		 *  emission will occur as normal in the CLEANUP stage and the handler's
 		 *  return value will be accumulated.
 		 */
-		(ihint: SignalInvocationHint, return_accu: Value, handler_return: Value, data?: any | null): boolean;
+		(ihint: SignalInvocationHint, return_accu: Value, handler_return: Value): boolean;
 	}
 
 	/**
@@ -5684,7 +5986,7 @@ declare namespace imports.gi.GObject {
 	 * Emission hooks allow you to tie a hook to the signal type, so that it will
 	 * trap all emissions of that signal, from any object.
 	 * 
-	 * You may not attach these to signals created with the #G_SIGNAL_NO_HOOKS flag.
+	 * You may not attach these to signals created with the %G_SIGNAL_NO_HOOKS flag.
 	 */
 	interface SignalEmissionHook {
 		/**
@@ -5693,15 +5995,14 @@ declare namespace imports.gi.GObject {
 		 * Emission hooks allow you to tie a hook to the signal type, so that it will
 		 * trap all emissions of that signal, from any object.
 		 * 
-		 * You may not attach these to signals created with the #G_SIGNAL_NO_HOOKS flag.
+		 * You may not attach these to signals created with the %G_SIGNAL_NO_HOOKS flag.
 		 * @param ihint Signal invocation hint, see #GSignalInvocationHint.
 		 * @param param_values the instance on which
 		 *  the signal was emitted, followed by the parameters of the emission.
-		 * @param data user data associated with the hook.
 		 * @returns whether it wants to stay connected. If it returns %FALSE, the signal
 		 *  hook is disconnected (and destroyed).
 		 */
-		(ihint: SignalInvocationHint, param_values: Value[], data?: any | null): boolean;
+		(ihint: SignalInvocationHint, param_values: Value[]): boolean;
 	}
 
 	/**
@@ -5880,6 +6181,11 @@ declare namespace imports.gi.GObject {
 	 * Since the object is already being disposed when the #GWeakNotify is called,
 	 * there's not much you could do with the object, apart from e.g. using its
 	 * address as hash-index or the like.
+	 * 
+	 * In particular, this means it’s invalid to call {@link GObject.ref},
+	 * g_weak_ref_init(), g_weak_ref_set(), g_object_add_toggle_ref(),
+	 * g_object_weak_ref(), g_object_add_weak_pointer() or any function which calls
+	 * them on the object from this callback.
 	 */
 	interface WeakNotify {
 		/**
@@ -5889,6 +6195,11 @@ declare namespace imports.gi.GObject {
 		 * Since the object is already being disposed when the #GWeakNotify is called,
 		 * there's not much you could do with the object, apart from e.g. using its
 		 * address as hash-index or the like.
+		 * 
+		 * In particular, this means it’s invalid to call {@link GObject.ref},
+		 * g_weak_ref_init(), g_weak_ref_set(), g_object_add_toggle_ref(),
+		 * g_object_weak_ref(), g_object_add_weak_pointer() or any function which calls
+		 * them on the object from this callback.
 		 * @param data data that was provided when the weak reference was established
 		 * @param where_the_object_was the object being disposed
 		 */
@@ -6013,8 +6324,8 @@ declare namespace imports.gi.GObject {
 	 * Boxed type handling functions have to be provided to copy and free
 	 * opaque boxed structures of this type.
 	 * 
-	 * For the general case, it is recommended to use #G_DEFINE_BOXED_TYPE
-	 * instead of calling {@link G.boxed_type_register_static} directly. The macro
+	 * For the general case, it is recommended to use {@link G.DEFINE_BOXED_TYPE}
+	 * instead of calling g_boxed_type_register_static() directly. The macro
 	 * will create the appropriate `*_get_type()` function for the boxed type.
 	 * @param name Name of the new boxed type.
 	 * @param boxed_copy Boxed structure copy function.
@@ -6533,7 +6844,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_boolean(name: string, nick: string, blurb: string, default_value: boolean, flags: ParamFlags): ParamSpec;
+	function param_spec_boolean(name: string, nick: string | null, blurb: string | null, default_value: boolean, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecBoxed instance specifying a %G_TYPE_BOXED
 	 * derived property.
@@ -6546,7 +6857,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_boxed(name: string, nick: string, blurb: string, boxed_type: GObject.Type, flags: ParamFlags): ParamSpec;
+	function param_spec_boxed(name: string, nick: string | null, blurb: string | null, boxed_type: GObject.Type, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecChar instance specifying a %G_TYPE_CHAR property.
 	 * @param name canonical name of the property specified
@@ -6558,7 +6869,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_char(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_char(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecDouble instance specifying a %G_TYPE_DOUBLE
 	 * property.
@@ -6573,7 +6884,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_double(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_double(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecEnum instance specifying a %G_TYPE_ENUM
 	 * property.
@@ -6587,7 +6898,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_enum(name: string, nick: string, blurb: string, enum_type: GObject.Type, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_enum(name: string, nick: string | null, blurb: string | null, enum_type: GObject.Type, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecFlags instance specifying a %G_TYPE_FLAGS
 	 * property.
@@ -6601,7 +6912,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_flags(name: string, nick: string, blurb: string, flags_type: GObject.Type, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_flags(name: string, nick: string | null, blurb: string | null, flags_type: GObject.Type, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecFloat instance specifying a %G_TYPE_FLOAT property.
 	 * 
@@ -6615,7 +6926,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_float(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_float(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecGType instance specifying a
 	 * %G_TYPE_GTYPE property.
@@ -6629,7 +6940,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_gtype(name: string, nick: string, blurb: string, is_a_type: GObject.Type, flags: ParamFlags): ParamSpec;
+	function param_spec_gtype(name: string, nick: string | null, blurb: string | null, is_a_type: GObject.Type, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecInt instance specifying a %G_TYPE_INT property.
 	 * 
@@ -6643,7 +6954,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_int(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_int(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecInt64 instance specifying a %G_TYPE_INT64 property.
 	 * 
@@ -6657,7 +6968,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_int64(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_int64(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecLong instance specifying a %G_TYPE_LONG property.
 	 * 
@@ -6671,7 +6982,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_long(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_long(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecBoxed instance specifying a %G_TYPE_OBJECT
 	 * derived property.
@@ -6684,7 +6995,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_object(name: string, nick: string, blurb: string, object_type: GObject.Type, flags: ParamFlags): ParamSpec;
+	function param_spec_object(name: string, nick: string | null, blurb: string | null, object_type: GObject.Type, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new property of type #GParamSpecOverride. This is used
 	 * to direct operations to another paramspec, and will not be directly
@@ -6706,7 +7017,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_param(name: string, nick: string, blurb: string, param_type: GObject.Type, flags: ParamFlags): ParamSpec;
+	function param_spec_param(name: string, nick: string | null, blurb: string | null, param_type: GObject.Type, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecPointer instance specifying a pointer property.
 	 * Where possible, it is better to use {@link G.param_spec_object} or
@@ -6719,7 +7030,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_pointer(name: string, nick: string, blurb: string, flags: ParamFlags): ParamSpec;
+	function param_spec_pointer(name: string, nick: string | null, blurb: string | null, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecString instance.
 	 * 
@@ -6731,7 +7042,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_string(name: string, nick: string, blurb: string, default_value: string | null, flags: ParamFlags): ParamSpec;
+	function param_spec_string(name: string, nick: string | null, blurb: string | null, default_value: string | null, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecUChar instance specifying a %G_TYPE_UCHAR property.
 	 * @param name canonical name of the property specified
@@ -6743,7 +7054,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_uchar(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_uchar(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecUInt instance specifying a %G_TYPE_UINT property.
 	 * 
@@ -6757,7 +7068,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_uint(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_uint(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecUInt64 instance specifying a %G_TYPE_UINT64
 	 * property.
@@ -6772,7 +7083,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_uint64(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_uint64(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecULong instance specifying a %G_TYPE_ULONG
 	 * property.
@@ -6787,7 +7098,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_ulong(name: string, nick: string, blurb: string, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
+	function param_spec_ulong(name: string, nick: string | null, blurb: string | null, minimum: number, maximum: number, default_value: number, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecUnichar instance specifying a %G_TYPE_UINT
 	 * property. #GValue structures for this property can be accessed with
@@ -6801,7 +7112,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_unichar(name: string, nick: string, blurb: string, default_value: string, flags: ParamFlags): ParamSpec;
+	function param_spec_unichar(name: string, nick: string | null, blurb: string | null, default_value: string, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecValueArray instance specifying a
 	 * %G_TYPE_VALUE_ARRAY property. %G_TYPE_VALUE_ARRAY is a
@@ -6817,7 +7128,7 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns a newly created parameter specification
 	 */
-	function param_spec_value_array(name: string, nick: string, blurb: string, element_spec: ParamSpec, flags: ParamFlags): ParamSpec;
+	function param_spec_value_array(name: string, nick: string | null, blurb: string | null, element_spec: ParamSpec, flags: ParamFlags): ParamSpec;
 	/**
 	 * Creates a new #GParamSpecVariant instance specifying a #GVariant
 	 * property.
@@ -6834,10 +7145,10 @@ declare namespace imports.gi.GObject {
 	 * @param flags flags for the property specified
 	 * @returns the newly created #GParamSpec
 	 */
-	function param_spec_variant(name: string, nick: string, blurb: string, type: GLib.VariantType, default_value: GLib.Variant | null, flags: ParamFlags): ParamSpec;
+	function param_spec_variant(name: string, nick: string | null, blurb: string | null, type: GLib.VariantType, default_value: GLib.Variant | null, flags: ParamFlags): ParamSpec;
 	/**
 	 * Registers #name as the name of a new static type derived
-	 * from #G_TYPE_PARAM.
+	 * from %G_TYPE_PARAM.
 	 * 
 	 * The type system uses the information contained in the #GParamSpecTypeInfo
 	 * structure pointed to by #info to manage the #GParamSpec type and its
@@ -6871,6 +7182,15 @@ declare namespace imports.gi.GObject {
 	 * @returns whether #value contains the canonical default for this #pspec
 	 */
 	function param_value_defaults(pspec: ParamSpec, value: Value): boolean;
+	/**
+	 * Return whether the contents of #value comply with the specifications
+	 * set out by #pspec.
+	 * @param pspec a valid #GParamSpec
+	 * @param value a #GValue of correct type for #pspec
+	 * @returns whether the contents of #value comply with the specifications
+	 *   set out by #pspec.
+	 */
+	function param_value_is_valid(pspec: ParamSpec, value: Value): boolean;
 	/**
 	 * Sets #value to its default value as specified in #pspec.
 	 * @param pspec a valid #GParamSpec
@@ -6943,7 +7263,7 @@ declare namespace imports.gi.GObject {
 	/**
 	 * Adds an emission hook for a signal, which will get called for any emission
 	 * of that signal, independent of the instance. This is possible only
-	 * for signals which don't have #G_SIGNAL_NO_HOOKS flag set.
+	 * for signals which don't have %G_SIGNAL_NO_HOOKS flag set.
 	 * @param signal_id the signal identifier, as returned by {@link G.signal_lookup}.
 	 * @param detail the detail on which to call the hook.
 	 * @returns the hook id, for later use with {@link G.signal_remove_emission_hook}.
@@ -7022,7 +7342,8 @@ declare namespace imports.gi.GObject {
 	 */
 	function signal_connect_object(instance: TypeInstance, detailed_signal: string, c_handler: Callback, gobject: Object | null, connect_flags: ConnectFlags): number;
 	/**
-	 * Emits a signal.
+	 * Emits a signal. Signal emission is done synchronously.
+	 * The method will only return control after all handlers are called or signal emission was stopped.
 	 * 
 	 * Note that {@link G.signal_emit} resets the return value to the default
 	 * if no handlers are connected, in contrast to g_signal_emitv().
@@ -7032,7 +7353,8 @@ declare namespace imports.gi.GObject {
 	 */
 	function signal_emit(instance: Object, signal_id: number, detail: GLib.Quark): void;
 	/**
-	 * Emits a signal.
+	 * Emits a signal. Signal emission is done synchronously.
+	 * The method will only return control after all handlers are called or signal emission was stopped.
 	 * 
 	 * Note that {@link G.signal_emit_by_name} resets the return value to the default
 	 * if no handlers are connected, in contrast to g_signal_emitv().
@@ -7041,7 +7363,8 @@ declare namespace imports.gi.GObject {
 	 */
 	function signal_emit_by_name(instance: Object, detailed_signal: string): void;
 	/**
-	 * Emits a signal.
+	 * Emits a signal. Signal emission is done synchronously.
+	 * The method will only return control after all handlers are called or signal emission was stopped.
 	 * 
 	 * Note that {@link G.signal_emit_valist} resets the return value to the default
 	 * if no handlers are connected, in contrast to g_signal_emitv().
@@ -7051,11 +7374,12 @@ declare namespace imports.gi.GObject {
 	 * @param detail the detail
 	 * @param var_args a list of parameters to be passed to the signal, followed by a
 	 *  location for the return value. If the return type of the signal
-	 *  is #G_TYPE_NONE, the return value location can be omitted.
+	 *  is %G_TYPE_NONE, the return value location can be omitted.
 	 */
 	function signal_emit_valist(instance: TypeInstance, signal_id: number, detail: GLib.Quark, var_args: any[]): void;
 	/**
-	 * Emits a signal.
+	 * Emits a signal. Signal emission is done synchronously.
+	 * The method will only return control after all handlers are called or signal emission was stopped.
 	 * 
 	 * Note that {@link G.signal_emitv} doesn't change #return_value if no handlers are
 	 * connected, in contrast to g_signal_emit() and g_signal_emit_valist().
@@ -7308,7 +7632,7 @@ declare namespace imports.gi.GObject {
 	 *  not associate a class method slot with this signal.
 	 * @param c_marshaller the function to translate arrays of parameter
 	 *  values to signal emissions into C language callback invocations or %NULL.
-	 * @param return_type the type of return value, or #G_TYPE_NONE for a signal
+	 * @param return_type the type of return value, or %G_TYPE_NONE for a signal
 	 *  without a return value.
 	 * @param n_params the number of parameter types to follow.
 	 * @returns the signal id
@@ -7323,7 +7647,7 @@ declare namespace imports.gi.GObject {
 	 * an object definition, instead the function pointer is passed
 	 * directly and can be overridden by derived classes with
 	 * g_signal_override_class_closure() or
-	 * g_signal_override_class_handler()and chained to with
+	 * g_signal_override_class_handler() and chained to with
 	 * g_signal_chain_from_overridden() or
 	 * g_signal_chain_from_overridden_handler().
 	 * 
@@ -7342,7 +7666,7 @@ declare namespace imports.gi.GObject {
 	 *  not associate a class method with this signal.
 	 * @param c_marshaller the function to translate arrays of parameter
 	 *  values to signal emissions into C language callback invocations or %NULL.
-	 * @param return_type the type of return value, or #G_TYPE_NONE for a signal
+	 * @param return_type the type of return value, or %G_TYPE_NONE for a signal
 	 *  without a return value.
 	 * @param n_params the number of parameter types to follow.
 	 * @returns the signal id
@@ -7364,7 +7688,7 @@ declare namespace imports.gi.GObject {
 	 * @param class_closure The closure to invoke on signal emission; may be %NULL.
 	 * @param c_marshaller the function to translate arrays of parameter
 	 *  values to signal emissions into C language callback invocations or %NULL.
-	 * @param return_type the type of return value, or #G_TYPE_NONE for a signal
+	 * @param return_type the type of return value, or %G_TYPE_NONE for a signal
 	 *  without a return value.
 	 * @param n_params the number of parameter types in #args.
 	 * @param args va_list of #GType, one for each parameter.
@@ -7389,7 +7713,7 @@ declare namespace imports.gi.GObject {
 	 * @param c_marshaller the function to translate arrays of
 	 *     parameter values to signal emissions into C language callback
 	 *     invocations or %NULL
-	 * @param return_type the type of return value, or #G_TYPE_NONE for a signal
+	 * @param return_type the type of return value, or %G_TYPE_NONE for a signal
 	 *     without a return value
 	 * @param param_types an array of types, one for
 	 *     each parameter (may be %NULL if #n_params is zero)
@@ -7955,7 +8279,7 @@ declare namespace imports.gi.GObject {
 	 * @param type_name 0-terminated string used as the name of the new type
 	 * @param plugin #GTypePlugin structure to retrieve the #GTypeInfo from
 	 * @param flags bitwise combination of #GTypeFlags values
-	 * @returns the new type identifier or #G_TYPE_INVALID if registration failed
+	 * @returns the new type identifier or %G_TYPE_INVALID if registration failed
 	 */
 	function type_register_dynamic(parent_type: GObject.Type, type_name: string, plugin: TypePlugin, flags: TypeFlags): GObject.Type;
 	/**
@@ -8073,8 +8397,20 @@ declare namespace imports.gi.GObject {
 	/**
 	 * #GParamFlags value alias for %G_PARAM_STATIC_NAME | %G_PARAM_STATIC_NICK | %G_PARAM_STATIC_BLURB.
 	 * 
+	 * It is recommended to use this for all properties by default, as it allows for
+	 * internal performance improvements in GObject.
+	 * 
+	 * It is very rare that a property would have a dynamically constructed name,
+	 * nickname or blurb.
+	 * 
 	 * Since 2.13.0
 	 * @returns #GParamFlags value alias for %G_PARAM_STATIC_NAME | %G_PARAM_STATIC_NICK | %G_PARAM_STATIC_BLURB.
+	 * 
+	 * It is recommended to use this for all properties by default, as it allows for
+	 * internal performance improvements in GObject.
+	 * 
+	 * It is very rare that a property would have a dynamically constructed name,
+	 * nickname or blurb.
 	 * 
 	 * Since 2.13.0
 	 */

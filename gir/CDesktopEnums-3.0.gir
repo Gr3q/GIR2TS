@@ -12,7 +12,7 @@ and/or use gtk-doc annotations.  -->
              c:identifier-prefixes="CDesktop"
              c:symbol-prefixes="c_desktop">
     <enumeration name="BackgroundShading" c:type="CDesktopBackgroundShading">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="63"/>
       <member name="solid"
               value="0"
@@ -28,7 +28,7 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="BackgroundStyle" c:type="CDesktopBackgroundStyle">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="56"/>
       <member name="none"
               value="0"
@@ -59,9 +59,25 @@ and/or use gtk-doc annotations.  -->
               c:identifier="C_DESKTOP_BACKGROUND_STYLE_SPANNED">
       </member>
     </enumeration>
+    <enumeration name="DeviceSendEvents" c:type="CDesktopDeviceSendEvents">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="99"/>
+      <member name="enabled"
+              value="0"
+              c:identifier="C_DESKTOP_DEVICE_SEND_EVENTS_ENABLED">
+      </member>
+      <member name="disabled"
+              value="1"
+              c:identifier="C_DESKTOP_DEVICE_SEND_EVENTS_DISABLED">
+      </member>
+      <member name="disabled_on_external_mouse"
+              value="2"
+              c:identifier="C_DESKTOP_DEVICE_SEND_EVENTS_DISABLED_ON_EXTERNAL_MOUSE">
+      </member>
+    </enumeration>
     <enumeration name="FocusMode" c:type="CDesktopFocusMode">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="139"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="168"/>
       <member name="click" value="0" c:identifier="C_DESKTOP_FOCUS_MODE_CLICK">
       </member>
       <member name="sloppy"
@@ -72,8 +88,8 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="FocusNewWindows" c:type="CDesktopFocusNewWindows">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="145"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="174"/>
       <member name="smart"
               value="0"
               c:identifier="C_DESKTOP_FOCUS_NEW_WINDOWS_SMART">
@@ -84,8 +100,8 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="MagnifierLensShape" c:type="CDesktopMagnifierLensShape">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="110"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="139"/>
       <member name="none"
               value="0"
               c:identifier="C_DESKTOP_MAGNIFIER_LENS_SHAPE_NONE">
@@ -105,8 +121,8 @@ and/or use gtk-doc annotations.  -->
     </enumeration>
     <enumeration name="MagnifierMouseTrackingMode"
                  c:type="CDesktopMagnifierMouseTrackingMode">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="92"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="121"/>
       <member name="none"
               value="0"
               c:identifier="C_DESKTOP_MAGNIFIER_MOUSE_TRACKING_MODE_NONE">
@@ -126,8 +142,8 @@ and/or use gtk-doc annotations.  -->
     </enumeration>
     <enumeration name="MagnifierScreenPosition"
                  c:type="CDesktopMagnifierScreenPosition">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="102"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="131"/>
       <member name="none"
               value="0"
               c:identifier="C_DESKTOP_MAGNIFIER_SCREEN_POSITION_NONE">
@@ -154,8 +170,8 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="MediaKeyType" c:type="CDesktopMediaKeyType">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="219"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="271"/>
       <member name="mute" value="0" c:identifier="C_DESKTOP_MEDIA_KEY_MUTE">
       </member>
       <member name="mute_quiet"
@@ -355,7 +371,7 @@ and/or use gtk-doc annotations.  -->
     </enumeration>
     <enumeration name="MouseDwellDirection"
                  c:type="CDesktopMouseDwellDirection">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="77"/>
       <member name="left"
               value="0"
@@ -375,7 +391,7 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="MouseDwellMode" c:type="CDesktopMouseDwellMode">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="69"/>
       <member name="window"
               value="0"
@@ -386,8 +402,45 @@ and/or use gtk-doc annotations.  -->
               c:identifier="C_DESKTOP_MOUSE_DWELL_MODE_GESTURE">
       </member>
     </enumeration>
+    <enumeration name="PadButtonAction" c:type="CDesktopPadButtonAction">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="194"/>
+      <member name="none"
+              value="0"
+              c:identifier="C_DESKTOP_PAD_BUTTON_ACTION_NONE">
+      </member>
+      <member name="help"
+              value="1"
+              c:identifier="C_DESKTOP_PAD_BUTTON_ACTION_HELP">
+      </member>
+      <member name="switch_monitor"
+              value="2"
+              c:identifier="C_DESKTOP_PAD_BUTTON_ACTION_SWITCH_MONITOR">
+      </member>
+      <member name="keybinding"
+              value="3"
+              c:identifier="C_DESKTOP_PAD_BUTTON_ACTION_KEYBINDING">
+      </member>
+    </enumeration>
+    <enumeration name="PointerAccelProfile"
+                 c:type="CDesktopPointerAccelProfile">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="106"/>
+      <member name="default"
+              value="0"
+              c:identifier="C_DESKTOP_POINTER_ACCEL_PROFILE_DEFAULT">
+      </member>
+      <member name="flat"
+              value="1"
+              c:identifier="C_DESKTOP_POINTER_ACCEL_PROFILE_FLAT">
+      </member>
+      <member name="adaptive"
+              value="2"
+              c:identifier="C_DESKTOP_POINTER_ACCEL_PROFILE_ADAPTIVE">
+      </member>
+    </enumeration>
     <enumeration name="ProxyMode" c:type="CDesktopProxyMode">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="31"/>
       <member name="none" value="0" c:identifier="C_DESKTOP_PROXY_MODE_NONE">
       </member>
@@ -399,8 +452,8 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="ScreensaverMode" c:type="CDesktopScreensaverMode">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="84"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="113"/>
       <member name="blank_only"
               value="0"
               c:identifier="C_DESKTOP_SCREENSAVER_MODE_BLANK_ONLY">
@@ -414,9 +467,45 @@ and/or use gtk-doc annotations.  -->
               c:identifier="C_DESKTOP_SCREENSAVER_MODE_SINGLE">
       </member>
     </enumeration>
+    <enumeration name="StylusButtonAction" c:type="CDesktopStylusButtonAction">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="203"/>
+      <member name="default"
+              value="0"
+              c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_DEFAULT">
+      </member>
+      <member name="middle"
+              value="1"
+              c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_MIDDLE">
+      </member>
+      <member name="right"
+              value="2"
+              c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_RIGHT">
+      </member>
+      <member name="back"
+              value="3"
+              c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_BACK">
+      </member>
+      <member name="forward"
+              value="4"
+              c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_FORWARD">
+      </member>
+    </enumeration>
+    <enumeration name="TabletMapping" c:type="CDesktopTabletMapping">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="186"/>
+      <member name="absolute"
+              value="0"
+              c:identifier="C_DESKTOP_TABLET_MAPPING_ABSOLUTE">
+      </member>
+      <member name="relative"
+              value="1"
+              c:identifier="C_DESKTOP_TABLET_MAPPING_RELATIVE">
+      </member>
+    </enumeration>
     <enumeration name="TitlebarAction" c:type="CDesktopTitlebarAction">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="124"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="153"/>
       <member name="toggle_shade"
               value="0"
               c:identifier="C_DESKTOP_TITLEBAR_ACTION_TOGGLE_SHADE">
@@ -460,8 +549,8 @@ and/or use gtk-doc annotations.  -->
     </enumeration>
     <enumeration name="TitlebarScrollAction"
                  c:type="CDesktopTitlebarScrollAction">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="132"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="161"/>
       <member name="shade"
               value="10"
               c:identifier="C_DESKTOP_TITLEBAR_SCROLL_ACTION_SHADE">
@@ -476,7 +565,7 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="ToolbarIconSize" c:type="CDesktopToolbarIconSize">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="45"/>
       <member name="small"
               value="0"
@@ -488,7 +577,7 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <enumeration name="ToolbarStyle" c:type="CDesktopToolbarStyle">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="39"/>
       <member name="both"
               value="0"
@@ -507,9 +596,46 @@ and/or use gtk-doc annotations.  -->
               c:identifier="C_DESKTOP_TOOLBAR_STYLE_TEXT">
       </member>
     </enumeration>
+    <enumeration name="TouchpadClickMethod"
+                 c:type="CDesktopTouchpadClickMethod">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="92"/>
+      <member name="default"
+              value="0"
+              c:identifier="C_DESKTOP_TOUCHPAD_CLICK_METHOD_DEFAULT">
+      </member>
+      <member name="none"
+              value="1"
+              c:identifier="C_DESKTOP_TOUCHPAD_CLICK_METHOD_NONE">
+      </member>
+      <member name="areas"
+              value="2"
+              c:identifier="C_DESKTOP_TOUCHPAD_CLICK_METHOD_AREAS">
+      </member>
+      <member name="fingers"
+              value="3"
+              c:identifier="C_DESKTOP_TOUCHPAD_CLICK_METHOD_FINGERS">
+      </member>
+    </enumeration>
+    <enumeration name="TouchpadHandedness" c:type="CDesktopTouchpadHandedness">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="84"/>
+      <member name="right"
+              value="0"
+              c:identifier="C_DESKTOP_TOUCHPAD_HANDEDNESS_RIGHT">
+      </member>
+      <member name="left"
+              value="1"
+              c:identifier="C_DESKTOP_TOUCHPAD_HANDEDNESS_LEFT">
+      </member>
+      <member name="mouse"
+              value="2"
+              c:identifier="C_DESKTOP_TOUCHPAD_HANDEDNESS_MOUSE">
+      </member>
+    </enumeration>
     <enumeration name="VisualBellType" c:type="CDesktopVisualBellType">
-      <source-position filename="../libcinnamon-desktop/cdesktop-enums.h"
-                       line="151"/>
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="180"/>
       <member name="fullscreen_flash"
               value="0"
               c:identifier="C_DESKTOP_VISUAL_BELL_FULLSCREEN_FLASH">

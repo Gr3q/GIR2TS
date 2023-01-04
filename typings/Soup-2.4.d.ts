@@ -96,10 +96,11 @@ declare namespace imports.gi.Soup {
 		 * resolved in another thread, it may return garbage. You can use
 		 * {@link Soup.Address.is_resolved} to safely test whether or not an address
 		 * is resolved before fetching its name or address.
-		 * @param len return location for sockaddr length
 		 * @returns the sockaddr, or %NULL
+		 * 
+		 * return location for sockaddr length
 		 */
-		get_sockaddr(len: number): any | null;
+		get_sockaddr(): [ any | null, number ];
 		/**
 		 * A hash function (for #GHashTable) that corresponds to
 		 * {@link Soup.Address.equal_by_ip}, qv
@@ -3337,7 +3338,7 @@ declare namespace imports.gi.Soup {
 		 * https certificate validation is handled.
 		 * 
 		 * If you are using #SoupSessionAsync or
-		 * #SoupSessionSync, on libsoup older than 2.72.1, the default value
+		 * #SoupSessionSync, on libsoup older than 2.74.0, the default value
 		 * is %FALSE, for backward compatibility.
 		 */
 		ssl_use_system_ca_file: boolean;
@@ -3378,7 +3379,7 @@ declare namespace imports.gi.Soup {
 		 * #SoupSession:ssl-use-system-ca-file will be %TRUE by
 		 * default, and so this property will be a copy of the system
 		 * CA database. If you are using #SoupSessionAsync or
-		 * #SoupSessionSync, on libsoup older than 2.72.1, this property
+		 * #SoupSessionSync, on libsoup older than 2.74.0, this property
 		 * will be %NULL by default.
 		 */
 		tls_database: Gio.TlsDatabase;
@@ -4301,14 +4302,15 @@ declare namespace imports.gi.Soup {
 		 *   into
 		 * @param boundary boundary to read until
 		 * @param boundary_len length of #boundary in bytes
-		 * @param got_boundary on return, whether or not the data in #buffer
-		 * ends with the boundary string
 		 * @param cancellable a #GCancellable, or %NULL
 		 * @returns as for {@link Soup.Socket.read}
 		 * 
 		 * on return, the number of bytes read into #buffer
+		 * 
+		 * on return, whether or not the data in #buffer
+		 * ends with the boundary string
 		 */
-		read_until(buffer: number[], boundary: any | null, boundary_len: number, got_boundary: boolean, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number ];
+		read_until(buffer: number[], boundary: any | null, boundary_len: number, cancellable?: Gio.Cancellable | null): [ SocketIOStatus, number, boolean ];
 		/**
 		 * Starts using SSL on #socket, expecting to find a host named
 		 * #ssl_host.

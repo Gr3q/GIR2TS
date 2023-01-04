@@ -669,7 +669,7 @@ declare namespace imports.gi.GLib {
 		 * Gets the time the bookmark for #uri was added to #bookmark
 		 * 
 		 * In the event the URI cannot be found, -1 is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a timestamp
 		 */
@@ -678,7 +678,7 @@ declare namespace imports.gi.GLib {
 		 * Gets the time the bookmark for #uri was added to #bookmark
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a #GDateTime
 		 */
@@ -695,11 +695,11 @@ declare namespace imports.gi.GLib {
 		 * The string returned in #app_exec must be freed.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
 		 * event that no application with name #app_name has registered a bookmark
 		 * for #uri,  %FALSE is returned and error is set to
-		 * #G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED. In the event that unquoting
-		 * the command line fails, an error of the #G_SHELL_ERROR domain is
+		 * %G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED. In the event that unquoting
+		 * the command line fails, an error of the %G_SHELL_ERROR domain is
 		 * set and %FALSE is returned.
 		 * @param uri a valid URI
 		 * @param name an application's name
@@ -720,11 +720,11 @@ declare namespace imports.gi.GLib {
 		 * The string returned in #app_exec must be freed.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
 		 * event that no application with name #app_name has registered a bookmark
 		 * for #uri,  %FALSE is returned and error is set to
-		 * #G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED. In the event that unquoting
-		 * the command line fails, an error of the #G_SHELL_ERROR domain is
+		 * %G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED. In the event that unquoting
+		 * the command line fails, an error of the %G_SHELL_ERROR domain is
 		 * set and %FALSE is returned.
 		 * @param uri a valid URI
 		 * @param name an application's name
@@ -742,7 +742,7 @@ declare namespace imports.gi.GLib {
 		 * bookmark for #uri.
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a newly allocated %NULL-terminated array of strings.
 		 *   Use {@link G.strfreev} to free it.
@@ -754,7 +754,7 @@ declare namespace imports.gi.GLib {
 		 * Retrieves the description of the bookmark for #uri.
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a newly allocated string or %NULL if the specified
 		 *   URI cannot be found.
@@ -764,7 +764,7 @@ declare namespace imports.gi.GLib {
 		 * Retrieves the list of group names of the bookmark for #uri.
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * 
 		 * The returned array is %NULL terminated, so #length may optionally
 		 * be %NULL.
@@ -779,7 +779,7 @@ declare namespace imports.gi.GLib {
 		 * Gets the icon of the bookmark for #uri.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns %TRUE if the icon for the bookmark for the URI was found.
 		 *   You should free the returned strings.
@@ -793,9 +793,9 @@ declare namespace imports.gi.GLib {
 		 * Gets whether the private flag of the bookmark for #uri is set.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
 		 * event that the private flag cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_INVALID_VALUE.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_INVALID_VALUE.
 		 * @param uri a valid URI
 		 * @returns %TRUE if the private flag is set, %FALSE otherwise.
 		 */
@@ -804,9 +804,9 @@ declare namespace imports.gi.GLib {
 		 * Retrieves the MIME type of the resource pointed by #uri.
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.  In the
 		 * event that the MIME type cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_INVALID_VALUE.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_INVALID_VALUE.
 		 * @param uri a valid URI
 		 * @returns a newly allocated string or %NULL if the specified
 		 *   URI cannot be found.
@@ -820,7 +820,7 @@ declare namespace imports.gi.GLib {
 		 * Gets the time when the bookmark for #uri was last modified.
 		 * 
 		 * In the event the URI cannot be found, -1 is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a timestamp
 		 */
@@ -829,7 +829,7 @@ declare namespace imports.gi.GLib {
 		 * Gets the time when the bookmark for #uri was last modified.
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a #GDateTime
 		 */
@@ -845,7 +845,7 @@ declare namespace imports.gi.GLib {
 		 * If #uri is %NULL, the title of #bookmark is returned.
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI or %NULL
 		 * @returns a newly allocated string or %NULL if the specified
 		 *   URI cannot be found.
@@ -869,7 +869,7 @@ declare namespace imports.gi.GLib {
 		 * Gets the time the bookmark for #uri was last visited.
 		 * 
 		 * In the event the URI cannot be found, -1 is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a timestamp.
 		 */
@@ -878,7 +878,7 @@ declare namespace imports.gi.GLib {
 		 * Gets the time the bookmark for #uri was last visited.
 		 * 
 		 * In the event the URI cannot be found, %NULL is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @returns a #GDateTime
 		 */
@@ -888,7 +888,7 @@ declare namespace imports.gi.GLib {
 		 * registered by application #name.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @param name the name of the application
 		 * @returns %TRUE if the application #name was found
@@ -899,7 +899,7 @@ declare namespace imports.gi.GLib {
 		 * the bookmark for #uri belongs to.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param uri a valid URI
 		 * @param group the group name to be searched
 		 * @returns %TRUE if #group was found.
@@ -948,7 +948,7 @@ declare namespace imports.gi.GLib {
 		 * %NULL, then the bookmark is removed.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * @param old_uri a valid URI
 		 * @param new_uri a valid URI, or %NULL
 		 * @returns %TRUE if the URI was successfully changed
@@ -959,10 +959,10 @@ declare namespace imports.gi.GLib {
 		 * that have registered a bookmark for #uri inside #bookmark.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * In the event that no application with name #app_name has registered
 		 * a bookmark for #uri,  %FALSE is returned and error is set to
-		 * #G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED.
+		 * %G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED.
 		 * @param uri a valid URI
 		 * @param name the name of the application
 		 * @returns %TRUE if the application was successfully removed.
@@ -973,9 +973,9 @@ declare namespace imports.gi.GLib {
 		 * for #uri belongs to.
 		 * 
 		 * In the event the URI cannot be found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND.
 		 * In the event no group was defined, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_INVALID_VALUE.
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_INVALID_VALUE.
 		 * @param uri a valid URI
 		 * @param group the group name to be removed
 		 * @returns %TRUE if #group was successfully removed.
@@ -1035,10 +1035,10 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * If you try to remove an application by setting its registration count to
 		 * zero, and no bookmark for #uri is found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND; similarly,
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND; similarly,
 		 * in the event that no application #name has registered a bookmark
 		 * for #uri,  %FALSE is returned and error is set to
-		 * #G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED.  Otherwise, if no bookmark
+		 * %G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED.  Otherwise, if no bookmark
 		 * for #uri is found, one is created.
 		 * @param uri a valid URI
 		 * @param name an application's name
@@ -1072,10 +1072,10 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * If you try to remove an application by setting its registration count to
 		 * zero, and no bookmark for #uri is found, %FALSE is returned and
-		 * #error is set to #G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND; similarly,
+		 * #error is set to %G_BOOKMARK_FILE_ERROR_URI_NOT_FOUND; similarly,
 		 * in the event that no application #name has registered a bookmark
 		 * for #uri,  %FALSE is returned and error is set to
-		 * #G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED.  Otherwise, if no bookmark
+		 * %G_BOOKMARK_FILE_ERROR_APP_NOT_REGISTERED.  Otherwise, if no bookmark
 		 * for #uri is found, one is created.
 		 * @param uri a valid URI
 		 * @param name an application's name
@@ -1920,21 +1920,27 @@ declare namespace imports.gi.GLib {
 		 */
 		public static new(): Date;
 		/**
-		 * Like {@link G.date_new}, but also sets the value of the date. Assuming the
-		 * day-month-year triplet you pass in represents an existing day, the
-		 * returned date will be valid.
+		 * Create a new #GDate representing the given day-month-year triplet.
+		 * 
+		 * The triplet you pass in must represent a valid date. Use {@link G.date_valid_dmy}
+		 * if needed to validate it. The returned #GDate is guaranteed to be non-%NULL
+		 * and valid.
 		 * @param day day of the month
 		 * @param month month of the year
 		 * @param year year
-		 * @returns a newly-allocated #GDate initialized with #day, #month, and #year
+		 * @returns a newly-allocated #GDate
+		 *   initialized with #day, #month, and #year
 		 */
 		public static new_dmy(day: DateDay, month: DateMonth, year: DateYear): Date;
 		/**
-		 * Like {@link G.date_new}, but also sets the value of the date. Assuming the
-		 * Julian day number you pass in is valid (greater than 0, less than an
-		 * unreasonably large number), the returned date will be valid.
+		 * Create a new #GDate representing the given Julian date.
+		 * 
+		 * The #julian_day you pass in must be valid. Use {@link G.date_valid_julian} if
+		 * needed to validate it. The returned #GDate is guaranteed to be non-%NULL and
+		 * valid.
 		 * @param julian_day days since January 1, Year 1
-		 * @returns a newly-allocated #GDate initialized with #julian_day
+		 * @returns a newly-allocated #GDate initialized
+		 *   with #julian_day
 		 */
 		public static new_julian(julian_day: number): Date;
 		/**
@@ -2698,7 +2704,8 @@ declare namespace imports.gi.GLib {
 		 * - \%c: the preferred date and time representation for the current locale
 		 * - \%C: the century number (year/100) as a 2-digit integer (00-99)
 		 * - \%d: the day of the month as a decimal number (range 01 to 31)
-		 * - \%e: the day of the month as a decimal number (range  1 to 31)
+		 * - \%e: the day of the month as a decimal number (range 1 to 31);
+		 *   single digits are preceded by a figure space
 		 * - \%F: equivalent to `%Y-%m-%d` (the ISO 8601 date format)
 		 * - \%g: the last two digits of the ISO 8601 week-based year as a
 		 *   decimal number (00-99). This works well with \%V and \%u.
@@ -2709,9 +2716,9 @@ declare namespace imports.gi.GLib {
 		 * - \%I: the hour as a decimal number using a 12-hour clock (range 01 to 12)
 		 * - \%j: the day of the year as a decimal number (range 001 to 366)
 		 * - \%k: the hour (24-hour clock) as a decimal number (range 0 to 23);
-		 *   single digits are preceded by a blank
+		 *   single digits are preceded by a figure space
 		 * - \%l: the hour (12-hour clock) as a decimal number (range 1 to 12);
-		 *   single digits are preceded by a blank
+		 *   single digits are preceded by a figure space
 		 * - \%m: the month as a decimal number (range 01 to 12)
 		 * - \%M: the minute as a decimal number (range 00 to 59)
 		 * - \%f: the microsecond as a decimal number (range 000000 to 999999)
@@ -3194,7 +3201,7 @@ declare namespace imports.gi.GLib {
 		 */
 		public static domain_register_static(error_type_name: string, error_type_private_size: number, error_type_init: ErrorInitFunc, error_type_copy: ErrorCopyFunc, error_type_clear: ErrorClearFunc): Quark;
 		/**
-		 * error domain, e.g. #G_FILE_ERROR
+		 * error domain, e.g. %G_FILE_ERROR
 		 */
 		public domain: Quark;
 		/**
@@ -3484,6 +3491,19 @@ declare namespace imports.gi.GLib {
 		 * @returns a new #GHashTable
 		 */
 		public static new_full(hash_func: HashFunc, key_equal_func: EqualFunc): any[];
+		/**
+		 * Creates a new #GHashTable like {@link G.hash_table_new_full} with a reference
+		 * count of 1.
+		 * 
+		 * It inherits the hash function, the key equal function, the key destroy function,
+		 * as well as the value destroy function, from #other_hash_table.
+		 * 
+		 * The returned hash table will be empty; it will not contain the keys
+		 * or values from #other_hash_table.
+		 * @param other_hash_table Another #GHashTable
+		 * @returns a new #GHashTable
+		 */
+		public static new_similar(other_hash_table: any[]): any[];
 		/**
 		 * Atomically increments the reference count of #hash_table by one.
 		 * This function is MT-safe and may be called from any thread.
@@ -4071,12 +4091,10 @@ declare namespace imports.gi.GLib {
 		 * used), or it may return -1 and set an error such as %EILSEQ, in such a
 		 * situation.
 		 * @param inbuf bytes to convert
-		 * @param inbytes_left inout parameter, bytes remaining to convert in #inbuf
 		 * @param outbuf converted output bytes
-		 * @param outbytes_left inout parameter, bytes available to fill in #outbuf
 		 * @returns count of non-reversible conversions, or -1 on error
 		 */
-		public (inbuf: string, inbytes_left: number, outbuf: string, outbytes_left: number): number;
+		public (inbuf: string, outbuf: string): number;
 		/**
 		 * Same as the standard UNIX routine {@link Iconv.close}, but
 		 * may be implemented via libiconv on UNIX flavors that lack
@@ -4179,8 +4197,8 @@ declare namespace imports.gi.GLib {
 		/**
 		 * Flushes the write buffer for the GIOChannel.
 		 * @returns the status of the operation: One of
-		 *   #G_IO_STATUS_NORMAL, #G_IO_STATUS_AGAIN, or
-		 *   #G_IO_STATUS_ERROR.
+		 *   %G_IO_STATUS_NORMAL, %G_IO_STATUS_AGAIN, or
+		 *   %G_IO_STATUS_ERROR.
 		 */
 		public flush(): IOStatus;
 		/**
@@ -4547,9 +4565,9 @@ declare namespace imports.gi.GLib {
 		 * boolean.
 		 * 
 		 * If #key cannot be found then %FALSE is returned and #error is set
-		 * to #G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the value
+		 * to %G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the value
 		 * associated with #key cannot be interpreted as a boolean then %FALSE
-		 * is returned and #error is set to #G_KEY_FILE_ERROR_INVALID_VALUE.
+		 * is returned and #error is set to %G_KEY_FILE_ERROR_INVALID_VALUE.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns the value associated with the key as a boolean,
@@ -4561,9 +4579,9 @@ declare namespace imports.gi.GLib {
 		 * booleans.
 		 * 
 		 * If #key cannot be found then %NULL is returned and #error is set to
-		 * #G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the values associated
+		 * %G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the values associated
 		 * with #key cannot be interpreted as booleans then %NULL is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_INVALID_VALUE.
+		 * and #error is set to %G_KEY_FILE_ERROR_INVALID_VALUE.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns 
@@ -4593,9 +4611,9 @@ declare namespace imports.gi.GLib {
 		 * double. If #group_name is %NULL, the start_group is used.
 		 * 
 		 * If #key cannot be found then 0.0 is returned and #error is set to
-		 * #G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the value associated
+		 * %G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the value associated
 		 * with #key cannot be interpreted as a double then 0.0 is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_INVALID_VALUE.
+		 * and #error is set to %G_KEY_FILE_ERROR_INVALID_VALUE.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns the value associated with the key as a double, or
@@ -4607,9 +4625,9 @@ declare namespace imports.gi.GLib {
 		 * doubles.
 		 * 
 		 * If #key cannot be found then %NULL is returned and #error is set to
-		 * #G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the values associated
+		 * %G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the values associated
 		 * with #key cannot be interpreted as doubles then %NULL is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_INVALID_VALUE.
+		 * and #error is set to %G_KEY_FILE_ERROR_INVALID_VALUE.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns 
@@ -4645,10 +4663,10 @@ declare namespace imports.gi.GLib {
 		 * integer.
 		 * 
 		 * If #key cannot be found then 0 is returned and #error is set to
-		 * #G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the value associated
+		 * %G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the value associated
 		 * with #key cannot be interpreted as an integer, or is out of range
 		 * for a #gint, then 0 is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_INVALID_VALUE.
+		 * and #error is set to %G_KEY_FILE_ERROR_INVALID_VALUE.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns the value associated with the key as an integer, or
@@ -4660,10 +4678,10 @@ declare namespace imports.gi.GLib {
 		 * integers.
 		 * 
 		 * If #key cannot be found then %NULL is returned and #error is set to
-		 * #G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the values associated
+		 * %G_KEY_FILE_ERROR_KEY_NOT_FOUND. Likewise, if the values associated
 		 * with #key cannot be interpreted as integers, or are out of range for
 		 * #gint, then %NULL is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_INVALID_VALUE.
+		 * and #error is set to %G_KEY_FILE_ERROR_INVALID_VALUE.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns 
@@ -4679,7 +4697,7 @@ declare namespace imports.gi.GLib {
 		 * returned keys will be %NULL-terminated, so #length may
 		 * optionally be %NULL. In the event that the #group_name cannot
 		 * be found, %NULL is returned and #error is set to
-		 * #G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
+		 * %G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
 		 * @param group_name a group name
 		 * @returns a newly-allocated %NULL-terminated array of strings.
 		 *     Use {@link G.strfreev} to free it.
@@ -4714,7 +4732,7 @@ declare namespace imports.gi.GLib {
 		 * %G_KEY_FILE_KEEP_TRANSLATIONS in order to load strings for all locales.
 		 * 
 		 * If #key cannot be found then %NULL is returned and #error is set
-		 * to #G_KEY_FILE_ERROR_KEY_NOT_FOUND. If the value associated
+		 * to %G_KEY_FILE_ERROR_KEY_NOT_FOUND. If the value associated
 		 * with #key cannot be interpreted or no suitable translation can
 		 * be found then the untranslated value is returned.
 		 * @param group_name a group name
@@ -4734,7 +4752,7 @@ declare namespace imports.gi.GLib {
 		 * %G_KEY_FILE_KEEP_TRANSLATIONS in order to load strings for all locales.
 		 * 
 		 * If #key cannot be found then %NULL is returned and #error is set
-		 * to #G_KEY_FILE_ERROR_KEY_NOT_FOUND. If the values associated
+		 * to %G_KEY_FILE_ERROR_KEY_NOT_FOUND. If the values associated
 		 * with #key cannot be interpreted or no suitable translations
 		 * can be found then the untranslated values are returned. The
 		 * returned array is %NULL-terminated, so #length may optionally
@@ -4760,9 +4778,9 @@ declare namespace imports.gi.GLib {
 		 * like \s.
 		 * 
 		 * In the event the key cannot be found, %NULL is returned and
-		 * #error is set to #G_KEY_FILE_ERROR_KEY_NOT_FOUND.  In the
+		 * #error is set to %G_KEY_FILE_ERROR_KEY_NOT_FOUND.  In the
 		 * event that the #group_name cannot be found, %NULL is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
+		 * and #error is set to %G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns a newly allocated string or %NULL if the specified
@@ -4773,9 +4791,9 @@ declare namespace imports.gi.GLib {
 		 * Returns the values associated with #key under #group_name.
 		 * 
 		 * In the event the key cannot be found, %NULL is returned and
-		 * #error is set to #G_KEY_FILE_ERROR_KEY_NOT_FOUND.  In the
+		 * #error is set to %G_KEY_FILE_ERROR_KEY_NOT_FOUND.  In the
 		 * event that the #group_name cannot be found, %NULL is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
+		 * and #error is set to %G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns 
@@ -4800,9 +4818,9 @@ declare namespace imports.gi.GLib {
 		 * Use {@link G.key_file_get_string} to retrieve an unescaped UTF-8 string.
 		 * 
 		 * In the event the key cannot be found, %NULL is returned and
-		 * #error is set to #G_KEY_FILE_ERROR_KEY_NOT_FOUND.  In the
+		 * #error is set to %G_KEY_FILE_ERROR_KEY_NOT_FOUND.  In the
 		 * event that the #group_name cannot be found, %NULL is returned
-		 * and #error is set to #G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
+		 * and #error is set to %G_KEY_FILE_ERROR_GROUP_NOT_FOUND.
 		 * @param group_name a group name
 		 * @param key a key
 		 * @returns a newly allocated string or %NULL if the specified
@@ -5555,6 +5573,13 @@ declare namespace imports.gi.GLib {
 		 */
 		public static new(): MainContext;
 		/**
+		 * Creates a new #GMainContext structure.
+		 * @param flags a bitwise-OR combination of #GMainContextFlags flags that can only be
+		 *         set at creation time.
+		 * @returns the new #GMainContext
+		 */
+		public static new_with_flags(flags: MainContextFlags): MainContext;
+		/**
 		 * Returns the global default main context. This is the main context
 		 * used for main loop functions when a main loop is not explicitly
 		 * specified, and corresponds to the "main" main loop. See also
@@ -5983,7 +6008,7 @@ declare namespace imports.gi.GLib {
 		 * If #filename is the name of an empty, regular file, the function
 		 * will successfully return an empty #GMappedFile. In other cases of
 		 * size 0 (e.g. device files such as /dev/null), #error will be set
-		 * to the #GFileError value #G_FILE_ERROR_INVAL.
+		 * to the #GFileError value %G_FILE_ERROR_INVAL.
 		 * @param filename The path of the file to load, in the GLib
 		 *     filename encoding
 		 * @param writable whether the mapping should be writable
@@ -6339,7 +6364,7 @@ declare namespace imports.gi.GLib {
 		 * match done with #string against #regex and have the same syntax used by
 		 * {@link G.regex_replace}.
 		 * 
-		 * The #string_to_expand must be UTF-8 encoded even if #G_REGEX_RAW was
+		 * The #string_to_expand must be UTF-8 encoded even if %G_REGEX_RAW was
 		 * passed to g_regex_new().
 		 * 
 		 * The backreferences are extracted from the string passed to the match
@@ -6503,19 +6528,19 @@ declare namespace imports.gi.GLib {
 		 * able to raise an error as soon as a mistake is made.
 		 * 
 		 * GRegex supports the concept of partial matching by means of the
-		 * #G_REGEX_MATCH_PARTIAL_SOFT and #G_REGEX_MATCH_PARTIAL_HARD flags.
+		 * %G_REGEX_MATCH_PARTIAL_SOFT and %G_REGEX_MATCH_PARTIAL_HARD flags.
 		 * When they are used, the return code for
 		 * g_regex_match() or g_regex_match_full() is, as usual, %TRUE
 		 * for a complete match, %FALSE otherwise. But, when these functions
 		 * return %FALSE, you can check if the match was partial calling
 		 * g_match_info_is_partial_match().
 		 * 
-		 * The difference between #G_REGEX_MATCH_PARTIAL_SOFT and
-		 * #G_REGEX_MATCH_PARTIAL_HARD is that when a partial match is encountered
-		 * with #G_REGEX_MATCH_PARTIAL_SOFT, matching continues to search for a
-		 * possible complete match, while with #G_REGEX_MATCH_PARTIAL_HARD matching
+		 * The difference between %G_REGEX_MATCH_PARTIAL_SOFT and
+		 * %G_REGEX_MATCH_PARTIAL_HARD is that when a partial match is encountered
+		 * with %G_REGEX_MATCH_PARTIAL_SOFT, matching continues to search for a
+		 * possible complete match, while with %G_REGEX_MATCH_PARTIAL_HARD matching
 		 * stops at the partial match.
-		 * When both #G_REGEX_MATCH_PARTIAL_SOFT and #G_REGEX_MATCH_PARTIAL_HARD
+		 * When both %G_REGEX_MATCH_PARTIAL_SOFT and %G_REGEX_MATCH_PARTIAL_HARD
 		 * are set, the latter takes precedence.
 		 * 
 		 * There were formerly some restrictions on the pattern for partial matching.
@@ -6872,7 +6897,7 @@ declare namespace imports.gi.GLib {
 		 * The #parameter_string can serve multiple purposes. It can be used
 		 * to add descriptions for "rest" arguments, which are not parsed by
 		 * the #GOptionContext, typically something like "FILES" or
-		 * "FILE1 FILE2...". If you are using #G_OPTION_REMAINING for
+		 * "FILE1 FILE2...". If you are using %G_OPTION_REMAINING for
 		 * collecting "rest" arguments, GLib handles this automatically by
 		 * using the #arg_description of the corresponding #GOptionEntry in
 		 * the usage summary.
@@ -7446,7 +7471,8 @@ declare namespace imports.gi.GLib {
 		 * pointing to) are copied to the new #GPtrArray.
 		 * 
 		 * The copy of #array will have the same #GDestroyNotify for its elements as
-		 * #array.
+		 * #array. The copy will also be %NULL terminated if (and only if) the source
+		 * array is.
 		 * @param array #GPtrArray to duplicate
 		 * @param func a copy function used to copy every element in the array
 		 * @returns a deep copy of the initial #GPtrArray.
@@ -7465,6 +7491,8 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * If #func is %NULL, then only the pointers (and not what they are
 		 * pointing to) are copied to the new #GPtrArray.
+		 * 
+		 * Whether #array_to_extend is %NULL terminated stays unchanged by this function.
 		 * @param array_to_extend a #GPtrArray.
 		 * @param array a #GPtrArray to add to the end of #array_to_extend.
 		 * @param func a copy function used to copy every element in the array
@@ -7539,6 +7567,10 @@ declare namespace imports.gi.GLib {
 		 * be freed separately if #free_seg is %TRUE and no #GDestroyNotify
 		 * function has been set for #array.
 		 * 
+		 * Note that if the array is %NULL terminated and #free_seg is %FALSE
+		 * then this will always return an allocated %NULL terminated buffer.
+		 * If pdata is previously %NULL, a new buffer will be allocated.
+		 * 
 		 * This function is not thread-safe. If using a #GPtrArray from multiple
 		 * threads, use only the atomic {@link G.ptr_array_ref} and g_ptr_array_unref()
 		 * functions.
@@ -7557,6 +7589,17 @@ declare namespace imports.gi.GLib {
 		 */
 		public static insert(array: any[], index_: number, data?: any | null): void;
 		/**
+		 * Gets whether the #array was constructed as %NULL-terminated.
+		 * 
+		 * This will only return %TRUE for arrays constructed by passing %TRUE to the
+		 * `null_terminated` argument of {@link G.ptr_array_new_null_terminated}. It will not
+		 * return %TRUE for normal arrays which have had a %NULL element appended to
+		 * them.
+		 * @param array the #GPtrArray
+		 * @returns %TRUE if the array is made to be %NULL terminated.
+		 */
+		public static is_null_terminated(array: any[]): boolean;
+		/**
 		 * Creates a new #GPtrArray with a reference count of 1.
 		 * @returns the new #GPtrArray
 		 */
@@ -7573,6 +7616,30 @@ declare namespace imports.gi.GLib {
 		 * @returns A new #GPtrArray
 		 */
 		public static new_full(reserved_size: number): any[];
+		/**
+		 * Like {@link G.ptr_array_new_full} but also allows to set the array to
+		 * be %NULL terminated. A %NULL terminated pointer array has an
+		 * additional %NULL pointer after the last element, beyond the
+		 * current length.
+		 * 
+		 * #GPtrArray created by other constructors are not automatically %NULL
+		 * terminated.
+		 * 
+		 * Note that if the #array's length is zero and currently no
+		 * data array is allocated, then pdata will still be %NULL.
+		 * %GPtrArray will only %NULL terminate pdata, if an actual
+		 * array is allocated. It does not guarantee that an array
+		 * is always allocated. In other words, if the length is zero,
+		 * then pdata may either point to a %NULL terminated array of length
+		 * zero or be %NULL.
+		 * @param reserved_size number of pointers preallocated.
+		 *     If #null_terminated is %TRUE, the actually allocated
+		 *     buffer size is #reserved_size plus 1, unless #reserved_size
+		 *     is zero, in which case no initial buffer gets allocated.
+		 * @param null_terminated whether to make the array as %NULL terminated.
+		 * @returns A new #GPtrArray
+		 */
+		public static new_null_terminated(reserved_size: number, null_terminated: boolean): any[];
 		/**
 		 * Creates a new #GPtrArray with a reference count of 1 and use
 		 * #element_free_func for freeing each element when the array is destroyed
@@ -7779,6 +7846,10 @@ declare namespace imports.gi.GLib {
 		 * the underlying array is preserved for use elsewhere and returned
 		 * to the caller.
 		 * 
+		 * Note that if the array is %NULL terminated this may still return
+		 * %NULL if the length of the array was zero and pdata was not yet
+		 * allocated.
+		 * 
 		 * Even if set, the #GDestroyNotify function will never be called
 		 * on the current contents of the array and the caller is
 		 * responsible for freeing the array elements.
@@ -7817,7 +7888,8 @@ declare namespace imports.gi.GLib {
 		 * ]|
 		 * @param array a #GPtrArray.
 		 * @returns the element data, which should be
-		 *     freed using {@link G.free}.
+		 *     freed using {@link G.free}. This may be %NULL if the array doesn’t have any
+		 *     elements (i.e. if `*len` is zero).
 		 * 
 		 * pointer to retrieve the number of
 		 *    elements of the original array
@@ -7972,7 +8044,7 @@ declare namespace imports.gi.GLib {
 		/**
 		 * A statically-allocated #GQueue must be initialized with this function
 		 * before it can be used. Alternatively you can initialize it with
-		 * #G_QUEUE_INIT. It is not necessary to initialize queues created with
+		 * %G_QUEUE_INIT. It is not necessary to initialize queues created with
 		 * {@link G.queue_new}.
 		 */
 		public init(): void;
@@ -8257,8 +8329,6 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * Calling g_rw_lock_clear() when any thread holds the lock
 		 * leads to undefined behaviour.
-		 * 
-		 * Sine: 2.32
 		 */
 		public clear(): void;
 		/**
@@ -8462,8 +8532,6 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * Calling g_rec_mutex_clear() on a locked recursive mutex leads
 		 * to undefined behaviour.
-		 * 
-		 * Sine: 2.32
 		 */
 		public clear(): void;
 		/**
@@ -8529,7 +8597,7 @@ declare namespace imports.gi.GLib {
 	 * Perl regular expression.
 	 * 
 	 * Some functions accept a #start_position argument, setting it differs
-	 * from just passing over a shortened string and setting #G_REGEX_MATCH_NOTBOL
+	 * from just passing over a shortened string and setting %G_REGEX_MATCH_NOTBOL
 	 * in the case of a pattern that begins with any kind of lookbehind assertion.
 	 * For example, consider the pattern "\Biss\B" which finds occurrences of "iss"
 	 * in the middle of words. ("\B" matches only if the current position in the
@@ -8541,11 +8609,11 @@ declare namespace imports.gi.GLib {
 	 * it is able to look behind the starting point to discover that it is
 	 * preceded by a letter.
 	 * 
-	 * Note that, unless you set the #G_REGEX_RAW flag, all the strings passed
+	 * Note that, unless you set the %G_REGEX_RAW flag, all the strings passed
 	 * to these functions must be encoded in UTF-8. The lengths and the positions
 	 * inside the strings are in bytes and not in characters, so, for instance,
 	 * "\xc3\xa0" (i.e. "à") is two bytes long but it is treated as a
-	 * single character. If you set #G_REGEX_RAW the strings can be non-valid
+	 * single character. If you set %G_REGEX_RAW the strings can be non-valid
 	 * UTF-8 strings and a byte is treated as a character, so "\xc3\xa0" is two
 	 * bytes and two characters long.
 	 * 
@@ -8560,11 +8628,11 @@ declare namespace imports.gi.GLib {
 	 * The behaviour of the dot, circumflex, and dollar metacharacters are
 	 * affected by newline characters, the default is to recognize any newline
 	 * character (the same characters recognized by "\R"). This can be changed
-	 * with #G_REGEX_NEWLINE_CR, #G_REGEX_NEWLINE_LF and #G_REGEX_NEWLINE_CRLF
-	 * compile options, and with #G_REGEX_MATCH_NEWLINE_ANY,
-	 * #G_REGEX_MATCH_NEWLINE_CR, #G_REGEX_MATCH_NEWLINE_LF and
-	 * #G_REGEX_MATCH_NEWLINE_CRLF match options. These settings are also
-	 * relevant when compiling a pattern if #G_REGEX_EXTENDED is set, and an
+	 * with %G_REGEX_NEWLINE_CR, %G_REGEX_NEWLINE_LF and %G_REGEX_NEWLINE_CRLF
+	 * compile options, and with %G_REGEX_MATCH_NEWLINE_ANY,
+	 * %G_REGEX_MATCH_NEWLINE_CR, %G_REGEX_MATCH_NEWLINE_LF and
+	 * %G_REGEX_MATCH_NEWLINE_CRLF match options. These settings are also
+	 * relevant when compiling a pattern if %G_REGEX_EXTENDED is set, and an
 	 * unescaped "#" outside a character class is encountered. This indicates
 	 * a comment that lasts until after the next newline.
 	 * 
@@ -8773,7 +8841,7 @@ declare namespace imports.gi.GLib {
 		 *   GRegex *regex;
 		 *   GMatchInfo *match_info;
 		 *  
-		 *   regex = g_regex_new ("[A-Z]+", 0, 0, NULL);
+		 *   regex = g_regex_new ("[A-Z]+", G_REGEX_DEFAULT, G_REGEX_MATCH_DEFAULT, NULL);
 		 *   g_regex_match (regex, string, 0, &match_info);
 		 *   while (g_match_info_matches (match_info))
 		 *     {
@@ -8846,7 +8914,7 @@ declare namespace imports.gi.GLib {
 		 * is not able to capture substrings, so backreferences do not work.
 		 * 
 		 * Setting #start_position differs from just passing over a shortened
-		 * string and setting #G_REGEX_MATCH_NOTBOL in the case of a pattern
+		 * string and setting %G_REGEX_MATCH_NOTBOL in the case of a pattern
 		 * that begins with any kind of lookbehind assertion, such as "\b".
 		 * 
 		 * Unless %G_REGEX_RAW is specified in the options, #string must be valid UTF-8.
@@ -8876,7 +8944,7 @@ declare namespace imports.gi.GLib {
 		 * flexibility in reusing #GRegex structures.
 		 * 
 		 * Setting #start_position differs from just passing over a shortened
-		 * string and setting #G_REGEX_MATCH_NOTBOL in the case of a pattern
+		 * string and setting %G_REGEX_MATCH_NOTBOL in the case of a pattern
 		 * that begins with any kind of lookbehind assertion, such as "\b".
 		 * 
 		 * Unless %G_REGEX_RAW is specified in the options, #string must be valid UTF-8.
@@ -8903,7 +8971,7 @@ declare namespace imports.gi.GLib {
 		 *   GMatchInfo *match_info;
 		 *   GError *error = NULL;
 		 *   
-		 *   regex = g_regex_new ("[A-Z]+", 0, 0, NULL);
+		 *   regex = g_regex_new ("[A-Z]+", G_REGEX_DEFAULT, G_REGEX_MATCH_DEFAULT, NULL);
 		 *   g_regex_match_full (regex, string, -1, 0, 0, &match_info, &error);
 		 *   while (g_match_info_matches (match_info))
 		 *     {
@@ -8955,12 +9023,12 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * If you do not need to use backreferences use {@link G.regex_replace_literal}.
 		 * 
-		 * The #replacement string must be UTF-8 encoded even if #G_REGEX_RAW was
+		 * The #replacement string must be UTF-8 encoded even if %G_REGEX_RAW was
 		 * passed to g_regex_new(). If you want to use not UTF-8 encoded strings
 		 * you can use g_regex_replace_literal().
 		 * 
 		 * Setting #start_position differs from just passing over a shortened
-		 * string and setting #G_REGEX_MATCH_NOTBOL in the case of a pattern that
+		 * string and setting %G_REGEX_MATCH_NOTBOL in the case of a pattern that
 		 * begins with any kind of lookbehind assertion, such as "\b".
 		 * @param string the string to perform matches against
 		 * @param start_position starting index of the string to match, in bytes
@@ -8974,7 +9042,7 @@ declare namespace imports.gi.GLib {
 		 * #eval for that occurrence.
 		 * 
 		 * Setting #start_position differs from just passing over a shortened
-		 * string and setting #G_REGEX_MATCH_NOTBOL in the case of a pattern
+		 * string and setting %G_REGEX_MATCH_NOTBOL in the case of a pattern
 		 * that begins with any kind of lookbehind assertion, such as "\b".
 		 * 
 		 * The following example uses {@link G.regex_replace_eval} to replace multiple
@@ -9009,7 +9077,7 @@ declare namespace imports.gi.GLib {
 		 * g_hash_table_insert (h, "3", "THREE");
 		 * g_hash_table_insert (h, "4", "FOUR");
 		 * 
-		 * reg = g_regex_new ("1|2|3|4", 0, 0, NULL);
+		 * reg = g_regex_new ("1|2|3|4", G_REGEX_DEFAULT, G_REGEX_MATCH_DEFAULT, NULL);
 		 * res = g_regex_replace_eval (reg, text, -1, 0, 0, eval_cb, h, NULL);
 		 * g_hash_table_destroy (h);
 		 * 
@@ -9028,7 +9096,7 @@ declare namespace imports.gi.GLib {
 		 * include backreferences use {@link G.regex_replace}.
 		 * 
 		 * Setting #start_position differs from just passing over a
-		 * shortened string and setting #G_REGEX_MATCH_NOTBOL in the
+		 * shortened string and setting %G_REGEX_MATCH_NOTBOL in the
 		 * case of a pattern that begins with any kind of lookbehind
 		 * assertion, such as "\b".
 		 * @param string the string to perform matches against
@@ -9082,7 +9150,7 @@ declare namespace imports.gi.GLib {
 		 * "a", "b" and "c".
 		 * 
 		 * Setting #start_position differs from just passing over a shortened
-		 * string and setting #G_REGEX_MATCH_NOTBOL in the case of a pattern
+		 * string and setting %G_REGEX_MATCH_NOTBOL in the case of a pattern
 		 * that begins with any kind of lookbehind assertion, such as "\b".
 		 * @param string the string to split with the pattern
 		 * @param start_position starting index of the string to match, in bytes
@@ -9735,14 +9803,14 @@ declare namespace imports.gi.GLib {
 		public cset_skip_characters: string;
 		/**
 		 * specifies the characters which can start
-		 *     identifiers (the default is #G_CSET_a_2_z, "_", and #G_CSET_A_2_Z).
+		 *     identifiers (the default is %G_CSET_a_2_z, "_", and %G_CSET_A_2_Z).
 		 */
 		public cset_identifier_first: string;
 		/**
 		 * specifies the characters which can be used
 		 *     in identifiers, after the first character (the default is
-		 *     #G_CSET_a_2_z, "_0123456789", #G_CSET_A_2_Z, #G_CSET_LATINS,
-		 *     #G_CSET_LATINC).
+		 *     %G_CSET_a_2_z, "_0123456789", %G_CSET_A_2_Z, %G_CSET_LATINS,
+		 *     %G_CSET_LATINC).
 		 */
 		public cset_identifier_nth: string;
 		/**
@@ -9829,7 +9897,7 @@ declare namespace imports.gi.GLib {
 		public scan_string_dq: number;
 		/**
 		 * specifies if binary, octal and hexadecimal numbers
-		 *     are reported as #G_TOKEN_INT (the default is %TRUE).
+		 *     are reported as %G_TOKEN_INT (the default is %TRUE).
 		 */
 		public numbers_2_int: number;
 		/**
@@ -10303,7 +10371,7 @@ declare namespace imports.gi.GLib {
 		 * been reissued, leading to the operation being performed against the
 		 * wrong source.
 		 * @param tag the ID of the source to remove.
-		 * @returns For historical reasons, this function always returns %TRUE
+		 * @returns %TRUE if the source was found and removed.
 		 */
 		public static remove(tag: number): boolean;
 		/**
@@ -12053,8 +12121,14 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * This is equivalent to calling {@link G.time_zone_new} with a string in the form
 		 * `[+|-]hh[:mm[:ss]]`.
+		 * 
+		 * It is possible for this function to fail if #seconds is too big (greater than
+		 * 24 hours), in which case this function will return the UTC timezone for
+		 * backwards compatibility. To detect failures like this, use
+		 * g_time_zone_new_identifier() directly.
 		 * @param seconds offset to UTC, in seconds
-		 * @returns a timezone at the given offset from UTC
+		 * @returns a timezone at the given offset from UTC, or UTC on
+		 *   failure
 		 */
 		public static new_offset(seconds: number): TimeZone;
 		/**
@@ -15420,7 +15494,7 @@ declare namespace imports.gi.GLib {
 		 * @param expected_type a #GVariantType, or %NULL
 		 * @returns the value of the dictionary key, or %NULL
 		 */
-		public lookup_value(key: string, expected_type?: VariantType | null): Variant;
+		public lookup_value(key: string, expected_type?: VariantType | null): Variant | null;
 		/**
 		 * Increases the reference count on #dict.
 		 * 
@@ -16350,8 +16424,8 @@ declare namespace imports.gi.GLib {
 	}
 
 	/**
-	 * Enumeration representing a day of the week; #G_DATE_MONDAY,
-	 * #G_DATE_TUESDAY, etc. #G_DATE_BAD_WEEKDAY is an invalid weekday.
+	 * Enumeration representing a day of the week; %G_DATE_MONDAY,
+	 * %G_DATE_TUESDAY, etc. %G_DATE_BAD_WEEKDAY is an invalid weekday.
 	 */
 	enum DateWeekday {
 		/**
@@ -16851,7 +16925,7 @@ declare namespace imports.gi.GLib {
 	 */
 	enum OptionArg {
 		/**
-		 * No extra argument. This is useful for simple flags.
+		 * No extra argument. This is useful for simple flags or booleans.
 		 */
 		NONE = 0,
 		/**
@@ -18387,7 +18461,31 @@ declare namespace imports.gi.GLib {
 		/**
 		 * Yezidi. Since: 2.66
 		 */
-		YEZIDI = 156
+		YEZIDI = 156,
+		/**
+		 * Cypro-Minoan. Since: 2.72
+		 */
+		CYPRO_MINOAN = 157,
+		/**
+		 * Old Uyghur. Since: 2.72
+		 */
+		OLD_UYGHUR = 158,
+		/**
+		 * Tangsa. Since: 2.72
+		 */
+		TANGSA = 159,
+		/**
+		 * Toto. Since: 2.72
+		 */
+		TOTO = 160,
+		/**
+		 * Vithkuqi. Since: 2.72
+		 */
+		VITHKUQI = 161,
+		/**
+		 * Mathematical notation. Since: 2.72
+		 */
+		MATH = 162
 	}
 
 	/**
@@ -18877,7 +18975,19 @@ declare namespace imports.gi.GLib {
 		 * set the size as a quantity in bits, rather than
 		 *     bytes, and return units in bits. For example, ‘Mb’ rather than ‘MB’.
 		 */
-		BITS = 4
+		BITS = 4,
+		/**
+		 * return only value, without unit; this should
+		 *     not be used together with #G_FORMAT_SIZE_LONG_FORMAT
+		 *     nor #G_FORMAT_SIZE_ONLY_UNIT. Since: 2.74
+		 */
+		ONLY_VALUE = 8,
+		/**
+		 * return only unit, without value; this should
+		 *     not be used together with #G_FORMAT_SIZE_LONG_FORMAT
+		 *     nor #G_FORMAT_SIZE_ONLY_VALUE. Since: 2.74
+		 */
+		ONLY_UNIT = 16
 	}
 
 	/**
@@ -18937,6 +19047,10 @@ declare namespace imports.gi.GLib {
 	 * g_io_channel_set_flags().
 	 */
 	enum IOFlags {
+		/**
+		 * no special flags set. Since: 2.74
+		 */
+		NONE = 0,
 		/**
 		 * turns on append mode, corresponds to %O_APPEND
 		 *     (see the documentation of the UNIX open() syscall)
@@ -19060,6 +19174,24 @@ declare namespace imports.gi.GLib {
 	}
 
 	/**
+	 * Flags to pass to {@link G.main_context_new_with_flags} which affect the behaviour
+	 * of a #GMainContext.
+	 */
+	enum MainContextFlags {
+		/**
+		 * Default behaviour.
+		 */
+		NONE = 0,
+		/**
+		 * Assume that polling for events will
+		 * free the thread to process other jobs. That's useful if you're using
+		 * `g_main_context_{prepare,query,check,dispatch}` to integrate GMainContext in
+		 * other event loops.
+		 */
+		OWNERLESS_POLLING = 1
+	}
+
+	/**
 	 * A mixed enumerated type and flags field. You must specify one type
 	 * (string, strdup, boolean, tristate).  Additionally, you may  optionally
 	 * bitwise OR the type with the flag %G_MARKUP_COLLECT_OPTIONAL.
@@ -19114,6 +19246,10 @@ declare namespace imports.gi.GLib {
 	 */
 	enum MarkupParseFlags {
 		/**
+		 * No special behaviour. Since: 2.74
+		 */
+		DEFAULT_FLAGS = 0,
+		/**
 		 * flag you should not use
 		 */
 		DO_NOT_USE_THIS_UNSUPPORTED_FLAG = 1,
@@ -19161,7 +19297,8 @@ declare namespace imports.gi.GLib {
 		IN_MAIN = 2,
 		/**
 		 * For options of the %G_OPTION_ARG_NONE kind, this
-		 *     flag indicates that the sense of the option is reversed.
+		 *     flag indicates that the sense of the option is reversed. i.e. %FALSE will
+		 *     be stored into the argument rather than %TRUE.
 		 */
 		REVERSE = 4,
 		/**
@@ -19199,6 +19336,10 @@ declare namespace imports.gi.GLib {
 	 */
 	enum RegexCompileFlags {
 		/**
+		 * No special options set. Since: 2.74
+		 */
+		DEFAULT = 0,
+		/**
 		 * Letters in the pattern match both upper- and
 		 *     lowercase letters. This option can be changed within a pattern
 		 *     by a "(?i)" option setting.
@@ -19210,8 +19351,8 @@ declare namespace imports.gi.GLib {
 		 *     newlines). The "start of line" metacharacter ("^") matches only
 		 *     at the start of the string, while the "end of line" metacharacter
 		 *     ("$") matches only at the end of the string, or before a terminating
-		 *     newline (unless #G_REGEX_DOLLAR_ENDONLY is set). When
-		 *     #G_REGEX_MULTILINE is set, the "start of line" and "end of line"
+		 *     newline (unless %G_REGEX_DOLLAR_ENDONLY is set). When
+		 *     %G_REGEX_MULTILINE is set, the "start of line" and "end of line"
 		 *     constructs match immediately following or immediately before any
 		 *     newline in the string, respectively, as well as at the very start
 		 *     and end. This can be changed within a pattern by a "(?m)" option
@@ -19246,7 +19387,7 @@ declare namespace imports.gi.GLib {
 		 *     matches only at the end of the string. Without this option, a
 		 *     dollar also matches immediately before the final character if
 		 *     it is a newline (but not before any other newlines). This option
-		 *     is ignored if #G_REGEX_MULTILINE is set.
+		 *     is ignored if %G_REGEX_MULTILINE is set.
 		 */
 		DOLLAR_ENDONLY = 32,
 		/**
@@ -19269,9 +19410,13 @@ declare namespace imports.gi.GLib {
 		 */
 		NO_AUTO_CAPTURE = 4096,
 		/**
-		 * Optimize the regular expression. If the pattern will
-		 *     be used many times, then it may be worth the effort to optimize it
-		 *     to improve the speed of matches.
+		 * Since 2.74 and the port to pcre2, requests JIT
+		 *     compilation, which, if the just-in-time compiler is available, further
+		 *     processes a compiled pattern into machine code that executes much
+		 *     faster. However, it comes at the cost of extra processing before the
+		 *     match is performed, so it is most beneficial to use this when the same
+		 *     compiled pattern is used for matching many times. Before 2.74 this
+		 *     option used the built-in non-JIT optimizations in pcre1.
 		 */
 		OPTIMIZE = 8192,
 		/**
@@ -19318,7 +19463,8 @@ declare namespace imports.gi.GLib {
 		BSR_ANYCRLF = 8388608,
 		/**
 		 * Changes behaviour so that it is compatible with
-		 *     JavaScript rather than PCRE. Since: 2.34
+		 *     JavaScript rather than PCRE. Since GLib 2.74 this is no longer supported,
+		 *     as libpcre2 does not support it. Since: 2.34 Deprecated: 2.74
 		 */
 		JAVASCRIPT_COMPAT = 33554432
 	}
@@ -19327,6 +19473,10 @@ declare namespace imports.gi.GLib {
 	 * Flags specifying match-time options.
 	 */
 	enum RegexMatchFlags {
+		/**
+		 * No special options set. Since: 2.74
+		 */
+		DEFAULT = 0,
 		/**
 		 * The pattern is forced to be "anchored", that is,
 		 *     it is constrained to match only at the first matching point in the
@@ -19338,7 +19488,7 @@ declare namespace imports.gi.GLib {
 		/**
 		 * Specifies that first character of the string is
 		 *     not the beginning of a line, so the circumflex metacharacter should
-		 *     not match before it. Setting this without #G_REGEX_MULTILINE (at
+		 *     not match before it. Setting this without %G_REGEX_MULTILINE (at
 		 *     compile time) causes circumflex never to match. This option affects
 		 *     only the behaviour of the circumflex metacharacter, it does not
 		 *     affect "\A".
@@ -19348,7 +19498,7 @@ declare namespace imports.gi.GLib {
 		 * Specifies that the end of the subject string is
 		 *     not the end of a line, so the dollar metacharacter should not match
 		 *     it nor (except in multiline mode) a newline immediately before it.
-		 *     Setting this without #G_REGEX_MULTILINE (at compile time) causes
+		 *     Setting this without %G_REGEX_MULTILINE (at compile time) causes
 		 *     dollar never to match. This option affects only the behaviour of
 		 *     the dollar metacharacter, it does not affect "\Z" or "\z".
 		 */
@@ -19415,18 +19565,18 @@ declare namespace imports.gi.GLib {
 		 */
 		BSR_ANY = 16777216,
 		/**
-		 * An alias for #G_REGEX_MATCH_PARTIAL. Since: 2.34
+		 * An alias for %G_REGEX_MATCH_PARTIAL. Since: 2.34
 		 */
 		PARTIAL_SOFT = 32768,
 		/**
 		 * Turns on the partial matching feature. In contrast to
-		 *     to #G_REGEX_MATCH_PARTIAL_SOFT, this stops matching as soon as a partial match
+		 *     to %G_REGEX_MATCH_PARTIAL_SOFT, this stops matching as soon as a partial match
 		 *     is found, without continuing to search for a possible complete match. See
 		 *     {@link G.match_info_is_partial_match} for more information. Since: 2.34
 		 */
 		PARTIAL_HARD = 134217728,
 		/**
-		 * Like #G_REGEX_MATCH_NOTEMPTY, but only applied to
+		 * Like %G_REGEX_MATCH_NOTEMPTY, but only applied to
 		 *     the start of the matched string. For anchored
 		 *     patterns this can only happen for pattern containing "\K". Since: 2.34
 		 */
@@ -19489,7 +19639,19 @@ declare namespace imports.gi.GLib {
 		 * create all pipes with the `O_CLOEXEC` flag set.
 		 *     Since: 2.40
 		 */
-		CLOEXEC_PIPES = 256
+		CLOEXEC_PIPES = 256,
+		/**
+		 * The child will inherit the parent's standard output.
+		 */
+		CHILD_INHERITS_STDOUT = 512,
+		/**
+		 * The child will inherit the parent's standard error.
+		 */
+		CHILD_INHERITS_STDERR = 1024,
+		/**
+		 * The child's standard input is attached to `/dev/null`.
+		 */
+		STDIN_FROM_DEV_NULL = 2048
 	}
 
 	/**
@@ -19500,25 +19662,29 @@ declare namespace imports.gi.GLib {
 	 */
 	enum TestSubprocessFlags {
 		/**
+		 * Default behaviour. Since: 2.74
+		 */
+		DEFAULT = 0,
+		/**
 		 * If this flag is given, the child
 		 *     process will inherit the parent's stdin. Otherwise, the child's
 		 *     stdin is redirected to `/dev/null`.
 		 */
-		STDIN = 1,
+		INHERIT_STDIN = 1,
 		/**
 		 * If this flag is given, the child
 		 *     process will inherit the parent's stdout. Otherwise, the child's
 		 *     stdout will not be visible, but it will be captured to allow
 		 *     later tests with {@link G.test_trap_assert_stdout}.
 		 */
-		STDOUT = 2,
+		INHERIT_STDOUT = 2,
 		/**
 		 * If this flag is given, the child
 		 *     process will inherit the parent's stderr. Otherwise, the child's
 		 *     stderr will not be visible, but it will be captured to allow
 		 *     later tests with {@link G.test_trap_assert_stderr}.
 		 */
-		STDERR = 4
+		INHERIT_STDERR = 4
 	}
 
 	/**
@@ -19526,6 +19692,10 @@ declare namespace imports.gi.GLib {
 	 * These flags determine what traps to set.
 	 */
 	enum TestTrapFlags {
+		/**
+		 * Default behaviour. Since: 2.74
+		 */
+		DEFAULT = 0,
 		/**
 		 * Redirect stdout of the test child to
 		 *     `/dev/null` so it cannot be observed on the console during test
@@ -19801,10 +19971,9 @@ declare namespace imports.gi.GLib {
 		 * A function of this signature is used to copy the node data
 		 * when doing a deep-copy of a tree.
 		 * @param src A pointer to the data which should be copied
-		 * @param data Additional data
 		 * @returns A pointer to the copy
 		 */
-		(src: T, data?: K | null): T;
+		(src: T): T;
 	}
 
 	/**
@@ -19866,6 +20035,29 @@ declare namespace imports.gi.GLib {
 		 * Specifies the type of a function used to test two values for
 		 * equality. The function should return %TRUE if both values are equal
 		 * and %FALSE otherwise.
+		 * @param a a value
+		 * @param b a value to compare with
+		 * @returns %TRUE if #a = #b; %FALSE otherwise
+		 */
+		(a?: any | null, b?: any | null): boolean;
+	}
+
+	/**
+	 * Specifies the type of a function used to test two values for
+	 * equality. The function should return %TRUE if both values are equal
+	 * and %FALSE otherwise.
+	 * 
+	 * This is a version of #GEqualFunc which provides a #user_data closure from
+	 * the caller.
+	 */
+	interface EqualFuncFull {
+		/**
+		 * Specifies the type of a function used to test two values for
+		 * equality. The function should return %TRUE if both values are equal
+		 * and %FALSE otherwise.
+		 * 
+		 * This is a version of #GEqualFunc which provides a #user_data closure from
+		 * the caller.
 		 * @param a a value
 		 * @param b a value to compare with
 		 * @returns %TRUE if #a = #b; %FALSE otherwise
@@ -20100,10 +20292,9 @@ declare namespace imports.gi.GLib {
 		/**
 		 * Defines the type of function used by {@link G.hook_list_marshal_check}.
 		 * @param hook a #GHook
-		 * @param marshal_data user data
 		 * @returns %FALSE if #hook should be destroyed
 		 */
-		(hook: Hook, marshal_data?: any | null): boolean;
+		(hook: Hook): boolean;
 	}
 
 	/**
@@ -20142,10 +20333,9 @@ declare namespace imports.gi.GLib {
 		/**
 		 * Defines the type of the function passed to {@link G.hook_find}.
 		 * @param hook a #GHook
-		 * @param data user data passed to {@link G.hook_find_func}
 		 * @returns %TRUE if the required #GHook has been found
 		 */
-		(hook: Hook, data?: any | null): boolean;
+		(hook: Hook): boolean;
 	}
 
 	/**
@@ -20168,9 +20358,8 @@ declare namespace imports.gi.GLib {
 		/**
 		 * Defines the type of function used by {@link G.hook_list_marshal}.
 		 * @param hook a #GHook
-		 * @param marshal_data user data
 		 */
-		(hook: Hook, marshal_data?: any | null): void;
+		(hook: Hook): void;
 	}
 
 	/**
@@ -20185,11 +20374,10 @@ declare namespace imports.gi.GLib {
 		 * on a #GIOChannel is satisfied.
 		 * @param source the #GIOChannel event source
 		 * @param condition the condition which has been satisfied
-		 * @param data user data set in {@link G.io_add_watch} or g_io_add_watch_full()
 		 * @returns the function should return %FALSE if the event source
 		 *          should be removed
 		 */
-		(source: IOChannel, condition: IOCondition, data?: any | null): boolean;
+		(source: IOChannel, condition: IOCondition): boolean;
 	}
 
 	/**
@@ -20283,9 +20471,8 @@ declare namespace imports.gi.GLib {
 		 * The function is called with each child node, together with the user
 		 * data passed to g_node_children_foreach().
 		 * @param node a #GNode.
-		 * @param data user data passed to {@link G.node_children_foreach}.
 		 */
-		(node: Node, data?: any | null): void;
+		(node: Node): void;
 	}
 
 	/**
@@ -20301,10 +20488,9 @@ declare namespace imports.gi.GLib {
 		 * user data passed to g_node_traverse(). If the function returns
 		 * %TRUE, then the traversal is stopped.
 		 * @param node a #GNode.
-		 * @param data user data passed to {@link G.node_traverse}.
 		 * @returns %TRUE to stop the traversal.
 		 */
-		(node: Node, data?: any | null): boolean;
+		(node: Node): boolean;
 	}
 
 	/**
@@ -20319,12 +20505,10 @@ declare namespace imports.gi.GLib {
 		 *  single dash followed by a single letter (for a short name) or two dashes
 		 *  followed by a long option name.
 		 * @param value The value to be parsed.
-		 * @param data User data added to the #GOptionGroup containing the option when it
-		 *  was created with {@link G.option_group_new}
 		 * @returns %TRUE if the option was successfully parsed, %FALSE if an error
 		 *  occurred, in which case #error should be set with {@link G.set_error}
 		 */
-		(option_name: string, value: string, data?: any | null): boolean;
+		(option_name: string, value: string): boolean;
 	}
 
 	/**
@@ -20335,10 +20519,8 @@ declare namespace imports.gi.GLib {
 		 * The type of function to be used as callback when a parse error occurs.
 		 * @param context The active #GOptionContext
 		 * @param group The group to which the function belongs
-		 * @param data User data added to the #GOptionGroup containing the option when it
-		 *  was created with {@link G.option_group_new}
 		 */
-		(context: OptionContext, group: OptionGroup, data?: any | null): void;
+		(context: OptionContext, group: OptionGroup): void;
 	}
 
 	/**
@@ -20349,12 +20531,10 @@ declare namespace imports.gi.GLib {
 		 * The type of function that can be called before and after parsing.
 		 * @param context The active #GOptionContext
 		 * @param group The group to which the function belongs
-		 * @param data User data added to the #GOptionGroup containing the option when it
-		 *  was created with {@link G.option_group_new}
 		 * @returns %TRUE if the function completed successfully, %FALSE if an error
 		 *  occurred, in which case #error should be set with {@link G.set_error}
 		 */
-		(context: OptionContext, group: OptionGroup, data?: any | null): boolean;
+		(context: OptionContext, group: OptionGroup): boolean;
 	}
 
 	/**
@@ -20435,11 +20615,10 @@ declare namespace imports.gi.GLib {
 		 * if #a comes before #b, and a positive value if #b comes before #a.
 		 * @param a a #GSequenceIter
 		 * @param b a #GSequenceIter
-		 * @param data user data
 		 * @returns zero if the iterators are equal, a negative value if #a
 		 *     comes before #b, and a positive value if #b comes before #a.
 		 */
-		(a: SequenceIter, b: SequenceIter, data?: any | null): number;
+		(a: SequenceIter, b: SequenceIter): number;
 	}
 
 	/**
@@ -20483,10 +20662,26 @@ declare namespace imports.gi.GLib {
 		 * When calling g_source_set_callback(), you may need to cast a function of a
 		 * different type to this type. Use G_SOURCE_FUNC() to avoid warnings about
 		 * incompatible function types.
-		 * @returns %FALSE if the source should be removed. #G_SOURCE_CONTINUE and
-		 * #G_SOURCE_REMOVE are more memorable names for the return value.
+		 * @returns %FALSE if the source should be removed. %G_SOURCE_CONTINUE and
+		 * %G_SOURCE_REMOVE are more memorable names for the return value.
 		 */
 		(): boolean;
+	}
+
+	/**
+	 * A source function that is only called once before being removed from the main
+	 * context automatically.
+	 * 
+	 * See: {@link G.idle_add_once}, g_timeout_add_once()
+	 */
+	interface SourceOnceFunc {
+		/**
+		 * A source function that is only called once before being removed from the main
+		 * context automatically.
+		 * 
+		 * See: {@link G.idle_add_once}, g_timeout_add_once()
+		 */
+		(): void;
 	}
 
 	/**
@@ -20630,10 +20825,9 @@ declare namespace imports.gi.GLib {
 		/**
 		 * Specifies the type of the #func functions passed to {@link G.thread_new}
 		 * or g_thread_try_new().
-		 * @param data data passed to the thread
 		 * @returns the return value of the thread
 		 */
-		(data?: any | null): any | null;
+		(): any | null;
 	}
 
 	/**
@@ -20645,12 +20839,10 @@ declare namespace imports.gi.GLib {
 		 * The type of functions which are used to translate user-visible
 		 * strings, for <option>--help</option> output.
 		 * @param str the untranslated string
-		 * @param data user data specified when installing the function, e.g.
-		 *  in {@link G.option_group_set_translate_func}
 		 * @returns a translation of the string for the current locale.
 		 *  The returned string is owned by GLib and must not be freed.
 		 */
-		(str: string, data?: any | null): string;
+		(str: string): string;
 	}
 
 	/**
@@ -20667,10 +20859,9 @@ declare namespace imports.gi.GLib {
 		 * %TRUE, the traversal is stopped.
 		 * @param key a key of a #GTree node
 		 * @param value the value corresponding to the key
-		 * @param data user data passed to {@link G.tree_traverse}
 		 * @returns %TRUE to stop the traversal
 		 */
-		(key?: any | null, value?: any | null, data?: any | null): boolean;
+		(key?: any | null, value?: any | null): boolean;
 	}
 
 	/**
@@ -20686,10 +20877,9 @@ declare namespace imports.gi.GLib {
 		 * g_tree_foreach_node(). If the function returns %TRUE, the traversal is
 		 * stopped.
 		 * @param node a #GTreeNode
-		 * @param data user data passed to {@link G.tree_foreach_node}
 		 * @returns %TRUE to stop the traversal
 		 */
-		(node: TreeNode, data?: any | null): boolean;
+		(node: TreeNode): boolean;
 	}
 
 	/**
@@ -20805,8 +20995,6 @@ declare namespace imports.gi.GLib {
 		 * 
 		 * Calling g_mutex_clear() on a locked mutex leads to undefined
 		 * behaviour.
-		 * 
-		 * Sine: 2.32
 		 */
 		clear(): void;
 		/**
@@ -21160,6 +21348,39 @@ declare namespace imports.gi.GLib {
 	 */
 	function access(filename: string, mode: number): number;
 	/**
+	 * This function is similar to {@link G.malloc}, allocating (#n_blocks * #n_block_bytes)
+	 * bytes, but care is taken to align the allocated memory to with the given
+	 * alignment value. Additionally, it will detect possible overflow during
+	 * multiplication.
+	 * 
+	 * If the allocation fails (because the system is out of memory),
+	 * the program is terminated.
+	 * 
+	 * Aligned memory allocations returned by this function can only be
+	 * freed using g_aligned_free().
+	 * @param n_blocks the number of blocks to allocate
+	 * @param n_block_bytes the size of each block in bytes
+	 * @param alignment the alignment to be enforced, which must be a positive power of 2
+	 *   and a multiple of `sizeof(void*)`
+	 * @returns the allocated memory
+	 */
+	function aligned_alloc(n_blocks: number, n_block_bytes: number, alignment: number): any | null;
+	/**
+	 * This function is similar to {@link G.aligned_alloc}, but it will
+	 * also clear the allocated memory before returning it.
+	 * @param n_blocks the number of blocks to allocate
+	 * @param n_block_bytes the size of each block in bytes
+	 * @param alignment the alignment to be enforced, which must be a positive power of 2
+	 *   and a multiple of `sizeof(void*)`
+	 * @returns the allocated, cleared memory
+	 */
+	function aligned_alloc0(n_blocks: number, n_block_bytes: number, alignment: number): any | null;
+	/**
+	 * Frees the memory allocated by {@link G.aligned_alloc}.
+	 * @param mem the memory to deallocate
+	 */
+	function aligned_free(mem: any | null): void;
+	/**
 	 * Determines the numeric value of a character as a decimal digit.
 	 * Differs from {@link G.unichar_digit_value} because it takes a char, so
 	 * there's no worry about sign extension if characters are signed.
@@ -21176,7 +21397,7 @@ declare namespace imports.gi.GLib {
 	 * the string back using {@link G.ascii_strtod} gives the same machine-number
 	 * (on machines with IEEE compatible 64bit doubles). It is
 	 * guaranteed that the size of the resulting string will never
-	 * be larger than #G_ASCII_DTOSTR_BUF_SIZE bytes, including the terminating
+	 * be larger than %G_ASCII_DTOSTR_BUF_SIZE bytes, including the terminating
 	 * nul character, which is always added.
 	 * @param buffer A buffer to place the resulting string in
 	 * @param buf_len The length of the buffer.
@@ -21190,6 +21411,9 @@ declare namespace imports.gi.GLib {
 	 * a printf()-style format string. Allowed conversion
 	 * specifiers are 'e', 'E', 'f', 'F', 'g' and 'G'.
 	 * 
+	 * The #format must just be a single format specifier
+	 * starting with `%`, expecting a #gdouble argument.
+	 * 
 	 * The returned buffer is guaranteed to be nul-terminated.
 	 * 
 	 * If you just want to want to serialize the value into a
@@ -21197,7 +21421,7 @@ declare namespace imports.gi.GLib {
 	 * @param buffer A buffer to place the resulting string in
 	 * @param buf_len The length of the buffer.
 	 * @param format The printf()-style format to use for the
-	 *          code to use for converting.
+	 *   code to use for converting
 	 * @param d The #gdouble to convert
 	 * @returns The pointer to the buffer with the converted string.
 	 */
@@ -21299,7 +21523,9 @@ declare namespace imports.gi.GLib {
 	function ascii_string_to_unsigned(str: string, base: number, min: number, max: number): [ boolean, number | null ];
 	/**
 	 * Compare #s1 and #s2, ignoring the case of ASCII characters and any
-	 * characters after the first #n in each string.
+	 * characters after the first #n in each string. If either string is
+	 * less than #n bytes long, comparison will stop at the first nul byte
+	 * encountered.
 	 * 
 	 * Unlike the BSD strcasecmp() function, this only recognizes standard
 	 * ASCII letters and ignores the locale, treating all non-ASCII
@@ -21557,6 +21783,27 @@ declare namespace imports.gi.GLib {
 	 */
 	function atomic_int_compare_and_exchange(atomic: number, oldval: number, newval: number): boolean;
 	/**
+	 * Compares #atomic to #oldval and, if equal, sets it to #newval.
+	 * If #atomic was not equal to #oldval then no change occurs.
+	 * In any case the value of #atomic before this operation is stored in #preval.
+	 * 
+	 * This compare and exchange is done atomically.
+	 * 
+	 * Think of this operation as an atomic version of
+	 * `{ *preval = *atomic; if (*atomic == oldval) { *atomic = newval; return TRUE; } else return FALSE; }`.
+	 * 
+	 * This call acts as a full compiler and hardware memory barrier.
+	 * 
+	 * See also {@link G.atomic_int_compare_and_exchange}
+	 * @param atomic a pointer to a #gint or #guint
+	 * @param oldval the value to compare with
+	 * @param newval the value to conditionally replace with
+	 * @returns %TRUE if the exchange took place
+	 * 
+	 * the contents of #atomic before this operation
+	 */
+	function atomic_int_compare_and_exchange_full(atomic: number, oldval: number, newval: number): [ boolean, number ];
+	/**
 	 * Decrements the value of #atomic by 1.
 	 * 
 	 * Think of this operation as an atomic version of
@@ -21570,6 +21817,20 @@ declare namespace imports.gi.GLib {
 	 * @returns %TRUE if the resultant value is zero
 	 */
 	function atomic_int_dec_and_test(atomic: number): boolean;
+	/**
+	 * Sets the #atomic to #newval and returns the old value from #atomic.
+	 * 
+	 * This exchange is done atomically.
+	 * 
+	 * Think of this operation as an atomic version of
+	 * `{ tmp = *atomic; *atomic = val; return tmp; }`.
+	 * 
+	 * This call acts as a full compiler and hardware memory barrier.
+	 * @param atomic a pointer to a #gint or #guint
+	 * @param newval the value to replace with
+	 * @returns the value of #atomic before the exchange, signed
+	 */
+	function atomic_int_exchange(atomic: number, newval: number): number;
 	/**
 	 * This function existed before {@link G.atomic_int_add} returned the prior
 	 * value of the integer (which it now does).  It is retained only for
@@ -21697,6 +21958,41 @@ declare namespace imports.gi.GLib {
 	 * @returns %TRUE if the exchange took place
 	 */
 	function atomic_pointer_compare_and_exchange(atomic: any, oldval: any | null, newval: any | null): boolean;
+	/**
+	 * Compares #atomic to #oldval and, if equal, sets it to #newval.
+	 * If #atomic was not equal to #oldval then no change occurs.
+	 * In any case the value of #atomic before this operation is stored in #preval.
+	 * 
+	 * This compare and exchange is done atomically.
+	 * 
+	 * Think of this operation as an atomic version of
+	 * `{ *preval = *atomic; if (*atomic == oldval) { *atomic = newval; return TRUE; } else return FALSE; }`.
+	 * 
+	 * This call acts as a full compiler and hardware memory barrier.
+	 * 
+	 * See also {@link G.atomic_pointer_compare_and_exchange}
+	 * @param atomic a pointer to a #gpointer-sized value
+	 * @param oldval the value to compare with
+	 * @param newval the value to conditionally replace with
+	 * @returns %TRUE if the exchange took place
+	 * 
+	 * the contents of #atomic before this operation
+	 */
+	function atomic_pointer_compare_and_exchange_full(atomic: any, oldval: any | null, newval: any | null): [ boolean, any ];
+	/**
+	 * Sets the #atomic to #newval and returns the old value from #atomic.
+	 * 
+	 * This exchange is done atomically.
+	 * 
+	 * Think of this operation as an atomic version of
+	 * `{ tmp = *atomic; *atomic = val; return tmp; }`.
+	 * 
+	 * This call acts as a full compiler and hardware memory barrier.
+	 * @param atomic a pointer to a #gpointer-sized value
+	 * @param newval the value to replace with
+	 * @returns the value of #atomic before the exchange
+	 */
+	function atomic_pointer_exchange(atomic: any | null, newval: any | null): any | null;
 	/**
 	 * Gets the current value of #atomic.
 	 * 
@@ -22042,8 +22338,8 @@ declare namespace imports.gi.GLib {
 	 * path. If the first element is a relative path, the result will
 	 * be a relative path.
 	 * @param first_element the first element in the path
-	 * @returns a newly-allocated string that must be freed with
-	 *     {@link G.free}.
+	 * @returns a newly-allocated string that
+	 *     must be freed with {@link G.free}.
 	 */
 	function build_filename(first_element: string): string;
 	/**
@@ -22051,8 +22347,8 @@ declare namespace imports.gi.GLib {
 	 * as a va_list. This function is mainly meant for language bindings.
 	 * @param first_element the first element in the path
 	 * @param args va_list of remaining elements in path
-	 * @returns a newly-allocated string that must be freed
-	 *     with {@link G.free}.
+	 * @returns a newly-allocated string that
+	 *     must be freed with {@link G.free}.
 	 */
 	function build_filename_valist(first_element: string, args: any[]): string;
 	/**
@@ -22061,8 +22357,8 @@ declare namespace imports.gi.GLib {
 	 * meant for language bindings.
 	 * @param args %NULL-terminated
 	 *     array of strings containing the path elements.
-	 * @returns a newly-allocated string that must be freed
-	 *     with {@link G.free}.
+	 * @returns a newly-allocated string that
+	 *     must be freed with {@link G.free}.
 	 */
 	function build_filenamev(args: string[]): string;
 	/**
@@ -22094,8 +22390,8 @@ declare namespace imports.gi.GLib {
 	 * of the separator are ignored.
 	 * @param separator a string used to separator the elements of the path.
 	 * @param first_element the first element in the path
-	 * @returns a newly-allocated string that must be freed with
-	 *     {@link G.free}.
+	 * @returns a newly-allocated string that
+	 *     must be freed with {@link G.free}.
 	 */
 	function build_path(separator: string, first_element: string): string;
 	/**
@@ -22105,8 +22401,8 @@ declare namespace imports.gi.GLib {
 	 * @param separator a string used to separator the elements of the path.
 	 * @param args %NULL-terminated
 	 *     array of strings containing the path elements.
-	 * @returns a newly-allocated string that must be freed
-	 *     with {@link G.free}.
+	 * @returns a newly-allocated string that
+	 *     must be freed with {@link G.free}.
 	 */
 	function build_pathv(separator: string, args: string[]): string;
 	/**
@@ -22478,7 +22774,7 @@ declare namespace imports.gi.GLib {
 	 *                 Even if the conversion was successful, this may be
 	 *                 less than #len if there were partial characters
 	 *                 at the end of the input. If the error
-	 *                 #G_CONVERT_ERROR_ILLEGAL_SEQUENCE occurs, the value
+	 *                 %G_CONVERT_ERROR_ILLEGAL_SEQUENCE occurs, the value
 	 *                 stored will be the byte offset after the last valid
 	 *                 input sequence.
 	 * 
@@ -22562,7 +22858,7 @@ declare namespace imports.gi.GLib {
 	 *                 Even if the conversion was successful, this may be
 	 *                 less than #len if there were partial characters
 	 *                 at the end of the input. If the error
-	 *                 #G_CONVERT_ERROR_ILLEGAL_SEQUENCE occurs, the value
+	 *                 %G_CONVERT_ERROR_ILLEGAL_SEQUENCE occurs, the value
 	 *                 stored will be the byte offset after the last valid
 	 *                 input sequence.
 	 * 
@@ -22639,6 +22935,15 @@ declare namespace imports.gi.GLib {
 	 */
 	function datalist_id_get_data(datalist: Data, key_id: Quark): any | null;
 	/**
+	 * Removes multiple keys from a datalist.
+	 * 
+	 * This is more efficient than calling {@link G.datalist_id_remove_data}
+	 * multiple times in a row.
+	 * @param datalist a datalist
+	 * @param keys keys to remove
+	 */
+	function datalist_id_remove_multiple(datalist: Data, keys: Quark[]): void;
+	/**
 	 * Removes an element, without calling its destroy notification
 	 * function.
 	 * @param datalist a datalist.
@@ -22658,7 +22963,7 @@ declare namespace imports.gi.GLib {
 	 * If the previous value was replaced then ownership of the
 	 * old value (#oldval) is passed to the caller, including
 	 * the registered destroy notify for it (passed out in #old_destroy).
-	 * Its up to the caller to free this as he wishes, which may
+	 * Its up to the caller to free this as they wish, which may
 	 * or may not include using #old_destroy as sometimes replacement
 	 * should not destroy the object in the normal way.
 	 * @param datalist location of a datalist
@@ -23049,7 +23354,7 @@ declare namespace imports.gi.GLib {
 	 *     string is owned by #envp, and will be freed if #variable is
 	 *     set or unset again.
 	 */
-	function environ_getenv(envp: string[] | null, variable: string): string;
+	function environ_getenv(envp: string[] | null, variable: string): string | null;
 	/**
 	 * Sets the environment variable #variable in the provided list
 	 * #envp to #value.
@@ -23100,7 +23405,7 @@ declare namespace imports.gi.GLib {
 	 * contents and #length to the length of the file contents in bytes. The string
 	 * stored in #contents will be nul-terminated, so for text files you can pass
 	 * %NULL for the #length argument. If the call was not successful, it returns
-	 * %FALSE and sets #error. The error domain is #G_FILE_ERROR. Possible error
+	 * %FALSE and sets #error. The error domain is %G_FILE_ERROR. Possible error
 	 * codes are those in the #GFileError enumeration. In the error case,
 	 * #contents is set to %NULL and #length is set to zero.
 	 * @param filename name of a file to read contents from, in the GLib file name encoding
@@ -23143,8 +23448,8 @@ declare namespace imports.gi.GLib {
 	 * readlink() function.  The returned string is in the encoding used
 	 * for filenames. Use g_filename_to_utf8() to convert it to UTF-8.
 	 * @param filename the symbolic link
-	 * @returns A newly-allocated string with the contents of
-	 *     the symbolic link, or %NULL if an error occurred.
+	 * @returns A newly-allocated string with
+	 *     the contents of the symbolic link, or %NULL if an error occurred.
 	 */
 	function file_read_link(filename: string): string;
 	/**
@@ -23204,7 +23509,7 @@ declare namespace imports.gi.GLib {
 	 *   #filename already exists and is open.
 	 * 
 	 * If the call was successful, it returns %TRUE. If the call was not successful,
-	 * it returns %FALSE and sets #error. The error domain is #G_FILE_ERROR.
+	 * it returns %FALSE and sets #error. The error domain is %G_FILE_ERROR.
 	 * Possible error codes are those in the #GFileError enumeration.
 	 * 
 	 * Note that the name for the temporary file is constructed by appending up
@@ -23979,11 +24284,33 @@ declare namespace imports.gi.GLib {
 	 * of the special directory without requiring the session to restart; GLib
 	 * will not reflect any change once the special directories are loaded.
 	 * @param directory the logical id of special directory
-	 * @returns the path to the specified special directory, or
-	 *   %NULL if the logical id was not found. The returned string is owned by
-	 *   GLib and should not be modified or freed.
+	 * @returns the path to the specified special
+	 *   directory, or %NULL if the logical id was not found. The returned string is
+	 *   owned by GLib and should not be modified or freed.
 	 */
-	function get_user_special_dir(directory: UserDirectory): string;
+	function get_user_special_dir(directory: UserDirectory): string | null;
+	/**
+	 * Returns a base directory in which to store state files specific to
+	 * particular user.
+	 * 
+	 * On UNIX platforms this is determined using the mechanisms described
+	 * in the
+	 * [XDG Base Directory Specification](http://www.freedesktop.org/Standards/basedir-spec).
+	 * In this case the directory retrieved will be `XDG_STATE_HOME`.
+	 * 
+	 * On Windows it follows XDG Base Directory Specification if `XDG_STATE_HOME` is defined.
+	 * If `XDG_STATE_HOME` is undefined, the folder to use for local (as opposed
+	 * to roaming) application data is used instead. See the
+	 * [documentation for `FOLDERID_LocalAppData`](https://docs.microsoft.com/en-us/windows/win32/shell/knownfolderid).
+	 * Note that in this case on Windows it will be the same
+	 * as what {@link G.get_user_data_dir} returns.
+	 * 
+	 * The return value is cached and modifying it at runtime is not supported, as
+	 * it’s not thread-safe to modify environment variables at runtime.
+	 * @returns a string owned by GLib that
+	 *   must not be modified or freed.
+	 */
+	function get_user_state_dir(): string;
 	/**
 	 * Returns the value of an environment variable.
 	 * 
@@ -23998,7 +24325,7 @@ declare namespace imports.gi.GLib {
 	 *     may be overwritten by the next call to {@link G.getenv}, g_setenv()
 	 *     or g_unsetenv().
 	 */
-	function getenv(variable: string): string;
+	function getenv(variable: string): string | null;
 	/**
 	 * This is a convenience function for using a #GHashTable as a set.  It
 	 * is equivalent to calling {@link G.hash_table_replace} with #key as both the
@@ -24085,6 +24412,19 @@ declare namespace imports.gi.GLib {
 	 * with the key
 	 */
 	function hash_table_lookup_extended(hash_table: any[], lookup_key: any | null): [ boolean, any | null, any | null ];
+	/**
+	 * Creates a new #GHashTable like {@link G.hash_table_new_full} with a reference
+	 * count of 1.
+	 * 
+	 * It inherits the hash function, the key equal function, the key destroy function,
+	 * as well as the value destroy function, from #other_hash_table.
+	 * 
+	 * The returned hash table will be empty; it will not contain the keys
+	 * or values from #other_hash_table.
+	 * @param other_hash_table Another #GHashTable
+	 * @returns a new #GHashTable
+	 */
+	function hash_table_new_similar(other_hash_table: any[]): any[];
 	/**
 	 * Removes a key and its associated value from a #GHashTable.
 	 * 
@@ -24290,12 +24630,10 @@ declare namespace imports.gi.GLib {
 	 * situation.
 	 * @param converter conversion descriptor from {@link G.iconv_open}
 	 * @param inbuf bytes to convert
-	 * @param inbytes_left inout parameter, bytes remaining to convert in #inbuf
 	 * @param outbuf converted output bytes
-	 * @param outbytes_left inout parameter, bytes available to fill in #outbuf
 	 * @returns count of non-reversible conversions, or -1 on error
 	 */
-	function iconv(converter: IConv, inbuf: string, inbytes_left: number, outbuf: string, outbytes_left: number): number;
+	function iconv(converter: IConv, inbuf: string, outbuf: string): number;
 	/**
 	 * Same as the standard UNIX routine {@link Iconv.open}, but
 	 * may be implemented via libiconv on UNIX flavors that lack
@@ -24330,6 +24668,19 @@ declare namespace imports.gi.GLib {
 	 * @returns the ID (greater than 0) of the event source.
 	 */
 	function idle_add(priority: number, _function: SourceFunc): number;
+	/**
+	 * Adds a function to be called whenever there are no higher priority
+	 * events pending to the default main loop. The function is given the
+	 * default idle priority, %G_PRIORITY_DEFAULT_IDLE.
+	 * 
+	 * The function will only be called once and then the source will be
+	 * automatically removed from the main context.
+	 * 
+	 * This function otherwise behaves like {@link G.idle_add}.
+	 * @param _function function to call
+	 * @returns the ID (greater than 0) of the event source
+	 */
+	function idle_add_once(_function: SourceOnceFunc): number;
 	/**
 	 * Removes the idle function with the given data.
 	 * @param data the data for the idle source's callback.
@@ -24444,7 +24795,7 @@ declare namespace imports.gi.GLib {
 	function io_channel_error_quark(): Quark;
 	/**
 	 * Creates a #GSource that's dispatched when #condition is met for the
-	 * given #channel. For example, if condition is #G_IO_IN, the source will
+	 * given #channel. For example, if condition is %G_IO_IN, the source will
 	 * be dispatched when there's data available for reading.
 	 * 
 	 * The callback function invoked by the #GSource should be added with
@@ -24592,6 +24943,18 @@ declare namespace imports.gi.GLib {
 	 */
 	function log_default_handler(log_domain: string | null, log_level: LogLevelFlags, message: string | null, unused_data: any | null): void;
 	/**
+	 * Return whether debug output from the GLib logging system is enabled.
+	 * 
+	 * Note that this should not be used to conditionalise calls to {@link G.debug} or
+	 * other logging functions; it should only be used from %GLogWriterFunc
+	 * implementations.
+	 * 
+	 * Note also that the value of this does not depend on `G_MESSAGES_DEBUG`; see
+	 * the docs for g_log_set_debug_enabled().
+	 * @returns %TRUE if debug output is enabled, %FALSE otherwise
+	 */
+	function log_get_debug_enabled(): boolean;
+	/**
 	 * Removes the log handler.
 	 * 
 	 * This has no effect if structured logging is enabled; see
@@ -24623,6 +24986,16 @@ declare namespace imports.gi.GLib {
 	 * @returns the old fatal mask
 	 */
 	function log_set_always_fatal(fatal_mask: LogLevelFlags): LogLevelFlags;
+	/**
+	 * Enable or disable debug output from the GLib logging system for all domains.
+	 * This value interacts disjunctively with `G_MESSAGES_DEBUG` — if either of
+	 * them would allow a debug message to be outputted, it will be.
+	 * 
+	 * Note that this should not be used from within library code to enable debug
+	 * output — it is intended for external use.
+	 * @param enabled %TRUE to enable debug output, %FALSE otherwise
+	 */
+	function log_set_debug_enabled(enabled: boolean): void;
 	/**
 	 * Installs a default log handler which is used if no
 	 * log handler has been set for the particular log domain
@@ -24794,7 +25167,7 @@ declare namespace imports.gi.GLib {
 	 * contain the text shown to the user.
 	 * 
 	 * The values in the #fields dictionary are likely to be of type String
-	 * (#G_VARIANT_TYPE_STRING). Array of bytes (#G_VARIANT_TYPE_BYTESTRING) is also
+	 * (%G_VARIANT_TYPE_STRING). Array of bytes (%G_VARIANT_TYPE_BYTESTRING) is also
 	 * supported. In this case the message is handled as binary and will be forwarded
 	 * to the log writer as such. The size of the array should not be higher than
 	 * %G_MAXSSIZE. Otherwise it will be truncated to this size. For other types
@@ -25140,6 +25513,9 @@ declare namespace imports.gi.GLib {
 	/**
 	 * Allocates #n_bytes bytes of memory.
 	 * If #n_bytes is 0 it returns %NULL.
+	 * 
+	 * If the allocation fails (because the system is out of memory),
+	 * the program is terminated.
 	 * @param n_bytes the number of bytes to allocate
 	 * @returns a pointer to the allocated memory
 	 */
@@ -25147,6 +25523,9 @@ declare namespace imports.gi.GLib {
 	/**
 	 * Allocates #n_bytes bytes of memory, initialized to 0's.
 	 * If #n_bytes is 0 it returns %NULL.
+	 * 
+	 * If the allocation fails (because the system is out of memory),
+	 * the program is terminated.
 	 * @param n_bytes the number of bytes to allocate
 	 * @returns a pointer to the allocated memory
 	 */
@@ -25154,6 +25533,9 @@ declare namespace imports.gi.GLib {
 	/**
 	 * This function is similar to {@link G.malloc0}, allocating (#n_blocks * #n_block_bytes) bytes,
 	 * but care is taken to detect possible overflow during multiplication.
+	 * 
+	 * If the allocation fails (because the system is out of memory),
+	 * the program is terminated.
 	 * @param n_blocks the number of blocks to allocate
 	 * @param n_block_bytes the size of each block in bytes
 	 * @returns a pointer to the allocated memory
@@ -25162,6 +25544,9 @@ declare namespace imports.gi.GLib {
 	/**
 	 * This function is similar to {@link G.malloc}, allocating (#n_blocks * #n_block_bytes) bytes,
 	 * but care is taken to detect possible overflow during multiplication.
+	 * 
+	 * If the allocation fails (because the system is out of memory),
+	 * the program is terminated.
 	 * @param n_blocks the number of blocks to allocate
 	 * @param n_block_bytes the size of each block in bytes
 	 * @returns a pointer to the allocated memory
@@ -25555,8 +25940,8 @@ declare namespace imports.gi.GLib {
 	 * separators (and on Windows, possibly a drive letter), a single
 	 * separator is returned. If #file_name is empty, it gets ".".
 	 * @param file_name the name of the file
-	 * @returns a newly allocated string containing the last
-	 *    component of the filename
+	 * @returns a newly allocated string
+	 *    containing the last component of the filename
 	 */
 	function path_get_basename(file_name: string): string;
 	/**
@@ -26014,6 +26399,9 @@ declare namespace imports.gi.GLib {
 	 * have been moved. #mem may be %NULL, in which case it's considered to
 	 * have zero-length. #n_bytes may be 0, in which case %NULL will be returned
 	 * and #mem will be freed unless it is %NULL.
+	 * 
+	 * If the allocation fails (because the system is out of memory),
+	 * the program is terminated.
 	 * @param mem the memory to reallocate
 	 * @param n_bytes new size of the memory in bytes
 	 * @returns the new address of the allocated memory
@@ -26022,6 +26410,9 @@ declare namespace imports.gi.GLib {
 	/**
 	 * This function is similar to {@link G.realloc}, allocating (#n_blocks * #n_block_bytes) bytes,
 	 * but care is taken to detect possible overflow during multiplication.
+	 * 
+	 * If the allocation fails (because the system is out of memory),
+	 * the program is terminated.
 	 * @param mem the memory to reallocate
 	 * @param n_blocks the number of blocks to allocate
 	 * @param n_block_bytes the size of each block in bytes
@@ -26359,7 +26750,9 @@ declare namespace imports.gi.GLib {
 	 * #GtkApplication::startup handler. The program name is found by
 	 * taking the last component of #argv[0].
 	 * 
-	 * Note that for thread-safety reasons this function can only be called once.
+	 * Since GLib 2.72, this function can be called multiple times
+	 * and is fully thread safe. Prior to GLib 2.72, this function
+	 * could only be called once per process.
 	 * @param prgname the name of the program.
 	 */
 	function set_prgname(prgname: string): void;
@@ -26427,6 +26820,11 @@ declare namespace imports.gi.GLib {
 	 * they are passed through literally.
 	 * 
 	 * Possible errors are those from the %G_SHELL_ERROR domain.
+	 * 
+	 * In particular, if #command_line is an empty string (or a string containing
+	 * only whitespace), %G_SHELL_ERROR_EMPTY_STRING will be returned. It’s
+	 * guaranteed that #argvp will be a non-empty array if this function returns
+	 * successfully.
 	 * 
 	 * Free the returned vector with {@link G.strfreev}.
 	 * @param command_line command line to parse
@@ -26603,7 +27001,7 @@ declare namespace imports.gi.GLib {
 	 * been reissued, leading to the operation being performed against the
 	 * wrong source.
 	 * @param tag the ID of the source to remove.
-	 * @returns For historical reasons, this function always returns %TRUE
+	 * @returns %TRUE if the source was found and removed.
 	 */
 	function source_remove(tag: number): boolean;
 	/**
@@ -26692,7 +27090,8 @@ declare namespace imports.gi.GLib {
 	 * Identical to {@link G.spawn_async_with_pipes_and_fds} but with `n_fds` set to zero,
 	 * so no FD assignments are used.
 	 * @param working_directory child's current working directory, or %NULL to inherit parent's, in the GLib file name encoding
-	 * @param argv child's argument vector, in the GLib file name encoding
+	 * @param argv child's argument vector, in the GLib file name encoding;
+	 *   it must be non-empty and %NULL-terminated
 	 * @param envp child's environment, or %NULL to inherit parent's, in the GLib file name encoding
 	 * @param flags flags from #GSpawnFlags
 	 * @param child_setup function to run in the child just before exec()
@@ -26710,7 +27109,7 @@ declare namespace imports.gi.GLib {
 	 * @param working_directory child's current working
 	 *     directory, or %NULL to inherit parent's, in the GLib file name encoding
 	 * @param argv child's argument
-	 *     vector, in the GLib file name encoding
+	 *     vector, in the GLib file name encoding; it must be non-empty and %NULL-terminated
 	 * @param envp 
 	 *     child's environment, or %NULL to inherit parent's, in the GLib file
 	 *     name encoding
@@ -26808,17 +27207,23 @@ declare namespace imports.gi.GLib {
 	 * #envp. If both %G_SPAWN_SEARCH_PATH and %G_SPAWN_SEARCH_PATH_FROM_ENVP
 	 * are used, the value from #envp takes precedence over the environment.
 	 * 
-	 * %G_SPAWN_STDOUT_TO_DEV_NULL means that the child's standard output
-	 * will be discarded, instead of going to the same location as the parent's
-	 * standard output. If you use this flag, #stdout_pipe_out must be %NULL.
-	 * 
-	 * %G_SPAWN_STDERR_TO_DEV_NULL means that the child's standard error
-	 * will be discarded, instead of going to the same location as the parent's
-	 * standard error. If you use this flag, #stderr_pipe_out must be %NULL.
-	 * 
 	 * %G_SPAWN_CHILD_INHERITS_STDIN means that the child will inherit the parent's
 	 * standard input (by default, the child's standard input is attached to
-	 * `/dev/null`). If you use this flag, #stdin_pipe_out must be %NULL.
+	 * `/dev/null`). %G_SPAWN_STDIN_FROM_DEV_NULL explicitly imposes the default
+	 * behavior. Both flags cannot be enabled at the same time and, in both cases,
+	 * the #stdin_pipe_out argument is ignored.
+	 * 
+	 * %G_SPAWN_STDOUT_TO_DEV_NULL means that the child's standard output
+	 * will be discarded (by default, it goes to the same location as the parent's
+	 * standard output). %G_SPAWN_CHILD_INHERITS_STDOUT explicitly imposes the
+	 * default behavior. Both flags cannot be enabled at the same time and, in
+	 * both cases, the #stdout_pipe_out argument is ignored.
+	 * 
+	 * %G_SPAWN_STDERR_TO_DEV_NULL means that the child's standard error
+	 * will be discarded (by default, it goes to the same location as the parent's
+	 * standard error). %G_SPAWN_CHILD_INHERITS_STDERR explicitly imposes the
+	 * default behavior. Both flags cannot be enabled at the same time and, in
+	 * both cases, the #stderr_pipe_out argument is ignored.
 	 * 
 	 * It is valid to pass the same FD in multiple parameters (e.g. you can pass
 	 * a single FD for both #stdout_fd and #stderr_fd, and include it in
@@ -26832,6 +27237,8 @@ declare namespace imports.gi.GLib {
 	 * to the spawned process. FD remappings are processed after standard FDs, so
 	 * any target FDs which equal #stdin_fd, #stdout_fd or #stderr_fd will overwrite
 	 * them in the spawned process.
+	 * 
+	 * #source_fds is supported on Windows since 2.72.
 	 * 
 	 * %G_SPAWN_FILE_AND_ARGV_ZERO means that the first element of #argv is
 	 * the file to execute, while the remaining elements are the actual
@@ -26885,7 +27292,7 @@ declare namespace imports.gi.GLib {
 	 * even if they occur in the child (for example if the executable in
 	 * `#argv[0]` is not found). Typically the `message` field of returned
 	 * errors should be displayed to users. Possible errors are those from
-	 * the #G_SPAWN_ERROR domain.
+	 * the %G_SPAWN_ERROR domain.
 	 * 
 	 * If an error occurs, #child_pid, #stdin_pipe_out, #stdout_pipe_out,
 	 * and #stderr_pipe_out will not be filled with valid values.
@@ -26917,7 +27324,7 @@ declare namespace imports.gi.GLib {
 	 * @param working_directory child's current working
 	 *     directory, or %NULL to inherit parent's, in the GLib file name encoding
 	 * @param argv child's argument
-	 *     vector, in the GLib file name encoding
+	 *     vector, in the GLib file name encoding; it must be non-empty and %NULL-terminated
 	 * @param envp 
 	 *     child's environment, or %NULL to inherit parent's, in the GLib file
 	 *     name encoding
@@ -27092,7 +27499,7 @@ declare namespace imports.gi.GLib {
 	 * @param working_directory child's current working
 	 *     directory, or %NULL to inherit parent's
 	 * @param argv 
-	 *     child's argument vector
+	 *     child's argument vector, which must be non-empty and %NULL-terminated
 	 * @param envp 
 	 *     child's environment, or %NULL to inherit parent's
 	 * @param flags flags from #GSpawnFlags
@@ -27382,7 +27789,7 @@ declare namespace imports.gi.GLib {
 	 * ]|
 	 * @param string the string to convert
 	 * @param delimiters a string containing the current delimiters,
-	 *     or %NULL to use the standard delimiters defined in #G_STR_DELIMITERS
+	 *     or %NULL to use the standard delimiters defined in %G_STR_DELIMITERS
 	 * @param new_delimiter the new delimiter character
 	 * @returns the modified #string
 	 */
@@ -27464,7 +27871,7 @@ declare namespace imports.gi.GLib {
 	 * @param errnum the system error number. See the standard C %errno
 	 *     documentation
 	 * @returns a UTF-8 string describing the error code. If the error code
-	 *     is unknown, it returns a string like "unknown error (<code>)".
+	 *     is unknown, it returns a string like "Unknown error: <code>".
 	 */
 	function strerror(errnum: number): string;
 	/**
@@ -28001,9 +28408,9 @@ declare namespace imports.gi.GLib {
 	 * Gets the pathname to a data file that is required for a test.
 	 * 
 	 * This is the same as {@link G.test_build_filename} with two differences.
-	 * The first difference is that must only use this function from within
+	 * The first difference is that you must only use this function from within
 	 * a testcase function.  The second difference is that you need not free
-	 * the return value -- it will be automatically freed when the testcase
+	 * the return value — it will be automatically freed when the testcase
 	 * finishes running.
 	 * 
 	 * It is safe to use this function from a thread inside of a testcase
@@ -28319,8 +28726,9 @@ declare namespace imports.gi.GLib {
 	 */
 	function test_summary(summary: string): void;
 	/**
-	 * Get the time since the last start of the timer with {@link G.test_timer_start}.
-	 * @returns the time since the last start of the timer, as a double
+	 * Get the number of seconds since the last start of the timer with
+	 * {@link G.test_timer_start}.
+	 * @returns the time since the last start of the timer in seconds, as a double
 	 */
 	function test_timer_elapsed(): number;
 	/**
@@ -28425,7 +28833,7 @@ declare namespace imports.gi.GLib {
 	 *       }
 	 * 
 	 *     // Reruns this same test in a subprocess
-	 *     g_test_trap_subprocess (NULL, 0, 0);
+	 *     g_test_trap_subprocess (NULL, 0, G_TEST_SUBPROCESS_DEFAULT);
 	 *     g_test_trap_assert_failed ();
 	 *     g_test_trap_assert_stderr ("*ERROR*too large*");
 	 *   }
@@ -28591,6 +28999,20 @@ declare namespace imports.gi.GLib {
 	 * @returns the ID (greater than 0) of the event source.
 	 */
 	function timeout_add(priority: number, interval: number, _function: SourceFunc): number;
+	/**
+	 * Sets a function to be called after #interval milliseconds have elapsed,
+	 * with the default priority, %G_PRIORITY_DEFAULT.
+	 * 
+	 * The given #function is called once and then the source will be automatically
+	 * removed from the main context.
+	 * 
+	 * This function otherwise behaves like {@link G.timeout_add}.
+	 * @param interval the time after which the function will be called, in
+	 *   milliseconds (1/1000ths of a second)
+	 * @param _function function to call
+	 * @returns the ID (greater than 0) of the event source
+	 */
+	function timeout_add_once(interval: number, _function: SourceOnceFunc): number;
 	/**
 	 * Sets a function to be called at regular intervals, with #priority.
 	 * 
@@ -29258,7 +29680,7 @@ declare namespace imports.gi.GLib {
 	 * @param flags Bitfield of file descriptor flags, as for fcntl()
 	 * @returns %TRUE on success, %FALSE if not (and errno will be set).
 	 */
-	function unix_open_pipe(fds: number, flags: number): boolean;
+	function unix_open_pipe(fds: number[], flags: number): boolean;
 	/**
 	 * Control the non-blocking state of the given file descriptor,
 	 * according to #nonblock. On most systems this uses %O_NONBLOCK, but
@@ -29273,7 +29695,7 @@ declare namespace imports.gi.GLib {
 	 * attaches to the default #GMainContext.  You can remove the watch
 	 * using g_source_remove().
 	 * @param priority the priority of the signal source. Typically this will be in
-	 *            the range between #G_PRIORITY_DEFAULT and #G_PRIORITY_HIGH.
+	 *            the range between %G_PRIORITY_DEFAULT and %G_PRIORITY_HIGH.
 	 * @param signum Signal number
 	 * @param handler Callback
 	 * @returns An ID (greater than 0) for the event source
@@ -29291,11 +29713,11 @@ declare namespace imports.gi.GLib {
 	 * 
 	 * For example, an effective use of this function is to handle `SIGTERM`
 	 * cleanly; flushing any outstanding files, and then calling
-	 * g_main_loop_quit ().  It is not safe to do any of this a regular
-	 * UNIX signal handler; your handler may be invoked while malloc() or
-	 * another library function is running, causing reentrancy if you
-	 * attempt to use it from the handler.  None of the GLib/GObject API
-	 * is safe against this kind of reentrancy.
+	 * g_main_loop_quit().  It is not safe to do any of this from a regular
+	 * UNIX signal handler; such a handler may be invoked while malloc() or
+	 * another library function is running, causing reentrancy issues if the
+	 * handler attempts to use those functions.  None of the GLib/GObject
+	 * API is safe against this kind of reentrancy.
 	 * 
 	 * The interaction of this source when combined with native UNIX
 	 * functions like sigprocmask() is not defined.
@@ -29760,7 +30182,7 @@ declare namespace imports.gi.GLib {
 	 * Pauses the current thread for the given number of microseconds.
 	 * 
 	 * There are 1 million microseconds per second (represented by the
-	 * #G_USEC_PER_SEC macro). {@link G.usleep} may have limited precision,
+	 * %G_USEC_PER_SEC macro). {@link G.usleep} may have limited precision,
 	 * depending on hardware and operating system; don't rely on the exact
 	 * length of the sleep.
 	 * @param microseconds number of microseconds to pause
@@ -29811,10 +30233,11 @@ declare namespace imports.gi.GLib {
 	 *     words read, or %NULL. If %NULL, then %G_CONVERT_ERROR_PARTIAL_INPUT will
 	 *     be returned in case #str contains a trailing partial character. If
 	 *     an error occurs then the index of the invalid input is stored here.
+	 *     It’s guaranteed to be non-negative.
 	 * 
 	 * location to store number
 	 *     of bytes written, or %NULL. The value stored here does not include the
-	 *     trailing 0 byte.
+	 *     trailing 0 byte. It’s guaranteed to be non-negative.
 	 */
 	function utf16_to_utf8(str: number, len: number): [ string, number | null, number | null ];
 	/**
@@ -29842,6 +30265,10 @@ declare namespace imports.gi.GLib {
 	 * faster to obtain collation keys with {@link G.utf8_collate_key} and
 	 * compare the keys with strcmp() when sorting instead of sorting
 	 * the original strings.
+	 * 
+	 * If the two strings are not comparable due to being in different collation
+	 * sequences, the result is undefined. This can happen if the strings are in
+	 * different language scripts, for example.
 	 * @param str1 a UTF-8 encoded string
 	 * @param str2 a UTF-8 encoded string
 	 * @returns < 0 if #str1 compares before #str2,
@@ -30075,7 +30502,7 @@ declare namespace imports.gi.GLib {
 	 * must be valid UTF-8 encoded text. (Use g_utf8_validate() on all
 	 * text before trying to use UTF-8 utility functions with it.)
 	 * 
-	 * Note you must ensure #dest is at least 4 * #n to fit the
+	 * Note you must ensure #dest is at least 4 * #n + 1 to fit the
 	 * largest possible UTF-8 characters
 	 * @param dest buffer to fill with characters from #src
 	 * @param src UTF-8 encoded string
@@ -30130,9 +30557,13 @@ declare namespace imports.gi.GLib {
 	/**
 	 * Copies a substring out of a UTF-8 encoded string.
 	 * The substring will contain #end_pos - #start_pos characters.
+	 * 
+	 * Since GLib 2.72, `-1` can be passed to #end_pos to indicate the
+	 * end of the string.
 	 * @param str a UTF-8 encoded string
 	 * @param start_pos a character offset within #str
-	 * @param end_pos another character offset within #str
+	 * @param end_pos another character offset within #str,
+	 *   or `-1` to indicate the end of the string
 	 * @returns a newly allocated copy of the requested
 	 *     substring. Free with {@link G.free} when no longer needed.
 	 */
@@ -30403,11 +30834,12 @@ declare namespace imports.gi.GLib {
 	 * multibyte representation is available for the given character.
 	 * 
 	 * `glib/gprintf.h` must be explicitly included in order to use this function.
-	 * @param string the return location for the newly-allocated string.
+	 * @param string the return location for the newly-allocated string,
+	 *   which will be %NULL if (and only if) this function fails
 	 * @param format a standard printf() format string, but notice
 	 *          [string precision pitfalls][string-precision]
 	 * @param args the list of arguments to insert in the output.
-	 * @returns the number of bytes printed.
+	 * @returns the number of bytes printed, or `-1` on failure
 	 */
 	function vasprintf(string: string, format: string, args: any[]): number;
 	/**
@@ -30511,9 +30943,9 @@ declare namespace imports.gi.GLib {
 
 	/**
 	 * Specifies one of the possible types of byte order.
-	 * See #G_BYTE_ORDER.
+	 * See %G_BYTE_ORDER.
 	 * @returns Specifies one of the possible types of byte order.
-	 * See #G_BYTE_ORDER.
+	 * See %G_BYTE_ORDER.
 	 */
 	const BIG_ENDIAN: number;
 
@@ -30653,25 +31085,25 @@ declare namespace imports.gi.GLib {
 
 	/**
 	 * This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gint32. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gint32. See also %G_GINT16_FORMAT.
 	 * @returns This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gint32. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gint32. See also %G_GINT16_FORMAT.
 	 */
 	const GINT32_FORMAT: string;
 
 	/**
 	 * The platform dependent length modifier for conversion specifiers
 	 * for scanning and printing values of type #gint32 or #guint32. It
-	 * is a string literal. See also #G_GINT16_MODIFIER.
+	 * is a string literal. See also %G_GINT16_MODIFIER.
 	 * @returns The platform dependent length modifier for conversion specifiers
 	 * for scanning and printing values of type #gint32 or #guint32. It
-	 * is a string literal. See also #G_GINT16_MODIFIER.
+	 * is a string literal. See also %G_GINT16_MODIFIER.
 	 */
 	const GINT32_MODIFIER: string;
 
 	/**
 	 * This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gint64. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gint64. See also %G_GINT16_FORMAT.
 	 * 
 	 * Some platforms do not support scanning and printing 64-bit integers,
 	 * even though the types are supported. On such platforms %G_GINT64_FORMAT
@@ -30680,7 +31112,7 @@ declare namespace imports.gi.GLib {
 	 * is not recommended for parsing anyway; consider using g_ascii_strtoull()
 	 * instead.
 	 * @returns This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gint64. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gint64. See also %G_GINT16_FORMAT.
 	 * 
 	 * Some platforms do not support scanning and printing 64-bit integers,
 	 * even though the types are supported. On such platforms %G_GINT64_FORMAT
@@ -30745,9 +31177,9 @@ declare namespace imports.gi.GLib {
 
 	/**
 	 * This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gsize. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gsize. See also %G_GINT16_FORMAT.
 	 * @returns This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gsize. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gsize. See also %G_GINT16_FORMAT.
 	 */
 	const GSIZE_FORMAT: string;
 
@@ -30763,9 +31195,9 @@ declare namespace imports.gi.GLib {
 
 	/**
 	 * This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gssize. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gssize. See also %G_GINT16_FORMAT.
 	 * @returns This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #gssize. See also #G_GINT16_FORMAT.
+	 * and printing values of type #gssize. See also %G_GINT16_FORMAT.
 	 */
 	const GSSIZE_FORMAT: string;
 
@@ -30781,23 +31213,23 @@ declare namespace imports.gi.GLib {
 
 	/**
 	 * This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #guint16. See also #G_GINT16_FORMAT
+	 * and printing values of type #guint16. See also %G_GINT16_FORMAT
 	 * @returns This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #guint16. See also #G_GINT16_FORMAT
+	 * and printing values of type #guint16. See also %G_GINT16_FORMAT
 	 */
 	const GUINT16_FORMAT: string;
 
 	/**
 	 * This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #guint32. See also #G_GINT16_FORMAT.
+	 * and printing values of type #guint32. See also %G_GINT16_FORMAT.
 	 * @returns This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #guint32. See also #G_GINT16_FORMAT.
+	 * and printing values of type #guint32. See also %G_GINT16_FORMAT.
 	 */
 	const GUINT32_FORMAT: string;
 
 	/**
 	 * This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #guint64. See also #G_GINT16_FORMAT.
+	 * and printing values of type #guint64. See also %G_GINT16_FORMAT.
 	 * 
 	 * Some platforms do not support scanning and printing 64-bit integers,
 	 * even though the types are supported. On such platforms %G_GUINT64_FORMAT
@@ -30806,7 +31238,7 @@ declare namespace imports.gi.GLib {
 	 * is not recommended for parsing anyway; consider using g_ascii_strtoull()
 	 * instead.
 	 * @returns This is the platform dependent conversion specifier for scanning
-	 * and printing values of type #guint64. See also #G_GINT16_FORMAT.
+	 * and printing values of type #guint64. See also %G_GINT16_FORMAT.
 	 * 
 	 * Some platforms do not support scanning and printing 64-bit integers,
 	 * even though the types are supported. On such platforms %G_GUINT64_FORMAT
@@ -31107,9 +31539,9 @@ declare namespace imports.gi.GLib {
 
 	/**
 	 * Specifies one of the possible types of byte order.
-	 * See #G_BYTE_ORDER.
+	 * See %G_BYTE_ORDER.
 	 * @returns Specifies one of the possible types of byte order.
-	 * See #G_BYTE_ORDER.
+	 * See %G_BYTE_ORDER.
 	 */
 	const LITTLE_ENDIAN: number;
 
@@ -31325,7 +31757,7 @@ declare namespace imports.gi.GLib {
 	 * or %G_OPTION_ARG_FILENAME_ARRAY.
 	 * 
 	 * 
-	 * Using #G_OPTION_REMAINING instead of simply scanning `argv`
+	 * Using %G_OPTION_REMAINING instead of simply scanning `argv`
 	 * for leftover arguments has the advantage that GOption takes care of
 	 * necessary encoding conversions for strings or filenames.
 	 * @returns If a long option in the main group has this name, it is not treated as a
@@ -31335,7 +31767,7 @@ declare namespace imports.gi.GLib {
 	 * or %G_OPTION_ARG_FILENAME_ARRAY.
 	 * 
 	 * 
-	 * Using #G_OPTION_REMAINING instead of simply scanning `argv`
+	 * Using %G_OPTION_REMAINING instead of simply scanning `argv`
 	 * for leftover arguments has the advantage that GOption takes care of
 	 * necessary encoding conversions for strings or filenames.
 	 */
@@ -31343,9 +31775,9 @@ declare namespace imports.gi.GLib {
 
 	/**
 	 * Specifies one of the possible types of byte order
-	 * (currently unused). See #G_BYTE_ORDER.
+	 * (currently unused). See %G_BYTE_ORDER.
 	 * @returns Specifies one of the possible types of byte order
-	 * (currently unused). See #G_BYTE_ORDER.
+	 * (currently unused). See %G_BYTE_ORDER.
 	 */
 	const PDP_ENDIAN: number;
 
@@ -31422,14 +31854,14 @@ declare namespace imports.gi.GLib {
 	/**
 	 * Use this for high priority idle functions.
 	 * 
-	 * GTK+ uses #G_PRIORITY_HIGH_IDLE + 10 for resizing operations,
-	 * and #G_PRIORITY_HIGH_IDLE + 20 for redrawing operations. (This is
+	 * GTK+ uses %G_PRIORITY_HIGH_IDLE + 10 for resizing operations,
+	 * and %G_PRIORITY_HIGH_IDLE + 20 for redrawing operations. (This is
 	 * done to ensure that any pending resizes are processed before any
 	 * pending redraws, so that widgets are not redrawn twice unnecessarily.)
 	 * @returns Use this for high priority idle functions.
 	 * 
-	 * GTK+ uses #G_PRIORITY_HIGH_IDLE + 10 for resizing operations,
-	 * and #G_PRIORITY_HIGH_IDLE + 20 for redrawing operations. (This is
+	 * GTK+ uses %G_PRIORITY_HIGH_IDLE + 10 for resizing operations,
+	 * and %G_PRIORITY_HIGH_IDLE + 20 for redrawing operations. (This is
 	 * done to ensure that any pending resizes are processed before any
 	 * pending redraws, so that widgets are not redrawn twice unnecessarily.)
 	 */
@@ -31527,6 +31959,7 @@ declare namespace imports.gi.GLib {
 	 *  - g_get_user_config_dir()
 	 *  - g_get_system_data_dirs()
 	 *  - g_get_user_data_dir()
+	 *  - g_get_user_state_dir()
 	 *  - g_get_user_runtime_dir()
 	 * 
 	 * The subdirectories may not be created by the test harness; as with normal
@@ -31549,6 +31982,7 @@ declare namespace imports.gi.GLib {
 	 *  - g_get_user_config_dir()
 	 *  - g_get_system_data_dirs()
 	 *  - g_get_user_data_dir()
+	 *  - g_get_user_state_dir()
 	 *  - g_get_user_runtime_dir()
 	 * 
 	 * The subdirectories may not be created by the test harness; as with normal

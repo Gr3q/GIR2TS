@@ -46,7 +46,7 @@ declare namespace imports.gi.XApp {
 		 * @returns a list of {@link FavoriteInfos}.
 		 *             Free the list with #g_list_free, free elements with #xapp_favorite_info_free.
 		 */
-		get_favorites(mimetypes?: string | null): FavoriteInfo[];
+		get_favorites(mimetypes?: string[] | null): FavoriteInfo[];
 		get_n_favorites(): number;
 		/**
 		 * Opens a favorite in its default app.
@@ -1360,6 +1360,88 @@ declare namespace imports.gi.XApp {
 		public get_visible: {(object: StatusIconInterface): boolean;};
 	}
 
+	export interface VisibilityGroupInitOptions {}
+	/**
+	 * A group of widgets that can have their visibility and sensitivity controlled together.
+	 */
+	interface VisibilityGroup {}
+	class VisibilityGroup {
+		public constructor(options?: Partial<VisibilityGroupInitOptions>);
+		/**
+		 * Creates a new {@link VisibilityGroup}.
+		 * 
+		 * If #widgets is not NULL, adds these widgets to the group with the starting visibility and
+		 * sensitivity state.
+		 * @param visible starting visibility state
+		 * @param sensitive starting sensitivity state
+		 * @param widgets list of #GtkWidgets to add to the group.
+		 * @returns a new {@link VisibilityGroup}. Use xapp_visibility_group_free when finished.
+		 */
+		public static new(visible: boolean, sensitive: boolean, widgets?: Gtk.Widget[] | null): VisibilityGroup;
+		/**
+		 * The #GtkWidget members of this group.
+		 */
+		public widgets: Gtk.Widget[];
+		/**
+		 * The current visible state of the group. There is no guarantee that all members are actually in this state.
+		 */
+		public visible: boolean;
+		/**
+		 * The current sensitive state of the group. There is no guarantee that all members are actually in this state.
+		 */
+		public sensitive: boolean;
+		/**
+		 * Adds widget to the visibility group.
+		 * @param widget the #GtkWidget to add to the group
+		 */
+		public add_widget(widget: Gtk.Widget): void;
+		/**
+		 * Get the sensitivity of the group.
+		 * 
+		 * There is no guarantee that all widgets in the group actually are
+		 * in the returned state, if they've had their sensitivity individually
+		 * modified since the last time the group was set.
+		 * @returns The sensitivity state of the group.
+		 */
+		public get_sensitive(): boolean;
+		/**
+		 * Get the visibility of the group.
+		 * 
+		 * There is no guarantee that all widgets in the group actually are
+		 * in the returned state, if they've had their visibility individually
+		 * modified since the last time the group was set.
+		 * @returns The visibility state of the group.
+		 */
+		public get_visible(): boolean;
+		/**
+		 * Returns the members of the group or NULL if the group is empty.
+		 * @returns a list of members of the group.
+		 * 
+		 * The list is owned by XApp, do not free.
+		 */
+		public get_widgets(): Gtk.Widget[];
+		/**
+		 * Hide all widgets in the group.
+		 */
+		public hide(): void;
+		public remove_widget(widget: Gtk.Widget): boolean;
+		/**
+		 * Set the sensitivity of all widgets in group.
+		 * @param sensitive TRUE to make the widgets sensitive.
+		 */
+		public set_sensitive(sensitive: boolean): void;
+		/**
+		 * Set the visibility of all widgets in the group.
+		 * @param visible TRUE to make the widgets visible.
+		 */
+		public set_visible(visible: boolean): void;
+		public set_widgets(widgets?: Gtk.Widget[] | null): void;
+		/**
+		 * Show all widgets in the group.
+		 */
+		public show(): void;
+	}
+
 	/** This construct is only for enabling class multi-inheritance,
 	 * use {@link Object} instead.
 	 */
@@ -1758,7 +1840,7 @@ declare namespace imports.gi.XApp {
 		/**
 		 * Signal emitted when a remote caller is invoking the <link linkend="gdbus-method-org-x-StatusIcon.ButtonPress">ButtonPress()</link> D-Bus method.
 		 * 
-		 * If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to #invocation and eventually call xapp_status_icon_interface_complete_button_press() or e.g. g_dbus_method_invocation_return_error() on it) and no order signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.
+		 * If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to #invocation and eventually call xapp_status_icon_interface_complete_button_press() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.
 		 * @param signal 
 		 * @param callback Callback function
 		 *  - owner: owner of the emitted event 
@@ -1776,7 +1858,7 @@ declare namespace imports.gi.XApp {
 		/**
 		 * Signal emitted when a remote caller is invoking the <link linkend="gdbus-method-org-x-StatusIcon.ButtonRelease">ButtonRelease()</link> D-Bus method.
 		 * 
-		 * If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to #invocation and eventually call xapp_status_icon_interface_complete_button_release() or e.g. g_dbus_method_invocation_return_error() on it) and no order signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.
+		 * If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to #invocation and eventually call xapp_status_icon_interface_complete_button_release() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.
 		 * @param signal 
 		 * @param callback Callback function
 		 *  - owner: owner of the emitted event 
@@ -1794,7 +1876,7 @@ declare namespace imports.gi.XApp {
 		/**
 		 * Signal emitted when a remote caller is invoking the <link linkend="gdbus-method-org-x-StatusIcon.Scroll">Scroll()</link> D-Bus method.
 		 * 
-		 * If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to #invocation and eventually call xapp_status_icon_interface_complete_scroll() or e.g. g_dbus_method_invocation_return_error() on it) and no order signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.
+		 * If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to #invocation and eventually call xapp_status_icon_interface_complete_scroll() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.
 		 * @param signal 
 		 * @param callback Callback function
 		 *  - owner: owner of the emitted event 
@@ -1915,6 +1997,12 @@ declare namespace imports.gi.XApp {
 		(favorites: Favorites, uri: string): void;
 	}
 
+	/**
+	 * Provides the path to the system's temporary files folder. This is identical to g_get_tmp_dir,
+	 * but includes the /dev/shm ramdisk as the first choice for a temporary folder.
+	 * @returns the directory to use for temporary files.
+	 */
+	function get_tmp_dir(): string;
 	/**
 	 * Converts a pango font description string to a string suitable for use with the css "font" tag. The font description must contain the font family and font size or conversion will fail and %NULL will be returned
 	 * @param pango_font_string a pango font description string

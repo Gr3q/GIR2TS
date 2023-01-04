@@ -3525,7 +3525,7 @@ declare namespace imports.gi.Gtk {
 	 * 
 	 * ## A simple application ## {#gtkapplication}
 	 * 
-	 * [A simple example](https://git.gnome.org/browse/gtk+/tree/examples/bp/bloatpad.c)
+	 * [A simple example](https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/examples/bp/bloatpad.c)
 	 * 
 	 * GtkApplication optionally registers with a session manager
 	 * of the users session (if you set the #GtkApplication:register-session
@@ -39258,6 +39258,29 @@ declare namespace imports.gi.Gtk {
 		 * given state.
 		 * 
 		 * See {@link Gtk.StyleContext.get_property} for details.
+		 * 
+		 * For the property name / return value pairs, it works similarly as
+		 * g_object_get(). Example:
+		 * 
+		 * |[<!-- language="C" -->
+		 * GdkRGBA *background_color = NULL;
+		 * PangoFontDescription *font_desc = NULL;
+		 * gint border_radius = 0;
+		 * 
+		 * gtk_style_context_get (style_context,
+		 *                        gtk_style_context_get_state (style_context),
+		 *                        GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &background_color,
+		 *                        GTK_STYLE_PROPERTY_FONT, &font_desc,
+		 *                        GTK_STYLE_PROPERTY_BORDER_RADIUS, &border_radius,
+		 *                        NULL);
+		 * 
+		 * // Do something with the property values.
+		 * 
+		 * if (background_color != NULL)
+		 *   gdk_rgba_free (background_color);
+		 * if (font_desc != NULL)
+		 *   pango_font_description_free (font_desc);
+		 * ]|
 		 * @param state state to retrieve the property values for
 		 */
 		get(state: StateFlags): void;
@@ -45834,31 +45857,40 @@ declare namespace imports.gi.Gtk {
 		 */
 		get_select_function(): TreeSelectionFunc;
 		/**
-		 * Sets #iter to the currently selected node if #selection is set to
-		 * #GTK_SELECTION_SINGLE or #GTK_SELECTION_BROWSE.  #iter may be NULL if you
-		 * just want to test if #selection has any selected nodes.  #model is filled
-		 * with the current model as a convenience.  This function will not work if you
-		 * use #selection is #GTK_SELECTION_MULTIPLE.
-		 * @returns TRUE, if there is a selected node.
+		 * Sets #iter to the currently selected node, if #selection is set to
+		 * %GTK_SELECTION_SINGLE or %GTK_SELECTION_BROWSE.
 		 * 
-		 * A pointer to set to the {@link TreeModel}, or NULL.
+		 * The #iter argument may be %NULL if you just want to test if #selection
+		 * has any selected nodes.
 		 * 
-		 * The #GtkTreeIter, or NULL.
+		 * The #model argument is filled with the current model as a convenience.
+		 * 
+		 * This function will not work with %GTK_SELECTION_MULTIPLE. See
+		 * {@link Gtk.TreeSelection.get_selected_rows} instead.
+		 * @returns %TRUE, if there is a selected node.
+		 * 
+		 * the model
+		 * 
+		 * the iterator for the selected row
 		 */
 		get_selected(): [ boolean, TreeModel | null, TreeIter | null ];
 		/**
-		 * Creates a list of path of all selected rows. Additionally, if you are
-		 * planning on modifying the model after calling this function, you may
-		 * want to convert the returned list into a list of {@link TreeRowReferences}.
+		 * Creates a list of path of all selected rows.
+		 * 
+		 * Additionally, if you are planning on modifying the model after calling
+		 * this function, you may want to convert the returned list into a list
+		 * of {@link TreeRowReferences}.
+		 * 
 		 * To do this, you can use {@link Gtk.TreeRowReference.new}.
 		 * 
 		 * To free the return value, use:
+		 * 
 		 * |[<!-- language="C" -->
 		 * g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
 		 * ]|
-		 * @returns A #GList containing a {@link TreePath} for each selected row.
+		 * @returns the selected paths
 		 * 
-		 * A pointer to set to the #GtkTreeModel, or %NULL.
+		 * A pointer to set to the {@link TreeModel}, or %NULL.
 		 */
 		get_selected_rows(): [ TreePath[], TreeModel | null ];
 		/**
@@ -61663,7 +61695,7 @@ declare namespace imports.gi.Gtk {
 		 * See {@link Gtk.FileChooser.get_current_folder_uri}.
 		 * @returns the #GFile for the current folder.
 		 */
-		get_current_folder_file(): Gio.File;
+		get_current_folder_file(): Gio.File | null;
 		/**
 		 * Gets the current folder of #chooser as an URI.
 		 * See {@link Gtk.FileChooser.set_current_folder_uri}.
@@ -68650,11 +68682,12 @@ declare namespace imports.gi.Gtk {
 		 * @param content_buffer the {@link TextBuffer} to serialize
 		 * @param start start of the block of text to serialize
 		 * @param end end of the block of text to serialize
-		 * @param length Return location for the length of the serialized data
-		 * @returns a newly-allocated array of guint8 which contains
-		 * the serialized data, or %NULL if an error occurred
+		 * @returns a newly-allocated array of guint8
+		 * which contains the serialized data, or %NULL if an error occurred
+		 * 
+		 * return location for the length of the serialized data
 		 */
-		(register_buffer: TextBuffer, content_buffer: TextBuffer, start: TextIter, end: TextIter, length: number): number | null;
+		(register_buffer: TextBuffer, content_buffer: TextBuffer, start: TextIter, end: TextIter): [ number[] | null, number ];
 	}
 
 	interface TextCharPredicate {

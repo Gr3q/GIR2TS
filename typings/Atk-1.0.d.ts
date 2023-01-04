@@ -561,6 +561,17 @@ declare namespace imports.gi.Atk {
 		 */
 		connect(signal: "active-descendant-changed", callback: (owner: this, arg1: Object) => void): number;
 		/**
+		 * The "announcement" signal can be emitted to pass an announcement on to
+		 * be read by a screen reader.
+		 * @param signal 
+		 * @param callback Callback function
+		 *  - owner: owner of the emitted event 
+		 *  - arg1: the text to be announced. 
+		 * 
+		 * @returns Callback ID
+		 */
+		connect(signal: "announcement", callback: (owner: this, arg1: string) => void): number;
+		/**
 		 * The signal "children-changed" is emitted when a child is added or
 		 * removed form an object. It supports two details: "add" and
 		 * "remove"
@@ -4816,9 +4827,14 @@ declare namespace imports.gi.Atk {
 		 */
 		SUGGESTION = 126,
 		/**
+		 * A specialized push button to open a menu.
+		 * (Since: 2.46)
+		 */
+		PUSH_BUTTON_MENU = 127,
+		/**
 		 * not a valid role, used for finding end of the enumeration
 		 */
-		LAST_DEFINED = 127
+		LAST_DEFINED = 128
 	}
 
 	/**
@@ -5107,9 +5123,13 @@ declare namespace imports.gi.Atk {
 		 */
 		READ_ONLY = 42,
 		/**
+		 * Indicates this object is collapsed. #Since: ATK-2.38
+		 */
+		COLLAPSED = 43,
+		/**
 		 * Not a valid state, used for finding end of enumeration
 		 */
-		LAST_DEFINED = 43
+		LAST_DEFINED = 44
 	}
 
 	/**
