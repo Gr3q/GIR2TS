@@ -3,7 +3,9 @@
     "$schema": "./schema.json",
     "exclude": {
         "class": {
-
+            "LayoutLine": {
+                "prop": ["is_paragraph_start"]
+            }
         },
         "function": [
             "break"

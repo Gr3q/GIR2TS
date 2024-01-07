@@ -1,0 +1,63 @@
+{
+    "$schema": "./schema.json",
+    "amend": {
+        "class": {
+            "Manager": {
+                "function": {
+                    "override_properties": {
+                        "param": {
+                            "klass": {
+                                "type": "Manager"
+                            }
+                        }
+                    }
+                }
+            },
+            "Location": {
+                "function": {
+                    "override_properties": {
+                        "param": {
+                            "klass": {
+                                "type": "Manager"
+                            }
+                        }
+                    }
+                }
+            },
+            "Client": {
+                "function": {
+                    "override_properties": {
+                        "param": {
+                            "klass": {
+                                "type": "Manager"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "function": {
+            "client_override_properties": {
+                "param": {
+                    "klass": {
+                        "type": "Client"
+                    }
+                }
+            },
+            "location_override_properties": {
+                "param": {
+                    "klass": {
+                        "type": "Location"
+                    }
+                }
+            },
+            "manager_override_properties": {
+                "param": {
+                    "klass": {
+                        "type": "Manager"
+                    }
+                }
+            }
+        }
+    }
+}

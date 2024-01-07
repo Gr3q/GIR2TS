@@ -90,7 +90,7 @@ export function renderClassAsInterface(class_node: ClassNode, ns_name: string, e
     const extension = renderInterfacePart(class_name, class_node, ns_name, exclude_self);
     const iface_str = renderIInterfacePart(class_name, methods, fields, signals, ns_name, exclude, modifier);
     const constructorOptions = renderInitOptionsInterface(class_name, fields, ifaces);
-    const static_side = renderClassPart(ctors, static_funcs, class_name, ns_name, modifier);
+    const static_side = renderClassPart(ctors, static_funcs, class_name, ns_name, exclude, modifier);
 
     return iface_str + constructorOptions + mixin + extension + static_side;
 }
@@ -253,16 +253,16 @@ function renderInitOptionsInterface(class_name: string, fields: FieldNode[], ifa
     return constructorOptions;
 }
 
-function renderClassPart(ctors: FunctionNode[], static_funcs: FunctionNode[], class_name: string, ns_name: string, modifier?: ClassModifier): string {
+function renderClassPart(ctors: FunctionNode[], static_funcs: FunctionNode[], class_name: string, ns_name: string, exclude?: ExcludeClass, modifier?: ClassModifier): string {
     const ctor_str_list = ctors.map((c) => {
         const funcModifier = modifier?.function?.[c.$.name];
-        return renderMethod(c, ctors, ns_name, funcModifier, { indentNum: 1, staticFunc: true });
+        return renderMethod(c, ctors, ns_name, funcModifier, { indentNum: 1, staticFunc: true, exclude: exclude?.static?.includes(c.$.name) });
     });
     const ctors_body = ctor_str_list.filter(n => !!n).join('\n');
 
     const static_func_str_list = static_funcs.map((sf) => {
         const funcModifier = modifier?.function?.[sf.$.name];
-        return renderMethod(sf, static_funcs, ns_name, funcModifier, { indentNum: 1, staticFunc: true });
+        return renderMethod(sf, static_funcs, ns_name, funcModifier, { indentNum: 1, staticFunc: true, exclude: exclude?.static?.includes(sf.$.name) });
     });
     const static_func_body = static_func_str_list.filter(n => !!n).join('\n');
 

@@ -4385,7 +4385,7 @@ declare namespace imports.gi.Pango {
 		/**
 		 * #TRUE if this is the first line of the paragraph
 		 */
-		public is_paragraph_start: number;
+		// public is_paragraph_start: number;
 		/**
 		 * #Resolved PangoDirection of line
 		 */
