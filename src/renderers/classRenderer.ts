@@ -45,12 +45,17 @@ export function renderClassAsInterface(class_node: ClassNode, ns_name: string, e
 
     if (class_node.method) {
         for (let m of class_node.method) {
+            if (m.$.introspectable == "0")
+                continue;
             methods.push(m);
         }
     }
 
     if (class_node.property) {
         for (let prop of class_node.property) {
+            if (prop.$.introspectable == "0")
+                continue;
+
             if (prop.$.private == 1 || prop.$.readable == 0 || ignored_property_names.includes(prop.$.name))
                 continue;
             fields.push(prop);
@@ -59,6 +64,9 @@ export function renderClassAsInterface(class_node: ClassNode, ns_name: string, e
 
     if (class_node.field) {
         for (let field of class_node.field) {
+            if (field.$.introspectable == "0")
+                continue;
+
             if (field.$.private == 1 || field.$.readable == 0 || ignored_property_names.includes(field.$.name))
                 continue;
             fields.push(field);
