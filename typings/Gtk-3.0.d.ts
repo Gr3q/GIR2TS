@@ -30080,7 +30080,7 @@ declare namespace imports.gi.Gtk {
 		 * If a rectangle to point to has been set, this function will
 		 * return %TRUE and fill in #rect with such rectangle, otherwise
 		 * it will return %FALSE and fill in #rect with the attached
-		 * widget coordinates.
+		 * widget width and height if a widget exists, otherwise it will zero-out #rect.
 		 * @returns %TRUE if a rectangle to point to was set.
 		 * 
 		 * location to store the rectangle
@@ -35025,9 +35025,9 @@ declare namespace imports.gi.Gtk {
 	type ScrolledWindowMixin = IScrolledWindow & Bin & Atk.ImplementorIface & Buildable;
 
 	/**
-	 * GtkScrolledWindow is a container that accepts a single child widget, makes
+	 * GtkScrolledWindow is a container that accepts a single child widget and makes
 	 * that child scrollable using either internally added scrollbars or externally
-	 * associated adjustments, and optionally draws a frame around the child.
+	 * associated adjustments.
 	 * 
 	 * Widgets with native scrolling support, i.e. those whose classes implement the
 	 * {@link Scrollable} interface, are added directly. For other types of widget, the
@@ -41616,7 +41616,7 @@ declare namespace imports.gi.Gtk {
 
 	/**
 	 * You may wish to begin by reading the
-	 * [text widget conceptual overview][TextWidget]
+	 * [text widget conceptual overview](TextWidget.html)
 	 * which gives an overview of all the objects and data
 	 * types related to the text widget and how they work together.
 	 */
@@ -41773,7 +41773,7 @@ declare namespace imports.gi.Gtk {
 
 	/**
 	 * You may wish to begin by reading the
-	 * [text widget conceptual overview][TextWidget]
+	 * [text widget conceptual overview](TextWidget.html)
 	 * which gives an overview of all the objects and data
 	 * types related to the text widget and how they work together.
 	 * 
@@ -42193,7 +42193,7 @@ declare namespace imports.gi.Gtk {
 
 	/**
 	 * You may wish to begin by reading the
-	 * [text widget conceptual overview][TextWidget]
+	 * [text widget conceptual overview](TextWidget.html)
 	 * which gives an overview of all the objects and
 	 * data types related to the text widget and how they work together.
 	 * 
@@ -42278,7 +42278,7 @@ declare namespace imports.gi.Gtk {
 
 	/**
 	 * You may wish to begin by reading the
-	 * [text widget conceptual overview][TextWidget]
+	 * [text widget conceptual overview](TextWidget.html)
 	 * which gives an overview of all the objects and
 	 * data types related to the text widget and how they work together.
 	 * 
@@ -43387,7 +43387,7 @@ declare namespace imports.gi.Gtk {
 
 	/**
 	 * You may wish to begin by reading the
-	 * [text widget conceptual overview][TextWidget]
+	 * [text widget conceptual overview](TextWidget.html)
 	 * which gives an overview of all the objects and data
 	 * types related to the text widget and how they work together.
 	 * 
@@ -47307,7 +47307,7 @@ declare namespace imports.gi.Gtk {
 		 * Space, Shift+Space, Return or Enter is pressed.
 		 * 
 		 * For selection handling refer to the
-		 * [tree widget conceptual overview][TreeWidget]
+		 * [tree widget conceptual overview](TreeWidget.html)
 		 * as well as {@link TreeSelection}.
 		 * @param signal 
 		 * @param callback Callback function
@@ -47426,7 +47426,7 @@ declare namespace imports.gi.Gtk {
 	 * Widget that displays any object that implements the {@link TreeModel} interface.
 	 * 
 	 * Please refer to the
-	 * [tree widget conceptual overview][TreeWidget]
+	 * [tree widget conceptual overview](TreeWidget.html)
 	 * for an overview of all the objects and data types related
 	 * to the tree widget and how they work together.
 	 * 
@@ -47980,7 +47980,7 @@ declare namespace imports.gi.Gtk {
 	 * It allows to set properties of the column header, and functions as a holding pen for
 	 * the cell renderers which determine how the data in the column is displayed.
 	 * 
-	 * Please refer to the [tree widget conceptual overview][TreeWidget]
+	 * Please refer to the [tree widget conceptual overview](TreeWidget.html)
 	 * for an overview of all the objects and data types related to the tree widget and how
 	 * they work together.
 	 */
@@ -57852,6 +57852,9 @@ declare namespace imports.gi.Gtk {
 		public get_text(): string | null;
 		/**
 		 * Gets the contents of the selection data as array of URIs.
+		 * 
+		 * Since 3.24.37, this may involve using the FileTransfer
+		 * portal to send files between sandboxed apps.
 		 * @returns if
 		 *   the selection data contains a list of
 		 *   URIs, a newly allocated %NULL-terminated string array
@@ -57891,6 +57894,9 @@ declare namespace imports.gi.Gtk {
 		 * Sets the contents of the selection from a list of URIs.
 		 * The string is converted to the form determined by
 		 * #selection_data->target.
+		 * 
+		 * Since 3.24.37, this may involve using the FileTransfer
+		 * portal to send files between sandboxed apps.
 		 * @param uris a %NULL-terminated array of
 		 *     strings holding URIs
 		 * @returns %TRUE if the selection was successfully set,
@@ -58277,6 +58283,10 @@ declare namespace imports.gi.Gtk {
 		/**
 		 * Appends the URI targets supported by {@link SelectionData} to
 		 * the target list. All targets are added with the same #info.
+		 * 
+		 * Since 3.24.37, this includes the application/vnd.portal.files
+		 * target when possible, to allow sending files between sandboxed
+		 * apps via the FileTransfer portal.
 		 * @param info an ID that will be passed back to the application
 		 */
 		public add_uri_targets(info: number): void;
@@ -58508,7 +58518,7 @@ declare namespace imports.gi.Gtk {
 	export interface TextIterInitOptions {}
 	/**
 	 * You may wish to begin by reading the
-	 * [text widget conceptual overview][TextWidget]
+	 * [text widget conceptual overview](TextWidget.html)
 	 * which gives an overview of all the objects and data
 	 * types related to the text widget and how they work together.
 	 */

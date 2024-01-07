@@ -1099,22 +1099,22 @@ declare namespace imports.gi.GObject {
 		 * per {@link G.type_create_instance}.
 		 * 
 		 * Note that in C, small integer types in variable argument lists are promoted
-		 * up to #gint or #guint as appropriate, and read back accordingly. #gint is 32
-		 * bits on every platform on which GLib is currently supported. This means that
-		 * you can use C expressions of type #gint with g_object_new() and properties of
-		 * type #gint or #guint or smaller. Specifically, you can use integer literals
+		 * up to `gint` or `guint` as appropriate, and read back accordingly. `gint` is
+		 * 32 bits on every platform on which GLib is currently supported. This means that
+		 * you can use C expressions of type `gint` with g_object_new() and properties of
+		 * type `gint` or `guint` or smaller. Specifically, you can use integer literals
 		 * with these property types.
 		 * 
-		 * When using property types of #gint64 or #guint64, you must ensure that the
+		 * When using property types of `gint64` or `guint64`, you must ensure that the
 		 * value that you provide is 64 bit. This means that you should use a cast or
 		 * make use of the %G_GINT64_CONSTANT or %G_GUINT64_CONSTANT macros.
 		 * 
-		 * Similarly, #gfloat is promoted to #gdouble, so you must ensure that the value
-		 * you provide is a #gdouble, even for a property of type #gfloat.
+		 * Similarly, `gfloat` is promoted to `gdouble`, so you must ensure that the value
+		 * you provide is a `gdouble`, even for a property of type `gfloat`.
 		 * 
 		 * Since GLib 2.72, all #GObjects are guaranteed to be aligned to at least the
-		 * alignment of the largest basic GLib type (typically this is #guint64 or
-		 * #gdouble). If you need larger alignment for an element in a #GObject, you
+		 * alignment of the largest basic GLib type (typically this is `guint64` or
+		 * `gdouble`). If you need larger alignment for an element in a #GObject, you
 		 * should allocate it on the heap (aligned), or arrange for your #GObject to be
 		 * appropriately padded.
 		 * @param object_type the type id of the #GObject subtype to instantiate
@@ -4150,7 +4150,7 @@ declare namespace imports.gi.GObject {
 		 */
 		public instance_size: number;
 		/**
-		 * Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10, it is ignored, since instances are allocated with the [slice allocator][glib-Memory-Slices] now.
+		 * Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10 this field is ignored.
 		 */
 		public n_preallocs: number;
 		/**
@@ -4328,32 +4328,53 @@ declare namespace imports.gi.GObject {
 		 */
 		public static peek(type: GObject.Type): TypeValueTable;
 		/**
+		 * Function to initialize a GValue
+		 */
+		public value_init: TypeValueInitFunc;
+		/**
+		 * Function to free a GValue
+		 */
+		public value_free: TypeValueFreeFunc;
+		/**
+		 * Function to copy a GValue
+		 */
+		public value_copy: TypeValueCopyFunc;
+		/**
+		 * Function to peek the contents of a GValue if they fit
+		 *   into a pointer
+		 */
+		public value_peek_pointer: TypeValuePeekPointerFunc;
+		/**
 		 * A string format describing how to collect the contents of
-		 *  this value bit-by-bit. Each character in the format represents
-		 *  an argument to be collected, and the characters themselves indicate
-		 *  the type of the argument. Currently supported arguments are:
-		 *  - 'i' - Integers. passed as collect_values[].v_int.
-		 *  - 'l' - Longs. passed as collect_values[].v_long.
-		 *  - 'd' - Doubles. passed as collect_values[].v_double.
-		 *  - 'p' - Pointers. passed as collect_values[].v_pointer.
-		 *  It should be noted that for variable argument list construction,
-		 *  ANSI C promotes every type smaller than an integer to an int, and
-		 *  floats to doubles. So for collection of short int or char, 'i'
-		 *  needs to be used, and for collection of floats 'd'.
+		 *   this value bit-by-bit. Each character in the format represents
+		 *   an argument to be collected, and the characters themselves indicate
+		 *   the type of the argument. Currently supported arguments are:
+		 *    - `'i'`: Integers, passed as `collect_values[].v_int`
+		 *    - `'l'`: Longs, passed as `collect_values[].v_long`
+		 *    - `'d'`: Doubles, passed as `collect_values[].v_double`
+		 *    - `'p'`: Pointers, passed as `collect_values[].v_pointer`
+		 *   It should be noted that for variable argument list construction,
+		 *   ANSI C promotes every type smaller than an integer to an int, and
+		 *   floats to doubles. So for collection of short int or char, `'i'`
+		 *   needs to be used, and for collection of floats `'d'`.
 		 */
 		public collect_format: string;
 		/**
+		 * Function to initialize a GValue from the values
+		 *   collected from variadic arguments
+		 */
+		public collect_value: TypeValueCollectFunc;
+		/**
 		 * Format description of the arguments to collect for #lcopy_value,
-		 *  analogous to #collect_format. Usually, #lcopy_format string consists
-		 *  only of 'p's to provide {@link Lcopy.value} with pointers to storage locations.
+		 *   analogous to #collect_format. Usually, #lcopy_format string consists
+		 *   only of `'p'`s to provide {@link Lcopy.value} with pointers to storage locations.
 		 */
 		public lcopy_format: string;
-		public value_init: {(value: Value): void;};
-		public value_free: {(value: Value): void;};
-		public value_copy: {(src_value: Value, dest_value: Value): void;};
-		public value_peek_pointer: {(value: Value): any;};
-		public collect_value: {(value: Value, n_collect_values: number, collect_values: TypeCValue, collect_flags: number): string;};
-		public lcopy_value: {(value: Value, n_collect_values: number, collect_values: TypeCValue, collect_flags: number): string;};
+		/**
+		 * Function to store the contents of a value into the
+		 *   locations collected from variadic arguments
+		 */
+		public lcopy_value: TypeValueLCopyFunc;
 	}
 
 	export interface ValueInitOptions {}
@@ -4422,7 +4443,7 @@ declare namespace imports.gi.GObject {
 		 * @returns object content of #value,
 		 *          should be unreferenced when no longer needed.
 		 */
-		public dup_object(): Object;
+		public dup_object(): Object | null;
 		/**
 		 * Get the contents of a %G_TYPE_PARAM #GValue, increasing its
 		 * reference count.
@@ -4434,7 +4455,7 @@ declare namespace imports.gi.GObject {
 		 * Get a copy the contents of a %G_TYPE_STRING #GValue.
 		 * @returns a newly allocated copy of the string content of #value
 		 */
-		public dup_string(): string;
+		public dup_string(): string | null;
 		/**
 		 * Get the contents of a variant #GValue, increasing its refcount. The returned
 		 * #GVariant is never floating.
@@ -4513,7 +4534,7 @@ declare namespace imports.gi.GObject {
 		 * Get the contents of a %G_TYPE_OBJECT derived #GValue.
 		 * @returns object contents of #value
 		 */
-		public get_object(): Object;
+		public get_object(): Object | null;
 		/**
 		 * Get the contents of a %G_TYPE_PARAM #GValue.
 		 * @returns #GParamSpec content of #value
@@ -4533,7 +4554,7 @@ declare namespace imports.gi.GObject {
 		 * Get the contents of a %G_TYPE_STRING #GValue.
 		 * @returns string content of #value
 		 */
-		public get_string(): string;
+		public get_string(): string | null;
 		/**
 		 * Get the contents of a %G_TYPE_UCHAR #GValue.
 		 * @returns unsigned character contents of #value
@@ -5350,7 +5371,7 @@ declare namespace imports.gi.GObject {
 	 * These flags used to be passed to {@link G.type_init_with_debug_flags} which
 	 * is now deprecated.
 	 * 
-	 * If you need to enable debugging features, use the GOBJECT_DEBUG
+	 * If you need to enable debugging features, use the `GOBJECT_DEBUG`
 	 * environment variable.
 	 */
 	enum TypeDebugFlags {
@@ -5399,7 +5420,13 @@ declare namespace imports.gi.GObject {
 		 * Indicates a final type. A final type is a non-derivable
 		 *  leaf node in a deep derivable type hierarchy tree. Since: 2.70
 		 */
-		FINAL = 64
+		FINAL = 64,
+		/**
+		 * The type is deprecated and may be removed in a
+		 *  future version. A warning will be emitted if it is instantiated while
+		 *  running with `G_ENABLE_DIAGNOSTIC=1`. Since 2.76
+		 */
+		DEPRECATED = 128
 	}
 
 	/**
@@ -5806,8 +5833,11 @@ declare namespace imports.gi.GObject {
 		 *  callback of #closure
 		 * @param invocation_hint the invocation hint given as the
 		 *  last argument to {@link G.closure_invoke}
+		 * @param marshal_data additional data specified when
+		 *  registering the marshaller, see {@link G.closure_set_marshal} and
+		 *  g_closure_set_meta_marshal()
 		 */
-		(closure: Closure, return_value: Value | null, param_values: Value[], invocation_hint?: any | null): void;
+		(closure: Closure, return_value: Value | null, param_values: Value[], invocation_hint?: any | null, marshal_data?: any | null): void;
 	}
 
 	/**
@@ -5970,6 +6000,7 @@ declare namespace imports.gi.GObject {
 		 * @param return_accu Accumulator to collect callback return values in, this
 		 *  is the return value of the current signal emission.
 		 * @param handler_return A #GValue holding the return value of the signal handler.
+		 * @param data Callback data that was specified when creating the signal.
 		 * @returns The accumulator function returns whether the signal emission
 		 *  should be aborted. Returning %TRUE will continue with
 		 *  the signal emission. Returning %FALSE will abort the current emission.
@@ -5977,7 +6008,7 @@ declare namespace imports.gi.GObject {
 		 *  emission will occur as normal in the CLEANUP stage and the handler's
 		 *  return value will be accumulated.
 		 */
-		(ihint: SignalInvocationHint, return_accu: Value, handler_return: Value): boolean;
+		(ihint: SignalInvocationHint, return_accu: Value, handler_return: Value, data?: any | null): boolean;
 	}
 
 	/**
@@ -5999,10 +6030,11 @@ declare namespace imports.gi.GObject {
 		 * @param ihint Signal invocation hint, see #GSignalInvocationHint.
 		 * @param param_values the instance on which
 		 *  the signal was emitted, followed by the parameters of the emission.
+		 * @param data user data associated with the hook.
 		 * @returns whether it wants to stay connected. If it returns %FALSE, the signal
 		 *  hook is disconnected (and destroyed).
 		 */
-		(ihint: SignalInvocationHint, param_values: Value[]): boolean;
+		(ihint: SignalInvocationHint, param_values: Value[], data?: any | null): boolean;
 	}
 
 	/**
@@ -6128,6 +6160,381 @@ declare namespace imports.gi.GObject {
 		 * @param plugin the #GTypePlugin whose use count should be increased
 		 */
 		(plugin: TypePlugin): void;
+	}
+
+	/**
+	 * This function is responsible for converting the values collected from
+	 * a variadic argument list into contents suitable for storage in a #GValue.
+	 * 
+	 * This function should setup #value similar to #GTypeValueInitFunc; e.g.
+	 * for a string value that does not allow `NULL` pointers, it needs to either
+	 * emit an error, or do an implicit conversion by storing an empty string.
+	 * 
+	 * The #value passed in to this function has a zero-filled data array, so
+	 * just like for #GTypeValueInitFunc it is guaranteed to not contain any old
+	 * contents that might need freeing.
+	 * 
+	 * The #n_collect_values argument is the string length of the `collect_format`
+	 * field of #GTypeValueTable, and `collect_values` is an array of #GTypeCValue
+	 * with length of #n_collect_values, containing the collected values according
+	 * to `collect_format`.
+	 * 
+	 * The #collect_flags argument provided as a hint by the caller. It may
+	 * contain the flag %G_VALUE_NOCOPY_CONTENTS indicating that the collected
+	 * value contents may be considered ‘static’ for the duration of the #value
+	 * lifetime. Thus an extra copy of the contents stored in #collect_values is
+	 * not required for assignment to #value.
+	 * 
+	 * For our above string example, we continue with:
+	 * 
+	 * |[<!-- language="C" -->
+	 * if (!collect_values[0].v_pointer)
+	 *   value->data[0].v_pointer = g_strdup ("");
+	 * else if (collect_flags & G_VALUE_NOCOPY_CONTENTS)
+	 *   {
+	 *     value->data[0].v_pointer = collect_values[0].v_pointer;
+	 *     // keep a flag for the {@link Value.free} implementation to not free this string
+	 *     value->data[1].v_uint = G_VALUE_NOCOPY_CONTENTS;
+	 *   }
+	 * else
+	 *   value->data[0].v_pointer = g_strdup (collect_values[0].v_pointer);
+	 * return NULL;
+	 * ]|
+	 * 
+	 * It should be noted, that it is generally a bad idea to follow the
+	 * %G_VALUE_NOCOPY_CONTENTS hint for reference counted types. Due to
+	 * reentrancy requirements and reference count assertions performed
+	 * by the signal emission code, reference counts should always be
+	 * incremented for reference counted contents stored in the `value->data`
+	 * array. To deviate from our string example for a moment, and taking
+	 * a look at an exemplary implementation for `GTypeValueTable.collect_value()`
+	 * of `GObject`:
+	 * 
+	 * |[<!-- language="C" -->
+	 * GObject *object = G_OBJECT (collect_values[0].v_pointer);
+	 * g_return_val_if_fail (object != NULL,
+	 *    g_strdup_printf ("Object %p passed as invalid NULL pointer", object));
+	 * // never honour G_VALUE_NOCOPY_CONTENTS for ref-counted types
+	 * value->data[0].v_pointer = g_object_ref (object);
+	 * return NULL;
+	 * ]|
+	 * 
+	 * The reference count for valid objects is always incremented, regardless
+	 * of `collect_flags`. For invalid objects, the example returns a newly
+	 * allocated string without altering `value`.
+	 * 
+	 * Upon success, `collect_value()` needs to return `NULL`. If, however,
+	 * an error condition occurred, `collect_value()` should return a newly
+	 * allocated string containing an error diagnostic.
+	 * 
+	 * The calling code makes no assumptions about the `value` contents being
+	 * valid upon error returns, `value` is simply thrown away without further
+	 * freeing. As such, it is a good idea to not allocate `GValue` contents
+	 * prior to returning an error; however, `collect_values()` is not obliged
+	 * to return a correctly setup #value for error returns, simply because
+	 * any non-`NULL` return is considered a fatal programming error, and
+	 * further program behaviour is undefined.
+	 */
+	interface TypeValueCollectFunc {
+		/**
+		 * This function is responsible for converting the values collected from
+		 * a variadic argument list into contents suitable for storage in a #GValue.
+		 * 
+		 * This function should setup #value similar to #GTypeValueInitFunc; e.g.
+		 * for a string value that does not allow `NULL` pointers, it needs to either
+		 * emit an error, or do an implicit conversion by storing an empty string.
+		 * 
+		 * The #value passed in to this function has a zero-filled data array, so
+		 * just like for #GTypeValueInitFunc it is guaranteed to not contain any old
+		 * contents that might need freeing.
+		 * 
+		 * The #n_collect_values argument is the string length of the `collect_format`
+		 * field of #GTypeValueTable, and `collect_values` is an array of #GTypeCValue
+		 * with length of #n_collect_values, containing the collected values according
+		 * to `collect_format`.
+		 * 
+		 * The #collect_flags argument provided as a hint by the caller. It may
+		 * contain the flag %G_VALUE_NOCOPY_CONTENTS indicating that the collected
+		 * value contents may be considered ‘static’ for the duration of the #value
+		 * lifetime. Thus an extra copy of the contents stored in #collect_values is
+		 * not required for assignment to #value.
+		 * 
+		 * For our above string example, we continue with:
+		 * 
+		 * |[<!-- language="C" -->
+		 * if (!collect_values[0].v_pointer)
+		 *   value->data[0].v_pointer = g_strdup ("");
+		 * else if (collect_flags & G_VALUE_NOCOPY_CONTENTS)
+		 *   {
+		 *     value->data[0].v_pointer = collect_values[0].v_pointer;
+		 *     // keep a flag for the {@link Value.free} implementation to not free this string
+		 *     value->data[1].v_uint = G_VALUE_NOCOPY_CONTENTS;
+		 *   }
+		 * else
+		 *   value->data[0].v_pointer = g_strdup (collect_values[0].v_pointer);
+		 * return NULL;
+		 * ]|
+		 * 
+		 * It should be noted, that it is generally a bad idea to follow the
+		 * %G_VALUE_NOCOPY_CONTENTS hint for reference counted types. Due to
+		 * reentrancy requirements and reference count assertions performed
+		 * by the signal emission code, reference counts should always be
+		 * incremented for reference counted contents stored in the `value->data`
+		 * array. To deviate from our string example for a moment, and taking
+		 * a look at an exemplary implementation for `GTypeValueTable.collect_value()`
+		 * of `GObject`:
+		 * 
+		 * |[<!-- language="C" -->
+		 * GObject *object = G_OBJECT (collect_values[0].v_pointer);
+		 * g_return_val_if_fail (object != NULL,
+		 *    g_strdup_printf ("Object %p passed as invalid NULL pointer", object));
+		 * // never honour G_VALUE_NOCOPY_CONTENTS for ref-counted types
+		 * value->data[0].v_pointer = g_object_ref (object);
+		 * return NULL;
+		 * ]|
+		 * 
+		 * The reference count for valid objects is always incremented, regardless
+		 * of `collect_flags`. For invalid objects, the example returns a newly
+		 * allocated string without altering `value`.
+		 * 
+		 * Upon success, `collect_value()` needs to return `NULL`. If, however,
+		 * an error condition occurred, `collect_value()` should return a newly
+		 * allocated string containing an error diagnostic.
+		 * 
+		 * The calling code makes no assumptions about the `value` contents being
+		 * valid upon error returns, `value` is simply thrown away without further
+		 * freeing. As such, it is a good idea to not allocate `GValue` contents
+		 * prior to returning an error; however, `collect_values()` is not obliged
+		 * to return a correctly setup #value for error returns, simply because
+		 * any non-`NULL` return is considered a fatal programming error, and
+		 * further program behaviour is undefined.
+		 * @param value the value to initialize
+		 * @param collect_values the collected values
+		 * @param collect_flags optional flags
+		 * @returns `NULL` on success, otherwise a
+		 *   newly allocated error string on failure
+		 */
+		(value: Value, collect_values: TypeCValue[], collect_flags: number): string | null;
+	}
+
+	/**
+	 * Copies the content of a #GValue into another.
+	 * 
+	 * The #dest_value is a #GValue with zero-filled data section and #src_value
+	 * is a properly initialized #GValue of same type, or derived type.
+	 * 
+	 * The purpose of this function is to copy the contents of #src_value
+	 * into #dest_value in a way, that even after #src_value has been freed, the
+	 * contents of #dest_value remain valid. String type example:
+	 * 
+	 * |[<!-- language="C" -->
+	 * dest_value->data[0].v_pointer = g_strdup (src_value->data[0].v_pointer);
+	 * ]|
+	 */
+	interface TypeValueCopyFunc {
+		/**
+		 * Copies the content of a #GValue into another.
+		 * 
+		 * The #dest_value is a #GValue with zero-filled data section and #src_value
+		 * is a properly initialized #GValue of same type, or derived type.
+		 * 
+		 * The purpose of this function is to copy the contents of #src_value
+		 * into #dest_value in a way, that even after #src_value has been freed, the
+		 * contents of #dest_value remain valid. String type example:
+		 * 
+		 * |[<!-- language="C" -->
+		 * dest_value->data[0].v_pointer = g_strdup (src_value->data[0].v_pointer);
+		 * ]|
+		 * @param src_value the value to copy
+		 * @returns the location of the copy
+		 */
+		(src_value: Value): Value;
+	}
+
+	/**
+	 * Frees any old contents that might be left in the `value->data` array of
+	 * the given value.
+	 * 
+	 * No resources may remain allocated through the #GValue contents after this
+	 * function returns. E.g. for our above string type:
+	 * 
+	 * |[<!-- language="C" -->
+	 * // only free strings without a specific flag for static storage
+	 * if (!(value->data[1].v_uint & G_VALUE_NOCOPY_CONTENTS))
+	 *   g_free (value->data[0].v_pointer);
+	 * ]|
+	 */
+	interface TypeValueFreeFunc {
+		/**
+		 * Frees any old contents that might be left in the `value->data` array of
+		 * the given value.
+		 * 
+		 * No resources may remain allocated through the #GValue contents after this
+		 * function returns. E.g. for our above string type:
+		 * 
+		 * |[<!-- language="C" -->
+		 * // only free strings without a specific flag for static storage
+		 * if (!(value->data[1].v_uint & G_VALUE_NOCOPY_CONTENTS))
+		 *   g_free (value->data[0].v_pointer);
+		 * ]|
+		 * @param value the value to free
+		 */
+		(value: Value): void;
+	}
+
+	/**
+	 * Initializes the value contents by setting the fields of the `value->data`
+	 * array.
+	 * 
+	 * The data array of the #GValue passed into this function was zero-filled
+	 * with `memset()`, so no care has to be taken to free any old contents.
+	 * For example, in the case of a string value that may never be %NULL, the
+	 * implementation might look like:
+	 * 
+	 * |[<!-- language="C" -->
+	 * value->data[0].v_pointer = g_strdup ("");
+	 * ]|
+	 */
+	interface TypeValueInitFunc {
+		/**
+		 * Initializes the value contents by setting the fields of the `value->data`
+		 * array.
+		 * 
+		 * The data array of the #GValue passed into this function was zero-filled
+		 * with `memset()`, so no care has to be taken to free any old contents.
+		 * For example, in the case of a string value that may never be %NULL, the
+		 * implementation might look like:
+		 * 
+		 * |[<!-- language="C" -->
+		 * value->data[0].v_pointer = g_strdup ("");
+		 * ]|
+		 * @param value the value to initialize
+		 */
+		(value: Value): void;
+	}
+
+	/**
+	 * This function is responsible for storing the `value`
+	 * contents into arguments passed through a variadic argument list which
+	 * got collected into `collect_values` according to `lcopy_format`.
+	 * 
+	 * The `n_collect_values` argument equals the string length of
+	 * `lcopy_format`, and `collect_flags` may contain %G_VALUE_NOCOPY_CONTENTS.
+	 * 
+	 * In contrast to #GTypeValueCollectFunc, this function is obliged to always
+	 * properly support %G_VALUE_NOCOPY_CONTENTS.
+	 * 
+	 * Similar to #GTypeValueCollectFunc the function may prematurely abort by
+	 * returning a newly allocated string describing an error condition. To
+	 * complete the string example:
+	 * 
+	 * |[<!-- language="C" -->
+	 * gchar **string_p = collect_values[0].v_pointer;
+	 * g_return_val_if_fail (string_p != NULL,
+	 *   g_strdup ("string location passed as NULL"));
+	 * 
+	 * if (collect_flags & G_VALUE_NOCOPY_CONTENTS)
+	 *   *string_p = value->data[0].v_pointer;
+	 * else
+	 *   *string_p = g_strdup (value->data[0].v_pointer);
+	 * ]|
+	 * 
+	 * And an illustrative version of this function for reference-counted
+	 * types:
+	 * 
+	 * |[<!-- language="C" -->
+	 * GObject **object_p = collect_values[0].v_pointer;
+	 * g_return_val_if_fail (object_p != NULL,
+	 *   g_strdup ("object location passed as NULL"));
+	 * 
+	 * if (value->data[0].v_pointer == NULL)
+	 *   *object_p = NULL;
+	 * else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) // always honour
+	 *   *object_p = value->data[0].v_pointer;
+	 * else
+	 *   *object_p = g_object_ref (value->data[0].v_pointer);
+	 * 
+	 * return NULL;
+	 * ]|
+	 */
+	interface TypeValueLCopyFunc {
+		/**
+		 * This function is responsible for storing the `value`
+		 * contents into arguments passed through a variadic argument list which
+		 * got collected into `collect_values` according to `lcopy_format`.
+		 * 
+		 * The `n_collect_values` argument equals the string length of
+		 * `lcopy_format`, and `collect_flags` may contain %G_VALUE_NOCOPY_CONTENTS.
+		 * 
+		 * In contrast to #GTypeValueCollectFunc, this function is obliged to always
+		 * properly support %G_VALUE_NOCOPY_CONTENTS.
+		 * 
+		 * Similar to #GTypeValueCollectFunc the function may prematurely abort by
+		 * returning a newly allocated string describing an error condition. To
+		 * complete the string example:
+		 * 
+		 * |[<!-- language="C" -->
+		 * gchar **string_p = collect_values[0].v_pointer;
+		 * g_return_val_if_fail (string_p != NULL,
+		 *   g_strdup ("string location passed as NULL"));
+		 * 
+		 * if (collect_flags & G_VALUE_NOCOPY_CONTENTS)
+		 *   *string_p = value->data[0].v_pointer;
+		 * else
+		 *   *string_p = g_strdup (value->data[0].v_pointer);
+		 * ]|
+		 * 
+		 * And an illustrative version of this function for reference-counted
+		 * types:
+		 * 
+		 * |[<!-- language="C" -->
+		 * GObject **object_p = collect_values[0].v_pointer;
+		 * g_return_val_if_fail (object_p != NULL,
+		 *   g_strdup ("object location passed as NULL"));
+		 * 
+		 * if (value->data[0].v_pointer == NULL)
+		 *   *object_p = NULL;
+		 * else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) // always honour
+		 *   *object_p = value->data[0].v_pointer;
+		 * else
+		 *   *object_p = g_object_ref (value->data[0].v_pointer);
+		 * 
+		 * return NULL;
+		 * ]|
+		 * @param value the value to lcopy
+		 * @param collect_values the collected
+		 *   locations for storage
+		 * @param collect_flags optional flags
+		 * @returns `NULL` on success, otherwise
+		 *   a newly allocated error string on failure
+		 */
+		(value: Value, collect_values: TypeCValue[], collect_flags: number): string | null;
+	}
+
+	/**
+	 * If the value contents fit into a pointer, such as objects or strings,
+	 * return this pointer, so the caller can peek at the current contents.
+	 * 
+	 * To extend on our above string example:
+	 * 
+	 * |[<!-- language="C" -->
+	 * return value->data[0].v_pointer;
+	 * ]|
+	 */
+	interface TypeValuePeekPointerFunc {
+		/**
+		 * If the value contents fit into a pointer, such as objects or strings,
+		 * return this pointer, so the caller can peek at the current contents.
+		 * 
+		 * To extend on our above string example:
+		 * 
+		 * |[<!-- language="C" -->
+		 * return value->data[0].v_pointer;
+		 * ]|
+		 * @param value the value to peek
+		 * @returns a pointer to the value contents
+		 */
+		(value: Value): any | null;
 	}
 
 	/**
@@ -7291,6 +7698,9 @@ declare namespace imports.gi.GObject {
 	function signal_chain_from_overridden_handler(instance: TypeInstance): void;
 	/**
 	 * Connects a closure to a signal for a particular object.
+	 * 
+	 * If #closure is a floating reference (see {@link G.closure_sink}), this function
+	 * takes ownership of #closure.
 	 * @param instance the instance to connect to.
 	 * @param detailed_signal a string of the form "signal-name::detail".
 	 * @param closure the closure to connect.
@@ -7301,6 +7711,9 @@ declare namespace imports.gi.GObject {
 	function signal_connect_closure(instance: Object, detailed_signal: string, closure: Closure, after: boolean): number;
 	/**
 	 * Connects a closure to a signal for a particular object.
+	 * 
+	 * If #closure is a floating reference (see {@link G.closure_sink}), this function
+	 * takes ownership of #closure.
 	 * @param instance the instance to connect to.
 	 * @param signal_id the id of the signal.
 	 * @param detail the detail.
@@ -7464,12 +7877,18 @@ declare namespace imports.gi.GObject {
 	function signal_handler_unblock(instance: Object, handler_id: number): void;
 	/**
 	 * Blocks all handlers on an instance that match a certain selection criteria.
-	 * The criteria mask is passed as an OR-ed combination of #GSignalMatchType
-	 * flags, and the criteria values are passed as arguments.
-	 * Passing at least one of the %G_SIGNAL_MATCH_CLOSURE, %G_SIGNAL_MATCH_FUNC
+	 * 
+	 * The criteria mask is passed as a combination of #GSignalMatchType flags, and
+	 * the criteria values are passed as arguments. A handler must match on all
+	 * flags set in #mask to be blocked (i.e. the match is conjunctive).
+	 * 
+	 * Passing at least one of the %G_SIGNAL_MATCH_ID, %G_SIGNAL_MATCH_CLOSURE,
+	 * %G_SIGNAL_MATCH_FUNC
 	 * or %G_SIGNAL_MATCH_DATA match flags is required for successful matches.
 	 * If no handlers were found, 0 is returned, the number of blocked handlers
 	 * otherwise.
+	 * 
+	 * Support for %G_SIGNAL_MATCH_ID was added in GLib 2.78.
 	 * @param instance The instance to block handlers from.
 	 * @param mask Mask indicating which of #signal_id, #detail, #closure, #func
 	 *  and/or #data the handlers have to match.
@@ -7489,13 +7908,19 @@ declare namespace imports.gi.GObject {
 	function signal_handlers_destroy(instance: Object): void;
 	/**
 	 * Disconnects all handlers on an instance that match a certain
-	 * selection criteria. The criteria mask is passed as an OR-ed
-	 * combination of #GSignalMatchType flags, and the criteria values are
-	 * passed as arguments.  Passing at least one of the
-	 * %G_SIGNAL_MATCH_CLOSURE, %G_SIGNAL_MATCH_FUNC or
+	 * selection criteria.
+	 * 
+	 * The criteria mask is passed as a combination of #GSignalMatchType flags, and
+	 * the criteria values are passed as arguments. A handler must match on all
+	 * flags set in #mask to be disconnected (i.e. the match is conjunctive).
+	 * 
+	 * Passing at least one of the %G_SIGNAL_MATCH_ID, %G_SIGNAL_MATCH_CLOSURE,
+	 * %G_SIGNAL_MATCH_FUNC or
 	 * %G_SIGNAL_MATCH_DATA match flags is required for successful
 	 * matches.  If no handlers were found, 0 is returned, the number of
 	 * disconnected handlers otherwise.
+	 * 
+	 * Support for %G_SIGNAL_MATCH_ID was added in GLib 2.78.
 	 * @param instance The instance to remove handlers from.
 	 * @param mask Mask indicating which of #signal_id, #detail, #closure, #func
 	 *  and/or #data the handlers have to match.
@@ -7508,13 +7933,20 @@ declare namespace imports.gi.GObject {
 	function signal_handlers_disconnect_matched(instance: Object, mask: SignalMatchType, signal_id: number, detail: GLib.Quark, func: any | null, data: any | null): number;
 	/**
 	 * Unblocks all handlers on an instance that match a certain selection
-	 * criteria. The criteria mask is passed as an OR-ed combination of
-	 * #GSignalMatchType flags, and the criteria values are passed as arguments.
-	 * Passing at least one of the %G_SIGNAL_MATCH_CLOSURE, %G_SIGNAL_MATCH_FUNC
+	 * criteria.
+	 * 
+	 * The criteria mask is passed as a combination of #GSignalMatchType flags, and
+	 * the criteria values are passed as arguments. A handler must match on all
+	 * flags set in #mask to be unblocked (i.e. the match is conjunctive).
+	 * 
+	 * Passing at least one of the %G_SIGNAL_MATCH_ID, %G_SIGNAL_MATCH_CLOSURE,
+	 * %G_SIGNAL_MATCH_FUNC
 	 * or %G_SIGNAL_MATCH_DATA match flags is required for successful matches.
 	 * If no handlers were found, 0 is returned, the number of unblocked handlers
 	 * otherwise. The match criteria should not apply to any handlers that are
 	 * not currently blocked.
+	 * 
+	 * Support for %G_SIGNAL_MATCH_ID was added in GLib 2.78.
 	 * @param instance The instance to unblock handlers from.
 	 * @param mask Mask indicating which of #signal_id, #detail, #closure, #func
 	 *  and/or #data the handlers have to match.
@@ -8093,8 +8525,8 @@ declare namespace imports.gi.GObject {
 	/**
 	 * Returns the number of instances allocated of the particular type;
 	 * this is only available if GLib is built with debugging support and
-	 * the instance_count debug flag is set (by setting the GOBJECT_DEBUG
-	 * variable to include instance-count).
+	 * the `instance-count` debug flag is set (by setting the `GOBJECT_DEBUG`
+	 * variable to include `instance-count`).
 	 * @param type a #GType
 	 * @returns the number of instances allocated of the given type;
 	 *   if instance counts are not available, returns 0.
@@ -8139,7 +8571,7 @@ declare namespace imports.gi.GObject {
 	 * flags.  Since GLib 2.36, the type system is initialised automatically
 	 * and this function does nothing.
 	 * 
-	 * If you need to enable debugging features, use the GOBJECT_DEBUG
+	 * If you need to enable debugging features, use the `GOBJECT_DEBUG`
 	 * environment variable.
 	 * @param debug_flags bitwise combination of #GTypeDebugFlags values for
 	 *     debugging purposes
@@ -8228,7 +8660,7 @@ declare namespace imports.gi.GObject {
 	 * @param type type to return name for
 	 * @returns static type name or %NULL
 	 */
-	function type_name(type: GObject.Type): string;
+	function type_name(type: GObject.Type): string | null;
 	function type_name_from_class(g_class: TypeClass): string;
 	function type_name_from_instance(instance: TypeInstance): string;
 	/**
@@ -8259,11 +8691,15 @@ declare namespace imports.gi.GObject {
 	function type_qname(type: GObject.Type): GLib.Quark;
 	/**
 	 * Queries the type system for information about a specific type.
+	 * 
 	 * This function will fill in a user-provided structure to hold
 	 * type-specific information. If an invalid #GType is passed in, the
 	 * #type member of the #GTypeQuery is 0. All members filled into the
 	 * #GTypeQuery structure should be considered constant and have to be
 	 * left untouched.
+	 * 
+	 * Since GLib 2.78, this function allows queries on dynamic types. Previously
+	 * it only supported static types.
 	 * @param type #GType of a static, classed type
 	 * @returns a user provided structure that is
 	 *     filled in with constant values upon success

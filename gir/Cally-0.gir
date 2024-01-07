@@ -460,7 +460,10 @@ only private data</doc>
         </array>
       </field>
     </record>
-    <record name="ActorPrivate" c:type="CallyActorPrivate" disguised="1">
+    <record name="ActorPrivate"
+            c:type="CallyActorPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-actor.h"
                        line="46"/>
     </record>
@@ -556,7 +559,10 @@ private data</doc>
         </array>
       </field>
     </record>
-    <record name="ClonePrivate" c:type="CallyClonePrivate" disguised="1">
+    <record name="ClonePrivate"
+            c:type="CallyClonePrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-clone.h"
                        line="42"/>
     </record>
@@ -651,7 +657,10 @@ private data</doc>
         </array>
       </field>
     </record>
-    <record name="GroupPrivate" c:type="CallyGroupPrivate" disguised="1">
+    <record name="GroupPrivate"
+            c:type="CallyGroupPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-group.h"
                        line="45"/>
     </record>
@@ -939,7 +948,8 @@ only private data</doc>
     </record>
     <record name="RectanglePrivate"
             c:type="CallyRectanglePrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-rectangle.h"
                        line="42"/>
     </record>
@@ -997,7 +1007,10 @@ private data</doc>
         </array>
       </field>
     </record>
-    <record name="RootPrivate" c:type="CallyRootPrivate" disguised="1">
+    <record name="RootPrivate"
+            c:type="CallyRootPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-root.h"
                        line="42"/>
     </record>
@@ -1094,7 +1107,10 @@ private data</doc>
         </array>
       </field>
     </record>
-    <record name="StagePrivate" c:type="CallyStagePrivate" disguised="1">
+    <record name="StagePrivate"
+            c:type="CallyStagePrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-stage.h"
                        line="42"/>
     </record>
@@ -1192,7 +1208,10 @@ private data</doc>
         </array>
       </field>
     </record>
-    <record name="TextPrivate" c:type="CallyTextPrivate" disguised="1">
+    <record name="TextPrivate"
+            c:type="CallyTextPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-text.h"
                        line="42"/>
     </record>
@@ -1264,7 +1283,10 @@ private data</doc>
         </array>
       </field>
     </record>
-    <record name="UtilPrivate" c:type="CallyUtilPrivate" disguised="1">
+    <record name="UtilPrivate"
+            c:type="CallyUtilPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/cally/cally-util.h"
                        line="42"/>
     </record>

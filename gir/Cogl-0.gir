@@ -1736,6 +1736,7 @@ value greater than or equal to the value currently in the depth buffer.</doc>
     <record name="DmaBufHandle"
             c:type="CoglDmaBufHandle"
             disguised="1"
+            opaque="1"
             introspectable="0">
       <doc xml:space="preserve"
            filename="cogl/cogl/cogl-types.h"
@@ -1939,6 +1940,7 @@ events can be notified.</doc>
     </callback>
     <record name="FrameClosure"
             c:type="CoglFrameClosure"
+            opaque="1"
             version="1.14"
             stability="Unstable"
             glib:type-name="CoglFrameClosure"
@@ -4399,6 +4401,7 @@ advertized.</doc>
     </function-macro>
     <record name="Material"
             c:type="CoglMaterial"
+            opaque="1"
             glib:type-name="CoglMaterial"
             glib:get-type="cogl_material_get_type"
             c:symbol-prefix="material">
@@ -5231,7 +5234,10 @@ average or simply using the nearest texel.</doc>
   their weighted average</doc>
       </member>
     </enumeration>
-    <record name="MaterialLayer" c:type="CoglMaterialLayer" disguised="1">
+    <record name="MaterialLayer"
+            c:type="CoglMaterialLayer"
+            disguised="1"
+            opaque="1">
       <source-position filename="cogl/cogl/deprecated/cogl-material-compat.h"
                        line="57"/>
     </record>

@@ -126,6 +126,12 @@ declare namespace imports.gi.CDesktopEnums {
 		GESTURE = 1
 	}
 
+	enum NotificationScreenDisplay {
+		PRIMARY_SCREEN = 0,
+		ACTIVE_SCREEN = 1,
+		FIXED_SCREEN = 2
+	}
+
 	enum PadButtonAction {
 		NONE = 0,
 		HELP = 1,
@@ -156,7 +162,8 @@ declare namespace imports.gi.CDesktopEnums {
 		MIDDLE = 1,
 		RIGHT = 2,
 		BACK = 3,
-		FORWARD = 4
+		FORWARD = 4,
+		DISABLED = 5
 	}
 
 	enum TabletMapping {

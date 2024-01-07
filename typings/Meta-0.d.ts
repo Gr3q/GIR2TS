@@ -545,6 +545,13 @@ declare namespace imports.gi.Meta {
 		get_n_monitors(): number;
 		get_pad_action_label(pad: Clutter.InputDevice, action_type: PadActionType, action_number: number): string;
 		/**
+		 * Gets the {@link Window} pointed by the mouse
+		 * @param not_this_one window to be excluded
+		 * @returns the {@link Window} pointed by the mouse
+		 *  %NULL when window not found
+		 */
+		get_pointer_window(not_this_one?: Window | null): Window;
+		/**
 		 * Gets the index of the primary monitor on this #display.
 		 * @returns a monitor index
 		 */
@@ -606,6 +613,22 @@ declare namespace imports.gi.Meta {
 		 */
 		list_windows(flags: ListWindowsFlags): Window[];
 		logical_index_to_xinerama_index(log_index: number): number;
+		/**
+		 * If the window is not yet tiled, tile the window to the portion
+		 * of the monitor indicated by #direction. If already tiled, perform
+		 * navigation around the possible tile positions, or untile the
+		 * window, according to #direction.
+		 * 
+		 * For example, if #window is left-tiled, and the #direction is
+		 * #META_MOTION_UP, the window will be upper-left corner tiled. If the
+		 * #direction is #META_MOTION_RIGHT, the window will be untiled.
+		 * 
+		 * This logic is identical to the behavior of the tiling keyboard
+		 * shortcuts.
+		 * @param window the {@link Window} to act upon
+		 * @param direction the {@link MotionDirection} to push the window in.
+		 */
+		push_tile(window: Window, direction: MotionDirection): void;
 		/**
 		 * Remove keybinding #name; the function will fail if #name is not a known
 		 * keybinding or has not been added with {@link Meta.Display.add_keybinding}.
@@ -743,6 +766,9 @@ declare namespace imports.gi.Meta {
 		connect(signal: "window-entered-monitor", callback: (owner: this, object: number, p0: Window) => void): number;
 		connect(signal: "window-left-monitor", callback: (owner: this, object: number, p0: Window) => void): number;
 		connect(signal: "window-marked-urgent", callback: (owner: this, object: Window) => void): number;
+		connect(signal: "window-monitor-changed", callback: (owner: this, object: Window, p0: number) => void): number;
+		connect(signal: "window-skip-taskbar-changed", callback: (owner: this, object: Window) => void): number;
+		connect(signal: "window-workspace-changed", callback: (owner: this, object: Window, p0: Workspace) => void): number;
 		connect(signal: "workareas-changed", callback: (owner: this) => void): number;
 		connect(signal: "x11-display-closing", callback: (owner: this) => void): number;
 		connect(signal: "x11-display-opened", callback: (owner: this) => void): number;
@@ -1725,7 +1751,7 @@ declare namespace imports.gi.Meta {
 		 * @returns the {@link Workspace} for the window
 		 */
 		get_workspace(): Workspace;
-		get_xwindow(): xlib.Window;
+		get_xwindow(): number;
 		group_leader_changed(): void;
 		has_focus(): boolean;
 		is_above(): boolean;
@@ -3441,27 +3467,31 @@ declare namespace imports.gi.Meta {
 		MOVE_TO_SIDE_W = 86,
 		/**
 		 * FILLME
+		 * META_KEYBINDING_ACTION_INCREASE_OPACITY: FILLME,
+		 * META_KEYBINDING_ACTION_DECREASE_OPACITY: FILLME,
 		 */
 		MOVE_TO_CENTER = 87,
+		INCREASE_OPACITY = 88,
+		DECREASE_OPACITY = 89,
 		/**
 		 * FILLME
 		 */
-		OVERLAY_KEY = 88,
+		OVERLAY_KEY = 90,
 		/**
 		 * FILLME
 		 */
-		LOCATE_POINTER_KEY = 89,
-		ISO_NEXT_GROUP = 90,
+		LOCATE_POINTER_KEY = 91,
+		ISO_NEXT_GROUP = 92,
 		/**
 		 * FILLME
 		 */
-		ALWAYS_ON_TOP = 91,
-		SWITCH_MONITOR = 92,
-		ROTATE_MONITOR = 93,
+		ALWAYS_ON_TOP = 93,
+		SWITCH_MONITOR = 94,
+		ROTATE_MONITOR = 95,
 		/**
 		 * FILLME
 		 */
-		LAST = 94
+		LAST = 96
 	}
 
 	enum LaterType {
@@ -4310,6 +4340,12 @@ declare namespace imports.gi.Meta {
 		(window: Window): boolean;
 	}
 
+	/**
+	 * Tells mutter to activate the session. When mutter is a
+	 * display server, this tells logind to switch over to
+	 * the new session.
+	 * @returns 
+	 */
 	function activate_session(): boolean;
 	function add_clutter_debug_flags(debug_flags: Clutter.DebugFlag, draw_flags: Clutter.DrawDebugFlag, pick_flags: Clutter.PickDebugFlag): void;
 	/**
@@ -4541,13 +4577,14 @@ declare namespace imports.gi.Meta {
 	 * @param wm_keybindings value for _GNOME_WM_KEYBINDINGS
 	 */
 	function set_gnome_wm_keybindings(wm_keybindings: string): void;
+	function set_verbose(setting: boolean): void;
 	/**
 	 * Set the value to use for the _NET_WM_NAME property. To take effect,
 	 * it is necessary to call this function before meta_init().
 	 * @param wm_name value for _NET_WM_NAME
 	 */
 	function set_wm_name(wm_name: string): void;
-	function show_dialog(type: string, message: string, timeout: string, display: string, ok_text: string, cancel_text: string, icon_name: string, transient_for: number, columns: any[], entries: any[]): GLib.Pid;
+	function show_dialog(type: string, message: string, timeout: string, display: string, ok_text: string, cancel_text: string, transient_for: number, columns: any[], entries: any[]): GLib.Pid;
 	function test_init(): void;
 	function theme_get_default(): Theme;
 	function theme_new(): Theme;

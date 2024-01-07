@@ -7,7 +7,18 @@
                     "override_properties": {
                         "param": {
                             "klass": {
-                                "type": "any"
+                                "type": "StatusIconInterface"
+                            }
+                        }
+                    }
+                }
+            },
+            "SwitcherooControl": {
+                "function": {
+                    "override_properties": {
+                        "param": {
+                            "klass": {
+                                "type": "SwitcherooControl"
                             }
                         }
                     }
@@ -19,6 +30,13 @@
                 "param": {
                     "klass": {
                         "type": "any"
+                    }
+                }
+            },
+            "switcheroo_control_override_properties": {
+                "param": {
+                    "klass": {
+                        "type": "SwitcherooControl"
                     }
                 }
             }

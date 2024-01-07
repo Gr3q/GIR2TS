@@ -171,7 +171,7 @@ and/or use gtk-doc annotations.  -->
     </enumeration>
     <enumeration name="MediaKeyType" c:type="CDesktopMediaKeyType">
       <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
-                       line="271"/>
+                       line="279"/>
       <member name="mute" value="0" c:identifier="C_DESKTOP_MEDIA_KEY_MUTE">
       </member>
       <member name="mute_quiet"
@@ -402,6 +402,23 @@ and/or use gtk-doc annotations.  -->
               c:identifier="C_DESKTOP_MOUSE_DWELL_MODE_GESTURE">
       </member>
     </enumeration>
+    <enumeration name="NotificationScreenDisplay"
+                 c:type="CDesktopNotificationScreenDisplay">
+      <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
+                       line="211"/>
+      <member name="primary_screen"
+              value="0"
+              c:identifier="C_DESKTOP_NOTIFICATION_SCREEN_DISPLAY_PRIMARY_SCREEN">
+      </member>
+      <member name="active_screen"
+              value="1"
+              c:identifier="C_DESKTOP_NOTIFICATION_SCREEN_DISPLAY_ACTIVE_SCREEN">
+      </member>
+      <member name="fixed_screen"
+              value="2"
+              c:identifier="C_DESKTOP_NOTIFICATION_SCREEN_DISPLAY_FIXED_SCREEN">
+      </member>
+    </enumeration>
     <enumeration name="PadButtonAction" c:type="CDesktopPadButtonAction">
       <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
                        line="194"/>
@@ -469,7 +486,7 @@ and/or use gtk-doc annotations.  -->
     </enumeration>
     <enumeration name="StylusButtonAction" c:type="CDesktopStylusButtonAction">
       <source-position filename="libcinnamon-desktop/cdesktop-enums.h"
-                       line="203"/>
+                       line="204"/>
       <member name="default"
               value="0"
               c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_DEFAULT">
@@ -489,6 +506,10 @@ and/or use gtk-doc annotations.  -->
       <member name="forward"
               value="4"
               c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_FORWARD">
+      </member>
+      <member name="disabled"
+              value="5"
+              c:identifier="C_DESKTOP_STYLUS_BUTTON_ACTION_DISABLED">
       </member>
     </enumeration>
     <enumeration name="TabletMapping" c:type="CDesktopTabletMapping">

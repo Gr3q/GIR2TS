@@ -267,7 +267,8 @@ and/or use gtk-doc annotations.  -->
     </record>
     <record name="ChannelMapPrivate"
             c:type="GvcChannelMapPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-channel-map.h" line="36"/>
     </record>
     <bitfield name="HeadsetPortChoice"
@@ -949,7 +950,9 @@ and/or use gtk-doc annotations.  -->
           </parameter>
         </parameters>
       </method>
-      <property name="human-profile" transfer-ownership="none">
+      <property name="human-profile"
+                transfer-ownership="none"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="icon-name"
@@ -957,21 +960,24 @@ and/or use gtk-doc annotations.  -->
                 construct="1"
                 transfer-ownership="none"
                 setter="set_icon_name"
-                getter="get_icon_name">
+                getter="get_icon_name"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="id"
                 writable="1"
                 construct-only="1"
                 transfer-ownership="none"
-                getter="get_id">
+                getter="get_id"
+                default-value="0">
         <type name="gulong" c:type="gulong"/>
       </property>
       <property name="index"
                 writable="1"
                 construct-only="1"
                 transfer-ownership="none"
-                getter="get_index">
+                getter="get_index"
+                default-value="0">
         <type name="gulong" c:type="gulong"/>
       </property>
       <property name="name"
@@ -979,7 +985,8 @@ and/or use gtk-doc annotations.  -->
                 construct="1"
                 transfer-ownership="none"
                 setter="set_name"
-                getter="get_name">
+                getter="get_name"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="pa-context"
@@ -992,7 +999,8 @@ and/or use gtk-doc annotations.  -->
                 writable="1"
                 transfer-ownership="none"
                 setter="set_profile"
-                getter="get_profile">
+                getter="get_profile"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <field name="parent">
@@ -1036,7 +1044,10 @@ and/or use gtk-doc annotations.  -->
         </type>
       </field>
     </record>
-    <record name="MixerCardPrivate" c:type="GvcMixerCardPrivate" disguised="1">
+    <record name="MixerCardPrivate"
+            c:type="GvcMixerCardPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-card.h" line="37"/>
     </record>
     <record name="MixerCardProfile" c:type="GvcMixerCardProfile">
@@ -1718,7 +1729,8 @@ moves to that device it should have this profile active.</doc>
       <property name="name"
                 writable="1"
                 construct-only="1"
-                transfer-ownership="none">
+                transfer-ownership="none"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <field name="parent">
@@ -2140,7 +2152,8 @@ moves to that device it should have this profile active.</doc>
     </record>
     <record name="MixerControlPrivate"
             c:type="GvcMixerControlPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-control.h" line="54"/>
     </record>
     <enumeration name="MixerControlState"
@@ -2202,7 +2215,8 @@ moves to that device it should have this profile active.</doc>
       <property name="device"
                 writable="1"
                 construct="1"
-                transfer-ownership="none">
+                transfer-ownership="none"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <field name="parent">
@@ -2222,7 +2236,8 @@ moves to that device it should have this profile active.</doc>
     </record>
     <record name="MixerEventRolePrivate"
             c:type="GvcMixerEventRolePrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-event-role.h" line="36"/>
     </record>
     <class name="MixerSink"
@@ -2311,10 +2326,14 @@ moves to that device it should have this profile active.</doc>
     </record>
     <record name="MixerSinkInputPrivate"
             c:type="GvcMixerSinkInputPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-sink-input.h" line="36"/>
     </record>
-    <record name="MixerSinkPrivate" c:type="GvcMixerSinkPrivate" disguised="1">
+    <record name="MixerSinkPrivate"
+            c:type="GvcMixerSinkPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-sink.h" line="36"/>
     </record>
     <class name="MixerSource"
@@ -2405,12 +2424,14 @@ moves to that device it should have this profile active.</doc>
     </record>
     <record name="MixerSourceOutputPrivate"
             c:type="GvcMixerSourceOutputPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-source-output.h" line="36"/>
     </record>
     <record name="MixerSourcePrivate"
             c:type="GvcMixerSourcePrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-source.h" line="36"/>
     </record>
     <class name="MixerStream"
@@ -3116,7 +3137,8 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_application_id"
-                getter="get_application_id">
+                getter="get_application_id"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="can-decibel"
@@ -3124,7 +3146,8 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_can_decibel"
-                getter="get_can_decibel">
+                getter="get_can_decibel"
+                default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="card-index"
@@ -3132,7 +3155,8 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_card_index"
-                getter="get_card_index">
+                getter="get_card_index"
+                default-value="4294967295">
         <type name="glong" c:type="glong"/>
       </property>
       <property name="channel-map"
@@ -3147,7 +3171,8 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_decibel"
-                getter="get_decibel">
+                getter="get_decibel"
+                default-value="0.000000">
         <type name="gdouble" c:type="gdouble"/>
       </property>
       <property name="description"
@@ -3155,7 +3180,8 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_description"
-                getter="get_description">
+                getter="get_description"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="form-factor"
@@ -3163,7 +3189,8 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_form_factor"
-                getter="get_form_factor">
+                getter="get_form_factor"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="icon-name"
@@ -3171,28 +3198,32 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_icon_name"
-                getter="get_icon_name">
+                getter="get_icon_name"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="id"
                 writable="1"
                 construct-only="1"
                 transfer-ownership="none"
-                getter="get_id">
+                getter="get_id"
+                default-value="0">
         <type name="gulong" c:type="gulong"/>
       </property>
       <property name="index"
                 writable="1"
                 construct-only="1"
                 transfer-ownership="none"
-                getter="get_index">
+                getter="get_index"
+                default-value="0">
         <type name="gulong" c:type="gulong"/>
       </property>
       <property name="is-event-stream"
                 writable="1"
                 construct="1"
                 transfer-ownership="none"
-                setter="set_is_event_stream">
+                setter="set_is_event_stream"
+                default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="is-muted"
@@ -3200,14 +3231,16 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_is_muted"
-                getter="get_is_muted">
+                getter="get_is_muted"
+                default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="is-virtual"
                 writable="1"
                 construct="1"
                 transfer-ownership="none"
-                setter="set_is_virtual">
+                setter="set_is_virtual"
+                default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="name"
@@ -3215,7 +3248,8 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_name"
-                getter="get_name">
+                getter="get_name"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="pa-context"
@@ -3228,14 +3262,16 @@ moves to that device it should have this profile active.</doc>
                 writable="1"
                 transfer-ownership="none"
                 setter="set_port"
-                getter="get_port">
+                getter="get_port"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="state"
                 writable="1"
                 transfer-ownership="none"
                 setter="set_state"
-                getter="get_state">
+                getter="get_state"
+                default-value="GVC_STREAM_STATE_INVALID">
         <type name="MixerStreamState"/>
       </property>
       <property name="sysfs-path"
@@ -3243,14 +3279,16 @@ moves to that device it should have this profile active.</doc>
                 construct="1"
                 transfer-ownership="none"
                 setter="set_sysfs_path"
-                getter="get_sysfs_path">
+                getter="get_sysfs_path"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="volume"
                 writable="1"
                 transfer-ownership="none"
                 setter="set_volume"
-                getter="get_volume">
+                getter="get_volume"
+                default-value="0">
         <type name="gulong" c:type="gulong"/>
       </property>
       <field name="parent">
@@ -3384,7 +3422,8 @@ moves to that device it should have this profile active.</doc>
     </record>
     <record name="MixerStreamPrivate"
             c:type="GvcMixerStreamPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-stream.h" line="38"/>
     </record>
     <enumeration name="MixerStreamState"
@@ -3725,35 +3764,48 @@ It does this by the following.
       <property name="description"
                 writable="1"
                 transfer-ownership="none"
-                getter="get_description">
+                getter="get_description"
+                default-value="no-name-set">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="icon-name"
                 writable="1"
                 construct="1"
                 transfer-ownership="none"
-                getter="get_icon_name">
+                getter="get_icon_name"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="origin"
                 writable="1"
                 transfer-ownership="none"
-                getter="get_origin">
+                getter="get_origin"
+                default-value="no-name-set">
         <type name="utf8" c:type="gchar*"/>
       </property>
-      <property name="port-available" writable="1" transfer-ownership="none">
+      <property name="port-available"
+                writable="1"
+                transfer-ownership="none"
+                default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
-      <property name="port-name" writable="1" transfer-ownership="none">
+      <property name="port-name"
+                writable="1"
+                transfer-ownership="none"
+                default-value="NULL">
         <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="stream-id"
                 writable="1"
                 transfer-ownership="none"
-                getter="get_stream_id">
+                getter="get_stream_id"
+                default-value="0">
         <type name="guint" c:type="guint"/>
       </property>
-      <property name="type" writable="1" transfer-ownership="none">
+      <property name="type"
+                writable="1"
+                transfer-ownership="none"
+                default-value="0">
         <type name="guint" c:type="guint"/>
       </property>
       <field name="parent_instance">
@@ -3790,7 +3842,8 @@ It does this by the following.
     </enumeration>
     <record name="MixerUIDevicePrivate"
             c:type="GvcMixerUIDevicePrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcvc/gvc-mixer-ui-device.h" line="36"/>
     </record>
     <function-macro name="channel_map_has_lfe"

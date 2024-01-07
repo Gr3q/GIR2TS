@@ -90,7 +90,10 @@ and/or use gtk-doc annotations.  -->
              line="54">Remove the event, stops the processing</doc>
       </member>
     </enumeration>
-    <record name="XInputDevice" c:type="ClutterX11XInputDevice" disguised="1">
+    <record name="XInputDevice"
+            c:type="ClutterX11XInputDevice"
+            disguised="1"
+            opaque="1">
       <source-position filename="clutter/clutter/x11/clutter-x11.h" line="73"/>
     </record>
     <function name="add_filter"

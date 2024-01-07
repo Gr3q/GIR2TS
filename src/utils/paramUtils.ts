@@ -30,6 +30,7 @@ function convertToJSType(native_type?: string): string {
         case 'gssize':
         case 'long double':
         case 'int32':
+        case 'guintptr':
             return 'number';
         case 'utf8':
         case 'gchar':

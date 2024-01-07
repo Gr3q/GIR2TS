@@ -19732,6 +19732,10 @@ declare namespace imports.gi.Clutter {
 	 */
 	const FLAVOUR: string;
 
+	const HAS_WAYLAND_COMPOSITOR_SUPPORT: number;
+
+	const INPUT_EVDEV: string;
+
 	const INPUT_NULL: string;
 
 	const INPUT_X11: string;
@@ -24311,6 +24315,8 @@ declare namespace imports.gi.Clutter {
 	 * @returns The default GObject type for the Clutter stage.
 	 */
 	const STAGE_TYPE: string;
+
+	const WINDOWING_EGL: string;
 
 	const WINDOWING_GLX: string;
 

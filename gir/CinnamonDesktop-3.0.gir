@@ -496,6 +496,7 @@ who created it.</doc>
     <record name="BGClass"
             c:type="GnomeBGClass"
             disguised="1"
+            opaque="1"
             glib:is-gtype-struct-for="BG">
       <source-position filename="libcinnamon-desktop/gnome-bg.h" line="49"/>
     </record>
@@ -687,7 +688,8 @@ already stopped.</doc>
       <property name="height"
                 writable="1"
                 construct-only="1"
-                transfer-ownership="none">
+                transfer-ownership="none"
+                default-value="0">
         <doc xml:space="preserve"
              filename="libcinnamon-desktop/gnome-bg-crossfade.c"
              line="168">When a crossfade is running, this is height of the fading
@@ -697,7 +699,8 @@ surface.</doc>
       <property name="width"
                 writable="1"
                 construct-only="1"
-                transfer-ownership="none">
+                transfer-ownership="none"
+                default-value="0">
         <doc xml:space="preserve"
              filename="libcinnamon-desktop/gnome-bg-crossfade.c"
              line="154">When a crossfade is running, this is width of the fading
@@ -757,7 +760,8 @@ get emitted.</doc>
     </record>
     <record name="BGCrossfadePrivate"
             c:type="GnomeBGCrossfadePrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-bg-crossfade.h"
                        line="43"/>
     </record>
@@ -1144,7 +1148,8 @@ Usage of this function is threadsafe.</doc>
     </record>
     <record name="DesktopThumbnailFactoryPrivate"
             c:type="GnomeDesktopThumbnailFactoryPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-desktop-thumbnail.h"
                        line="53"/>
     </record>
@@ -1161,6 +1166,36 @@ Usage of this function is threadsafe.</doc>
               c:identifier="GNOME_DESKTOP_THUMBNAIL_SIZE_LARGE">
       </member>
     </enumeration>
+    <function-macro name="IDLE_MONITOR"
+                    c:identifier="GNOME_IDLE_MONITOR"
+                    introspectable="0">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="35"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IDLE_MONITOR_CLASS"
+                    c:identifier="GNOME_IDLE_MONITOR_CLASS"
+                    introspectable="0">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="36"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IDLE_MONITOR_GET_CLASS"
+                    c:identifier="GNOME_IDLE_MONITOR_GET_CLASS"
+                    introspectable="0">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="39"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
     <function-macro name="IS_BG" c:identifier="GNOME_IS_BG" introspectable="0">
       <source-position filename="libcinnamon-desktop/gnome-bg.h" line="44"/>
       <parameters>
@@ -1194,6 +1229,26 @@ Usage of this function is threadsafe.</doc>
                        line="40"/>
       <parameters>
         <parameter name="klass">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_IDLE_MONITOR"
+                    c:identifier="GNOME_IS_IDLE_MONITOR"
+                    introspectable="0">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="37"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_IDLE_MONITOR_CLASS"
+                    c:identifier="GNOME_IS_IDLE_MONITOR_CLASS"
+                    introspectable="0">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="38"/>
+      <parameters>
+        <parameter name="k">
         </parameter>
       </parameters>
     </function-macro>
@@ -1335,6 +1390,238 @@ Usage of this function is threadsafe.</doc>
         </parameter>
       </parameters>
     </function-macro>
+    <class name="IdleMonitor"
+           c:symbol-prefix="idle_monitor"
+           c:type="GnomeIdleMonitor"
+           parent="GObject.Object"
+           glib:type-name="GnomeIdleMonitor"
+           glib:get-type="gnome_idle_monitor_get_type"
+           glib:type-struct="IdleMonitorClass">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="54"/>
+      <implements name="Gio.Initable"/>
+      <constructor name="new" c:identifier="gnome_idle_monitor_new">
+        <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                         line="64"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-idle-monitor.c"
+               line="339">a new #GnomeIdleMonitor that tracks the server-global
+idletime for all devices.</doc>
+          <type name="IdleMonitor" c:type="GnomeIdleMonitor*"/>
+        </return-value>
+      </constructor>
+      <method name="add_idle_watch"
+              c:identifier="gnome_idle_monitor_add_idle_watch">
+        <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                         line="66"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-idle-monitor.c"
+               line="437">a watch id
+
+Adds a watch for a specific idle time. The callback will be called
+when the user has accumulated @interval_msec milliseconds of idle time.
+This function will return an ID that can either be passed to
+gnome_idle_monitor_remove_watch(), or can be used to tell idle time
+watches apart if you have more than one.
+
+Also note that this function will only care about positive transitions
+(user's idle time exceeding a certain time). If you want to know about
+when the user has become active, use
+gnome_idle_monitor_add_user_active_watch().</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="monitor" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="429">A #GnomeIdleMonitor</doc>
+            <type name="IdleMonitor" c:type="GnomeIdleMonitor*"/>
+          </instance-parameter>
+          <parameter name="interval_msec" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="430">The idletime interval, in milliseconds. It must be
+    a strictly positive value (&gt; 0).</doc>
+            <type name="guint64" c:type="guint64"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="notified"
+                     closure="2"
+                     destroy="3">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="432">The callback to call when the user has
+    accumulated @interval_msec milliseconds of idle time.</doc>
+            <type name="IdleMonitorWatchFunc"
+                  c:type="GnomeIdleMonitorWatchFunc"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="434">The user data to pass to the callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="notify" transfer-ownership="none" scope="async">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="435">A #GDestroyNotify</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="add_user_active_watch"
+              c:identifier="gnome_idle_monitor_add_user_active_watch">
+        <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                         line="72"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-idle-monitor.c"
+               line="486">a watch id
+
+Add a one-time watch to know when the user is active again.
+Note that this watch is one-time and will de-activate after the
+function is called, for efficiency purposes. It's most convenient
+to call this when an idle watch, as added by
+gnome_idle_monitor_add_idle_watch(), has triggered.</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="monitor" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="480">A #GnomeIdleMonitor</doc>
+            <type name="IdleMonitor" c:type="GnomeIdleMonitor*"/>
+          </instance-parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="notified"
+                     closure="1"
+                     destroy="2">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="481">The callback to call when the user is
+    active again.</doc>
+            <type name="IdleMonitorWatchFunc"
+                  c:type="GnomeIdleMonitorWatchFunc"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="483">The user data to pass to the callback</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+          <parameter name="notify" transfer-ownership="none" scope="async">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="484">A #GDestroyNotify</doc>
+            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_idletime"
+              c:identifier="gnome_idle_monitor_get_idletime">
+        <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                         line="80"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-idle-monitor.c"
+               line="561">The current idle time, in milliseconds</doc>
+          <type name="guint64" c:type="guint64"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="monitor" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="559">A #GnomeIdleMonitor</doc>
+            <type name="IdleMonitor" c:type="GnomeIdleMonitor*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="remove_watch"
+              c:identifier="gnome_idle_monitor_remove_watch">
+        <doc xml:space="preserve"
+             filename="libcinnamon-desktop/gnome-idle-monitor.c"
+             line="520">Removes an idle time watcher, previously added by
+gnome_idle_monitor_add_idle_watch() or
+gnome_idle_monitor_add_user_active_watch().</doc>
+        <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                         line="77"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="monitor" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="522">A #GnomeIdleMonitor</doc>
+            <type name="IdleMonitor" c:type="GnomeIdleMonitor*"/>
+          </instance-parameter>
+          <parameter name="id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="libcinnamon-desktop/gnome-idle-monitor.c"
+                 line="523">A watch ID</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <field name="parent">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="priv">
+        <type name="IdleMonitorPrivate" c:type="GnomeIdleMonitorPrivate*"/>
+      </field>
+    </class>
+    <record name="IdleMonitorClass"
+            c:type="GnomeIdleMonitorClass"
+            glib:is-gtype-struct-for="IdleMonitor">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="54"/>
+      <field name="parent_class">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+    <record name="IdleMonitorPrivate"
+            c:type="GnomeIdleMonitorPrivate"
+            disguised="1"
+            opaque="1">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="43"/>
+    </record>
+    <callback name="IdleMonitorWatchFunc" c:type="GnomeIdleMonitorWatchFunc">
+      <source-position filename="libcinnamon-desktop/gnome-idle-monitor.h"
+                       line="58"/>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="monitor" transfer-ownership="none">
+          <type name="IdleMonitor" c:type="GnomeIdleMonitor*"/>
+        </parameter>
+        <parameter name="id" transfer-ownership="none">
+          <type name="guint" c:type="guint"/>
+        </parameter>
+        <parameter name="user_data"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1"
+                   closure="2">
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </callback>
     <callback name="InstallerClientCallback"
               c:type="GnomeInstallerClientCallback">
       <source-position filename="libcinnamon-desktop/gnome-installer.h"
@@ -1452,7 +1739,10 @@ or %NULL when not found.</doc>
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
     </record>
-    <record name="PnpIdsPrivate" c:type="GnomePnpIdsPrivate" disguised="1">
+    <record name="PnpIdsPrivate"
+            c:type="GnomePnpIdsPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-pnp-ids.h"
                        line="35"/>
     </record>
@@ -1802,12 +2092,16 @@ have the same width/height.  Those outputs are of course connected and on
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
     </record>
-    <record name="RRConfigPrivate" c:type="GnomeRRConfigPrivate" disguised="1">
+    <record name="RRConfigPrivate"
+            c:type="GnomeRRConfigPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-rr-config.h"
                        line="38"/>
     </record>
     <record name="RRCrtc"
             c:type="GnomeRRCrtc"
+            opaque="1"
             glib:type-name="GnomeRRCrtc"
             glib:get-type="gnome_rr_crtc_get_type"
             c:symbol-prefix="rr_crtc">
@@ -2177,12 +2471,14 @@ The labels will be shown by default, use gnome_rr_labeler_hide to hide them.</do
     </record>
     <record name="RRLabelerPrivate"
             c:type="GnomeRRLabelerPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-rr-labeler.h"
                        line="44"/>
     </record>
     <record name="RRMode"
             c:type="GnomeRRMode"
+            opaque="1"
             glib:type-name="GnomeRRMode"
             glib:get-type="gnome_rr_mode_get_type"
             c:symbol-prefix="rr_mode">
@@ -2265,6 +2561,7 @@ The labels will be shown by default, use gnome_rr_labeler_hide to hide them.</do
     </record>
     <record name="RROutput"
             c:type="GnomeRROutput"
+            opaque="1"
             glib:type-name="GnomeRROutput"
             glib:get-type="gnome_rr_output_get_type"
             c:symbol-prefix="rr_output">
@@ -3030,7 +3327,8 @@ The labels will be shown by default, use gnome_rr_labeler_hide to hide them.</do
     </record>
     <record name="RROutputInfoPrivate"
             c:type="GnomeRROutputInfoPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-rr-config.h"
                        line="37"/>
     </record>
@@ -3626,7 +3924,10 @@ idle function.</doc>
         </callback>
       </field>
     </record>
-    <record name="RRScreenPrivate" c:type="GnomeRRScreenPrivate" disguised="1">
+    <record name="RRScreenPrivate"
+            c:type="GnomeRRScreenPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-rr.h" line="34"/>
     </record>
     <function-macro name="RR_CONFIG"
@@ -3966,7 +4267,10 @@ and the default locale format used instead.</doc>
           </parameter>
         </parameters>
       </method>
-      <property name="clock" transfer-ownership="none" getter="get_clock">
+      <property name="clock"
+                transfer-ownership="none"
+                getter="get_clock"
+                default-value="NULL">
         <doc xml:space="preserve"
              filename="libcinnamon-desktop/gnome-wall-clock.c"
              line="220">A formatted string representing the current clock display.</doc>
@@ -3975,7 +4279,8 @@ and the default locale format used instead.</doc>
       <property name="format-string"
                 writable="1"
                 transfer-ownership="none"
-                setter="set_format_string">
+                setter="set_format_string"
+                default-value="NULL">
         <doc xml:space="preserve"
              filename="libcinnamon-desktop/gnome-wall-clock.c"
              line="233">If not NULL, the wall clock will format the time/date according to
@@ -4001,7 +4306,8 @@ will be used instead.</doc>
     </record>
     <record name="WallClockPrivate"
             c:type="GnomeWallClockPrivate"
-            disguised="1">
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-wall-clock.h"
                        line="45"/>
     </record>
@@ -4431,7 +4737,10 @@ be modified.</doc>
         <type name="GObject.ObjectClass" c:type="GObjectClass"/>
       </field>
     </record>
-    <record name="XkbInfoPrivate" c:type="GnomeXkbInfoPrivate" disguised="1">
+    <record name="XkbInfoPrivate"
+            c:type="GnomeXkbInfoPrivate"
+            disguised="1"
+            opaque="1">
       <source-position filename="libcinnamon-desktop/gnome-xkb-info.h"
                        line="45"/>
     </record>
@@ -4785,6 +5094,123 @@ GnomeRR API.</doc>
              line="179">a #GQuark used to identify errors coming from the GnomeRR API.</doc>
         <type name="GLib.Quark" c:type="GQuark"/>
       </return-value>
+    </function>
+    <function name="start_systemd_scope"
+              c:identifier="gnome_start_systemd_scope"
+              stability="Unstable">
+      <doc xml:space="preserve"
+           filename="libcinnamon-desktop/gnome-systemd.c"
+           line="140">If the current process is running inside a user systemd instance, then move
+the launched PID into a transient scope. The given @name will be used to
+create a unit name. It should be the application ID for desktop files or
+the executable in all other cases.
+
+It is advisable to use this function every time where the started application
+can be considered reasonably independent of the launching application. Placing
+it in a scope creates proper separation between the programs rather than being
+considered a single entity by systemd.
+
+It is always safe to call this function. Note that a successful return code
+does not imply that a unit has been created. It solely means that no error
+condition was hit sending the request.
+
+If @connection is %NULL then g_dbus_get() will be called internally.
+
+Note that most callers will not need to handle errors. As such, it is normal
+to pass a %NULL @callback.</doc>
+      <source-position filename="libcinnamon-desktop/gnome-systemd.h"
+                       line="30"/>
+      <return-value transfer-ownership="none">
+        <type name="none" c:type="void"/>
+      </return-value>
+      <parameters>
+        <parameter name="name" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="142">Name for the application</doc>
+          <type name="utf8" c:type="const char*"/>
+        </parameter>
+        <parameter name="pid" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="143">The PID of the application</doc>
+          <type name="gint32" c:type="gint32"/>
+        </parameter>
+        <parameter name="description"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="144">A description to use for the unit, or %NULL</doc>
+          <type name="utf8" c:type="const char*"/>
+        </parameter>
+        <parameter name="connection"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="145">An #GDBusConnection to the session bus, or %NULL</doc>
+          <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+        </parameter>
+        <parameter name="cancellable"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="146">#GCancellable to use</doc>
+          <type name="Gio.Cancellable" c:type="GCancellable*"/>
+        </parameter>
+        <parameter name="callback"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1"
+                   scope="async"
+                   closure="6">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="147">Callback to call when the operation is done</doc>
+          <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+        </parameter>
+        <parameter name="user_data"
+                   transfer-ownership="none"
+                   nullable="1"
+                   allow-none="1">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="148">Data to be passed to @callback</doc>
+          <type name="gpointer" c:type="gpointer"/>
+        </parameter>
+      </parameters>
+    </function>
+    <function name="start_systemd_scope_finish"
+              c:identifier="gnome_start_systemd_scope_finish"
+              throws="1">
+      <doc xml:space="preserve"
+           filename="libcinnamon-desktop/gnome-systemd.c"
+           line="252">Finish an asynchronous operation to create a transient scope that was
+started with gnome_start_systemd_scope().
+
+Note that a successful return code does not imply that a unit has been
+created. It solely means that no error condition was hit sending the request.</doc>
+      <source-position filename="libcinnamon-desktop/gnome-systemd.h"
+                       line="38"/>
+      <return-value transfer-ownership="none">
+        <doc xml:space="preserve"
+             filename="libcinnamon-desktop/gnome-systemd.c"
+             line="263">%FALSE on error, %TRUE otherwise</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </return-value>
+      <parameters>
+        <parameter name="res" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="libcinnamon-desktop/gnome-systemd.c"
+               line="254">A #GAsyncResult</doc>
+          <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+        </parameter>
+      </parameters>
     </function>
   </namespace>
 </repository>
